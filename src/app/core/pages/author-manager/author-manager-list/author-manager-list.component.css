@@ -10,3 +10,24 @@
   display: flex;
   justify-content: flex-end;
 }
+.table-responsive thead {
+  background-color: #E2DCC8;
+}
+
+.table-responsive tbody {
+  background-color: #F1F1F1;
+}
+
+.table-responsive td i {
+  font-size: 20px;
+}
+
+.table-responsive td .fa-trash-can {
+  padding-left: 30px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+}
+
