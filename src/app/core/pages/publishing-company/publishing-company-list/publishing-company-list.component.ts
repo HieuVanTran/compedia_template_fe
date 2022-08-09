@@ -10,7 +10,7 @@ export class PublishingCompanyListComponent implements OnInit {
   publishingCompany : publishingCompany[] = [
     {
       id: 1,
-      name: "Công ty 1",
+      name: "Nhà xuất bản 1",
       address: "Trần Quang Diệu",
       email: "company@gmail.com",
       agent_people: "Trần Văn A",
@@ -18,7 +18,7 @@ export class PublishingCompanyListComponent implements OnInit {
     },
     {
       id: 1,
-      name: "Công ty 1",
+      name: "Nhà xuất bản 1",
       address: "Trần Quang Diệu",
       email: "company@gmail.com",
       agent_people: "Trần Văn A",
@@ -26,7 +26,7 @@ export class PublishingCompanyListComponent implements OnInit {
     },
     {
       id: 1,
-      name: "Công ty 1",
+      name: "Nhà xuất bản 1",
       address: "Trần Quang Diệu",
       email: "company@gmail.com",
       agent_people: "Trần Văn A",
@@ -34,7 +34,7 @@ export class PublishingCompanyListComponent implements OnInit {
     },
     {
       id: 1,
-      name: "Công ty 1",
+      name: "Nhà xuất bản 1",
       address: "Trần Quang Diệu",
       email: "company@gmail.com",
       agent_people: "Trần Văn A",
@@ -42,7 +42,7 @@ export class PublishingCompanyListComponent implements OnInit {
     },
     {
       id: 1,
-      name: "Công ty 1",
+      name: "Nhà xuất bản 1",
       address: "Trần Quang Diệu",
       email: "company@gmail.com",
       agent_people: "Trần Văn A",
@@ -50,12 +50,12 @@ export class PublishingCompanyListComponent implements OnInit {
     },
     {
       id: 1,
-      name: "Công ty 1",
+      name: "Nhà xuất bản 1",
       address: "Trần Quang Diệu",
       email: "company@gmail.com",
       agent_people: "Trần Văn A",
       date_founding: "1/1/2022"
-    }
+    },
   ]
 
   constructor() { }

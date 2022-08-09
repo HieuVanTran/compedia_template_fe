@@ -1,4 +1,4 @@
-<section class="section">
+
         <div class="row" id="table-inverse">
           <div class="col-12">
             <div class="card">
@@ -43,8 +43,8 @@
                     <td>{{i.publishYear}}</td>
                     <td>{{i.amount}}</td>
                     <td>
-                      <a href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-                      <a href="#"><i class="fa-solid fa-trash-can"></i></a>
+                      <a type="button" data-toggle="modal" data-target="#exampleModal-bookmanager"><i class="fa-solid fa-pen-to-square"></i></a>
+                      <a type="button" data-toggle="modal" data-target="#delete-book-manager" ><i class="fa-solid fa-trash-can"></i></a>
                     </td>
                   </tr>
                   </tbody>
@@ -68,3 +68,100 @@
                     </a>
                   </li>
                 </ul>
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal-bookmanager" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content border-0">
+                    <div class="modal-header" style="background: #2C3333">
+                      <h5 class="modal-title" id="exampleModalLabel" style="color: white">Chỉnh sửa</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="color: white">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="form-group row">
+                        <label for="book-name" class="col-sm-2 col-form-label">Tên sách <span style="color: red">*</span></label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="book-name">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="images" class="col-sm-2 col-form-label">Ảnh <span style="color: red">*</span></label>
+                        <div class="col-sm-10">
+                          <input type="file" class="form-control-file" id="images">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="price" class="col-sm-2 col-form-label">Giá tiền <span style="color: red">*</span></label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="price">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="book-kind" class="col-sm-2 col-form-label">Loại sách <span style="color: red">*</span></label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="book-kind">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="author" class="col-sm-2 col-form-label">Tác giả <span style="color: red">*</span></label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="author">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="pages" class="col-sm-2 col-form-label">Số trang <span style="color: red">*</span></label>
+                        <div class="col-sm-10">
+                          <input type="number" class="form-control" id="pages">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="publishing" class="col-sm-2 col-form-label">Tác giả <span style="color: red">*</span></label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="publishing">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="old-password" class="col-sm-2 col-form-label">Nhà xuất bản <span style="color: red">*</span></label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="old-password">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="year" class="col-sm-2 col-form-label">Năm xuất bản <span style="color: red">*</span></label>
+                        <div class="col-sm-10">
+                          <input type="number" class="form-control" id="year">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="amount" class="col-sm-2 col-form-label">Số lượng <span style="color: red">*</span></label>
+                        <div class="col-sm-10">
+                          <input type="number" class="form-control" id="amount">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                      <button type="button" class="btn btn-primary" style="font-size: 18px">Cập Nhật</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Modal -->
+              <div class="modal fade" id="delete-book-manager" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header border-0">
+                      <h5 class="modal-title" id="">Bạn có muốn xóa không ?</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-footer border-0">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+                      <button type="button" class="btn btn-primary">Có</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
