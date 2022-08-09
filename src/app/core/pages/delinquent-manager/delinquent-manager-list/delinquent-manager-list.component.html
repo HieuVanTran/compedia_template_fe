@@ -1,1 +1,59 @@
-<p>delinquent-manager-list works!</p>
+<div class="row" id="table-inverse">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">QUẢN LÝ TÁC GIẢ</h4>
+      </div>
+      <!--        <div class="card-content">-->
+      <!--          <div class="card-body">-->
+      <!--            <p>-->
+      <!--              You can also invert the colors—with light text on dark-->
+      <!--              backgrounds—with-->
+      <!--              <code class="highlighter-rouge">.table-dark</code>.-->
+      <!--            </p>-->
+      <!--          </div>-->
+      <div class="table-responsive">
+        <table class="table table-light mb-0">
+          <thead>
+          <tr>
+            <th>STT</th>
+            <th>TÊN </th>
+            <th>SỐ TIỀN BỊ PHẠT  </th>
+            <th>SỐ TIỀN ĐÃ NỘP </th>
+            <th>MÃ NHÂN VIÊN</th>
+            <th>THAO TÁC</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let i of delinquentManager, index as index">
+            <td>{{index +1}}</td>
+            <td class="text-bold-500">{{i.name}}</td>
+            <td>{{i.fined_amount}}</td>
+            <td>{{i.proceeds}}</td>
+            <td>{{i.staff_id}}</td>
+            <td>
+              <a href="#"><i class="badge-circle badge-circle-white text-secondary font-medium-1" style="min-width: 30px" data-feather="edit"></i></a>
+              <a href="#"><i class="badge-circle badge-circle-white text-secondary font-medium-1" style="min-width: 30px" data-feather="trash-2"></i></a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      </ul>
