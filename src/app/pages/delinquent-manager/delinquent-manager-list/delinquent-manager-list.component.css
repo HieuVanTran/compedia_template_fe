@@ -1,0 +1,12 @@
+.table-responsive thead {
+  background-color: #E2DCC8;
+}
+
+.table-responsive tbody {
+  background-color: #F1F1F1;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+}
