@@ -1,12 +1,11 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
-import {ReturnManagerListComponent} from "./return-manager-list/return-manager-list.component";
-
+import {LoanPayManagerListComponent} from "./loan-pay-manager-list/loan-pay-manager-list.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: ReturnManagerListComponent
+    component: LoanPayManagerListComponent
   }
 ]
 
@@ -15,4 +14,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 
-export class ReturnManagerRoutingModule { }
+export class LoanPayManagerRoutingModule { }

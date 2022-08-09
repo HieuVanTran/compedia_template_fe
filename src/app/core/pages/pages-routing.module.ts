@@ -16,12 +16,8 @@ const pageRoutingModule: Routes = [
     loadChildren: () => import('./author-manager/author-manager.module').then(module => module.AuthorManagerModule)
   },
   {
-    path: 'borrow-manager',
-    loadChildren: () => import('./borrow-manager/borrow-manager.module').then(module => module.BorrowManagerModule)
-  },
-  {
-    path: 'return-manager',
-    loadChildren: () => import('./return-manager/return-manager.module').then(module => module.ReturnManagerModule)
+    path: 'loan-pay-manager',
+    loadChildren: () => import('./loan-pay-manager/loan-pay-manager.module').then(module => module.LoanPayManagerModule)
   },
   {
     path: 'category-manager',

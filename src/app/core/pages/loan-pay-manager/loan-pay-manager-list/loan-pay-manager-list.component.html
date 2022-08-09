@@ -1,0 +1,65 @@
+<div class="row" id="table-inverse">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">QUẢN LÝ MƯỢN TRẢ</h4>
+      </div>
+      <!--        <div class="card-content">-->
+      <!--          <div class="card-body">-->
+      <!--            <p>-->
+      <!--              You can also invert the colors—with light text on dark-->
+      <!--              backgrounds—with-->
+      <!--              <code class="highlighter-rouge">.table-dark</code>.-->
+      <!--            </p>-->
+      <!--          </div>-->
+      <div class="table-responsive">
+        <table class="table table-light mb-0">
+          <thead>
+          <tr>
+            <th>STT</th>
+            <th>TÊN SÁCH</th>
+            <th>MÃ THẺ</th>
+            <th>NGÀY MƯỢN</th>
+            <th>NGÀY TRẢ</th>
+            <th>GHI CHÚ</th>
+            <th>TRẠNG THÁI</th>
+            <th>MÃ NHÂN VIÊN</th>
+            <th>THAO TÁC</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let i of loanPayManager, index as index">
+            <td>{{index +1}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.card_number}}</td>
+            <td>{{i.borrow_date}}</td>
+            <td>{{i.pay_date}}</td>
+            <td>{{i.note}}</td>
+            <td>{{i.status}}</td>
+            <td>{{i.staff_id}}</td>
+            <td>
+              <a href="#"><i class="fa-solid fa-pen-to-square"></i></a>
+              <a href="#"><i class="fa-solid fa-trash-can"></i></a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      </ul>
