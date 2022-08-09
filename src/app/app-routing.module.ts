@@ -1,17 +1,17 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {PagesComponent} from "./pages/pages.component";
+import {PagesComponent} from "./core/pages/pages.component";
 
 
 const routes: Routes = [
   {
     path:'auth',
-    loadChildren: () => import('./auth/auth.module').then(module => module.AuthModule)
+    loadChildren: () => import('./core/auth/auth.module').then(module => module.AuthModule)
   },
   {
     path: 'pages',
     component: PagesComponent,
-    loadChildren: () => import('./pages/pages.module').then(module => module.PagesModule)
+    loadChildren: () => import('./core/pages/pages.module').then(module => module.PagesModule)
   },
   {
     path: '',
