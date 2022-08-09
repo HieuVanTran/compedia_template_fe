@@ -14,3 +14,10 @@
   display: flex;
   justify-content: flex-end;
 }
+.table-responsive td i {
+  font-size: 20px;
+}
+
+.table-responsive td .fa-trash-can {
+  padding-left: 30px;
+}
