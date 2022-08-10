@@ -2,7 +2,14 @@
   <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title">QUẢN LÝ NHÀ XUẤT BẢN</h4>
+        <div class="row">
+          <div class="col-md-9">
+            <h4 class="card-title">QUẢN LÝ NHÀ XUẤT BẢN</h4>
+          </div>
+          <div class="col-md-3 d-flex justify-content-end">
+            <a class="btn btn-info text-light" type="button" data-toggle="modal" data-target="#exampleModal-publishing-company-new">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
+          </div>
+        </div>
       </div>
       <!--        <div class="card-content">-->
       <!--          <div class="card-body">-->
@@ -34,8 +41,8 @@
             <td>{{i.agent_people}}</td>
             <td>{{i.date_founding}}</td>
             <td>
-              <a href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-              <a href="#"><i class="fa-solid fa-trash-can"></i></a>
+              <a type="button" data-toggle="modal" data-target="#exampleModal-publishing-company"><i class="fa-solid fa-pen-to-square" style="color: #00cc00"></i></a>
+              <a type="button" data-toggle="modal" data-target="#delete-publishing-company"><i class="fa-solid fa-trash-can" style="color: red"></i></a>
             </td>
           </tr>
           </tbody>
@@ -59,3 +66,118 @@
           </a>
         </li>
       </ul>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal-publishing-company-new" tabindex="-1" aria-labelledby="exampleModalLabel_add" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content border-0">
+            <div class="modal-header" style="background: #2C3333">
+              <h5 class="modal-title" id="exampleModalLabel_add" style="color: white">Thêm mới</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" style="color: white">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group row">
+                <label for="name_add" class="col-sm-3 col-form-label">Tên NXB<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="name_add">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="address_add" class="col-sm-3 col-form-label">Địa chỉ<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="address_add">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="company_email_add" class="col-sm-3 col-form-label">Email<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="company_email_add">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="agent_person_add" class="col-sm-3 col-form-label">Người đại diện<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="agent_person_add">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="founding_date_add" class="col-sm-3 col-form-label">Ngày thành lập<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="founding_date_add">
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer border-0">
+              <button type="button" class="btn btn-primary" style="font-size: 18px">Thêm mới</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="exampleModal-publishing-company" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content border-0">
+            <div class="modal-header" style="background: #2C3333">
+              <h5 class="modal-title" id="exampleModalLabel" style="color: white">Chỉnh sửa</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" style="color: white">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group row">
+                <label for="name" class="col-sm-3 col-form-label">Tên NXB<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="name">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="address" class="col-sm-3 col-form-label">Địa chỉ<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="address">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="company_email" class="col-sm-3 col-form-label">Email<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="company_email">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="agent_person" class="col-sm-3 col-form-label">Người đại diện<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="agent_person">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="founding_date" class="col-sm-3 col-form-label">Ngày thành lập<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="founding_date">
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer border-0">
+              <button type="button" class="btn btn-primary" style="font-size: 18px">Cập Nhật</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="delete-publishing-company" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header border-0">
+              <h5 class="modal-title" id="">Bạn có muốn xóa không ?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-footer border-0">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+              <button type="button" class="btn btn-primary">Có</button>
+            </div>
+          </div>
+        </div>
+      </div>
