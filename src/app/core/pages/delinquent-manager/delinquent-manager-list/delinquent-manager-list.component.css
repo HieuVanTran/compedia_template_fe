@@ -17,3 +17,9 @@
 .table-responsive td .fa-trash-can {
   padding-left: 30px;
 }
+.fa-solid.fa-pen-to-square{
+  color: #00cc00;
+}
+.fa-solid.fa-trash-can{
+  color: red;
+}

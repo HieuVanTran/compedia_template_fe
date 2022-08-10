@@ -18,4 +18,9 @@
   display: flex;
   justify-content: flex-end;
 }
-
+.fa-solid.fa-pen-to-square{
+  color: #00cc00;
+}
+.fa-solid.fa-trash-can{
+  color: red;
+}

@@ -7,7 +7,7 @@
             <h4 class="card-title">QUẢN TÁC GIẢ</h4>
           </div>
           <div class="col-md-3 d-flex justify-content-end">
-            <a class="btn btn-info text-light">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
+            <a class="btn btn-info text-light" type="button" data-toggle="modal" data-target="#exampleModal-bookmanager-new">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
           </div>
         </div>
       </div>
@@ -39,8 +39,8 @@
             <td>{{i.proceeds}}</td>
             <td>{{i.staff_id}}</td>
             <td>
-              <a href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-              <a href="#"><i class="fa-solid fa-trash-can"></i></a>
+              <a type="button" data-toggle="modal" data-target="#exampleModal-bookmanager"><i class="fa-solid fa-pen-to-square"></i></a>
+              <a type="button" data-toggle="modal" data-target="#delete-book-manager" ><i class="fa-solid fa-trash-can"></i></a>
             </td>
           </tr>
           </tbody>
@@ -64,3 +64,112 @@
           </a>
         </li>
       </ul>
+<!-- -->
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal-bookmanager-new" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content border-0">
+            <div class="modal-header" style="background: #2C3333">
+              <h5 class="modal-title" id="exampleModalLabel" style="color: white">Thêm mới </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" style="color: white">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">Tên <span style="color: red">*</span></label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="name">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="forfeit" class="col-sm-2 col-form-label">Số Tiền Bị Phạt <span style="color: red">*</span></label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="forfeit">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="monney" class="col-sm-2 col-form-label">Số Tiền Đã Nộp <span style="color: red">*</span></label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="monney">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="id_staff" class="col-sm-2 col-form-label">Mã Nhân Viên <span style="color: red">*</span></label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="id_staff">
+                </div>
+              </div>
+
+
+            </div>
+
+
+            <div class="modal-footer border-0">
+              <button type="button" class="btn btn-primary" style="font-size: 18px">Thêm mới</button>
+            </div>
+          </div>
+        </div>
+      </div>
+<!--modal-->
+      <div class="modal fade" id="exampleModal-bookmanager" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content border-0">
+            <div class="modal-header" style="background: #2C3333">
+              <h5 class="modal-title" id="exampleModalLabel" style="color: white">Chỉnh sửa</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" style="color: white">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">Tên <span style="color: red">*</span></label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="name">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="forfeit" class="col-sm-2 col-form-label">Số Tiền Bị Phạt <span style="color: red">*</span></label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="forfeit">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="monney" class="col-sm-2 col-form-label">Số Tiền Đã Nộp <span style="color: red">*</span></label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="monney">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="id_staff" class="col-sm-2 col-form-label">Mã Nhân Viên <span style="color: red">*</span></label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="id_staff">
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer border-0">
+              <button type="button" class="btn btn-primary" style="font-size: 18px">Cập Nhật</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="delete-book-manager" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header border-0">
+              <h5 class="modal-title" id="">Bạn có muốn xóa không ?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-footer border-0">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+              <button type="button" class="btn btn-primary">Có</button>
+            </div>
+          </div>
+        </div>
+      </div>
