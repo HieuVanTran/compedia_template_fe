@@ -3,7 +3,7 @@
       <form class="form-login-group" [formGroup]="loginForm">
         <h1 class="text-center">Đăng nhập</h1>
         <div class="form-group">
-          <label for="exampleInputEmail1">Tên đăng nhập</label>
+          <label for="exampleInputEmail1">Email</label>
           <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
           <div  *ngIf="loginForm.get('email')?.invalid &&( loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
             <div *ngIf="loginForm.get('email')?.hasError('required')">
@@ -16,7 +16,11 @@
         </div>
         <div class="form-group" id="password">
           <label for="exampleInputPassword1">Mật Khẩu</label>
-          <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1">
+          <input type="{{!showEye ? 'password' : 'text'}}" formControlName="password" class="form-control" id="exampleInputPassword1">
+          <div id="eye" (click)="showEye = !showEye">
+            <i class="fa-solid fa-eye" *ngIf="showEye"></i>
+            <i class=" fa-solid fa-eye-slash" *ngIf="!showEye"></i>
+          </div>
           <div  *ngIf="loginForm.get('password')?.invalid &&( loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
             <div *ngIf="loginForm.get('password')?.hasError('required')">
               Vui lòng nhập password

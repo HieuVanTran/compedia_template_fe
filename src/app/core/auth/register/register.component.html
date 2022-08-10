@@ -11,12 +11,20 @@
         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
       </div>
       <div class="form-group" id="password">
-        <label for="exampleInputPassword1">Mật khẩu</label>
-        <input type="password" class="form-control" id="exampleInputPassword1">
+        <label for="exampleInputPassword1">Mật Khẩu</label>
+        <input type="{{!showEye ? 'password' : 'text'}}" class="form-control" id="exampleInputPassword1">
+        <div id="eye" (click)="showEye = !showEye">
+          <i class="fa-solid fa-eye" *ngIf="showEye"></i>
+          <i class=" fa-solid fa-eye-slash" *ngIf="!showEye"></i>
+        </div>
       </div>
-      <div class="form-group" id="password">
-        <label for="exampleInputPassword1">Nhập lại mật khẩu</label>
-        <input type="password" class="form-control" id="exampleInputPassword1">
+      <div class="form-group" id="password1">
+        <label for="exampleInputPassword">Nhập lại mật khẩu</label>
+        <input type="{{!showEye1 ? 'password' : 'text'}}" class="form-control" id="exampleInputPassword">
+        <div id="eye1" (click)="showEye1 = !showEye1">
+          <i class="fa-solid fa-eye" *ngIf="showEye1"></i>
+          <i class=" fa-solid fa-eye-slash" *ngIf="!showEye1"></i>
+        </div>
       </div>
       <div class="register">
         <button type="submit" class="btn btn-primary form-control">Đăng Ký</button>

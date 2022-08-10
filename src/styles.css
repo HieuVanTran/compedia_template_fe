@@ -29,7 +29,15 @@
   right: 10px;
   cursor: pointer;
 }
-
+#eye1{
+  position: absolute;
+  top: 38px;
+  right: 10px;
+  cursor: pointer;
+}
+#password1{
+  position: relative;
+}
 .forget-password {
   padding-top: 10px;
   padding-bottom: 20px;

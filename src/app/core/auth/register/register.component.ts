@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+   showEye : boolean=true
+  showEye1: boolean= true
   constructor() { }
 
   ngOnInit(): void {
