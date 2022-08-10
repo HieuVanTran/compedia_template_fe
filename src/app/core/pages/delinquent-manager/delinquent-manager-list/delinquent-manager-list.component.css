@@ -6,16 +6,15 @@
   background-color: #F1F1F1;
 }
 
+.table-responsive td i {
+  font-size: 20px;
+  padding: 8px;
+}
+
+
 .pagination {
   display: flex;
   justify-content: flex-end;
-}
-.table-responsive td i {
-  font-size: 20px;
-}
-
-.table-responsive td .fa-trash-can {
-  padding-left: 30px;
 }
 .fa-solid.fa-pen-to-square{
   color: #00cc00;
@@ -23,7 +22,7 @@
 .fa-solid.fa-trash-can{
   color: red;
 }
-.table-responsive td i {
-  font-size: 20px;
-  padding: 8px;
-}
+/*.table-responsive td i {*/
+/*  font-size: 20px;*/
+/*  padding: 8px;*/
+/*}*/
