@@ -4,6 +4,8 @@ import {ILoginResponse} from "../../../models/responses/login.response";
 import {ILoginRequest} from "../../../models/requests/login.request";
 import {AuthApiService} from "../../../services/api/auth-api.service";
 import {IResponseModel} from "../../../models/commons/response.model";
+import {TokenService} from "../../../services/token.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -12,12 +14,14 @@ import {IResponseModel} from "../../../models/commons/response.model";
 })
 export class LoginComponent implements OnInit {
 
-  loginForm!: FormGroup
+  loginForm: FormGroup
 
   constructor(private fb: FormBuilder,
-              private authApiService: AuthApiService) {
+              private authApiService: AuthApiService,
+              private router: Router,
+              private TokenService: TokenService) {
     this.loginForm = fb.group({
-      email: [null, Validators.required],
+      email: [null, [Validators.required, Validators.email]],
       password: [null, Validators.required]
     })
   }
@@ -27,6 +31,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     if(this.loginForm.invalid) {
+      console.log('form invalid')
       return
     }
     const loginRequest: ILoginRequest = {
@@ -35,11 +40,12 @@ export class LoginComponent implements OnInit {
     }
     this.authApiService._login(loginRequest).subscribe(
       (res: IResponseModel<ILoginResponse>) => {
-        console.log(res)
+        this.router.navigate(['/pages/book-manager'], {queryParams:{ac: 2}})
+        this.TokenService.setKey(JSON.stringify(res.data.token))
       },
       err => {
         console.log(err)
-      }
+      },
     )
   }
 }

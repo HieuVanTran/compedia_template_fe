@@ -12,9 +12,12 @@ import {HttpClient} from "@angular/common/http";
 export class AuthApiService{
   api = environment.api_url
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient
+  ) {
   }
 
+  // DOTENV
   _login(requestBody: ILoginRequest): Observable<IResponseModel<ILoginResponse>> {
     const url = `${this.api}/auth/login`
     return this.http.post<IResponseModel<ILoginResponse>>(url, requestBody)

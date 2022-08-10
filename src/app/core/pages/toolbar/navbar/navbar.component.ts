@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Token} from "@angular/compiler";
+import {TokenService} from "../../../../services/token.service";
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private tokenService: TokenService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  logout() {
+    this.tokenService.clearKey()
+  }
 }
