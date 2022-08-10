@@ -8,11 +8,9 @@
 
 .table-responsive td i {
   font-size: 20px;
+  padding: 8px;
 }
 
-.table-responsive td .fa-trash-can {
-  padding-left: 30px;
-}
 
 .pagination {
   display: flex;
@@ -24,7 +22,7 @@
 .fa-solid.fa-trash-can{
   color: red;
 }
-.table-responsive td i {
-  font-size: 20px;
-  padding: 8px;
-}
+/*.table-responsive td i {*/
+/*  font-size: 20px;*/
+/*  padding: 8px;*/
+/*}*/
