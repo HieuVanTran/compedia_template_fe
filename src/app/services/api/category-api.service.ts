@@ -26,7 +26,7 @@ export class CategoryApiService{
     return this.http.post<IResponseModel<any>>(url, requestBody)
   }
 
-  _deleteBookCategory(bookId: number): Observable<IResponseModel<any>> {
+    _deleteBookCategory(bookId: number): Observable<IResponseModel<any>> {
     const url = `${this.api}/book-category?id=${bookId}`
     return this.http.delete<IResponseModel<any>>(url)
   }
