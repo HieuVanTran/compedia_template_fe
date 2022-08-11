@@ -4,7 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {IResponseModel} from "../../models/commons/response.model";
 import {IAccountManagerResponse} from "../../models/responses/account-manager.response";
-import {IAccountManagerRequest} from "../../models/requests/account-manager.request";
+import {IAccountManagerRequest, IEditAccountManagerRequest} from "../../models/requests/account-manager.request";
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +28,10 @@ export class AccountApiService{
   _deleteAccount(accountId: number): Observable<IResponseModel<any>>{
     const url = `${this.api}/account?id=${accountId}`
     return this.http.delete<IResponseModel<any>>(url)
+  }
+
+  _editAccount(requestBody: IEditAccountManagerRequest): Observable<IResponseModel<any>>{
+    const url = `${this.api}/account`
+    return this.http.put<IResponseModel<any>>(url, requestBody)
   }
 }

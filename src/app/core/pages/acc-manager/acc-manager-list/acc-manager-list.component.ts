@@ -5,9 +5,7 @@ import {IResponseModel} from "../../../../models/commons/response.model";
 import {IAccountManagerResponse} from "../../../../models/responses/account-manager.response";
 import {IAccountManagerView} from "../../../../models/views/account-manager.view";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {IAccountManagerRequest} from "../../../../models/requests/account-manager.request";
-import {IBookCategoryView} from "../../../../models/views/book-category.view";
-
+import {IAccountManagerRequest, IEditAccountManagerRequest} from "../../../../models/requests/account-manager.request";
 
 @Component({
   selector: 'app-acc-manager-list',
@@ -95,6 +93,42 @@ export class AccManagerListComponent implements OnInit {
     }
   }
 
+  editAccount(i: IAccountManagerView) {
+      this.accountSeleted = i
+      this.accountInfoForm.patchValue(
+        {
+          username: i.username,
+          password: i.password,
+          full_name: i.full_name,
+          date_of_birth: i.date_of_birth,
+          email: i.email,
+          phone: i.phone,
+          role_id: i.role_id
+        }
+      )
+    }
+
+  onEditAccount() {
+    const editAccountManagerRequest: IEditAccountManagerRequest = {
+      username: this.accountInfoForm.value.username,
+      password: this.accountInfoForm.value.password,
+      full_name: this.accountInfoForm.value.full_name,
+      date_of_birth: this.accountInfoForm.value.date_of_birth,
+      email: this.accountInfoForm.value.email,
+      phone: this.accountInfoForm.value.phone,
+      role_id: this.accountInfoForm.value.role_id,
+      id: this.accountSeleted.id
+    }
+    this.accountApiService._editAccount(editAccountManagerRequest).subscribe(
+      (res: IResponseModel<any>) => {
+        console.log('Thay doi thong tin thanh cong')
+        this.getAllAccountManager()
+      },
+      err => {
+        console.log('Thay doi thong tin that bai')
+      }
+    )
+  }
 
   selectAccount(i: IAccountManagerView) {
     this.accountSeleted = i

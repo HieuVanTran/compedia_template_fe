@@ -138,7 +138,7 @@
       </div>
 
       <div class="modal fade" id="exampleModal-accmanager" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg" [formGroup]="accountInfoForm">
           <div class="modal-content border-0">
             <div class="modal-header" style="background: #2C3333">
               <h5 class="modal-title" id="exampleModalLabel" style="color: white">Chỉnh sửa</h5>
@@ -191,7 +191,7 @@
               </div>
           </div>
             <div class="modal-footer border-0">
-              <button type="button" class="btn btn-primary" style="font-size: 18px">Cập Nhật</button>
+              <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onEditAccount()">Cập Nhật</button>
             </div>
           </div>
         </div>
