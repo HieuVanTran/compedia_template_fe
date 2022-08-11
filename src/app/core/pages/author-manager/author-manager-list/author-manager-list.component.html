@@ -8,7 +8,7 @@
           </div>
           <div class="col-md-3 d-flex justify-content-end">
             <a class="btn btn-info text-light" type="button" data-toggle="modal"
-               data-target="#exampleModal-create-author-new">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
+               data-target="#exampleModal-create-author-new" (click)="AuthorInfoForm.reset()">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
           </div>
         </div>
       </div>
@@ -33,16 +33,16 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let i of authorManager, index as index">
+          <tr *ngFor="let i of  authorManager, index as index">
             <td>{{index + 1}}</td>
-            <td class="text-bold-500">{{i.name}}</td>
+            <td class="text-bold-500">{{i.name_author}}</td>
             <td>{{i.address}}</td>
             <td>{{i.title}}</td>
             <td>{{i.note}}</td>
             <td>
-              <a type="button" data-toggle="modal" data-target="#exampleModal-author-new" style="color: #00cc00"><i
+              <a type="button" data-toggle="modal" data-target="#exampleModal-author-new" style="color: #00cc00" (click)="editBookAuthor(i)"><i
                 class="fa-solid fa-pen-to-square"></i></a>
-              <a type="button" data-toggle="modal" data-target="#delete-author-manager" style="color: red"><i
+              <a type="button" data-toggle="modal" data-target="#delete-author-manager" style="color: red" (click)="selectBookAuthor(i)"><i
                 class="fa-solid fa-trash-can"></i></a>
             </td>
           </tr>
@@ -71,7 +71,7 @@
       <!-- Modal -->
       <div class="modal fade" id="exampleModal-create-author-new" tabindex="-1" aria-labelledby="exampleModalLabel-1"
            aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg" [formGroup]="AuthorInfoForm">
           <div class="modal-content border-0">
             <div class="modal-header" style="background: #2C3333">
               <h5 class="modal-title" id="exampleModalLabel-1" style="color: white">Thêm mới</h5>
@@ -84,29 +84,29 @@
                 <label for="author-name" class="col-sm-3 col-form-label">Tên tác giả <span
                   style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="author-name">
+                  <input type="text" class="form-control" id="author-name" formControlName="name_author">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="address" class="col-sm-3 col-form-label">Địa chỉ <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="address">
+                  <input type="text" class="form-control" id="address" formControlName="address">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="title" class="col-sm-3 col-form-label">Chức danh <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="title">
+                  <input type="text" class="form-control" id="title" formControlName="title">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="note" class="col-sm-3 col-form-label">Ghi chú <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="note">
+                  <input type="text" class="form-control" id="note" formControlName="note">
                 </div>
               </div>
               <div class="modal-footer border-0">
-                <button type="button" class="btn btn-primary" style="font-size: 18px">Thêm mới</button>
+                <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onAddNewBookAuth()">Thêm mới</button>
               </div>
             </div>
           </div>
@@ -115,7 +115,7 @@
       <!-- Modal -->
       <div class="modal fade" id="exampleModal-author-new" tabindex="-1" aria-labelledby="exampleModalLabel-2"
            aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg"[formGroup]="AuthorInfoForm">
           <div class="modal-content border-0">
             <div class="modal-header" style="background: #2C3333">
               <h5 class="modal-title" id="exampleModalLabel-2" style="color: white">Chỉnh sửa</h5>
@@ -127,29 +127,29 @@
               <div class="form-group row">
                 <label for="author-name" class="col-sm-3 col-form-label">Tên tác giả <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="author-name1">
+                  <input type="text" class="form-control" id="author-name1" formControlName="name_author">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="address" class="col-sm-3 col-form-label">Địa chỉ <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="address1">
+                  <input type="text" class="form-control" id="address1" formControlName="address">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="title" class="col-sm-3 col-form-label">Chức danh <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="title1">
+                  <input type="text" class="form-control" id="title1" formControlName="title">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="note" class="col-sm-3 col-form-label">Ghi chú <span style="color: red">*</span></label>
+                <label for="note1" class="col-sm-3 col-form-label">Ghi chú <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="note1">
+                  <input type="text" class="form-control" id="note1" formControlName="note">
                 </div>
               </div>
               <div class="modal-footer border-0">
-                <button type="button" class="btn btn-primary" style="font-size: 18px">Cập nhật</button>
+                <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onEditBookAuth()">Cập nhật</button>
               </div>
             </div>
           </div>
@@ -168,7 +168,7 @@
             </div>
             <div class="modal-footer border-0">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
-              <button type="button" class="btn btn-primary">Có</button>
+              <button type="button" class="btn btn-primary" (click)=" onDeleteBookAuthor()">Có</button>
             </div>
           </div>
         </div>
