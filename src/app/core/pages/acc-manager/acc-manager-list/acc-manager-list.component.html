@@ -47,7 +47,7 @@
             <td>{{i.status}}</td>
             <td>{{i.role_id}}</td>
             <td>
-              <a type="button" data-toggle="modal" data-target="#exampleModal-accmanager"><i class="fa-solid fa-pen-to-square" style="color: #00cc00"></i></a>
+              <a type="button" data-toggle="modal" data-target="#exampleModal-accmanager" (click)="editAccount(i)"><i class="fa-solid fa-pen-to-square" style="color: #00cc00"></i></a>
               <a type="button" data-toggle="modal" data-target="#delete-acc-manager" (click)="selectAccount(i)"><i class="fa-solid fa-trash-can" style="color: red"></i></a>
             </td>
           </tr>
@@ -121,11 +121,11 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="role_id_add" class="col-sm-3 col-form-label">Role ID<span style="color: red">*</span></label>
+                <label class="col-sm-3 col-form-label">Role ID<span style="color: red">*</span></label>
                 <div class="col-sm-9">
                   <select class="form-control" formControlName = "role_id">
+                    <option>0</option>
                     <option>1</option>
-                    <option>2</option>
                   </select>
                 </div>
               </div>
@@ -150,43 +150,46 @@
               <div class="form-group row">
                 <label for="username" class="col-sm-3 col-form-label">Tên đăng nhập<span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="username">
+                  <input type="text" class="form-control" id="username" formControlName = "username">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="password" class="col-sm-3 col-form-label">Mật khẩu<span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="password">
+                  <input type="text" class="form-control" id="password" formControlName ="password">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="full-name" class="col-sm-3 col-form-label">Tên đầy đủ<span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="full-name">
+                  <input type="text" class="form-control" id="full-name" formControlName ="full_name">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="date_of_birth" class="col-sm-3 col-form-label">Ngày sinh<span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="date_of_birth">
+                  <input type="date" class="form-control" id="date_of_birth" formControlName ="date_of_birth">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="email" class="col-sm-3 col-form-label">Email<span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="email">
+                  <input type="text" class="form-control" id="email" formControlName ="email">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="phone_number" class="col-sm-3 col-form-label">Số điện thoại<span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="number" class="form-control" id="phone_number">
+                  <input type="number" class="form-control" id="phone_number" formControlName ="phone">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="role_id" class="col-sm-3 col-form-label">Role ID<span style="color: red">*</span></label>
+                <label class="col-sm-3 col-form-label">Role ID<span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="role_id">
+                  <select class="form-control" formControlName = "role_id">
+                    <option>0</option>
+                    <option>1</option>
+                  </select>
                 </div>
               </div>
           </div>

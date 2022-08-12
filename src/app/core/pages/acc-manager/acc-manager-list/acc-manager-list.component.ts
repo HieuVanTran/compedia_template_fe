@@ -113,10 +113,10 @@ export class AccManagerListComponent implements OnInit {
       username: this.accountInfoForm.value.username,
       password: this.accountInfoForm.value.password,
       full_name: this.accountInfoForm.value.full_name,
-      date_of_birth: this.accountInfoForm.value.date_of_birth,
+      dob: this.accountInfoForm.value.date_of_birth,
       email: this.accountInfoForm.value.email,
       phone: this.accountInfoForm.value.phone,
-      role_id: this.accountInfoForm.value.role_id,
+      roleId: this.accountInfoForm.value.role_id,
       id: this.accountSeleted.id
     }
     this.accountApiService._editAccount(editAccountManagerRequest).subscribe(
