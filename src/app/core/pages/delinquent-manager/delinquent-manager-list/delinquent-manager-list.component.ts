@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import {IBookCategoryView} from "../../../../models/views/book-category.view";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {ICollectMoneyView} from "../../../../models/views/collect-money.view";
+import {CategoryApiService} from "../../../../services/api/category-api.service";
+import {collectMoneyApiService} from "../../../../services/api/collect-money.api.services";
+import {IResponseModel} from "../../../../models/commons/response.model";
+import {IBookCategoryResponse} from "../../../../models/responses/book-category.response";
+import {ICollectMoneyResponses} from "../../../../models/responses/collect-money.resposes";
 
 @Component({
   selector: 'app-delinquent-manager-list',
@@ -7,57 +15,55 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DelinquentManagerListComponent implements OnInit {
 
-  delinquentManager : delinquentManager[] = [
-    {
-      id: 1,
-      name: "cao hải đăng",
-      fined_amount: "100.000 VND",
-      proceeds: "200.000 VND",
-      staff_id: "abc123"
-    },
-    {
-      id: 1,
-      name: "cao hải đăng",
-      fined_amount: "100.000 VND",
-      proceeds: "200.000 VND",
-      staff_id: "abc123"
-    },
-    {
-      id: 1,
-      name: "cao hải đăng",
-      fined_amount: "100.000 VND",
-      proceeds: "200.000 VND",
-      staff_id: "abc123"
-    },
-    {
-      id: 1,
-      name: "cao hải đăng",
-      fined_amount: "100.000 VND",
-      proceeds: "200.000 VND",
-      staff_id: "abc123"
-    },
-    {
-      id: 1,
-      name: "cao hải đăng",
-      fined_amount: "100.000 VND",
-      proceeds: "200.000 VND",
-      staff_id: "abc123"
-    }
-  ]
+  delinquentManager : ICollectMoneyView[] = []
+  moneyInfoForm!: FormGroup
+  collectmoneySelected!: ICollectMoneyView
 
 
 
-  constructor() { }
+
+  constructor(private collectMoneyApiService: collectMoneyApiService,
+              private fb: FormBuilder) {
+    this.moneyInfoForm= fb.group({
+      collectMoneyId:[null],
+      cardId: [null],
+      fullName: [null],
+      finedAmount: [null],
+      proceeds: [null],
+      staffId: [null]
+    })
+  }
 
   ngOnInit(): void {
+    this.getAllcollectmoney()
+  }
+
+  getAllcollectmoney() {
+    this.collectMoneyApiService._getAllcollectmoney().subscribe(
+      (res: IResponseModel<ICollectMoneyResponses[]>) => {
+        this.delinquentManager = []
+        res.data.forEach(collectmoneyRes => {
+          const collectMoneyView: ICollectMoneyView = {
+            collectMoneyId:collectmoneyRes.collectMoneyId,
+           cardId:collectmoneyRes.cardId,
+            fullName:collectmoneyRes.fullName,
+            finedAmount:collectmoneyRes.finedAmount,
+            proceeds:collectmoneyRes.proceeds,
+            staffId:collectmoneyRes.staffId
+          }
+          this.delinquentManager.push(collectMoneyView)
+        })
+      }
+    )
   }
 
 }
 
 interface delinquentManager  {
-  id: number,
-  name: string,
-  fined_amount: string,
-  proceeds: string,
-  staff_id: string,
+  collectMoneyId: number,
+  cardId: number,
+  fullName: string,
+  finedAmount: number,
+  proceeds: number,
+  staffId: number
 }
