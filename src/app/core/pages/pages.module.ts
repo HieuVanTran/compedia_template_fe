@@ -5,6 +5,7 @@ import {BookManagerComponent} from "./book-manager/book-manager.component";
 import { PagesComponent } from "./pages.component";
 import {ToolbarModule} from "./toolbar/toolbar.module";
 import {CommonModule} from "@angular/common";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
     declarations: [
@@ -16,6 +17,8 @@ import {CommonModule} from "@angular/common";
         PagesRoutingModule,
         ToolbarModule,
         CommonModule,
+        FormsModule,
+      ReactiveFormsModule
     ]
 })
 export class PagesModule {

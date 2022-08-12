@@ -10,3 +10,4 @@ export interface IBookManagerResponse {
   idCompany: number,
   amount: number,
 }
+
