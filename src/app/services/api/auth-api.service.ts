@@ -12,9 +12,7 @@ import {HttpClient} from "@angular/common/http";
 export class AuthApiService{
   api = environment.api_url
 
-  constructor(
-    private http: HttpClient
-  ) {
+  constructor(private http: HttpClient) {
   }
 
   // DOTENV
