@@ -15,9 +15,9 @@ import {IAccountManagerRequest, IEditAccountManagerRequest} from "../../../../mo
 export class AccManagerListComponent implements OnInit {
 
 
-  accManager: IAccountManagerView[] = []
-  accountInfoForm!: FormGroup
-  accountSeleted!: IAccountManagerView
+  accManager: IAccountManagerView[] = [];
+  accountInfoForm!: FormGroup;
+  accountSelected!: IAccountManagerView;
 
   constructor(private accountApiService: AccountApiService,
               private fb:FormBuilder) {
@@ -39,7 +39,7 @@ export class AccManagerListComponent implements OnInit {
   getAllAccountManager() {
     this.accountApiService._getAllAccountManager().subscribe(
       (res: IResponseModel<IAccountManagerResponse[]>) => {
-        this.accManager = []
+        this.accManager = [];
         res.data.forEach(accountManagerRes => {
           const accountManagerView: IAccountManagerView = {
             id: accountManagerRes.accountId,
@@ -51,7 +51,7 @@ export class AccManagerListComponent implements OnInit {
             phone: accountManagerRes.phone,
             status: accountManagerRes.status,
             role_id: accountManagerRes.roleId
-          }
+          };
           this.accManager.push(accountManagerView)
         })
       }
@@ -67,10 +67,10 @@ export class AccManagerListComponent implements OnInit {
       email: this.accountInfoForm.value.email,
       phone: this.accountInfoForm.value.phone,
       role_id: this.accountInfoForm.value.role_id
-    }
+    };
     this.accountApiService._createNewAccount(createNewAccountRequest).subscribe(
       (res: IResponseModel<any>) => {
-        console.log('Tao tai khoan thanh cong')
+        console.log('Tao tai khoan thanh cong');
         this.getAllAccountManager()
       },
       err => {
@@ -80,10 +80,10 @@ export class AccManagerListComponent implements OnInit {
   }
 
   onDeleteAccount() {
-    if(this.accountSeleted) {
-      this.accountApiService._deleteAccount(this.accountSeleted.id).subscribe(
+    if(this.accountSelected) {
+      this.accountApiService._deleteAccount(this.accountSelected.id).subscribe(
         (res: IResponseModel<any>) => {
-          console.log('Xoa tai khoan thanh cong')
+          console.log('Xoa tai khoan thanh cong');
           this.getAllAccountManager()
         },
         err => {
@@ -94,7 +94,7 @@ export class AccManagerListComponent implements OnInit {
   }
 
   editAccount(i: IAccountManagerView) {
-      this.accountSeleted = i
+      this.accountSelected = i;
       this.accountInfoForm.patchValue(
         {
           username: i.username,
@@ -117,11 +117,11 @@ export class AccManagerListComponent implements OnInit {
       email: this.accountInfoForm.value.email,
       phone: this.accountInfoForm.value.phone,
       roleId: this.accountInfoForm.value.role_id,
-      id: this.accountSeleted.id
+      id: this.accountSelected.id
     }
     this.accountApiService._editAccount(editAccountManagerRequest).subscribe(
       (res: IResponseModel<any>) => {
-        console.log('Thay doi thong tin thanh cong')
+        console.log('Thay doi thong tin thanh cong');
         this.getAllAccountManager()
       },
       err => {
@@ -131,8 +131,8 @@ export class AccManagerListComponent implements OnInit {
   }
 
   selectAccount(i: IAccountManagerView) {
-    this.accountSeleted = i
-    console.log(this.accountSeleted)
+    this.accountSelected = i;
+    console.log(this.accountSelected)
   }
 }
 interface accManager {

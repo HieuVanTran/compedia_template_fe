@@ -16,22 +16,22 @@ export class AccountApiService{
   }
 
   _getAllAccountManager(): Observable<IResponseModel<IAccountManagerResponse[]>>{
-    const url = `${this.api}/account/account`
+    const url = `${this.api}/account/account`;
     return this.http.get<IResponseModel<IAccountManagerResponse[]>>(url)
   }
 
   _createNewAccount(requestBody: IAccountManagerRequest): Observable<IResponseModel<any>> {
-    const url = `${this.api}/account`
+    const url = `${this.api}/account`;
     return this.http.post<IResponseModel<any>>(url, requestBody)
   }
 
   _deleteAccount(accountId: number): Observable<IResponseModel<any>>{
-    const url = `${this.api}/account?id=${accountId}`
+    const url = `${this.api}/account?id=${accountId}`;
     return this.http.delete<IResponseModel<any>>(url)
   }
 
   _editAccount(requestBody: IEditAccountManagerRequest): Observable<IResponseModel<any>>{
-    const url = `${this.api}/account`
+    const url = `${this.api}/account`;
     return this.http.put<IResponseModel<any>>(url, requestBody)
   }
 }
