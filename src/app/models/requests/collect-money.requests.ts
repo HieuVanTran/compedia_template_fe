@@ -1,16 +1,16 @@
 export interface ICollectMoneyRequests {
   collectMoneyId?: number,
-  cardId: number,
+  cardId: string,
   fullName: string,
-  finedAmount: number,
-  proceeds: number,
-  staffId: number
+  finedAmount: string,
+  proceeds: string,
+  staffId: string
 }
 export interface IEditCollectMoneyRequests {
   collectMoneyId: number,
-  cardId: number,
+  cardId: string,
   fullName: string,
-  finedAmount: number,
-  proceeds: number,
-  staffId: number
+  finedAmount: string,
+  proceeds: string,
+  staffId: string
 }

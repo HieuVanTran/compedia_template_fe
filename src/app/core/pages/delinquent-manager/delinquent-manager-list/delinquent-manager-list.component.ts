@@ -3,10 +3,12 @@ import {IBookCategoryView} from "../../../../models/views/book-category.view";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ICollectMoneyView} from "../../../../models/views/collect-money.view";
 import {CategoryApiService} from "../../../../services/api/category-api.service";
-import {collectMoneyApiService} from "../../../../services/api/collect-money.api.services";
+import {collectMoneyApiService} from "../../../../services/api/collect-money-api.service";
 import {IResponseModel} from "../../../../models/commons/response.model";
 import {IBookCategoryResponse} from "../../../../models/responses/book-category.response";
-import {ICollectMoneyResponses} from "../../../../models/responses/collect-money.resposes";
+import {ICollectMoneyResponses} from "../../../../models/responses/collect-money.response";
+import {IBookCategoryRequest} from "../../../../models/requests/book-category.request";
+import {ICollectMoneyRequests} from "../../../../models/requests/collect-money.requests";
 
 @Component({
   selector: 'app-delinquent-manager-list',
@@ -56,14 +58,32 @@ export class DelinquentManagerListComponent implements OnInit {
       }
     )
   }
+  onAddNewcollectmoney() {
+    const createNewcollectmoneyRequest: ICollectMoneyRequests = {
+    cardId:this.moneyInfoForm.value.cardId,
+      fullName:this.moneyInfoForm.value.fullname,
+      finedAmount:this.moneyInfoForm.value.finedAmount,
+      proceeds:this.moneyInfoForm.value.proceeds,
+      staffId:this.moneyInfoForm.value.staffId,
+    }
+    this.collectMoneyApiService._createNewCollectmoney(createNewcollectmoneyRequest).subscribe(
+      (res: IResponseModel<any>) => {
+        console.log('Them moi danh muc thanh cong')
+        this.getAllcollectmoney()
+      },
+      err => {
+        console.log('Them moi danh muc that bai')
+      }
+    )
+  }
 
 }
 
 interface delinquentManager  {
   collectMoneyId: number,
-  cardId: number,
+  cardId: string,
   fullName: string,
-  finedAmount: number,
-  proceeds: number,
-  staffId: number
+  finedAmount: string,
+  proceeds: string,
+  staffId: string
 }

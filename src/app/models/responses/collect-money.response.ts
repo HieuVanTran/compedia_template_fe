@@ -1,9 +1,9 @@
 export interface ICollectMoneyResponses {
   collectMoneyId: number,
-  cardId: number,
+  cardId: string,
   fullName: string,
-  finedAmount: number,
-  proceeds: number,
-  staffId: number
+  finedAmount: string,
+  proceeds: string,
+  staffId: string
 
 }
