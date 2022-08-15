@@ -4,10 +4,10 @@
       <div class="card-header">
         <div class="row">
           <div class="col-md-9">
-            <h4 class="card-title">QUẢN TÁC GIẢ</h4>
+            <h4 class="card-title">QUẢN LÍ VI PHẠM </h4>
           </div>
           <div class="col-md-3 d-flex justify-content-end">
-            <a class="btn btn-info text-light" type="button" data-toggle="modal" data-target="#exampleModal-bookmanager-new">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
+            <a class="btn btn-info text-light" type="button" data-toggle="modal" data-target="#exampleModal-bookmanager-new" (click)="moneyInfoForm.reset()">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
           </div>
         </div>
       </div>
@@ -67,7 +67,7 @@
 <!-- -->
       <!-- Modal -->
       <div class="modal fade" id="exampleModal-bookmanager-new" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg" [formGroup]="moneyInfoForm">
           <div class="modal-content border-0">
             <div class="modal-header" style="background: #2C3333">
               <h5 class="modal-title" id="exampleModalLabel" style="color: white">Thêm mới </h5>
@@ -79,26 +79,26 @@
               <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label">Tên <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="name">
+                  <input type="text" class="form-control" id="name" formControlName="fullname">
                 </div>
               </div>
 
               <div class="form-group row">
                 <label for="forfeit" class="col-sm-2 col-form-label">Số Tiền Bị Phạt <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="forfeit">
+                  <input type="text" class="form-control" id="forfeit" formControlName="fineAmount">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="monney" class="col-sm-2 col-form-label">Số Tiền Đã Nộp <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="monney">
+                  <input type="text" class="form-control" id="monney" formControlName="proceeds">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="id_staff" class="col-sm-2 col-form-label">Mã Nhân Viên <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="id_staff">
+                  <input type="text" class="form-control" id="id_staff" formControlName="staffId">
                 </div>
               </div>
 
@@ -107,7 +107,7 @@
 
 
             <div class="modal-footer border-0">
-              <button type="button" class="btn btn-primary" style="font-size: 18px">Thêm mới</button>
+              <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onAddNewcollectmoney()">Thêm mới</button>
             </div>
           </div>
         </div>

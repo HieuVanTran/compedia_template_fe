@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="row" id="table-inverse">
   <div class="col-12">
     <div class="card">
@@ -87,7 +88,7 @@
               </div>
             </div>
             <div class="modal-footer border-0">
-              <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onAddNewBookCategory()">Thêm mới</button>
+              <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onAddNewBookCategory()" data-dismiss="modal">Thêm mới</button>
             </div>
           </div>
         </div>
@@ -119,7 +120,7 @@
               </div>
 
             <div class="modal-footer border-0">
-              <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onEditBookCategory()">Cập Nhật</button>
+              <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onEditBookCategory()" data-dismiss="modal">Cập Nhật</button>
             </div>
           </div>
         </div>
@@ -137,7 +138,7 @@
             </div>
             <div class="modal-footer border-0">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
-              <button type="button" class="btn btn-primary" (click)="onDeleteBookCategory()">Có</button>
+              <button type="button" class="btn btn-primary" (click)="onDeleteBookCategory()"data-dismiss="modal">Có</button>
             </div>
           </div>
         </div>

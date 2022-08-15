@@ -9,6 +9,9 @@ import {IBookCategoryView} from "../../../models/views/book-category.view";
 import {IBookCategoryResponse} from "../../../models/responses/book-category.response";
 import {CategoryApiService} from "../../../services/api/category-api.service";
 import {MessageService} from "primeng/api";
+import {IBookAuthorResponse} from "../../../models/responses/book-author.response";
+import {IBookAuthorView} from "../../../models/views/book-author.view";
+import {AuthorApiService} from "../../../services/api/author-api.service";
 
 
 @Component({
@@ -17,17 +20,19 @@ import {MessageService} from "primeng/api";
   styleUrls: ['./book-manager.component.css']
 })
 export class BookManagerComponent implements OnInit {
-  BookManager : IBookManagerView[] = []
-  BookInfoForm!: FormGroup
-  BookSelected!: IBookManagerView
+  bookManager : IBookManagerView[] = []
+  bookmanagerInfoForm!: FormGroup
+  bookmanagerSelected!: IBookManagerView
   listBookCategory: IBookCategoryView[] = []
+  listAuthor: IBookAuthorView[]= []
 
 
   constructor(private BookApiService: BookApiService,
               private fb: FormBuilder,
               private categoryApiService: CategoryApiService,
+              private AuthorApiService : AuthorApiService,
               private messageService: MessageService) {
-    this.BookInfoForm = fb.group({
+    this.bookmanagerInfoForm = fb.group({
       bookId: [null],
       bookName: [null],
       idAuthor: [null],
@@ -44,12 +49,13 @@ export class BookManagerComponent implements OnInit {
   ngOnInit(): void {
     this.getAllBook()
     this.getAllBookCategory()
+    this.getAllBookAuthor()
   }
   getAllBook() {
     this.BookApiService._getAllBook().subscribe(
       (res: IResponseModel<IBookManagerResponse[]>) => {
         console.log(res)
-        this.BookManager = []
+        this.bookManager = []
         res.data.forEach(bookManagerRes => {
           const bookManagerView: IBookManagerView = {
             bookId: bookManagerRes.bookId,
@@ -63,37 +69,37 @@ export class BookManagerComponent implements OnInit {
             idCompany:bookManagerRes.idCompany,
             amount:bookManagerRes.amount
           }
-          this.BookManager.push(bookManagerView)
+          this.bookManager.push(bookManagerView)
         })
       }
     )
   }
   onAddNewBook() {
     const createNewBookRequest: IBookManagerRequest = {
-      bookId:this.BookInfoForm.value.bookId,
-       bookName:this.BookInfoForm.value.bookName,
-       idAuthor:this.BookInfoForm.value.idAuthor,
-       publishingYear:this.BookInfoForm.value.publishingYear,
-       pageNumber:this.BookInfoForm.value.pageNumber,
-      image:this.BookInfoForm.value.image,
-      price:this.BookInfoForm.value.price,
-      idTypeBook:this.BookInfoForm.value.idTypeBook,
-      idCompany:this.BookInfoForm.value.idCompany,
-      amount:this.BookInfoForm.value.amount
+       bookName:this.bookmanagerInfoForm.value.bookName,
+       idAuthor:this.bookmanagerInfoForm.value.idAuthor,
+       publishingYear:this.bookmanagerInfoForm.value.publishingYear,
+       pageNumber:this.bookmanagerInfoForm.value.pageNumber,
+      image:this.bookmanagerInfoForm.value.image,
+      price:this.bookmanagerInfoForm.value.price,
+      idTypeBook:this.bookmanagerInfoForm.value.idTypeBook,
+      idCompany:this.bookmanagerInfoForm.value.idCompany,
+      amount:this.bookmanagerInfoForm.value.amount
     }
     this.BookApiService._createNewBook(createNewBookRequest).subscribe(
       (res: IResponseModel<any>) => {
-        console.log('Them moi danh muc thanh cong')
+        this.messageService.add({severity:'success', summary:'Thông báo', detail:'Thêm danh mục thành công'});
         this.getAllBook()
       },
       err => {
+        this.messageService.add({severity:'error', summary:'Thông báo', detail:' Thêm sửa danh muc that bai'});
         console.log('Them moi danh muc that bai')
       }
     )
   }
   onDeleteBookManager() {
-    if(this.BookSelected) {
-      this.BookApiService._deleteBook(this.BookSelected.bookId).subscribe(
+    if(this.bookmanagerSelected) {
+      this.BookApiService._deleteBook(this.bookmanagerSelected.bookId).subscribe(
         (res: IResponseModel<any>) => {
           console.log('Xoa danh muc thanh cong')
           this.messageService.add({severity:'success', summary:'Thông báo', detail:'Xóa danh mục thành công'});
@@ -121,54 +127,74 @@ export class BookManagerComponent implements OnInit {
       }
     )
   }
+  getAllBookAuthor() {
+    this.AuthorApiService._getAllAuthor().subscribe(
+      (res: IResponseModel<IBookAuthorResponse[]>) => {
+        console.log(res)
+        this.listAuthor = []
+        res.data.forEach(bookAuthorRes => {
+          const bookAuthorView: IBookAuthorView = {
+            id: bookAuthorRes.idAuthor,
+            address: bookAuthorRes.address,
+            name_author: bookAuthorRes.nameAuthor,
+            note:bookAuthorRes.note,
+            title:bookAuthorRes.title,
+          }
+          this.listAuthor.push(bookAuthorView)
+        })
+      }
+    )
+  }
   editBook(i: IBookManagerView) {
-    this.BookSelected = i
-    console.log(this.BookSelected)
-    this.BookInfoForm.patchValue(
+    this.bookmanagerSelected = i
+    console.log(this.bookmanagerSelected)
+    this.bookmanagerInfoForm.patchValue(
       {
-        bookId: this.BookSelected.bookId,
-        bookName:this.BookSelected.bookName,
-        idAuthor:this.BookSelected.idAuthor,
-        publishingYear:this.BookSelected.publishingYear,
-        pageNumber:this.BookSelected.pageNumber,
-        image:this.BookSelected.image,
-        price:this.BookSelected.price,
-        idTypeBook:this.BookSelected.idTypeBook,
-        idCompany:this.BookSelected.idCompany,
-        amount:this.BookSelected.amount,
+        bookId: i.bookId,
+        bookName:i.bookName,
+        idAuthor:i.idAuthor,
+        publishingYear:i.publishingYear,
+        pageNumber:i.pageNumber,
+        image:i.image,
+        price:i.price,
+        idTypeBook:i.idTypeBook,
+        idCompany:i.idCompany,
+        amount:i.amount,
       }
     )
   }
 
   onEditBook() {
     const editBookManagerRequest: IEditBookManagerRequest = {
-      bookId:this.BookSelected.bookId,
-      bookName:this.BookInfoForm.value.bookName,
-      idAuthor:this.BookInfoForm.value.idAuthor,
-      publishingYear:this.BookInfoForm.value.publishingYear,
-      pageNumber:this.BookInfoForm.value.pageNumber,
-      image:this.BookInfoForm.value.image,
-      price:this.BookInfoForm.value.price,
-      idTypeBook:this.BookInfoForm.value.idTypeBook,
-      idCompany:this.BookInfoForm.value.idCompany,
-      amount:this.BookInfoForm.value.amount
+      bookId:this.bookmanagerSelected.bookId,
+      bookName:this.bookmanagerInfoForm.value.bookName,
+      idAuthor:this.bookmanagerInfoForm.value.idAuthor,
+      publishingYear:this.bookmanagerInfoForm.value.publishingYear,
+      pageNumber:this.bookmanagerInfoForm.value.pageNumber,
+      image:this.bookmanagerInfoForm.value.image,
+      price:this.bookmanagerInfoForm.value.price,
+      idTypeBook:this.bookmanagerInfoForm.value.idTypeBook,
+      idCompany:this.bookmanagerInfoForm.value.idCompany,
+      amount:this.bookmanagerInfoForm.value.amount
     }
     this.BookApiService._editBook(editBookManagerRequest).subscribe(
       (res: IResponseModel<any>) => {
         console.log('Sua danh muc thanh cong')
+        this.messageService.add({severity:'success', summary:'Thông báo', detail:' Chỉnh sửa danh muc thành công'});
         this.getAllBook()
       },
       err => {
+        this.messageService.add({severity:'error', summary:'Thông báo', detail:' Chỉnh sửa danh muc that bai'});
         console.log('Sua danh muc that bai')
       }
     )
   }
   selectBook(i: IBookManagerView) {
     console.log(i)
-    this.BookSelected = i
+    this.bookmanagerSelected = i
   }
 }
-interface BookManager {
+interface bookManager {
   bookId: number,
   bookName: string,
   idAuthor: string,

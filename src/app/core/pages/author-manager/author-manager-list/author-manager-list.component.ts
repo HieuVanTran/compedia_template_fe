@@ -5,6 +5,7 @@ import {IBookAuthorResponse} from "../../../../models/responses/book-author.resp
 import {IBookAuthorView} from "../../../../models/views/book-author.view";
 import {AuthorApiService} from "../../../../services/api/author-api.service";
 import {IBookAuthorRequest, IEditBookAuthorRequest} from "../../../../models/requests/book-author.request";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-author-manager-list',
@@ -19,6 +20,7 @@ export class AuthorManagerListComponent implements OnInit {
 
 
   constructor(private AuthorApiService: AuthorApiService,
+              private messageService: MessageService,
               private fb: FormBuilder) {
     this.AuthorInfoForm = fb.group({
       address: [null],
@@ -58,10 +60,12 @@ export class AuthorManagerListComponent implements OnInit {
     }
     this.AuthorApiService._createNewAuthor(createNewAuthRequest).subscribe(
       (res: IResponseModel<any>) => {
+        this.messageService.add({severity:'success', summary:'Thông báo', detail:'Thêm mới danh mục thành công'});
         console.log('Them moi danh muc thanh cong')
         this.getAllBookAuthor()
       },
       err => {
+        this.messageService.add({severity:'error', summary:'Thông báo', detail:'Thêm mới danh mục thất bại'});
         console.log('Them moi danh muc that bai')
       }
     )
@@ -70,10 +74,12 @@ export class AuthorManagerListComponent implements OnInit {
     if(this.bookAuthorSelected) {
       this.AuthorApiService._deleteBookAuthor(this.bookAuthorSelected.id).subscribe(
         (res: IResponseModel<any>) => {
+          this.messageService.add({severity:'success', summary:'Thông báo', detail:'Xóa danh mục thành công'});
           console.log('Xoa danh muc thanh cong')
           this.getAllBookAuthor()
         },
         err => {
+          this.messageService.add({severity:'error', summary:'Thông báo', detail:'Xóa danh mục thành công'});
           console.log('Xoa danh muc that bai')
         }
       )
@@ -103,10 +109,12 @@ export class AuthorManagerListComponent implements OnInit {
     }
     this.AuthorApiService._editBookAuthor(editBookAuthorRequest).subscribe(
       (res: IResponseModel<any>) => {
+        this.messageService.add({severity:'success', summary:'Thông báo', detail:'Chỉnh sửa danh mục thành công'});
         console.log('Sua danh muc thanh cong')
         this.getAllBookAuthor()
       },
       err => {
+        this.messageService.add({severity:'error', summary:'Thông báo', detail:'Chỉnh sửa danh mục thành công'});
         console.log('Sua danh muc that bai')
       }
     )

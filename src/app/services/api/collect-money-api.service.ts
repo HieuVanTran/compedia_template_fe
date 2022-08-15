@@ -3,7 +3,7 @@ import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {IResponseModel} from "../../models/commons/response.model";
-import {ICollectMoneyResponses} from "../../models/responses/collect-money.resposes";
+import {ICollectMoneyResponses} from "../../models/responses/collect-money.response";
 import {ICollectMoneyRequests, IEditCollectMoneyRequests} from "../../models/requests/collect-money.requests";
 
 

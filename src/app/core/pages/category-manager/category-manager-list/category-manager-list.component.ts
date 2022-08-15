@@ -5,6 +5,7 @@ import {IBookCategoryResponse} from "../../../../models/responses/book-category.
 import {IBookCategoryView} from "../../../../models/views/book-category.view";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {IBookCategoryRequest, IEditBookCategoryRequest} from "../../../../models/requests/book-category.request";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-category-manager-list',
@@ -17,6 +18,7 @@ export class CategoryManagerListComponent implements OnInit {
   bookCategorySelected!: IBookCategoryView
 
   constructor(private categoryApiService: CategoryApiService,
+              private messageService: MessageService,
               private fb: FormBuilder) {
     this.bookInfoForm = fb.group({
       code: [null],
@@ -51,10 +53,12 @@ export class CategoryManagerListComponent implements OnInit {
     }
     this.categoryApiService._createNewCategory(createNewBookRequest).subscribe(
       (res: IResponseModel<any>) => {
+        this.messageService.add({severity:'success', summary:'Thông báo', detail:'Thêm mới danh mục thành công'});
         console.log('Them moi danh muc thanh cong')
         this.getAllBookCategory()
       },
       err => {
+        this.messageService.add({severity:'error', summary:'Thông báo', detail:'Thêm mới danh mục thất bại'});
         console.log('Them moi danh muc that bai')
       }
     )
@@ -64,10 +68,12 @@ export class CategoryManagerListComponent implements OnInit {
     if(this.bookCategorySelected) {
       this.categoryApiService._deleteBookCategory(this.bookCategorySelected.id).subscribe(
         (res: IResponseModel<any>) => {
+          this.messageService.add({severity:'success', summary:'Thông báo', detail:'Xóa danh mục thành công'});
           console.log('Xoa danh muc thanh cong')
           this.getAllBookCategory()
         },
         err => {
+          this.messageService.add({severity:'error', summary:'Thông báo', detail:'Xóa danh mục thất bại'});
           console.log('Xoa danh muc that bai')
         }
       )
@@ -92,10 +98,12 @@ export class CategoryManagerListComponent implements OnInit {
     }
     this.categoryApiService._editBookCategory(editBookCategoryRequest).subscribe(
       (res: IResponseModel<any>) => {
+        this.messageService.add({severity:'success', summary:'Thông báo', detail:'Chỉnh sửa danh mục thành công'});
         console.log('Sua danh muc thanh cong')
         this.getAllBookCategory()
       },
       err => {
+        this.messageService.add({severity:'error', summary:'Thông báo', detail:'Chỉnh sửa danh mục thất bại'});
         console.log('Sua danh muc that bai')
       }
     )

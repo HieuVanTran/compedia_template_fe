@@ -9,7 +9,7 @@
           </div>
           <div class="col-md-3 d-flex justify-content-end">
             <a class="btn btn-info text-light" type="button" data-toggle="modal"
-               data-target="#exampleModal-bookmanager-new">Thêm mới <span><i class="fa-solid fa-plus" (click)="BookInfoForm.reset()"></i></span></a>
+               data-target="#exampleModal-bookmanager-new">Thêm mới <span><i class="fa-solid fa-plus" (click)="bookmanagerInfoForm.reset()"></i></span></a>
           </div>
         </div>
       </div>
@@ -39,7 +39,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let i of BookManager, index as index">
+          <tr *ngFor="let i of bookManager, index as index">
             <td>{{index + 1}}</td>
             <td class="text-bold-500">{{i.bookName}}</td>
             <td>{{i.image}}</td>
@@ -82,7 +82,7 @@
       <!-- Modal -->
       <div class="modal fade" id="exampleModal-bookmanager-new" tabindex="-1" aria-labelledby="exampleModalLabel"
            aria-hidden="true">
-        <div class="modal-dialog modal-lg" [formGroup]="BookInfoForm">
+        <div class="modal-dialog modal-lg" [formGroup]="bookmanagerInfoForm">
           <div class="modal-content border-0">
             <div class="modal-header" style="background: #2C3333">
               <h5 class="modal-title" id="exampleModalLabel" style="color: white">Thêm mới</h5>
@@ -114,13 +114,21 @@
                 <label for="book-kind" class="col-sm-3 col-form-label">Loại sách <span
                   style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="book-kind" formControlName="idTypeBook">
+                  <select class="form-control" formControlName="idTypeBook" id="book-kind">
+                    <option *ngFor="let bookCategory of listBookCategory" value="{{bookCategory.id}}">
+                      <span>{{bookCategory.name}}</span>
+                    </option>
+                  </select>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="author" class="col-sm-3 col-form-label">Tác giả <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="author" formControlName="idAuthor">
+                  <select class="form-control" formControlName="idAuthor" id="author">
+                    <option *ngFor="let bookAuthor of listAuthor" value="{{bookAuthor.id}}">
+                      <span>{{bookAuthor.name_author}}</span>
+                    </option>
+                  </select>
                 </div>
               </div>
               <div class="form-group row">
@@ -149,7 +157,7 @@
               </div>
             </div>
             <div class="modal-footer border-0">
-              <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onAddNewBook()" >Thêm mới</button>
+              <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onAddNewBook()" data-dismiss="modal">Thêm mới</button>
             </div>
           </div>
         </div>
@@ -157,7 +165,7 @@
 
       <div class="modal fade" id="exampleModal-bookmanager" tabindex="-1" aria-labelledby="exampleModalLabel2"
            aria-hidden="true">
-        <div class="modal-dialog modal-lg" [formGroup]="BookInfoForm">
+        <div class="modal-dialog modal-lg" [formGroup]="bookmanagerInfoForm">
           <div class="modal-content border-0">
             <div class="modal-header" style="background: #2C3333">
               <h5 class="modal-title" id="exampleModalLabel2" style="color: white">Chỉnh sửa</h5>
@@ -189,18 +197,21 @@
                 <label for="book-kind" class="col-sm-3 col-form-label">Loại sách <span
                   style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <select formControlName="idTypeBook">
+                  <select class="form-control" formControlName="idTypeBook">
                      <option *ngFor="let bookCategory of listBookCategory" value="{{bookCategory.id}}">
                        <span>{{bookCategory.name}}</span>
                      </option>
                   </select>
-
                 </div>
               </div>
               <div class="form-group row">
                 <label for="author2" class="col-sm-3 col-form-label">Tác giả <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="author2" formControlName="idAuthor">
+                  <select class="form-control" formControlName="idAuthor" id="author2">
+                    <option *ngFor="let bookAuthor of listAuthor" value="{{bookAuthor.id}}">
+                      <span>{{bookAuthor.name_author}}</span>
+                    </option>
+                  </select>
                 </div>
               </div>
               <div class="form-group row">
@@ -218,7 +229,7 @@
               <div class="form-group row">
                 <label for="year" class="col-sm-3 col-form-label">Năm xuất bản <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="number" class="form-control" id="year2" formControlName="publishingYear">
+                  <input type="date" placeholder="yyyy-mm-dd" class="form-control" id="year2" formControlName="publishingYear">
                 </div>
               </div>
               <div class="form-group row">
@@ -229,7 +240,7 @@
               </div>
             </div>
             <div class="modal-footer border-0">
-              <button type="button" class="btn btn-primary" style="font-size: 18px" data-dismiss="modal" (click)="onEditBook()">Cập Nhật</button>
+              <button type="button" class="btn btn-primary" style="font-size: 18px" data-dismiss="modal" (click)="onEditBook()" data-dismiss="modal">Cập Nhật</button>
             </div>
           </div>
         </div>
@@ -248,7 +259,7 @@
             </div>
             <div class="modal-footer border-0">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onDeleteBookManager()">Có</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onDeleteBookManager()" data-dismiss="modal">Có</button>
             </div>
           </div>
         </div>
