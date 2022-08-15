@@ -1,12 +1,12 @@
 export interface IBookManagerView {
   bookId: number,
   bookName: string,
-  idAuthor: number,
+  idAuthor: string,
   publishingYear: string,
-  pageNumber: number,
+  pageNumber: string,
   image: string,
-  price: number,
-  idTypeBook: number,
-  idCompany: number,
-  amount: number,
+  price: string,
+  idTypeBook: string,
+  idCompany: string,
+  amount: string,
 }
