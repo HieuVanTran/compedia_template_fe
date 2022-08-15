@@ -28,21 +28,21 @@ export class CategoryManagerListComponent implements OnInit {
     this.getAllBookCategory()
   }
 
-  getAllBookCategory() {
-    this.categoryApiService._getAllCategory().subscribe(
-      (res: IResponseModel<IBookCategoryResponse[]>) => {
-        this.categoryManager = []
-        res.data.forEach(bookCategoryRes => {
-          const bookCategoryView: IBookCategoryView = {
-            id: bookCategoryRes.idtypeBook,
-            code: bookCategoryRes.code,
-            name: bookCategoryRes.bookName
-          }
-          this.categoryManager.push(bookCategoryView)
-        })
-      }
-    )
-  }
+    getAllBookCategory() {
+      this.categoryApiService._getAllCategory().subscribe(
+        (res: IResponseModel<IBookCategoryResponse[]>) => {
+          this.categoryManager = []
+          res.data.forEach(bookCategoryRes => {
+            const bookCategoryView: IBookCategoryView = {
+              id: bookCategoryRes.idtypeBook,
+              code: bookCategoryRes.code,
+              name: bookCategoryRes.bookName
+            }
+            this.categoryManager.push(bookCategoryView)
+          })
+        }
+      )
+    }
 
   onAddNewBookCategory() {
     const createNewBookRequest: IBookCategoryRequest = {
