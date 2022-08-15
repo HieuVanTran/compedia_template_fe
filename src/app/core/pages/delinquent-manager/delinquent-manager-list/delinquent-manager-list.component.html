@@ -34,10 +34,10 @@
           <tbody>
           <tr *ngFor="let i of delinquentManager, index as index">
             <td>{{index +1}}</td>
-            <td class="text-bold-500">{{i.name}}</td>
-            <td>{{i.fined_amount}}</td>
+            <td class="text-bold-500">{{i.fullName}}</td>
+            <td>{{i.finedAmount}}</td>
             <td>{{i.proceeds}}</td>
-            <td>{{i.staff_id}}</td>
+            <td>{{i.staffId}}</td>
             <td>
               <a type="button" data-toggle="modal" data-target="#exampleModal-bookmanager"><i class="fa-solid fa-pen-to-square"></i></a>
               <a type="button" data-toggle="modal" data-target="#delete-book-manager" ><i class="fa-solid fa-trash-can"></i></a>
