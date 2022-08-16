@@ -12,6 +12,9 @@ import {MessageService} from "primeng/api";
 import {IBookAuthorResponse} from "../../../models/responses/book-author.response";
 import {IBookAuthorView} from "../../../models/views/book-author.view";
 import {AuthorApiService} from "../../../services/api/author-api.service";
+import {IPublishCompanyResponse} from "../../../models/responses/publish-company.response";
+import {IPublishCompanyView} from "../../../models/views/publish-company.view";
+import {PublishCompanyApiService} from "../../../services/api/publish-company-api.service";
 
 
 @Component({
@@ -20,28 +23,29 @@ import {AuthorApiService} from "../../../services/api/author-api.service";
   styleUrls: ['./book-manager.component.css']
 })
 export class BookManagerComponent implements OnInit {
-  bookManager : IBookManagerView[] = []
-  bookmanagerInfoForm!: FormGroup
-  bookmanagerSelected!: IBookManagerView
-  listBookCategory: IBookCategoryView[] = []
-  listAuthor: IBookAuthorView[]= []
+  bookManager : IBookManagerView[] = [];
+  bookmanagerInfoForm!: FormGroup;
+  bookmanagerSelected!: IBookManagerView;
+  listBookCategory: IBookCategoryView[] = [];
+  listAuthor: IBookAuthorView[]= [];
+  listpublishingCompany:IPublishCompanyView[]=[];
 
 
   constructor(private BookApiService: BookApiService,
               private fb: FormBuilder,
               private categoryApiService: CategoryApiService,
               private AuthorApiService : AuthorApiService,
+              private publishCompanyApiService: PublishCompanyApiService,
               private messageService: MessageService) {
     this.bookmanagerInfoForm = fb.group({
-      bookId: [null],
-      bookName: [null],
-      idAuthor: [null],
-      publishingYear: [null],
-      pageNumber: [null],
+      book_name: [null],
+      name_author: [null],
+      publishing_year: [null],
+      page_number: [null],
       image: [null],
       price: [null],
-      idTypeBook: [null],
-      idCompany: [null],
+      category_name: [null],
+      publish_name: [null],
       amount: [null],
     })
   }
@@ -50,6 +54,7 @@ export class BookManagerComponent implements OnInit {
     this.getAllBook()
     this.getAllBookCategory()
     this.getAllBookAuthor()
+    this.getAllPublishCompany()
   }
   getAllBook() {
     this.BookApiService._getAllBook().subscribe(
@@ -58,15 +63,15 @@ export class BookManagerComponent implements OnInit {
         this.bookManager = []
         res.data.forEach(bookManagerRes => {
           const bookManagerView: IBookManagerView = {
-            bookId: bookManagerRes.bookId,
-            bookName:bookManagerRes.bookName,
-            idAuthor:bookManagerRes.idAuthor,
-            publishingYear:bookManagerRes.publishingYear,
-            pageNumber:bookManagerRes.pageNumber,
+            book_id: bookManagerRes.bookId,
+            book_name:bookManagerRes.bookName,
+            name_author:bookManagerRes.nameAuthor,
+            publishing_year:bookManagerRes.publishingYear,
+            page_number:bookManagerRes.pageNumber,
             image:bookManagerRes.image,
             price:bookManagerRes.price,
-            idTypeBook:bookManagerRes.idTypeBook,
-            idCompany:bookManagerRes.idCompany,
+            category_name:bookManagerRes.categoryName,
+            publish_name:bookManagerRes.publishName,
             amount:bookManagerRes.amount
           }
           this.bookManager.push(bookManagerView)
@@ -76,30 +81,30 @@ export class BookManagerComponent implements OnInit {
   }
   onAddNewBook() {
     const createNewBookRequest: IBookManagerRequest = {
-       bookName:this.bookmanagerInfoForm.value.bookName,
-       idAuthor:this.bookmanagerInfoForm.value.idAuthor,
-       publishingYear:this.bookmanagerInfoForm.value.publishingYear,
-       pageNumber:this.bookmanagerInfoForm.value.pageNumber,
+       book_name:this.bookmanagerInfoForm.value.book_name,
+       name_author:this.bookmanagerInfoForm.value.name_author,
+       publishing_year:this.bookmanagerInfoForm.value.publishing_year,
+       page_number:this.bookmanagerInfoForm.value.page_number,
       image:this.bookmanagerInfoForm.value.image,
       price:this.bookmanagerInfoForm.value.price,
-      idTypeBook:this.bookmanagerInfoForm.value.idTypeBook,
-      idCompany:this.bookmanagerInfoForm.value.idCompany,
+     category_name:this.bookmanagerInfoForm.value.category_name,
+      publish_name:this.bookmanagerInfoForm.value.publish_name,
       amount:this.bookmanagerInfoForm.value.amount
-    }
+    };
     this.BookApiService._createNewBook(createNewBookRequest).subscribe(
       (res: IResponseModel<any>) => {
-        this.messageService.add({severity:'success', summary:'Thông báo', detail:'Thêm danh mục thành công'});
+        this.messageService.add({severity:'success', summary:'Thông báo', detail:'Thêm mới danh mục thành công'});
         this.getAllBook()
       },
       err => {
-        this.messageService.add({severity:'error', summary:'Thông báo', detail:' Thêm sửa danh muc that bai'});
+        this.messageService.add({severity:'error', summary:'Thông báo', detail:' Thêm mới danh muc that bai'});
         console.log('Them moi danh muc that bai')
       }
     )
   }
   onDeleteBookManager() {
     if(this.bookmanagerSelected) {
-      this.BookApiService._deleteBook(this.bookmanagerSelected.bookId).subscribe(
+      this.BookApiService._deleteBook(this.bookmanagerSelected.book_id).subscribe(
         (res: IResponseModel<any>) => {
           console.log('Xoa danh muc thanh cong')
           this.messageService.add({severity:'success', summary:'Thông báo', detail:'Xóa danh mục thành công'});
@@ -145,36 +150,55 @@ export class BookManagerComponent implements OnInit {
       }
     )
   }
+  getAllPublishCompany() {
+    this.publishCompanyApiService._getAllPublishCompany().subscribe(
+      (res: IResponseModel<IPublishCompanyResponse[]>) => {
+        this.listpublishingCompany = [];
+        res.data.forEach( publishCompanyRes => {
+          const publishCompanyView: IPublishCompanyView = {
+            id: publishCompanyRes.idPub,
+            name: publishCompanyRes.publishName,
+            address: publishCompanyRes.address,
+            email: publishCompanyRes.email,
+            agent_people: publishCompanyRes.agentPeople,
+            date_founding: publishCompanyRes.dateFounding
+          };
+          this.listpublishingCompany.push(publishCompanyView)
+        })
+
+      }
+    )
+  }
   editBook(i: IBookManagerView) {
     this.bookmanagerSelected = i
     console.log(this.bookmanagerSelected)
     this.bookmanagerInfoForm.patchValue(
       {
-        bookId: i.bookId,
-        bookName:i.bookName,
-        idAuthor:i.idAuthor,
-        publishingYear:i.publishingYear,
-        pageNumber:i.pageNumber,
+        book_name:i.book_name,
+        name_author:i.name_author,
+        publishing_year:i.publishing_year,
+        page_number:i.page_number,
         image:i.image,
         price:i.price,
-        idTypeBook:i.idTypeBook,
-        idCompany:i.idCompany,
+       category_name:i.category_name,
+        publish_name:i.publish_name,
         amount:i.amount,
       }
     )
+    console.log(this.bookmanagerInfoForm.value)
   }
 
   onEditBook() {
     const editBookManagerRequest: IEditBookManagerRequest = {
-      bookId:this.bookmanagerSelected.bookId,
-      bookName:this.bookmanagerInfoForm.value.bookName,
-      idAuthor:this.bookmanagerInfoForm.value.idAuthor,
-      publishingYear:this.bookmanagerInfoForm.value.publishingYear,
-      pageNumber:this.bookmanagerInfoForm.value.pageNumber,
+      book_id:this.bookmanagerSelected.book_id,
+      book_name:this.bookmanagerInfoForm.value.book_name,
+      name_author:this.bookmanagerInfoForm.value.name_author,
+      publishing_year:this.bookmanagerInfoForm.value.publishing_year,
+      page_number:this.bookmanagerInfoForm.value.page_number,
       image:this.bookmanagerInfoForm.value.image,
       price:this.bookmanagerInfoForm.value.price,
-      idTypeBook:this.bookmanagerInfoForm.value.idTypeBook,
-      idCompany:this.bookmanagerInfoForm.value.idCompany,
+      category_name:this.bookmanagerInfoForm.value.category_name,
+      publish_name:this.bookmanagerInfoForm.value.publish_name,
       amount:this.bookmanagerInfoForm.value.amount
     }
     this.BookApiService._editBook(editBookManagerRequest).subscribe(
@@ -195,14 +219,14 @@ export class BookManagerComponent implements OnInit {
   }
 }
 interface bookManager {
-  bookId: number,
-  bookName: string,
-  idAuthor: string,
-  publishingYear: string,
-  pageNumber: string,
+  book_id: number,
+  book_name: string,
+  name_author: string,
+  publishing_year: string,
+  page_number: string,
   image: string,
   price: string,
-  idTypeBook: string,
-  idCompany: string,
+  category_name: string,
+  publish_name: string,
   amount: string,
 }
