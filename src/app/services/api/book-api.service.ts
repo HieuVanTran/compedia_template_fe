@@ -20,22 +20,22 @@ export class BookApiService{
   ) {}
 
   _getAllBook(): Observable<IResponseModel<IBookManagerResponse[]>> {
-    const url = `${this.api}/book/book`
+    const url = `${this.api}/book/book`;
     return this.http.get<IResponseModel<IBookManagerResponse[]>>(url)
   }
 
   _createNewBook(requestBody: IBookManagerRequest): Observable<IResponseModel<any>> {
-    const url = `${this.api}/book`
+    const url = `${this.api}/book`;
     return this.http.post<IResponseModel<any>>(url, requestBody)
   }
 
   _deleteBook(bookId: number): Observable<IResponseModel<any>> {
-    const url = `${this.api}/book?id=${bookId}`
+    const url = `${this.api}/book?id=${bookId}`;
     return this.http.delete<IResponseModel<any>>(url)
   }
 
   _editBook(requestBody: IEditBookManagerRequest): Observable<IResponseModel<any>> {
-    const url = `${this.api}/book`
+    const url = `${this.api}/book`;
     return this.http.put<IResponseModel<any>>(url, requestBody)
   }
 
