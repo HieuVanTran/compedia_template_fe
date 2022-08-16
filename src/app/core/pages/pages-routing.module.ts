@@ -38,6 +38,10 @@ const pageRoutingModule: Routes = [
   {
     path: 'publishing-company',
     loadChildren: () => import('./publishing-company/publishing-company.module').then(module => module.PublishingCompanyModule)
+  },
+  {
+    path: 'role-manager',
+    loadChildren: () => import('./role-manager/role-manager.module').then(module => module.RoleManagerModule)
   }
 ];
 

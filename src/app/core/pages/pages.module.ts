@@ -8,9 +8,6 @@ import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {BrowserModule} from "@angular/platform-browser";
-import { StaffManagerListComponent } from './staff-manager/staff-manager-list/staff-manager-list.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +20,7 @@ import { StaffManagerListComponent } from './staff-manager/staff-manager-list/st
       CommonModule,
       FormsModule,
       ReactiveFormsModule,
-      ToastModule,
+      ToastModule
     ],
     providers: [
       MessageService
