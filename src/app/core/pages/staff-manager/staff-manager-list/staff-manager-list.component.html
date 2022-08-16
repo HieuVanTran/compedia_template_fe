@@ -7,7 +7,7 @@
             <h4 class="card-title">QUẢN LÝ NHÂN VIÊN</h4>
           </div>
           <div class="col-md-3 d-flex justify-content-end">
-            <a class="btn btn-info text-light" type="button" data-toggle="modal"  data-target="#exampleModal-staffmanager-new">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
+            <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="staffManagerInfoForm.reset()"  data-target="#exampleModal-staffmanager-new" >Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
           </div>
         </div>
       </div>
@@ -39,8 +39,8 @@
             <td>{{i.address}}</td>
             <td>{{i.dateOfBirth}}</td>
             <td>
-              <a type="button" data-toggle="modal" data-target="#exampleModal-staffmanager" ><i class="fa-solid fa-pen-to-square" style="color: #00cc00"></i></a>
-              <a type="button" data-toggle="modal" data-target="#delete-staff-manager" ><i class="fa-solid fa-trash-can" style="color: red"></i></a>
+              <a type="button" data-toggle="modal" data-target="#exampleModal-staffmanager" (click)="editStaff(i)"><i class="fa-solid fa-pen-to-square" style="color: #00cc00"></i></a>
+              <a type="button" data-toggle="modal" data-target="#delete-staff-manager" (click)="selectStaff(i)"><i class="fa-solid fa-trash-can" style="color: red"></i></a>
             </td>
           </tr>
           </tbody>
@@ -67,7 +67,7 @@
 
       <!-- Modal -->
       <div class="modal fade" id="exampleModal-staffmanager-new" tabindex="-1" aria-labelledby="exampleModalLabel_add" aria-hidden="true">
-        <div class="modal-dialog modal-lg" >
+        <div class="modal-dialog modal-lg" [formGroup]="staffManagerInfoForm">
           <div class="modal-content border-0">
             <div class="modal-header" style="background: #2C3333">
               <h5 class="modal-title" id="exampleModalLabel_add" style="color: white" >Thêm mới</h5>
@@ -77,60 +77,39 @@
             </div>
             <div class="modal-body">
               <div class="form-group row">
-                <label for="username_add" class="col-sm-3 col-form-label">Tên đăng nhập<span style="color: red">*</span></label>
+                <label for="username_add" class="col-sm-3 col-form-label">Tên đầy đủ<span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="username_add" >
+                  <input type="text" class="form-control" id="username_add" formControlName="name">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="password_add" class="col-sm-3 col-form-label">Mật khẩu<span style="color: red">*</span></label>
+                <label for="password_add" class="col-sm-3 col-form-label">Số điện thoại<span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="password" class="form-control" id="password_add" >
+                  <input type="text" class="form-control" id="password_add" formControlName="phoneNum">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="full-name_add" class="col-sm-3 col-form-label">Tên đầy đủ<span style="color: red">*</span></label>
+                <label for="full-name_add" class="col-sm-3 col-form-label">Địa chỉ<span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="full-name_add" >
+                  <input type="text" class="form-control" id="full-name_add" formControlName="address" >
                 </div>
               </div>
               <div class="form-group row">
                 <label for="date_of_birth_add" class="col-sm-3 col-form-label">Ngày sinh<span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="date" class="form-control" id="date_of_birth_add" >
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="email_add" class="col-sm-3 col-form-label">Email<span style="color: red">*</span></label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" id="email_add">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="phone_number_add" class="col-sm-3 col-form-label">Số điện thoại<span style="color: red">*</span></label>
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="phone_number_add" >
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Role ID<span style="color: red">*</span></label>
-                <div class="col-sm-9">
-                  <select class="form-control" >
-                    <option>0</option>
-                    <option>1</option>
-                  </select>
+                  <input type="date" class="form-control" id="date_of_birth_add" formControlName="dateOfBirth">
                 </div>
               </div>
             </div>
             <div class="modal-footer border-0">
-              <button type="button" class="btn btn-primary" style="font-size: 18px" >Thêm mới</button>
+              <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onAddNewStaff()">Thêm mới</button>
             </div>
           </div>
         </div>
       </div>
 
       <div class="modal fade" id="exampleModal-staffmanager" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" >
+        <div class="modal-dialog modal-lg" [formGroup]="staffManagerInfoForm">
           <div class="modal-content border-0">
             <div class="modal-header" style="background: #2C3333">
               <h5 class="modal-title" id="exampleModalLabel" style="color: white">Chỉnh sửa</h5>
@@ -140,53 +119,32 @@
             </div>
             <div class="modal-body">
               <div class="form-group row">
-                <label for="username" class="col-sm-3 col-form-label">Tên đăng nhập<span style="color: red">*</span></label>
+                <label class="col-sm-3 col-form-label">Tên đầy đủ<span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="username" >
+                  <input type="text" class="form-control" formControlName="name">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="password" class="col-sm-3 col-form-label">Mật khẩu<span style="color: red">*</span></label>
+                <label class="col-sm-3 col-form-label">Số điện thoại<span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="password" >
+                  <input type="text" class="form-control"  formControlName="phoneNum">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="full-name" class="col-sm-3 col-form-label">Tên đầy đủ<span style="color: red">*</span></label>
+                <label  class="col-sm-3 col-form-label">Địa chỉ<span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="full-name" >
+                  <input type="text" class="form-control" formControlName="address" >
                 </div>
               </div>
               <div class="form-group row">
-                <label for="date_of_birth" class="col-sm-3 col-form-label">Ngày sinh<span style="color: red">*</span></label>
+                <label  class="col-sm-3 col-form-label">Ngày sinh<span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="date" class="form-control" id="date_of_birth">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="email" class="col-sm-3 col-form-label">Email<span style="color: red">*</span></label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" id="email">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="phone_number" class="col-sm-3 col-form-label">Số điện thoại<span style="color: red">*</span></label>
-                <div class="col-sm-9">
-                  <input type="number" class="form-control" id="phone_number">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Role ID<span style="color: red">*</span></label>
-                <div class="col-sm-9">
-                  <select class="form-control" >
-                    <option>0</option>
-                    <option>1</option>
-                  </select>
+                  <input type="date" class="form-control"  formControlName="dateOfBirth">
                 </div>
               </div>
             </div>
             <div class="modal-footer border-0">
-              <button type="button" class="btn btn-primary" style="font-size: 18px" >Cập Nhật</button>
+              <button type="button" class="btn btn-primary" style="font-size: 18px"  (click)="onEditStaff()">Cập Nhật</button>
             </div>
           </div>
         </div>
@@ -204,7 +162,7 @@
             </div>
             <div class="modal-footer border-0">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Có</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onDeleteStaff()">Có</button>
             </div>
           </div>
         </div>
@@ -212,4 +170,4 @@
     </div>
   </div>
 </div>
-
+<p-toast></p-toast>

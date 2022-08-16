@@ -14,7 +14,7 @@ import {MessageService} from "primeng/api";
 })
 export class RoleManagerListComponent implements OnInit {
 
-  roleManager: roleManager[] = [];
+  roleManager: IRoleManagerView[] = [];
   roleManagerInfoForm!: FormGroup;
   roleManagerSelected!: IRoleManagerView;
 
@@ -114,10 +114,4 @@ export class RoleManagerListComponent implements OnInit {
     this.roleManagerSelected = i
   }
 
-}
-
-interface roleManager {
-  id: number,
-  code: string,
-  name: string
 }
