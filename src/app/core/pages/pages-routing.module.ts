@@ -12,6 +12,10 @@ const pageRoutingModule: Routes = [
     loadChildren: () => import('./acc-manager/acc-manager.module').then(module => module.AccManagerModule)
   },
   {
+    path: 'staff-manager',
+    loadChildren: () => import('./staff-manager/staff-manager.module').then(module => module.StaffManagerModule)
+  },
+  {
     path: 'author-manager',
     loadChildren: () => import('./author-manager/author-manager.module').then(module => module.AuthorManagerModule)
   },

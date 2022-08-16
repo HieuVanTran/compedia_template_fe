@@ -1,0 +1,215 @@
+<div class="row" id="table-inverse">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-9">
+            <h4 class="card-title">QUẢN LÝ NHÂN VIÊN</h4>
+          </div>
+          <div class="col-md-3 d-flex justify-content-end">
+            <a class="btn btn-info text-light" type="button" data-toggle="modal"  data-target="#exampleModal-staffmanager-new">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
+          </div>
+        </div>
+      </div>
+      <!--        <div class="card-content">-->
+      <!--          <div class="card-body">-->
+      <!--            <p>-->
+      <!--              You can also invert the colors—with light text on dark-->
+      <!--              backgrounds—with-->
+      <!--              <code class="highlighter-rouge">.table-dark</code>.-->
+      <!--            </p>-->
+      <!--          </div>-->
+      <div class="table-responsive">
+        <table class="table table-light mb-0">
+          <thead>
+          <tr>
+            <th>STT</th>
+            <th>TÊN ĐĂNG NHẬP</th>
+            <th>SỐ ĐIỆN THOẠI</th>
+            <th>ĐỊA CHỈ</th>
+            <th>NGÀY SINH</th>
+            <th>THAO TÁC</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let i of staffManager, index as index">
+            <td>{{index +1}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.phoneNum}}</td>
+            <td>{{i.address}}</td>
+            <td>{{i.dateOfBirth}}</td>
+            <td>
+              <a type="button" data-toggle="modal" data-target="#exampleModal-staffmanager" ><i class="fa-solid fa-pen-to-square" style="color: #00cc00"></i></a>
+              <a type="button" data-toggle="modal" data-target="#delete-staff-manager" ><i class="fa-solid fa-trash-can" style="color: red"></i></a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal-staffmanager-new" tabindex="-1" aria-labelledby="exampleModalLabel_add" aria-hidden="true">
+        <div class="modal-dialog modal-lg" >
+          <div class="modal-content border-0">
+            <div class="modal-header" style="background: #2C3333">
+              <h5 class="modal-title" id="exampleModalLabel_add" style="color: white" >Thêm mới</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" style="color: white">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group row">
+                <label for="username_add" class="col-sm-3 col-form-label">Tên đăng nhập<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="username_add" >
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="password_add" class="col-sm-3 col-form-label">Mật khẩu<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="password" class="form-control" id="password_add" >
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="full-name_add" class="col-sm-3 col-form-label">Tên đầy đủ<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="full-name_add" >
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="date_of_birth_add" class="col-sm-3 col-form-label">Ngày sinh<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="date" class="form-control" id="date_of_birth_add" >
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="email_add" class="col-sm-3 col-form-label">Email<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="email_add">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="phone_number_add" class="col-sm-3 col-form-label">Số điện thoại<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="number" class="form-control" id="phone_number_add" >
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Role ID<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <select class="form-control" >
+                    <option>0</option>
+                    <option>1</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer border-0">
+              <button type="button" class="btn btn-primary" style="font-size: 18px" >Thêm mới</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="exampleModal-staffmanager" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" >
+          <div class="modal-content border-0">
+            <div class="modal-header" style="background: #2C3333">
+              <h5 class="modal-title" id="exampleModalLabel" style="color: white">Chỉnh sửa</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" style="color: white">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group row">
+                <label for="username" class="col-sm-3 col-form-label">Tên đăng nhập<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="username" >
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="password" class="col-sm-3 col-form-label">Mật khẩu<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="password" >
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="full-name" class="col-sm-3 col-form-label">Tên đầy đủ<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="full-name" >
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="date_of_birth" class="col-sm-3 col-form-label">Ngày sinh<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="date" class="form-control" id="date_of_birth">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="email" class="col-sm-3 col-form-label">Email<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="email">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="phone_number" class="col-sm-3 col-form-label">Số điện thoại<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="number" class="form-control" id="phone_number">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Role ID<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <select class="form-control" >
+                    <option>0</option>
+                    <option>1</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer border-0">
+              <button type="button" class="btn btn-primary" style="font-size: 18px" >Cập Nhật</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="delete-staff-manager" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header border-0">
+              <h5 class="modal-title" id="">Bạn có muốn xóa không ?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-footer border-0">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Có</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
