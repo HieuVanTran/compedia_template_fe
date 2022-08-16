@@ -84,7 +84,7 @@ export class PublishingCompanyListComponent implements OnInit {
           this.getAllPublishCompany()
         },
         err => {
-          this.messageService.add({severity:'success', summary:'Thông báo!', detail:'Xóa thành công! '});
+          this.messageService.add({severity:'error', summary:'Thông báo!', detail:'Xóa thất bại! '});
           console.log('')
         }
       )

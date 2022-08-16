@@ -12,6 +12,10 @@ const pageRoutingModule: Routes = [
     loadChildren: () => import('./acc-manager/acc-manager.module').then(module => module.AccManagerModule)
   },
   {
+    path: 'staff-manager',
+    loadChildren: () => import('./staff-manager/staff-manager.module').then(module => module.StaffManagerModule)
+  },
+  {
     path: 'author-manager',
     loadChildren: () => import('./author-manager/author-manager.module').then(module => module.AuthorManagerModule)
   },
@@ -34,6 +38,10 @@ const pageRoutingModule: Routes = [
   {
     path: 'publishing-company',
     loadChildren: () => import('./publishing-company/publishing-company.module').then(module => module.PublishingCompanyModule)
+  },
+  {
+    path: 'role-manager',
+    loadChildren: () => import('./role-manager/role-manager.module').then(module => module.RoleManagerModule)
   }
 ];
 
