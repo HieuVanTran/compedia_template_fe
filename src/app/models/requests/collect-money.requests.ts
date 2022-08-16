@@ -1,4 +1,5 @@
 export interface ICollectMoneyRequests {
+  card_id: string,
   fined_amount: string,
   full_name: string,
   id?: number,
@@ -6,6 +7,7 @@ export interface ICollectMoneyRequests {
   staff_id:string
 }
 export interface IEditCollectMoneyRequests {
+  card_id: string,
   fined_amount: string,
   full_name: string,
   id: number,
