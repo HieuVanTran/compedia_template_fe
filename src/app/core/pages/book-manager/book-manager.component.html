@@ -35,6 +35,7 @@
             <th>NHÀ XUẤT BẢN</th>
             <th>NĂM XUẤT BẢN</th>
             <th>SỐ LƯỢNG</th>
+            <th>Trạng Thái</th>
             <th>THAO TÁC</th>
           </tr>
           </thead>
@@ -50,6 +51,7 @@
             <td>{{i.publish_name}}</td>
             <td>{{i.publishing_year}}</td>
             <td>{{i.amount}}</td>
+            <td>{{i.status}}</td>
             <td>
               <a type="button" data-toggle="modal" data-target="#exampleModal-bookmanager" (click)="editBook(i)" style="color: #00cc00"><i
                 class="fa-solid fa-pen-to-square"></i></a>
@@ -101,7 +103,7 @@
               <div class="form-group row">
                 <label for="images" class="col-sm-3 col-form-label">Ảnh <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="file" class="form-control-file" id="images">
+                  <input type="text" class="form-control-file" id="images" formControlname="image">
                 </div>
               </div>
               <div class="form-group row">
@@ -157,6 +159,12 @@
                 <label for="amount" class="col-sm-3 col-form-label">Số lượng <span style="color: red">*</span></label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control" id="amount" formControlName="amount">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="status" class="col-sm-3 col-form-label">Trạng thái <span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="status" formControlName="status">
                 </div>
               </div>
             </div>
@@ -244,6 +252,12 @@
                 <label for="amount" class="col-sm-3 col-form-label">Số lượng <span style="color: red">*</span></label>
                 <div class="col-sm-9">
                   <input type="number" class="form-control" id="amount" formControlName="amount">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="status1" class="col-sm-3 col-form-label">Trạng thái <span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="status1" formControlName="status">
                 </div>
               </div>
             </div>

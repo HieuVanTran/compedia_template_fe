@@ -9,5 +9,6 @@ export interface IBookManagerResponse {
   categoryName: string,
   publishName: string,
   amount: string,
+  status:string
 }
 
