@@ -6,6 +6,10 @@ import {IAccountManagerResponse} from "../../../../models/responses/account-mana
 import {IAccountManagerView} from "../../../../models/views/account-manager.view";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {IAccountManagerRequest, IEditAccountManagerRequest} from "../../../../models/requests/account-manager.request";
+import {IRoleManagerView} from "../../../../models/views/role-manager.view";
+import {MessageService} from "primeng/api";
+import {RoleManagerApiService} from "../../../../services/api/role-manager-api.service";
+import {IRoleManagerResponse} from "../../../../models/responses/role-manager.response";
 
 @Component({
   selector: 'app-acc-manager-list',
@@ -18,9 +22,12 @@ export class AccManagerListComponent implements OnInit {
   accManager: IAccountManagerView[] = [];
   accountInfoForm!: FormGroup;
   accountSelected!: IAccountManagerView;
+  listRoleManager: IRoleManagerView[] = [];
 
   constructor(private accountApiService: AccountApiService,
-              private fb:FormBuilder) {
+              private fb:FormBuilder,
+              private messageService: MessageService,
+              private roleManagerApiService: RoleManagerApiService) {
     this.accountInfoForm = fb.group({
       username: [null],
       password: [null],
@@ -33,7 +40,8 @@ export class AccManagerListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllAccountManager()
+    this.getAllAccountManager();
+    this.getAllRoleManager()
   }
 
   getAllAccountManager() {
@@ -70,10 +78,12 @@ export class AccManagerListComponent implements OnInit {
     };
     this.accountApiService._createNewAccount(createNewAccountRequest).subscribe(
       (res: IResponseModel<any>) => {
+        this.messageService.add({severity:'success', summary:'Thông báo!', detail:'Tạo tài khoản thành công! '});
         console.log('Tao tai khoan thanh cong');
         this.getAllAccountManager()
       },
       err => {
+        this.messageService.add({severity:'error', summary:'Thông báo!', detail:'Tạo tài khoản thất bại! '});
         console.log('Tao tai khoan that bai')
       }
     )
@@ -83,10 +93,12 @@ export class AccManagerListComponent implements OnInit {
     if(this.accountSelected) {
       this.accountApiService._deleteAccount(this.accountSelected.id).subscribe(
         (res: IResponseModel<any>) => {
+          this.messageService.add({severity:'success', summary:'Thông báo!', detail:'Xóa thành công! '});
           console.log('Xoa tai khoan thanh cong');
           this.getAllAccountManager()
         },
         err => {
+          this.messageService.add({severity:'error', summary:'Thông báo!', detail:'Xóa thất bại! '});
           console.log('Xoa tai khoan that bai')
         }
       )
@@ -118,13 +130,15 @@ export class AccManagerListComponent implements OnInit {
       phone: this.accountInfoForm.value.phone,
       roleId: this.accountInfoForm.value.role_id,
       id: this.accountSelected.id
-    }
+    };
     this.accountApiService._editAccount(editAccountManagerRequest).subscribe(
       (res: IResponseModel<any>) => {
+        this.messageService.add({severity:'success', summary:'Thông báo!', detail:'Chỉnh sửa thành côngi! '});
         console.log('Thay doi thong tin thanh cong');
         this.getAllAccountManager()
       },
       err => {
+        this.messageService.add({severity:'error', summary:'Thông báo!', detail:'Chỉnh sửa thất bại! '});
         console.log('Thay doi thong tin that bai')
       }
     )
@@ -134,15 +148,23 @@ export class AccManagerListComponent implements OnInit {
     this.accountSelected = i;
     console.log(this.accountSelected)
   }
-}
-interface accManager {
-  id: number,
-  username: string,
-  password: string,
-  full_name: string,
-  date_of_birth: string,
-  email: string,
-  phone: string,
-  status: string,
-  role_id: string
+
+
+  getAllRoleManager() {
+    this.roleManagerApiService._getAllRoleManager().subscribe(
+      (res: IResponseModel<IRoleManagerResponse[]>) => {
+        this.listRoleManager = [];
+        res.data.forEach(roleManagerRes => {
+          const roleManagerView: IRoleManagerView = {
+            id: roleManagerRes.roleId,
+            code: roleManagerRes.code,
+            name: roleManagerRes.name
+          };
+          this.listRoleManager.push(roleManagerView)
+        } )
+      }
+    )
+  }
+
+
 }
