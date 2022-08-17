@@ -1,11 +1,15 @@
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
-import {BookManagerComponent} from "./book-manager/book-manager.component";
+import {ChartListComponent} from "./chart/chart-list.component";
 
 const pageRoutingModule: Routes = [
   {
+    path: 'chart',
+    component: ChartListComponent
+  },
+  {
     path: 'book-manager',
-    component: BookManagerComponent
+    loadChildren: () => import('./book-manager/book-manager.module').then(module => module.AuthorManagerModule)
   },
   {
     path: 'acc-manager',
@@ -26,10 +30,6 @@ const pageRoutingModule: Routes = [
   {
     path: 'category-manager',
     loadChildren: () => import('./category-manager/category-manager.module').then(module => module.CategoryManagerModule)
-  },
-  {
-    path: 'chart',
-    loadChildren: () => import('./chart/chart.module').then(module => module.ChartModule)
   },
   {
     path: 'delinquent-manager',

@@ -1,36 +1,34 @@
 import { Component, OnInit } from '@angular/core';
+import {IBookManagerView} from "../../../../models/views/book-manager.view";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {IBookManagerView} from "../../../models/views/book-manager.view";
-import {BookApiService} from "../../../services/api/book-api.service";
-import {IResponseModel} from "../../../models/commons/response.model";
-import {IBookManagerResponse} from "../../../models/responses/book-manager.response";
-import {IBookManagerRequest, IEditBookManagerRequest} from "../../../models/requests/book-manager.request";
-import {IBookCategoryView} from "../../../models/views/book-category.view";
-import {IBookCategoryResponse} from "../../../models/responses/book-category.response";
-import {CategoryApiService} from "../../../services/api/category-api.service";
+import {IBookCategoryView} from "../../../../models/views/book-category.view";
+import {IBookAuthorView} from "../../../../models/views/book-author.view";
+import {IPublishCompanyView} from "../../../../models/views/publish-company.view";
+import {CategoryApiService} from "../../../../services/api/category-api.service";
+import {PublishCompanyApiService} from "../../../../services/api/publish-company-api.service";
 import {MessageService} from "primeng/api";
-import {IBookAuthorResponse} from "../../../models/responses/book-author.response";
-import {IBookAuthorView} from "../../../models/views/book-author.view";
-import {AuthorApiService} from "../../../services/api/author-api.service";
-import {IPublishCompanyResponse} from "../../../models/responses/publish-company.response";
-import {IPublishCompanyView} from "../../../models/views/publish-company.view";
-import {PublishCompanyApiService} from "../../../services/api/publish-company-api.service";
-
+import {IResponseModel} from "../../../../models/commons/response.model";
+import {IBookManagerResponse} from "../../../../models/responses/book-manager.response";
+import {IBookManagerRequest, IEditBookManagerRequest} from "../../../../models/requests/book-manager.request";
+import {IBookCategoryResponse} from "../../../../models/responses/book-category.response";
+import {IBookAuthorResponse} from "../../../../models/responses/book-author.response";
+import {IPublishCompanyResponse} from "../../../../models/responses/publish-company.response";
+import {BookApiService} from "../../../../services/api/book-api.service";
+import {AuthorApiService} from "../../../../services/api/author-api.service";
 
 @Component({
-  selector: 'app-book-manager',
-  templateUrl: './book-manager.component.html',
-  styleUrls: ['./book-manager.component.css']
+  selector: 'app-book-manager-list',
+  templateUrl: './book-manager-list.component.html',
+  styleUrls: ['./book-manager-list.component.css']
 })
-export class BookManagerComponent implements OnInit {
+export class BookManagerListComponent implements OnInit {
+
   bookManager : IBookManagerView[] = [];
   bookmanagerInfoForm!: FormGroup;
   bookmanagerSelected!: IBookManagerView;
   listBookCategory: IBookCategoryView[] = [];
   listAuthor: IBookAuthorView[]= [];
   listpublishingCompany:IPublishCompanyView[]=[];
-
-
   constructor(private BookApiService: BookApiService,
               private fb: FormBuilder,
               private categoryApiService: CategoryApiService,
@@ -57,6 +55,7 @@ export class BookManagerComponent implements OnInit {
     this.getAllBookAuthor()
     this.getAllPublishCompany()
   }
+
   getAllBook() {
     this.BookApiService._getAllBook().subscribe(
       (res: IResponseModel<IBookManagerResponse[]>) => {
@@ -83,13 +82,13 @@ export class BookManagerComponent implements OnInit {
   }
   onAddNewBook() {
     const createNewBookRequest: IBookManagerRequest = {
-       book_name:this.bookmanagerInfoForm.value.book_name,
-       name_author:this.bookmanagerInfoForm.value.name_author,
-       publishing_year:this.bookmanagerInfoForm.value.publishing_year,
-       page_number:this.bookmanagerInfoForm.value.page_number,
+      book_name:this.bookmanagerInfoForm.value.book_name,
+      name_author:this.bookmanagerInfoForm.value.name_author,
+      publishing_year:this.bookmanagerInfoForm.value.publishing_year,
+      page_number:this.bookmanagerInfoForm.value.page_number,
       image:this.bookmanagerInfoForm.value.image,
       price:this.bookmanagerInfoForm.value.price,
-     category_name:this.bookmanagerInfoForm.value.category_name,
+      category_name:this.bookmanagerInfoForm.value.category_name,
       publish_name:this.bookmanagerInfoForm.value.publish_name,
       amount:this.bookmanagerInfoForm.value.amount,
       status:this.bookmanagerInfoForm.value.status
@@ -183,7 +182,7 @@ export class BookManagerComponent implements OnInit {
         page_number:i.page_number,
         image:i.image,
         price:i.price,
-       category_name:i.category_name,
+        category_name:i.category_name,
         publish_name:i.publish_name,
         amount:i.amount,
       }
@@ -221,17 +220,5 @@ export class BookManagerComponent implements OnInit {
     console.log(i)
     this.bookmanagerSelected = i
   }
-}
-interface bookManager {
-  book_id: number,
-  book_name: string,
-  name_author: string,
-  publishing_year: string,
-  page_number: string,
-  image: string,
-  price: string,
-  category_name: string,
-  publish_name: string,
-  amount: string,
-  status:string
+
 }

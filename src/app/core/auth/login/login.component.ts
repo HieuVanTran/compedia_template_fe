@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     }
     this.authApiService._login(loginRequest).subscribe(
       (res: IResponseModel<ILoginResponse>) => {
-        this.router.navigate(['/pages/book-manager'])
+        this.router.navigate(['/pages/chart'])
         this.TokenService.setKey(JSON.stringify(res.data.token))
       },
       err => {
