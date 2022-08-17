@@ -27,6 +27,7 @@ export class DelinquentManagerListComponent implements OnInit {
               private messageService: MessageService,
               private fb: FormBuilder) {
     this.moneyInfoForm= fb.group({
+      card_id:[null],
       full_name: [null],
       fined_amount: [null],
       proceeds: [null],
@@ -44,6 +45,7 @@ export class DelinquentManagerListComponent implements OnInit {
         this.delinquentManager = []
         res.data.forEach(collectmoneyRes => {
           const collectMoneyView: ICollectMoneyView = {
+            card_id:collectmoneyRes.cardId,
             id:collectmoneyRes.collectMoneyId,
             full_name:collectmoneyRes.fullName,
             fined_amount:collectmoneyRes.finedAmount,
@@ -61,6 +63,7 @@ export class DelinquentManagerListComponent implements OnInit {
       fined_amount:this.moneyInfoForm.value.fined_amount,
       proceeds:this.moneyInfoForm.value.proceeds,
       staff_id:this.moneyInfoForm.value.staff_id,
+      card_id: this.moneyInfoForm.value.card_id
     }
     this.collectMoneyApiService._createNewCollectmoney(createNewCollectMoneyRequest).subscribe(
       (res: IResponseModel<any>) => {
@@ -109,6 +112,7 @@ export class DelinquentManagerListComponent implements OnInit {
       id: this.collectMoneySelected.id,
       proceeds:this.moneyInfoForm.value.proceeds,
       staff_id:this.moneyInfoForm.value.staff_id,
+      card_id:this.moneyInfoForm.value.card_id
     }
     this.collectMoneyApiService._editcollectmoney(editCollectMoneyRequests).subscribe(
       (res: IResponseModel<any>) => {
@@ -133,5 +137,6 @@ interface delinquentManager  {
   full_Name: string,
   fined_amount: string,
   proceeds: string,
-  staff_id: string
+  staff_id: string,
+  card_id: string
 }
