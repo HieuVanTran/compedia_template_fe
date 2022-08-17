@@ -9,6 +9,7 @@ export interface IBookManagerRequest {
   price: string,
   publish_name: string,
   publishing_year: string,
+  status:string
 }
 export interface IEditBookManagerRequest {
   book_id: number,
@@ -21,5 +22,6 @@ export interface IEditBookManagerRequest {
   category_name: string,
   publish_name: string,
   amount: string,
+  status:string
 }
 

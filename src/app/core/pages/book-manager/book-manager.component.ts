@@ -47,6 +47,7 @@ export class BookManagerComponent implements OnInit {
       category_name: [null],
       publish_name: [null],
       amount: [null],
+      status:[null]
     })
   }
 
@@ -72,7 +73,8 @@ export class BookManagerComponent implements OnInit {
             price:bookManagerRes.price,
             category_name:bookManagerRes.categoryName,
             publish_name:bookManagerRes.publishName,
-            amount:bookManagerRes.amount
+            amount:bookManagerRes.amount,
+            status:bookManagerRes.status,
           }
           this.bookManager.push(bookManagerView)
         })
@@ -89,7 +91,8 @@ export class BookManagerComponent implements OnInit {
       price:this.bookmanagerInfoForm.value.price,
      category_name:this.bookmanagerInfoForm.value.category_name,
       publish_name:this.bookmanagerInfoForm.value.publish_name,
-      amount:this.bookmanagerInfoForm.value.amount
+      amount:this.bookmanagerInfoForm.value.amount,
+      status:this.bookmanagerInfoForm.value.status
     };
     this.BookApiService._createNewBook(createNewBookRequest).subscribe(
       (res: IResponseModel<any>) => {
@@ -199,7 +202,8 @@ export class BookManagerComponent implements OnInit {
       price:this.bookmanagerInfoForm.value.price,
       category_name:this.bookmanagerInfoForm.value.category_name,
       publish_name:this.bookmanagerInfoForm.value.publish_name,
-      amount:this.bookmanagerInfoForm.value.amount
+      amount:this.bookmanagerInfoForm.value.amount,
+      status:this.bookmanagerInfoForm.value.status
     }
     this.BookApiService._editBook(editBookManagerRequest).subscribe(
       (res: IResponseModel<any>) => {
@@ -229,4 +233,5 @@ interface bookManager {
   category_name: string,
   publish_name: string,
   amount: string,
+  status:string
 }
