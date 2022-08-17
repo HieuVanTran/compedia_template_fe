@@ -38,7 +38,7 @@ export class RoleManagerListComponent implements OnInit {
         res.data.forEach(roleManagerRes => {
           const roleManagerView: IRoleManagerView = {
             id: roleManagerRes.roleId,
-            code: roleManagerRes.code,
+            code: roleManagerRes.codeRole,
             name: roleManagerRes.name
           };
           this.roleManager.push(roleManagerView)

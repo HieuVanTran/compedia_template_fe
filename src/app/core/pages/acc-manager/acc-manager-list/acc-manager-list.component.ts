@@ -50,15 +50,13 @@ export class AccManagerListComponent implements OnInit {
         this.accManager = [];
         res.data.forEach(accountManagerRes => {
           const accountManagerView: IAccountManagerView = {
-            id: accountManagerRes.accountId,
+            id: accountManagerRes.account_id,
             username: accountManagerRes.username,
-            password: accountManagerRes.password,
-            full_name: accountManagerRes.fullName,
-            date_of_birth: accountManagerRes.dob,
+            full_name: accountManagerRes.full_name,
+            date_of_birth: accountManagerRes.date_of_birth,
             email: accountManagerRes.email,
             phone: accountManagerRes.phone,
-            status: accountManagerRes.status,
-            role_id: accountManagerRes.roleId
+            role_id: accountManagerRes.code_role
           };
           this.accManager.push(accountManagerView)
         })
@@ -71,10 +69,10 @@ export class AccManagerListComponent implements OnInit {
       username: this.accountInfoForm.value.username,
       password: this.accountInfoForm.value.password,
       full_name: this.accountInfoForm.value.full_name,
-      date_of_birth: this.accountInfoForm.value.date_of_birth,
+      dob: this.accountInfoForm.value.date_of_birth,
       email: this.accountInfoForm.value.email,
       phone: this.accountInfoForm.value.phone,
-      role_id: this.accountInfoForm.value.role_id
+      code_role: this.accountInfoForm.value.role_id
     };
     this.accountApiService._createNewAccount(createNewAccountRequest).subscribe(
       (res: IResponseModel<any>) => {
@@ -110,7 +108,6 @@ export class AccManagerListComponent implements OnInit {
       this.accountInfoForm.patchValue(
         {
           username: i.username,
-          password: i.password,
           full_name: i.full_name,
           date_of_birth: i.date_of_birth,
           email: i.email,
@@ -128,7 +125,7 @@ export class AccManagerListComponent implements OnInit {
       dob: this.accountInfoForm.value.date_of_birth,
       email: this.accountInfoForm.value.email,
       phone: this.accountInfoForm.value.phone,
-      roleId: this.accountInfoForm.value.role_id,
+      code_role: this.accountInfoForm.value.role_id,
       id: this.accountSelected.id
     };
     this.accountApiService._editAccount(editAccountManagerRequest).subscribe(
@@ -157,7 +154,7 @@ export class AccManagerListComponent implements OnInit {
         res.data.forEach(roleManagerRes => {
           const roleManagerView: IRoleManagerView = {
             id: roleManagerRes.roleId,
-            code: roleManagerRes.code,
+            code: roleManagerRes.codeRole,
             name: roleManagerRes.name
           };
           this.listRoleManager.push(roleManagerView)

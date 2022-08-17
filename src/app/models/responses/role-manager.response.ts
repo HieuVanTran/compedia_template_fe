@@ -1,5 +1,5 @@
 export interface IRoleManagerResponse {
   roleId: number,
-  code: string,
+  codeRole: string,
   name: string
 }
