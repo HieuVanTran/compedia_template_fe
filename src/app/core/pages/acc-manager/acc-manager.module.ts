@@ -3,6 +3,8 @@ import {CommonModule} from "@angular/common";
 import {AccManagerRoutingModule} from "./acc-manager-routing.module";
 import {AccManagerListComponent} from "./acc-manager-list/acc-manager-list.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {ToastModule} from "primeng/toast";
+import {MessageService} from "primeng/api";
 
 
 @NgModule({
@@ -14,7 +16,12 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     CommonModule,
     AccManagerRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastModule
+  ],
+
+  providers: [
+    MessageService
   ]
 })
 
