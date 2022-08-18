@@ -21,8 +21,7 @@ export class CategoryManagerListComponent implements OnInit {
               private messageService: MessageService,
               private fb: FormBuilder) {
     this.bookInfoForm = fb.group({
-      code: [null],
-      name: [null]
+      category_name: [null]
     })
   }
 
@@ -37,8 +36,7 @@ export class CategoryManagerListComponent implements OnInit {
           res.data.forEach(bookCategoryRes => {
             const bookCategoryView: IBookCategoryView = {
               id: bookCategoryRes.idtypeBook,
-              code: bookCategoryRes.code,
-              name: bookCategoryRes.bookName
+              category_name: bookCategoryRes.categoryName
             }
             this.categoryManager.push(bookCategoryView)
           })
@@ -48,8 +46,7 @@ export class CategoryManagerListComponent implements OnInit {
 
   onAddNewBookCategory() {
     const createNewBookRequest: IBookCategoryRequest = {
-      book_name: this.bookInfoForm.value.name,
-      code: this.bookInfoForm.value.code,
+      category_name: this.bookInfoForm.value.category_name,
     }
     this.categoryApiService._createNewCategory(createNewBookRequest).subscribe(
       (res: IResponseModel<any>) => {
@@ -84,16 +81,14 @@ export class CategoryManagerListComponent implements OnInit {
     this.bookCategorySelected = i
     this.bookInfoForm.patchValue(
       {
-        code: i.code,
-        name: i.name,
+        category_name: i.category_name,
       }
     )
   }
 
   onEditBookCategory() {
     const editBookCategoryRequest: IEditBookCategoryRequest = {
-      book_name: this.bookInfoForm.value.name,
-      code: this.bookInfoForm.value.code,
+      category_name: this.bookInfoForm.value.category_name,
       id: this.bookCategorySelected.id
     }
     this.categoryApiService._editBookCategory(editBookCategoryRequest).subscribe(
@@ -116,6 +111,5 @@ export class CategoryManagerListComponent implements OnInit {
 
 interface categoryManager {
   id: number,
-  code: string,
-  name: string
+  category_name: string
 }

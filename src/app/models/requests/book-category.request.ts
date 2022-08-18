@@ -1,12 +1,10 @@
 export interface IBookCategoryRequest {
-  book_name: string,
-  code: string,
+  category_name: string,
   id?: number
 }
 
 export interface IEditBookCategoryRequest {
-  book_name: string,
-  code: string,
+  category_name: string,
   id: number
 }
 

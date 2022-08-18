@@ -67,13 +67,13 @@ export class BookManagerListComponent implements OnInit {
           const bookManagerView: IBookManagerView = {
             book_id: bookManagerRes.bookId,
             book_name:bookManagerRes.bookName,
-            name_author:bookManagerRes.nameAuthor,
+            name_author:bookManagerRes.idAuthor,
             publishing_year:bookManagerRes.publishingYear,
             page_number:bookManagerRes.pageNumber,
             image:bookManagerRes.image,
             price:bookManagerRes.price,
-            category_name:bookManagerRes.categoryName,
-            publish_name:bookManagerRes.publishName,
+            category_name:bookManagerRes.idTypeBook,
+            publish_name:bookManagerRes.companyId,
             amount:bookManagerRes.amount,
             status:bookManagerRes.status,
           }
@@ -85,13 +85,13 @@ export class BookManagerListComponent implements OnInit {
   onAddNewBook() {
     const createNewBookRequest: IBookManagerRequest = {
       book_name:this.bookmanagerInfoForm.value.book_name,
-      name_author:this.bookmanagerInfoForm.value.name_author,
+      idAuthor:this.bookmanagerInfoForm.value.name_author,
       publishing_year:this.bookmanagerInfoForm.value.publishing_year,
       page_number:this.bookmanagerInfoForm.value.page_number,
       image:this.bookmanagerInfoForm.value.image,
       price:this.bookmanagerInfoForm.value.price,
-      category_name:this.bookmanagerInfoForm.value.category_name,
-      publish_name:this.bookmanagerInfoForm.value.publish_name,
+      idTypeBook:this.bookmanagerInfoForm.value.category_name,
+      companyId:this.bookmanagerInfoForm.value.publish_name,
       amount:this.bookmanagerInfoForm.value.amount,
       status:this.bookmanagerInfoForm.value.status
     };
@@ -139,8 +139,7 @@ export class BookManagerListComponent implements OnInit {
         res.data.forEach(bookCategoryRes => {
           const bookCategoryView: IBookCategoryView = {
             id: bookCategoryRes.idtypeBook,
-            code: bookCategoryRes.code,
-            name: bookCategoryRes.bookName
+            category_name: bookCategoryRes.categoryName
           }
           this.listBookCategory.push(bookCategoryView)
         })
@@ -205,15 +204,15 @@ export class BookManagerListComponent implements OnInit {
 
   onEditBook() {
     const editBookManagerRequest: IEditBookManagerRequest = {
-      book_id:this.bookmanagerSelected.book_id,
+      id:this.bookmanagerSelected.book_id,
       book_name:this.bookmanagerInfoForm.value.book_name,
-      name_author:this.bookmanagerInfoForm.value.name_author,
+      idAuthor:this.bookmanagerInfoForm.value.name_author,
       publishing_year:this.bookmanagerInfoForm.value.publishing_year,
       page_number:this.bookmanagerInfoForm.value.page_number,
       image:this.bookmanagerInfoForm.value.image,
       price:this.bookmanagerInfoForm.value.price,
-      category_name:this.bookmanagerInfoForm.value.category_name,
-      publish_name:this.bookmanagerInfoForm.value.publish_name,
+      idTypeBook:this.bookmanagerInfoForm.value.category_name,
+      companyId:this.bookmanagerInfoForm.value.publish_name,
       amount:this.bookmanagerInfoForm.value.amount,
       status:this.bookmanagerInfoForm.value.status
     }

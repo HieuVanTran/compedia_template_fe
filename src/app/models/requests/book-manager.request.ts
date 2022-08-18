@@ -1,27 +1,27 @@
 export interface IBookManagerRequest {
   amount: string,
   book_name: string,
-  category_name: string,
+  idTypeBook: string,
   id?: number,
   image: string,
-  name_author: string,
+  idAuthor: string,
   page_number: string,
   price: string,
-  publish_name: string,
+  companyId: string,
   publishing_year: string,
   status:string
 }
 export interface IEditBookManagerRequest {
-  book_id: number,
-  book_name: string,
-  name_author: string,
-  publishing_year: string,
-  page_number: string,
-  image: string,
-  price: string,
-  category_name: string,
-  publish_name: string,
   amount: string,
+  book_name: string,
+  idTypeBook: string,
+  id: number,
+  image: string,
+  idAuthor: string,
+  page_number: string,
+  price: string,
+  companyId: string,
+  publishing_year: string,
   status:string
 }
 

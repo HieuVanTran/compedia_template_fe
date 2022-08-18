@@ -1,5 +1,4 @@
 export interface IBookCategoryView {
   id: number,
-  code: string,
-  name: string
+  category_name: string,
 }

@@ -1,8 +1,8 @@
 <p-toast></p-toast>
 <div class="row" id="table-inverse">
   <div class="col-12">
-    <div class="card">
-      <div class="card-header">
+    <div class="">
+      <div class="">
         <div class="row">
           <div class="col-md-9">
             <h4 class="card-title">QUẢN LÝ SÁCH</h4>
@@ -118,7 +118,7 @@
                 <div class="col-sm-9">
                   <select class="form-control" formControlName="category_name" id="book-kind">
                     <option *ngFor="let bookCategory of listBookCategory" value="{{bookCategory.id}}">
-                      <span>{{bookCategory.name}}</span>
+                      <span>{{bookCategory.category_name}}</span>
                     </option>
                   </select>
                 </div>
@@ -211,7 +211,7 @@
                 <div class="col-sm-9">
                   <select class="form-control" formControlName="category_name">
                     <option *ngFor="let bookCategory of listBookCategory" value="{{bookCategory.id}}">
-                      <span>{{bookCategory.name}}</span>
+                      <span>{{bookCategory.category_name}}</span>
                     </option>
                   </select>
                 </div>
