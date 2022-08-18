@@ -24,6 +24,7 @@ export class AccManagerListComponent implements OnInit {
   accountSelected!: IAccountManagerView;
   listRoleManager: IRoleManagerView[] = [];
 
+
   constructor(private accountApiService: AccountApiService,
               private fb:FormBuilder,
               private messageService: MessageService,
@@ -41,7 +42,7 @@ export class AccManagerListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllAccountManager();
-    this.getAllRoleManager()
+    this.getAllRoleManager();
   }
 
   getAllAccountManager() {

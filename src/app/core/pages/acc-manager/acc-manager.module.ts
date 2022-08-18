@@ -5,6 +5,11 @@ import {AccManagerListComponent} from "./acc-manager-list/acc-manager-list.compo
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
+import {PaginatorModule} from "primeng/paginator";
+import {TableModule} from "primeng/table";
+import {DropdownModule} from "primeng/dropdown";
+import {InputTextModule} from "primeng/inputtext";
+import {DialogModule} from "primeng/dialog";
 
 
 @NgModule({
@@ -17,7 +22,9 @@ import {MessageService} from "primeng/api";
     AccManagerRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastModule
+    ToastModule,
+    PaginatorModule,
+    TableModule,
   ],
 
   providers: [
