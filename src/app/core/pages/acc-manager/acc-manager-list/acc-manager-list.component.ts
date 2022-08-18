@@ -131,7 +131,7 @@ export class AccManagerListComponent implements OnInit {
     };
     this.accountApiService._editAccount(editAccountManagerRequest).subscribe(
       (res: IResponseModel<any>) => {
-        this.messageService.add({severity:'success', summary:'Thông báo!', detail:'Chỉnh sửa thành côngi! '});
+        this.messageService.add({severity:'success', summary:'Thông báo!', detail:'Chỉnh sửa thành công! '});
         console.log('Thay doi thong tin thanh cong');
         this.getAllAccountManager()
       },

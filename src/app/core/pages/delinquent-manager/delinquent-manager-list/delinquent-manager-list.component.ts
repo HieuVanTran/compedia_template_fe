@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {IBookCategoryView} from "../../../../models/views/book-category.view";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ICollectMoneyView} from "../../../../models/views/collect-money.view";
-import {CategoryApiService} from "../../../../services/api/category-api.service";
-import {collectMoneyApiService} from "../../../../services/api/collect-money-api.service";
+import {CollectMoneyApiService} from "../../../../services/api/collect-money-api.service";
 import {IResponseModel} from "../../../../models/commons/response.model";
-import {IBookCategoryResponse} from "../../../../models/responses/book-category.response";
 import {ICollectMoneyResponses} from "../../../../models/responses/collect-money.response";
-import {IBookCategoryRequest, IEditBookCategoryRequest} from "../../../../models/requests/book-category.request";
 import {ICollectMoneyRequests, IEditCollectMoneyRequests} from "../../../../models/requests/collect-money.requests";
 import {MessageService} from "primeng/api";
 
@@ -18,125 +14,119 @@ import {MessageService} from "primeng/api";
 })
 export class DelinquentManagerListComponent implements OnInit {
 
-  delinquentManager : ICollectMoneyView[] = []
-  moneyInfoForm!: FormGroup
-  collectMoneySelected!: ICollectMoneyView
+  delinquentManager : ICollectMoneyView[] = [];
+  moneyInfoForm!: FormGroup;
+  collectMoneySelected!: ICollectMoneyView;
 
-
-  constructor(private collectMoneyApiService: collectMoneyApiService,
-              private messageService: MessageService,
-              private fb: FormBuilder) {
-    this.moneyInfoForm= fb.group({
-      card_id:[null],
-      full_name: [null],
-      fined_amount: [null],
+  constructor(private collectMoneyApiService: CollectMoneyApiService,
+              private fb:FormBuilder,
+              private messageService: MessageService) {
+    this.moneyInfoForm = fb.group({
+      fullName: [null],
+      finedAmount: [null],
       proceeds: [null],
-      staff_id: [null]
+      staffId: [null],
+      userId: [null]
     })
   }
-
   ngOnInit(): void {
     this.getAllCollectMoney()
   }
 
   getAllCollectMoney() {
-    this.collectMoneyApiService._getAllcollectmoney().subscribe(
+    this.collectMoneyApiService._getAllCollectMoney().subscribe(
       (res: IResponseModel<ICollectMoneyResponses[]>) => {
-        this.delinquentManager = []
-        res.data.forEach(collectmoneyRes => {
+        this.delinquentManager = [];
+        res.data.forEach( collectMoneyRes => {
           const collectMoneyView: ICollectMoneyView = {
-            card_id:collectmoneyRes.cardId,
-            id:collectmoneyRes.collectMoneyId,
-            full_name:collectmoneyRes.fullName,
-            fined_amount:collectmoneyRes.finedAmount,
-            proceeds:collectmoneyRes.proceeds,
-            staff_id:collectmoneyRes.staffId
-          }
+            id: collectMoneyRes.collectMoneyId,
+            fullName: collectMoneyRes.fullName,
+            finedAmount: collectMoneyRes.finedAmount,
+            proceeds: collectMoneyRes.proceeds,
+            staffId: collectMoneyRes.staffId,
+            userId: collectMoneyRes.userId
+          };
           this.delinquentManager.push(collectMoneyView)
         })
       }
     )
   }
+
   onAddNewCollectMoney() {
     const createNewCollectMoneyRequest: ICollectMoneyRequests = {
-      full_name:this.moneyInfoForm.value.full_name,
-      fined_amount:this.moneyInfoForm.value.fined_amount,
-      proceeds:this.moneyInfoForm.value.proceeds,
-      staff_id:this.moneyInfoForm.value.staff_id,
-      card_id: this.moneyInfoForm.value.card_id
-    }
-    this.collectMoneyApiService._createNewCollectmoney(createNewCollectMoneyRequest).subscribe(
+      full_name: this.moneyInfoForm.value.fullName,
+      fined_amount: this.moneyInfoForm.value.finedAmount,
+      proceeds: this.moneyInfoForm.value.proceeds,
+      staff_id: this.moneyInfoForm.value.staffId,
+      user_id: this.moneyInfoForm.value.userId
+    };
+    this.collectMoneyApiService._createNewCollectMoney(createNewCollectMoneyRequest).subscribe(
       (res: IResponseModel<any>) => {
-        this.messageService.add({severity:'success', summary:'Thông báo!', detail:'Thêm mới thành công! '});
-        console.log('Them moi danh muc thanh cong')
+        this.messageService.add({severity:'success', summary:'Thông báo!', detail:'Tạo mới thành công! '});
+        console.log('Success');
         this.getAllCollectMoney()
       },
       err => {
-        this.messageService.add({severity:'error', summary:'Thông báo!', detail:'Thêm mơi thất bại! '});
-        console.log('Them moi danh muc that bai')
+        this.messageService.add({severity:'error', summary:'Thông báo!', detail:'Tạo thất bại! '});
+        console.log('Failed');
+
       }
     )
   }
-  onDeleteCollectMoney() {
+
+  onDeleteAccount() {
     if(this.collectMoneySelected) {
-      this.collectMoneyApiService._deletecollectmoney(this.collectMoneySelected.id).subscribe(
+      this.collectMoneyApiService._deleteCollectMoney(this.collectMoneySelected.id).subscribe(
         (res: IResponseModel<any>) => {
-          this.messageService.add({severity:'success', summary:'Thông báo', detail:'Xóa danh mục thành công'});
-          console.log('Xoa danh muc thanh cong')
+          this.messageService.add({severity:'success', summary:'Thông báo!', detail:'Xóa thành công! '});
+          console.log('Xoa tai khoan thanh cong');
           this.getAllCollectMoney()
         },
         err => {
-          this.messageService.add({severity:'error', summary:'Thông báo', detail:'Xóa danh mục thất bại'});
-          console.log('Xoa danh muc that bai')
+          this.messageService.add({severity:'error', summary:'Thông báo!', detail:'Xóa thất bại! '});
+          console.log('Xoa tai khoan that bai')
         }
       )
     }
   }
 
-  editBookCategory(i: ICollectMoneyView) {
-    this.collectMoneySelected = i
-    this.moneyInfoForm.patchValue(
-      {
-        full_name:i.full_name,
-        fined_amount: i.fined_amount,
-        proceeds:i.proceeds,
-        staff_id:i.staff_id
+  onEditCollectMoney() {
+    const editCollectMoneyRequests: IEditCollectMoneyRequests = {
+      fined_amount: this.moneyInfoForm.value.finedAmount,
+      full_name: this.moneyInfoForm.value.fullName,
+      proceeds: this.moneyInfoForm.value.proceeds,
+      staff_id: this.moneyInfoForm.value.staffId,
+      user_id: this.moneyInfoForm.value.userId,
+      id: this.collectMoneySelected.id
+    };
+    this.collectMoneyApiService._editCollectMoney(editCollectMoneyRequests).subscribe(
+      (res: IResponseModel<any>) => {
+        this.messageService.add({severity:'success', summary:'Thông báo!', detail:'Chỉnh sửa thành công! '});
+        console.log('Thay doi thong tin thanh cong');
+        this.getAllCollectMoney()
+      },
+      err => {
+        this.messageService.add({severity:'error', summary:'Thông báo!', detail:'Chỉnh sửa thất bại! '});
+        console.log('Thay doi thong tin thanh cong');
       }
     )
   }
 
-  onEditCollectMoney() {
-    const editCollectMoneyRequests: IEditCollectMoneyRequests = {
-      full_name: this.moneyInfoForm.value.full_name,
-      fined_amount: this.moneyInfoForm.value.fined_amount,
-      id: this.collectMoneySelected.id,
-      proceeds:this.moneyInfoForm.value.proceeds,
-      staff_id:this.moneyInfoForm.value.staff_id,
-      card_id:this.moneyInfoForm.value.card_id
-    }
-    this.collectMoneyApiService._editcollectmoney(editCollectMoneyRequests).subscribe(
-      (res: IResponseModel<any>) => {
-        this.messageService.add({severity:'success', summary:'Thông báo', detail:'Chỉnh sửa danh mục thành công'});
-        console.log('Sua danh muc thanh cong')
-        this.getAllCollectMoney()
-      },
-      err => {
-        this.messageService.add({severity:'error', summary:'Thông báo', detail:'Chỉnh sửa danh mục thất bại'});
-        console.log('Sua danh muc that bai')
-      }
-    )
+  editCollectMoney(i: ICollectMoneyView) {
+    this.collectMoneySelected = i;
+    this.moneyInfoForm.patchValue(
+      {
+        userId: i.userId,
+        finedAmount: i.finedAmount,
+        fullName: i.fullName,
+        proceeds: i.proceeds,
+        staffId: i.staffId
+    })
   }
 
   selectCollectMoney(i: ICollectMoneyView) {
     this.collectMoneySelected = i
   }
-}
 
-interface delinquentManager  {
-  id: number,
-  full_Name: string,
-  fined_amount: string,
-  proceeds: string,
-  staff_id: string,
-  card_id: string
+
 }

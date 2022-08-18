@@ -56,7 +56,7 @@ export class PublishingCompanyListComponent implements OnInit {
 
   onAddNewPublishCompany() {
     const createNewPublishCompanyRequest: IPublishCompanyRequest = {
-      name: this.publishCompanyInfoForm.value.name,
+      publish_name: this.publishCompanyInfoForm.value.name,
       address: this.publishCompanyInfoForm.value.address,
       email: this.publishCompanyInfoForm.value.email,
       agent_people: this.publishCompanyInfoForm.value.agent_people,

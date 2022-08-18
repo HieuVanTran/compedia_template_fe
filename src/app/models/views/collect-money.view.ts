@@ -1,8 +1,8 @@
 export interface ICollectMoneyView {
-  card_id: string,
-  fined_amount: string,
-  full_name: string,
+  userId: string,
+  finedAmount: string,
+  fullName: string,
   id: number,
   proceeds: string,
-  staff_id:string
+  staffId:string
 }

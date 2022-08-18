@@ -8,7 +8,7 @@
             <h4 class="card-title">QUẢN LÍ VI PHẠM </h4>
           </div>
           <div class="col-md-3 d-flex justify-content-end" style="padding-bottom: 12px">
-            <a class="btn btn-info text-light" type="button" data-toggle="modal" data-target="#exampleModal-bookmanager-new" (click)="moneyInfoForm.reset()">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
+            <a class="btn btn-info text-light" type="button" data-toggle="modal" data-target="#exampleModal-collect-money-new" (click)="moneyInfoForm.reset()">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
           </div>
         </div>
       </div>
@@ -36,14 +36,14 @@
           <tbody>
           <tr *ngFor="let i of delinquentManager, index as index">
             <td>{{index +1}}</td>
-            <td class="text-bold-500">{{i.full_name}}</td>
-            <td>{{i.fined_amount}}</td>
+            <td class="text-bold-500">{{i.fullName}}</td>
+            <td>{{i.finedAmount}}</td>
             <td>{{i.proceeds}}</td>
-            <td>{{i.staff_id}}</td>
-            <td>{{i.card_id}}</td>
+            <td>{{i.staffId}}</td>
+            <td>{{i.userId}}</td>
             <td>
-              <a type="button" data-toggle="modal" data-target="#exampleModal-bookmanager" (click)="editBookCategory(i)"><i class="fa-solid fa-pen-to-square"></i></a>
-              <a type="button" data-toggle="modal" data-target="#delete-book-manager" (click)="selectCollectMoney(i)" ><i class="fa-solid fa-trash-can"></i></a>
+              <a type="button" data-toggle="modal" data-target="#exampleModal-collect-money" (click)="editCollectMoney(i)"><i class="fa-solid fa-pen-to-square"></i></a>
+              <a type="button" data-toggle="modal" data-target="#delete-collect-money" (click)="selectCollectMoney(i)"><i class="fa-solid fa-trash-can"></i></a>
             </td>
           </tr>
           </tbody>
@@ -67,13 +67,13 @@
           </a>
         </li>
       </ul>
-<!-- -->
+
       <!-- Modal -->
-      <div class="modal fade" id="exampleModal-bookmanager-new" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="exampleModal-collect-money-new" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" [formGroup]="moneyInfoForm">
           <div class="modal-content border-0">
             <div class="modal-header" style="background: #2C3333">
-              <h5 class="modal-title" id="exampleModalLabel" style="color: white">Thêm mới </h5>
+              <h5 class="modal-title" style="color: white">Thêm mới </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true" style="color: white">&times;</span>
               </button>
@@ -82,14 +82,14 @@
               <div class="form-group row">
                 <label for="name1" class="col-sm-3 col-form-label">Tên <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="name1" formControlName="full_name">
+                  <input type="text" class="form-control" id="name1" formControlName="fullName">
                 </div>
               </div>
 
               <div class="form-group row">
                 <label for="forfeit1" class="col-sm-3 col-form-label">Số Tiền Bị Phạt <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="forfeit1" formControlName="fined_amount">
+                  <input type="text" class="form-control" id="forfeit1" formControlName="finedAmount">
                 </div>
               </div>
               <div class="form-group row">
@@ -101,25 +101,25 @@
               <div class="form-group row">
                 <label for="id_staff1" class="col-sm-3 col-form-label">Mã Nhân Viên <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="id_staff1" formControlName="staff_id">
+                  <input type="text" class="form-control" id="id_staff1" formControlName="staffId">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="id_staff12" class="col-sm-3 col-form-label">Mã Thẻ thư viện <span style="color: red">*</span></label>
+                <label  class="col-sm-3 col-form-label">Mã Thẻ thư viện <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="id_staff12" formControlName="card_id">
+                  <input type="text" class="form-control"  formControlName="userId">
                 </div>
               </div>
             </div>
             <div class="modal-footer border-0">
-              <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onAddNewCollectMoney()" data-dismiss="modal">Thêm mới</button>
+              <button type="button" class="btn btn-primary" style="font-size: 18px"  data-dismiss="modal" (click)="onAddNewCollectMoney()">Thêm mới</button>
             </div>
           </div>
           </div>
         </div>
       </div>
 <!--modal-->
-      <div class="modal fade" id="exampleModal-bookmanager" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="exampleModal-collect-money" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" [formGroup]="moneyInfoForm">
           <div class="modal-content border-0">
             <div class="modal-header" style="background: #2C3333">
@@ -132,44 +132,44 @@
               <div class="form-group row">
                 <label for="name" class="col-sm-3 col-form-label">Tên <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="name" formControlName="full_name">
+                  <input type="text" class="form-control" id="name" formControlName="fullName">
                 </div>
               </div>
 
               <div class="form-group row">
                 <label for="forfeit" class="col-sm-3 col-form-label">Số Tiền Bị Phạt <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="forfeit" formControlName="fined_amount">
+                  <input type="text" class="form-control" id="forfeit" formControlName="finedAmount" >
                 </div>
               </div>
               <div class="form-group row">
                 <label for="monney" class="col-sm-3 col-form-label">Số Tiền Đã Nộp <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="monney" formControlname="proceeds">
+                  <input type="text" class="form-control" id="monney" formControlName="proceeds">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="id_staff" class="col-sm-3 col-form-label">Mã Nhân Viên <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="id_staff" formControlname="staff_id">
+                  <input type="text" class="form-control" id="id_staff" formControlName="staffId">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="id_staff12" class="col-sm-3 col-form-label">Mã Thẻ thư viện <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="id_staff12" formControlName="card_id">
+                  <input type="text" class="form-control" id="id_staff12" formControlName="userId">
                 </div>
               </div>
             </div>
             <div class="modal-footer border-0">
-              <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onEditCollectMoney()" data-dismiss="modal">Cập Nhật</button>
+              <button type="button" class="btn btn-primary" style="font-size: 18px"  data-dismiss="modal" (click)="onEditCollectMoney()">Cập Nhật</button>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Modal -->
-      <div class="modal fade" id="delete-book-manager" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="delete-collect-money" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header border-0">
@@ -180,7 +180,7 @@
             </div>
             <div class="modal-footer border-0">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
-              <button type="button" class="btn btn-primary" data-dissmis="modal" (click)="onDeleteCollectMoney()" data-dismiss="modal">Có</button>
+              <button type="button" class="btn btn-primary" (click)="onDeleteAccount()" data-dismiss="modal">Có</button>
             </div>
           </div>
         </div>

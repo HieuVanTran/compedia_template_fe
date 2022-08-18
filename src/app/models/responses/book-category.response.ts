@@ -1,5 +1,4 @@
 export interface IBookCategoryResponse {
-  idtypeBook: number,
+  idTypeBook: number,
   categoryName: string,
-
 }

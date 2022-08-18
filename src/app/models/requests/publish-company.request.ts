@@ -4,7 +4,7 @@ export interface IPublishCompanyRequest {
   date_founding: string,
   email: string,
   id?: number,
-  name: string
+  publish_name: string
 }
 
 export interface IEditPublishCompanyRequest {

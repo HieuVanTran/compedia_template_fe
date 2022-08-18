@@ -13,9 +13,9 @@ import {MessageService} from "primeng/api";
   styleUrls: ['./category-manager-list.component.css']
 })
 export class CategoryManagerListComponent implements OnInit {
-  categoryManager : IBookCategoryView[] = []
-  bookInfoForm!: FormGroup
-  bookCategorySelected!: IBookCategoryView
+  categoryManager : IBookCategoryView[] = [];
+  bookInfoForm!: FormGroup;
+  bookCategorySelected!: IBookCategoryView;
 
   constructor(private categoryApiService: CategoryApiService,
               private messageService: MessageService,
@@ -32,12 +32,12 @@ export class CategoryManagerListComponent implements OnInit {
     getAllBookCategory() {
       this.categoryApiService._getAllCategory().subscribe(
         (res: IResponseModel<IBookCategoryResponse[]>) => {
-          this.categoryManager = []
+          this.categoryManager = [];
           res.data.forEach(bookCategoryRes => {
             const bookCategoryView: IBookCategoryView = {
-              id: bookCategoryRes.idtypeBook,
+              id: bookCategoryRes.idTypeBook,
               category_name: bookCategoryRes.categoryName
-            }
+            };
             this.categoryManager.push(bookCategoryView)
           })
         }
@@ -47,11 +47,11 @@ export class CategoryManagerListComponent implements OnInit {
   onAddNewBookCategory() {
     const createNewBookRequest: IBookCategoryRequest = {
       category_name: this.bookInfoForm.value.category_name,
-    }
+    };
     this.categoryApiService._createNewCategory(createNewBookRequest).subscribe(
       (res: IResponseModel<any>) => {
         this.messageService.add({severity:'success', summary:'Thông báo', detail:'Thêm mới danh mục thành công'});
-        console.log('Them moi danh muc thanh cong')
+        console.log('Them moi danh muc thanh cong');
         this.getAllBookCategory()
       },
       err => {
@@ -66,7 +66,7 @@ export class CategoryManagerListComponent implements OnInit {
       this.categoryApiService._deleteBookCategory(this.bookCategorySelected.id).subscribe(
         (res: IResponseModel<any>) => {
           this.messageService.add({severity:'success', summary:'Thông báo', detail:'Xóa danh mục thành công'});
-          console.log('Xoa danh muc thanh cong')
+          console.log('Xoa danh muc thanh cong');
           this.getAllBookCategory()
         },
         err => {
@@ -78,7 +78,7 @@ export class CategoryManagerListComponent implements OnInit {
   }
 
   editBookCategory(i: IBookCategoryView) {
-    this.bookCategorySelected = i
+    this.bookCategorySelected = i;
     this.bookInfoForm.patchValue(
       {
         category_name: i.category_name,
@@ -90,11 +90,11 @@ export class CategoryManagerListComponent implements OnInit {
     const editBookCategoryRequest: IEditBookCategoryRequest = {
       category_name: this.bookInfoForm.value.category_name,
       id: this.bookCategorySelected.id
-    }
+    };
     this.categoryApiService._editBookCategory(editBookCategoryRequest).subscribe(
       (res: IResponseModel<any>) => {
         this.messageService.add({severity:'success', summary:'Thông báo', detail:'Chỉnh sửa danh mục thành công'});
-        console.log('Sua danh muc thanh cong')
+        console.log('Sua danh muc thanh cong');
         this.getAllBookCategory()
       },
       err => {
@@ -109,7 +109,3 @@ export class CategoryManagerListComponent implements OnInit {
   }
 }
 
-interface categoryManager {
-  id: number,
-  category_name: string
-}
