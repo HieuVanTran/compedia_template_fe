@@ -71,7 +71,7 @@ export class AccManagerListComponent implements OnInit {
       full_name: this.accountInfoForm.value.full_name,
       dob: this.accountInfoForm.value.date_of_birth,
       email: this.accountInfoForm.value.email,
-      phone: this.accountInfoForm.value.phone,
+      phone: '0'+this.accountInfoForm.value.phone,
       code_role: this.accountInfoForm.value.role_id
     };
     this.accountApiService._createNewAccount(createNewAccountRequest).subscribe(
@@ -81,7 +81,8 @@ export class AccManagerListComponent implements OnInit {
         this.getAllAccountManager()
       },
       err => {
-        this.messageService.add({severity:'error', summary:'Thông báo!', detail:'Tạo tài khoản thất bại! '});
+        console.log(err)
+        this.messageService.add({severity:'error', summary:'Thông báo!', detail:err.error});
         console.log('Tao tai khoan that bai')
       }
     )

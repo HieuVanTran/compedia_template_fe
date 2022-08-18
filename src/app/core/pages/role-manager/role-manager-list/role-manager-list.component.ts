@@ -49,7 +49,7 @@ export class RoleManagerListComponent implements OnInit {
 
   onAddNewRole() {
     const createNewRoleRequest: IRoleManagerRequest = {
-      code: this.roleManagerInfoForm.value.code,
+      codeRole: this.roleManagerInfoForm.value.code,
       name: this.roleManagerInfoForm.value.name
     };
     this.roleManagerApiService._createNewRole(createNewRoleRequest).subscribe(
@@ -93,7 +93,7 @@ export class RoleManagerListComponent implements OnInit {
 
   onEditRole() {
     const editRoleRequest: IEditRoleRequest = {
-      code: this.roleManagerInfoForm.value.code,
+      codeRole: this.roleManagerInfoForm.value.code,
       name: this.roleManagerInfoForm.value.name,
       role_id: this.roleManagerSelected.id
     };
