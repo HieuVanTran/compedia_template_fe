@@ -1,17 +1,10 @@
-.table-responsive thead {
-  background-color: #E2DCC8;
-}
-
-.table-responsive tbody {
-  background-color: #F1F1F1;
-}
-
 .pagination {
   display: flex;
   justify-content: flex-end;
 }
 .table-responsive thead {
   background-color: #E2DCC8;
+  color: #47474a
 }
 
 .table-responsive tbody {
@@ -21,12 +14,5 @@
 .table-responsive td i {
   font-size: 20px;
   padding: 8px;
-}
-
-
-
-.pagination {
-  display: flex;
-  justify-content: flex-end;
 }
 

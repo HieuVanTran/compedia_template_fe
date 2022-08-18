@@ -106,8 +106,8 @@ export class BookManagerListComponent implements OnInit {
     this.requestBookForm.set('publishingYear',this.bookmanagerInfoForm.value.publishing_year)
     this.requestBookForm.set('status',this.bookmanagerInfoForm.value.status)
 
-    this.BookApiService._createNewBook(this.requestBookForm).subscribe(
-      (res: IResponseModel<any>) => {
+        this.BookApiService._createNewBook(this.requestBookForm).subscribe(
+          (res: IResponseModel<any>) => {
         this.messageService.add({severity:'success', summary:'Thông báo', detail:'Thêm mới danh mục thành công'});
         this.getAllBook()
       },
