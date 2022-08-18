@@ -1,11 +1,11 @@
 export interface IRoleManagerRequest {
-  id?: number,
-  code: string,
+  role_id?: number,
+  codeRole: string,
   name: string
 }
 
 export interface IEditRoleRequest {
-  code: string,
+  codeRole: string,
   name: string,
   role_id: number
 }
