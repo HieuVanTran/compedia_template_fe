@@ -54,12 +54,12 @@ export class RoleManagerListComponent implements OnInit {
     };
     this.roleManagerApiService._createNewRole(createNewRoleRequest).subscribe(
       (res: IResponseModel<any>) => {
-        this.messageService.add({severity:'success', summary:'Thông báo!', detail:'Thêm vai trò thành công! '});
+        this.messageService.add({severity:'success', summary:'Thông báo!', detail:'Thêm nhóm quyền thành công! '});
         console.log('Thanh cong');
         this.getAllRoleManager()
       },
       err => {
-        this.messageService.add({severity:'error', summary:'Thông báo!', detail:'Thêm vai trò thất bại! '});
+        this.messageService.add({severity:'error', summary:'Thông báo!', detail:'Thêm nhóm quyền thất bại! '});
         console.log('That bai')
       }
     )
