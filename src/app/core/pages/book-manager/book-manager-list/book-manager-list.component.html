@@ -103,7 +103,7 @@
               <div class="form-group row">
                 <label for="images" class="col-sm-3 col-form-label">Ảnh <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control-file" id="images" formControlname="image">
+                  <input type="file" class="form-control-file" id="images" (change)="getFile($event)">
                 </div>
               </div>
               <div class="form-group row">
