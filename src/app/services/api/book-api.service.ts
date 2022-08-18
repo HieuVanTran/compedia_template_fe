@@ -24,8 +24,9 @@ export class BookApiService{
     return this.http.get<IResponseModel<IBookManagerResponse[]>>(url)
   }
 
-  _createNewBook(requestBody: IBookManagerRequest): Observable<IResponseModel<any>> {
-    const url = `${this.api}/book`;
+  _createNewBook(requestBody: FormData): Observable<IResponseModel<any>> {
+    const url = `${this.api}/book`
+
     return this.http.post<IResponseModel<any>>(url, requestBody)
   }
 

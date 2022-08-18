@@ -29,6 +29,8 @@ export class BookManagerListComponent implements OnInit {
   listBookCategory: IBookCategoryView[] = [];
   listAuthor: IBookAuthorView[]= [];
   listpublishingCompany:IPublishCompanyView[]=[];
+  uploadFile!: File
+  requestBookForm: FormData = new FormData()
   constructor(private BookApiService: BookApiService,
               private fb: FormBuilder,
               private categoryApiService: CategoryApiService,
@@ -93,7 +95,18 @@ export class BookManagerListComponent implements OnInit {
       amount:this.bookmanagerInfoForm.value.amount,
       status:this.bookmanagerInfoForm.value.status
     };
-    this.BookApiService._createNewBook(createNewBookRequest).subscribe(
+    this.requestBookForm.set('amount',this.bookmanagerInfoForm.value.amount)
+    this.requestBookForm.set('bookName',this.bookmanagerInfoForm.value.book_name)
+    this.requestBookForm.set('categoryName',this.bookmanagerInfoForm.value.category_name)
+    this.requestBookForm.set('file',this.uploadFile)
+    this.requestBookForm.set('nameAuthor',this.bookmanagerInfoForm.value.name_author)
+    this.requestBookForm.set('pageNumber',this.bookmanagerInfoForm.value.page_number)
+    this.requestBookForm.set('price',this.bookmanagerInfoForm.value.price)
+    this.requestBookForm.set('publishName',this.bookmanagerInfoForm.value.publish_name)
+    this.requestBookForm.set('publishingYear',this.bookmanagerInfoForm.value.publishing_year)
+    this.requestBookForm.set('status',this.bookmanagerInfoForm.value.status)
+
+    this.BookApiService._createNewBook(this.requestBookForm).subscribe(
       (res: IResponseModel<any>) => {
         this.messageService.add({severity:'success', summary:'Thông báo', detail:'Thêm mới danh mục thành công'});
         this.getAllBook()
@@ -221,4 +234,9 @@ export class BookManagerListComponent implements OnInit {
     this.bookmanagerSelected = i
   }
 
+  getFile(event: Event) {
+    // @ts-ignore
+    this.uploadFile = event.target?.files[0]
+    console.log(this.uploadFile)
+  }
 }
