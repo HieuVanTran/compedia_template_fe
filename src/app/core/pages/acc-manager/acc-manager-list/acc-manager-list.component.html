@@ -1,12 +1,12 @@
 <div class="row" id="table-inverse">
   <div class="col-12">
-    <div class="card">
-      <div class="card-header">
+    <div>
+      <div>
         <div class="row">
           <div class="col-md-9">
             <h4 class="card-title">QUẢN LÝ TÀI KHOẢN</h4>
           </div>
-          <div class="col-md-3 d-flex justify-content-end">
+          <div class="col-md-3 d-flex justify-content-end" style="padding-bottom: 12px">
             <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="accountInfoForm.reset()" data-target="#exampleModal-accmanager-new">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
           </div>
         </div>
@@ -29,7 +29,7 @@
             <th>NGÀY SINH</th>
             <th>EMAIL</th>
             <th>ĐIỆN THOẠI</th>
-            <th>ROLE ID</th>
+            <th>ROLE</th>
             <th>THAO TÁC</th>
           </tr>
           </thead>
@@ -117,10 +117,10 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Role ID<span style="color: red">*</span></label>
+                <label class="col-sm-3 col-form-label">Role<span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <select class="form-control" formControlName="code" >
-                    <option *ngFor="let roleID of listRoleManager" value="{{roleID.id}}">
+                  <select class="form-control" formControlName="role_id" >
+                    <option *ngFor="let roleID of listRoleManager" value="{{roleID.code}}">
                       <span>{{roleID.code}}</span>
                     </option>
                   </select>
@@ -181,7 +181,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Role ID<span style="color: red">*</span></label>
+                <label class="col-sm-3 col-form-label">Role<span style="color: red">*</span></label>
                 <div class="col-sm-9">
                   <select class="form-control" formControlName="role_id" >
                     <option *ngFor="let roleID of listRoleManager" value="{{roleID.id}}">
