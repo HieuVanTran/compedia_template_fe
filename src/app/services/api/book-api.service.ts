@@ -26,7 +26,6 @@ export class BookApiService{
 
   _createNewBook(requestBody: FormData): Observable<IResponseModel<any>> {
     const url = `${this.api}/book`
-
     return this.http.post<IResponseModel<any>>(url, requestBody)
   }
 
@@ -35,7 +34,7 @@ export class BookApiService{
     return this.http.delete<IResponseModel<any>>(url)
   }
 
-  _editBook(requestBody: IEditBookManagerRequest): Observable<IResponseModel<any>> {
+  _editBook(requestBody: FormData): Observable<IResponseModel<any>> {
     const url = `${this.api}/book`;
     return this.http.put<IResponseModel<any>>(url, requestBody)
   }

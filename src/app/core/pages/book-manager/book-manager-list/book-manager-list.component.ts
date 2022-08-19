@@ -215,8 +215,20 @@ export class BookManagerListComponent implements OnInit {
       companyId:this.bookmanagerInfoForm.value.publish_name,
       amount:this.bookmanagerInfoForm.value.amount,
       status:this.bookmanagerInfoForm.value.status
-    }
-    this.BookApiService._editBook(editBookManagerRequest).subscribe(
+    };
+    // @ts-ignore
+    this.requestBookForm.set('id',this.bookmanagerSelected.book_id)
+    this.requestBookForm.set('amount',this.bookmanagerInfoForm.value.amount)
+    this.requestBookForm.set('bookName',this.bookmanagerInfoForm.value.book_name)
+    this.requestBookForm.set('categoryName',this.bookmanagerInfoForm.value.category_name)
+    this.requestBookForm.set('file',this.uploadFile)
+    this.requestBookForm.set('nameAuthor',this.bookmanagerInfoForm.value.name_author)
+    this.requestBookForm.set('pageNumber',this.bookmanagerInfoForm.value.page_number)
+    this.requestBookForm.set('price',this.bookmanagerInfoForm.value.price)
+    this.requestBookForm.set('publishName',this.bookmanagerInfoForm.value.publish_name)
+    this.requestBookForm.set('publishingYear',this.bookmanagerInfoForm.value.publishing_year)
+    this.requestBookForm.set('status',this.bookmanagerInfoForm.value.status)
+    this.BookApiService._editBook(this.requestBookForm).subscribe(
       (res: IResponseModel<any>) => {
         console.log('Sua danh muc thanh cong')
         this.messageService.add({severity:'success', summary:'Thông báo', detail:' Chỉnh sửa danh muc thành công'});
