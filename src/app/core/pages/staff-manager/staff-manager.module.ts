@@ -6,6 +6,7 @@ import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
 import {StaffManagerListComponent} from "./staff-manager-list/staff-manager-list.component";
 import {StaffManagerRoutingModule} from "./staff-manager-routing.module";
+import {TableModule} from "primeng/table";
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {StaffManagerRoutingModule} from "./staff-manager-routing.module";
     CommonModule,
     StaffManagerRoutingModule,
     ReactiveFormsModule,
-    ToastModule
+    ToastModule,
+    TableModule
   ],
 
   providers: [

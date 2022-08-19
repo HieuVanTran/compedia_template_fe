@@ -138,7 +138,7 @@ export class BookManagerListComponent implements OnInit {
         this.listBookCategory = []
         res.data.forEach(bookCategoryRes => {
           const bookCategoryView: IBookCategoryView = {
-            id: bookCategoryRes.idtypeBook,
+            id: bookCategoryRes.idTypeBook,
             category_name: bookCategoryRes.categoryName
           }
           this.listBookCategory.push(bookCategoryView)

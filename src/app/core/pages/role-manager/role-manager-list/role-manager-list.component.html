@@ -19,19 +19,20 @@
       <!--              <code class="highlighter-rouge">.table-dark</code>.-->
       <!--            </p>-->
       <!--          </div>-->
-      <div class="table-responsive">
-        <table class="table table-light mb-0">
-          <thead>
+      <p-table [value]="roleManager"  [paginator]="true" [rows]="10" >
+        <ng-template pTemplate="header" class="dark">
           <tr>
             <th>STT</th>
-            <th>MÃ</th>
-            <th>TÊN NHÓM QUYỀN</th>
+            <th pSortableColumn="code">MÃ<p-sortIcon field="code"></p-sortIcon></th>
+            <th pSortableColumn="name">TÊN NHÓM QUYỀN<p-sortIcon field="name"></p-sortIcon></th>
             <th>THAO TÁC</th>
           </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let i of roleManager, index as index">
-            <td>{{index +1}}</td>
+        </ng-template>
+
+
+        <ng-template pTemplate="body" let-i let-rowIndex="rowIndex">
+          <tr >
+            <td>{{rowIndex +1}}</td>
             <td>{{i.code}}</td>
             <td>{{i.name}}</td>
             <td>
@@ -39,27 +40,8 @@
               <a type="button" data-toggle="modal" data-target="#delete-role-manager" (click)="selectRole(i)"><i class="fa-solid fa-trash-can" style="color: red"></i></a>
             </td>
           </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Previous</span>
-          </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Next</span>
-          </a>
-        </li>
-      </ul>
+        </ng-template>
+      </p-table>
 
       <!-- Modal -->
       <div class="modal fade" id="exampleModal-role-manager-new" tabindex="-1" aria-labelledby="exampleModalLabel_add" aria-hidden="true">

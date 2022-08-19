@@ -7,34 +7,33 @@ import {ICollectMoneyResponses} from "../../models/responses/collect-money.respo
 import {ICollectMoneyRequests, IEditCollectMoneyRequests} from "../../models/requests/collect-money.requests";
 
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class collectMoneyApiService{
-  api = environment.api_url
+export class CollectMoneyApiService{
+  api = environment.api_url;
 
   constructor(
     private http: HttpClient
   ) {}
 
-  _getAllcollectmoney(): Observable<IResponseModel<ICollectMoneyResponses[]>> {
-    const url = `${this.api}/collect-money/collect-money`
+  _getAllCollectMoney(): Observable<IResponseModel<ICollectMoneyResponses[]>> {
+    const url = `${this.api}/collect-money/collect-money`;
     return this.http.get<IResponseModel<ICollectMoneyResponses[]>>(url)
   }
 
-  _createNewCollectmoney(requestBody: ICollectMoneyRequests): Observable<IResponseModel<any>> {
-    const url = `${this.api}/collect-money`
+  _createNewCollectMoney(requestBody: ICollectMoneyRequests): Observable<IResponseModel<any>> {
+    const url = `${this.api}/collect-money`;
     return this.http.post<IResponseModel<any>>(url, requestBody)
   }
 
-  _deletecollectmoney(collectId: number): Observable<IResponseModel<any>> {
-    const url = `${this.api}/collect-money?id=${collectId}`
+  _deleteCollectMoney(collectMoneyId: number): Observable<IResponseModel<any>> {
+    const url = `${this.api}/collect-money?id=${collectMoneyId}`;
     return this.http.delete<IResponseModel<any>>(url)
   }
 
-  _editcollectmoney(requestBody: IEditCollectMoneyRequests): Observable<IResponseModel<any>> {
-    const url = `${this.api}/collect-money`
+  _editCollectMoney(requestBody: IEditCollectMoneyRequests): Observable<IResponseModel<any>> {
+    const url = `${this.api}/collect-money`;
     return this.http.put<IResponseModel<any>>(url, requestBody)
   }
 }

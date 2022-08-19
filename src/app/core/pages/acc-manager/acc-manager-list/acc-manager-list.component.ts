@@ -24,6 +24,7 @@ export class AccManagerListComponent implements OnInit {
   accountSelected!: IAccountManagerView;
   listRoleManager: IRoleManagerView[] = [];
 
+
   constructor(private accountApiService: AccountApiService,
               private fb:FormBuilder,
               private messageService: MessageService,
@@ -41,7 +42,7 @@ export class AccManagerListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllAccountManager();
-    this.getAllRoleManager()
+    this.getAllRoleManager();
   }
 
   getAllAccountManager() {
@@ -56,7 +57,7 @@ export class AccManagerListComponent implements OnInit {
             date_of_birth: accountManagerRes.date_of_birth,
             email: accountManagerRes.email,
             phone: accountManagerRes.phone,
-            role_id: accountManagerRes.code_role
+            role_id: accountManagerRes.role_id
           };
           this.accManager.push(accountManagerView)
         })
@@ -131,7 +132,7 @@ export class AccManagerListComponent implements OnInit {
     };
     this.accountApiService._editAccount(editAccountManagerRequest).subscribe(
       (res: IResponseModel<any>) => {
-        this.messageService.add({severity:'success', summary:'Thông báo!', detail:'Chỉnh sửa thành côngi! '});
+        this.messageService.add({severity:'success', summary:'Thông báo!', detail:'Chỉnh sửa thành công! '});
         console.log('Thay doi thong tin thanh cong');
         this.getAllAccountManager()
       },

@@ -19,23 +19,55 @@
       <!--              <code class="highlighter-rouge">.table-dark</code>.-->
       <!--            </p>-->
       <!--          </div>-->
-      <div class="table-responsive">
-        <table class="table table-light mb-0">
-          <thead>
+<!--      <div class="table-responsive">-->
+<!--        <table class="table table-light mb-0" >-->
+<!--          <thead>-->
+<!--          <tr>-->
+<!--            <th>STT</th>-->
+<!--            <th>TÊN ĐĂNG NHẬP</th>-->
+<!--            <th>TÊN ĐẦY ĐỦ</th>-->
+<!--            <th>NGÀY SINH</th>-->
+<!--            <th>EMAIL</th>-->
+<!--            <th>ĐIỆN THOẠI</th>-->
+<!--            <th>ROLE</th>-->
+<!--            <th>THAO TÁC</th>-->
+<!--          </tr>-->
+<!--          </thead>-->
+<!--          <tbody>-->
+<!--          <tr *ngFor="let i of accManager, index as index">-->
+<!--            <td>{{index +1}}</td>-->
+<!--            <td>{{i.username}}</td>-->
+<!--            <td>{{i.full_name}}</td>-->
+<!--            <td>{{i.date_of_birth}}</td>-->
+<!--            <td>{{i.email}}</td>-->
+<!--            <td>{{i.phone}}</td>-->
+<!--            <td>{{i.role_id}}</td>-->
+<!--            <td>-->
+<!--              <a type="button" data-toggle="modal" data-target="#exampleModal-accmanager" (click)="editAccount(i)"><i class="fa-solid fa-pen-to-square" style="color: #00cc00"></i></a>-->
+<!--              <a type="button" data-toggle="modal" data-target="#delete-acc-manager" (click)="selectAccount(i)"><i class="fa-solid fa-trash-can" style="color: red"></i></a>-->
+<!--            </td>-->
+<!--          </tr>-->
+<!--          </tbody>-->
+<!--        </table>-->
+<!--      </div>-->
+      <p-table [value]="accManager"  [paginator]="true" [rows]="10" >
+        <ng-template pTemplate="header" class="dark">
           <tr>
             <th>STT</th>
-            <th>TÊN ĐĂNG NHẬP</th>
-            <th>TÊN ĐẦY ĐỦ</th>
-            <th>NGÀY SINH</th>
-            <th>EMAIL</th>
-            <th>ĐIỆN THOẠI</th>
-            <th>ROLE</th>
+            <th pSortableColumn="username">TÊN ĐĂNG NHẬP<p-sortIcon field="username"></p-sortIcon></th>
+            <th pSortableColumn="full_name">TÊN ĐẦY ĐỦ<p-sortIcon field="full_name"></p-sortIcon></th>
+            <th pSortableColumn="date_of_birth">NGÀY SINH<p-sortIcon field="date_of_birth"></p-sortIcon></th>
+            <th pSortableColumn="email">EMAIL<p-sortIcon field="email"></p-sortIcon></th>
+            <th pSortableColumn="phone">ĐIỆN THOẠI<p-sortIcon field="phone"></p-sortIcon></th>
+            <th pSortableColumn="role_id">ROLE<p-sortIcon field="role_id"></p-sortIcon></th>
             <th>THAO TÁC</th>
           </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let i of accManager, index as index">
-            <td>{{index +1}}</td>
+        </ng-template>
+
+
+        <ng-template pTemplate="body" let-i let-rowIndex="rowIndex">
+          <tr >
+            <td>{{rowIndex +1}}</td>
             <td>{{i.username}}</td>
             <td>{{i.full_name}}</td>
             <td>{{i.date_of_birth}}</td>
@@ -47,27 +79,9 @@
               <a type="button" data-toggle="modal" data-target="#delete-acc-manager" (click)="selectAccount(i)"><i class="fa-solid fa-trash-can" style="color: red"></i></a>
             </td>
           </tr>
-          </tbody>
-        </table>
-      </div>
+        </ng-template>
+      </p-table>
 
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Previous</span>
-          </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Next</span>
-          </a>
-        </li>
-      </ul>
 
       <!-- Modal -->
       <div class="modal fade" id="exampleModal-accmanager-new" tabindex="-1" aria-labelledby="exampleModalLabel_add" aria-hidden="true">
