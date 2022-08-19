@@ -20,45 +20,50 @@
       <!--              <code class="highlighter-rouge">.table-dark</code>.-->
       <!--            </p>-->
       <!--          </div>-->
-      <div class="table-responsive">
-        <table class="table table-light mb-0">
-          <thead>
+<!--      <div class="table-responsive">-->
+<!--        <table class="table table-light mb-0">-->
+<!--          <thead>-->
+<!--          <tr>-->
+<!--            <th>STT</th>-->
+<!--            <th>MÃ SÁCH</th>-->
+<!--            <th>THAO TÁC</th>-->
+<!--          </tr>-->
+<!--          </thead>-->
+<!--          <tbody>-->
+<!--          <tr *ngFor="let i of categoryManager, index as index">-->
+<!--            <td>{{index +1}}</td>-->
+<!--            <td>{{i.category_name}}</td>-->
+<!--            <td>-->
+<!--              <a type="button" data-toggle="modal" data-target="#exampleModal-catergory-create" (click)="editBookCategory(i)" style="color: #00cc00"><i class="fa-solid fa-pen-to-square"></i></a>-->
+<!--              <a type="button" data-toggle="modal" data-target="#delete-category" (click)="selectBookCategory(i)" style="color: red"><i class="fa-solid fa-trash-can"></i></a>-->
+<!--            </td>-->
+<!--          </tr>-->
+<!--          </tbody>-->
+<!--        </table>-->
+<!--      </div>-->
+      <p-table [value]="categoryManager"  [paginator]="true" [rows]="10" >
+        <ng-template pTemplate="header" class="dark">
           <tr>
             <th>STT</th>
-            <th>MÃ SÁCH</th>
+            <th pSortableColumn="category_name">MÃ SÁCH<p-sortIcon field="category_name"></p-sortIcon></th>
             <th>THAO TÁC</th>
           </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let i of categoryManager, index as index">
-            <td>{{index +1}}</td>
+        </ng-template>
+
+
+        <ng-template pTemplate="body" let-i let-rowIndex="rowIndex">
+          <tr >
+            <td>{{ rowIndex +1}}</td>
             <td>{{i.category_name}}</td>
             <td>
               <a type="button" data-toggle="modal" data-target="#exampleModal-catergory-create" (click)="editBookCategory(i)" style="color: #00cc00"><i class="fa-solid fa-pen-to-square"></i></a>
               <a type="button" data-toggle="modal" data-target="#delete-category" (click)="selectBookCategory(i)" style="color: red"><i class="fa-solid fa-trash-can"></i></a>
             </td>
           </tr>
-          </tbody>
-        </table>
-      </div>
+        </ng-template>
+      </p-table>
 
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Previous</span>
-          </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Next</span>
-          </a>
-        </li>
-      </ul>
+
 
 
       <!-- Modal -->

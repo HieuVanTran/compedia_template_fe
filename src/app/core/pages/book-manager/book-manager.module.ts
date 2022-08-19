@@ -5,6 +5,7 @@ import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
 import {BookManagerListComponent} from "./book-manager-list/book-manager-list.component";
 import {BookManagerRoutingModule} from "./book-manager-routing.module";
+import {TableModule} from "primeng/table";
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {BookManagerRoutingModule} from "./book-manager-routing.module";
     BookManagerRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastModule
+    ToastModule,
+    TableModule
   ],
   providers: [
     FormBuilder,

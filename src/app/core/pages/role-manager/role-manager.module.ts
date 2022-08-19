@@ -6,6 +6,7 @@ import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
 import {RoleManagerListComponent} from "./role-manager-list/role-manager-list.component";
 import {RoleManagerRoutingModule} from "./role-manager-routing.module";
+import {TableModule} from "primeng/table";
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {RoleManagerRoutingModule} from "./role-manager-routing.module";
     CommonModule,
     RoleManagerRoutingModule,
     ReactiveFormsModule,
-    ToastModule
+    ToastModule,
+    TableModule
   ],
 
   providers: [

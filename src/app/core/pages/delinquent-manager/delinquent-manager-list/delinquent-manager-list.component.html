@@ -20,22 +20,52 @@
       <!--              <code class="highlighter-rouge">.table-dark</code>.-->
       <!--            </p>-->
       <!--          </div>-->
-      <div class="table-responsive">
-        <table class="table table-light mb-0">
-          <thead>
+<!--      <div class="table-responsive">-->
+<!--        <table class="table table-light mb-0">-->
+<!--          <thead>-->
+<!--          <tr>-->
+<!--            <th>STT</th>-->
+<!--            <th>TÊN </th>-->
+<!--            <th>SỐ TIỀN BỊ PHẠT  </th>-->
+<!--            <th>SỐ TIỀN ĐÃ NỘP </th>-->
+<!--            <th>MÃ NHÂN VIÊN</th>-->
+<!--            <th>MÃ THẺ THƯ VIỆN</th>-->
+<!--            <th>THAO TÁC</th>-->
+<!--          </tr>-->
+<!--          </thead>-->
+<!--          <tbody>-->
+<!--          <tr *ngFor="let i of delinquentManager, index as index">-->
+<!--            <td>{{index +1}}</td>-->
+<!--            <td class="text-bold-500">{{i.fullName}}</td>-->
+<!--            <td>{{i.finedAmount}}</td>-->
+<!--            <td>{{i.proceeds}}</td>-->
+<!--            <td>{{i.staffId}}</td>-->
+<!--            <td>{{i.userId}}</td>-->
+<!--            <td>-->
+<!--              <a type="button" data-toggle="modal" data-target="#exampleModal-collect-money" (click)="editCollectMoney(i)"><i class="fa-solid fa-pen-to-square"></i></a>-->
+<!--              <a type="button" data-toggle="modal" data-target="#delete-collect-money" (click)="selectCollectMoney(i)"><i class="fa-solid fa-trash-can"></i></a>-->
+<!--            </td>-->
+<!--          </tr>-->
+<!--          </tbody>-->
+<!--        </table>-->
+<!--      </div>-->
+      <p-table [value]="delinquentManager"  [paginator]="true" [rows]="10" >
+        <ng-template pTemplate="header" class="dark">
           <tr>
             <th>STT</th>
-            <th>TÊN </th>
-            <th>SỐ TIỀN BỊ PHẠT  </th>
-            <th>SỐ TIỀN ĐÃ NỘP </th>
-            <th>MÃ NHÂN VIÊN</th>
-            <th>MÃ THẺ THƯ VIỆN</th>
+            <th pSortableColumn="fullname">TÊN<p-sortIcon field="fullname"></p-sortIcon></th>
+            <th pSortableColumn="finedAmount">SỐ TIỀN BỊ PHẠT<p-sortIcon field="finedAmount"></p-sortIcon></th>
+            <th pSortableColumn="proceeds">SỐ TIỀN ĐÃ NỘP<p-sortIcon field="proceeds"></p-sortIcon></th>
+            <th pSortableColumn="staffId">MÃ NHÂN VIÊN<p-sortIcon field="staffId"></p-sortIcon></th>
+            <th pSortableColumn="userId">MÃ THẺ THƯ VIỆN<p-sortIcon field="userId"></p-sortIcon></th>
             <th>THAO TÁC</th>
           </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let i of delinquentManager, index as index">
-            <td>{{index +1}}</td>
+        </ng-template>
+
+
+        <ng-template pTemplate="body" let-i let-rowIndex="rowIndex">
+          <tr >
+            <td>{{rowIndex +1}}</td>
             <td class="text-bold-500">{{i.fullName}}</td>
             <td>{{i.finedAmount}}</td>
             <td>{{i.proceeds}}</td>
@@ -46,27 +76,8 @@
               <a type="button" data-toggle="modal" data-target="#delete-collect-money" (click)="selectCollectMoney(i)"><i class="fa-solid fa-trash-can"></i></a>
             </td>
           </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Previous</span>
-          </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Next</span>
-          </a>
-        </li>
-      </ul>
+        </ng-template>
+      </p-table>
 
       <!-- Modal -->
       <div class="modal fade" id="exampleModal-collect-money-new" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

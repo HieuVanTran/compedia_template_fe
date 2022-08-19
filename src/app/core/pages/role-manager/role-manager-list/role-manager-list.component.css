@@ -16,4 +16,8 @@
   display: flex;
   justify-content: flex-end;
 }
+td i {
+  font-size: 20px;
+  padding: 8px;
+}
 

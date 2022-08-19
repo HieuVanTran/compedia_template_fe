@@ -5,6 +5,7 @@ import {PublishingCompanyRoutingModule} from "./publishing-company-routing.modul
 import {ReactiveFormsModule} from "@angular/forms";
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
+import {TableModule} from "primeng/table";
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {MessageService} from "primeng/api";
     CommonModule,
     PublishingCompanyRoutingModule,
     ReactiveFormsModule,
-    ToastModule
+    ToastModule,
+    TableModule
   ],
 
   providers: [

@@ -5,6 +5,7 @@ import {AuthorManagerRoutingModule} from "./author-manager-routing.module";
 import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
+import {TableModule} from "primeng/table";
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {MessageService} from "primeng/api";
     AuthorManagerRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastModule
+    ToastModule,
+    TableModule
   ],
   providers: [
     FormBuilder,

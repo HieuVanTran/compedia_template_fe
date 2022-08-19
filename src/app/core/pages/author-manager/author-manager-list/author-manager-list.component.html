@@ -21,21 +21,51 @@
       <!--              <code class="highlighter-rouge">.table-dark</code>.-->
       <!--            </p>-->
       <!--          </div>-->
-      <div class="table-responsive">
-        <table class="table table-light mb-0">
-          <thead>
+<!--      <div class="table-responsive">-->
+<!--        <table class="table table-light mb-0">-->
+<!--          <thead>-->
+<!--          <tr>-->
+<!--            <th>STT</th>-->
+<!--            <th>TÊN TÁC GIẢ</th>-->
+<!--            <th>ĐỊA CHỈ</th>-->
+<!--            <th>CHỨC DANH</th>-->
+<!--            <th>GHI CHÚ</th>-->
+<!--            <th>THAO TÁC</th>-->
+<!--          </tr>-->
+<!--          </thead>-->
+<!--          <tbody>-->
+<!--          <tr *ngFor="let i of  authorManager, index as index">-->
+<!--            <td>{{index + 1}}</td>-->
+<!--            <td class="text-bold-500">{{i.name_author}}</td>-->
+<!--            <td>{{i.address}}</td>-->
+<!--            <td>{{i.title}}</td>-->
+<!--            <td>{{i.note}}</td>-->
+<!--            <td>-->
+<!--              <a type="button" data-toggle="modal" data-target="#exampleModal-author-new" style="color: #00cc00" (click)="editBookAuthor(i)"><i-->
+<!--                class="fa-solid fa-pen-to-square"></i></a>-->
+<!--              <a type="button" data-toggle="modal" data-target="#delete-author-manager" style="color: red" (click)="selectBookAuthor(i)"><i-->
+<!--                class="fa-solid fa-trash-can"></i></a>-->
+<!--            </td>-->
+<!--          </tr>-->
+<!--          </tbody>-->
+<!--        </table>-->
+<!--      </div>-->
+      <p-table [value]="authorManager"  [paginator]="true" [rows]="10" >
+        <ng-template pTemplate="header" class="dark">
           <tr>
             <th>STT</th>
-            <th>TÊN TÁC GIẢ</th>
-            <th>ĐỊA CHỈ</th>
-            <th>CHỨC DANH</th>
-            <th>GHI CHÚ</th>
+            <th pSortableColumn="name_author">TÊN TÁC GIẢ<p-sortIcon field="name_author"></p-sortIcon></th>
+            <th pSortableColumn="address">ĐỊA CHỈ<p-sortIcon field="address"></p-sortIcon></th>
+            <th pSortableColumn="title">CHỨC DANH<p-sortIcon field="title"></p-sortIcon></th>
+            <th pSortableColumn="note">GHI CHÚ<p-sortIcon field="note"></p-sortIcon></th>
             <th>THAO TÁC</th>
           </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let i of  authorManager, index as index">
-            <td>{{index + 1}}</td>
+        </ng-template>
+
+
+        <ng-template pTemplate="body" let-i let-rowIndex="rowIndex">
+          <tr >
+            <td>{{rowIndex + 1}}</td>
             <td class="text-bold-500">{{i.name_author}}</td>
             <td>{{i.address}}</td>
             <td>{{i.title}}</td>
@@ -47,27 +77,8 @@
                 class="fa-solid fa-trash-can"></i></a>
             </td>
           </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Previous</span>
-          </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Next</span>
-          </a>
-        </li>
-      </ul>
+        </ng-template>
+      </p-table>
 
       <!-- Modal -->
       <div class="modal fade" id="exampleModal-create-author-new" tabindex="-1" aria-labelledby="exampleModalLabel-1"

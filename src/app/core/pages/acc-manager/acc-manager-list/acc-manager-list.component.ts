@@ -57,7 +57,7 @@ export class AccManagerListComponent implements OnInit {
             date_of_birth: accountManagerRes.date_of_birth,
             email: accountManagerRes.email,
             phone: accountManagerRes.phone,
-            role_id: accountManagerRes.code_role
+            role_id: accountManagerRes.role_id
           };
           this.accManager.push(accountManagerView)
         })

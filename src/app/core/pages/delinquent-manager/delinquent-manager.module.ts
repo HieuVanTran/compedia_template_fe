@@ -5,6 +5,7 @@ import {DelinquentManagerRoutingModule} from "./delinquent-manager-routing.modul
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
+import {TableModule} from "primeng/table";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {MessageService} from "primeng/api";
     DelinquentManagerRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastModule
+    ToastModule,
+    TableModule
   ],
   providers:[
     MessageService
