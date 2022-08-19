@@ -10,10 +10,13 @@ import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
 import {ChartListComponent} from "./chart/chart-list.component";
 
+
+
 @NgModule({
     declarations: [
         ChartListComponent,
         PagesComponent,
+
     ],
     imports: [
       PagesRoutingModule,

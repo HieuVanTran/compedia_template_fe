@@ -42,7 +42,11 @@ const pageRoutingModule: Routes = [
   {
     path: 'role-manager',
     loadChildren: () => import('./role-manager/role-manager.module').then(module => module.RoleManagerModule)
-  }
+  },
+  {
+    path: 'user-manager',
+    loadChildren: () => import('./user-manager/user-manager.module').then(module => module.UserManagerModule)
+  },
 ];
 
 @NgModule({
