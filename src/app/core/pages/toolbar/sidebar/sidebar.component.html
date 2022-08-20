@@ -6,72 +6,70 @@
 
     <ul class="sidebar-nav">
       <li class="sidebar-item active">
-        <a class="sidebar-link" [routerLink]="'chart'" routerLinkActive="active">
+        <a class="sidebar-link collapsed" [routerLink]="'chart'" routerLinkActive="active" (click)="onClickMenu()">
           <i class="fa-solid fa-book-journal-whills"></i> <span class="align-middle">Tổng quan thông tin</span>
         </a>
       </li>
 
       <li class="sidebar-item ">
-        <a class="sidebar-link" [routerLink]="'/pages/book-manager'" routerLinkActive="active">
+        <a class="sidebar-link collapsed" [routerLink]="'/pages/book-manager'" routerLinkActive="active" (click)="onClickMenu()">
           <i class="fa-solid fa-list-check"></i><span class="align-middle">Quản lý thông tin sách</span>
         </a>
       </li>
 
       <li class="sidebar-item">
-        <a class="sidebar-link" [routerLink]="'author-manager'" routerLinkActive="active">
+        <a class="sidebar-link collapsed" [routerLink]="'author-manager'" routerLinkActive="active" (click)="onClickMenu()">
           <i class="fa-solid fa-bars-progress"></i> <span class="align-middle">Quản lý tác giả</span>
         </a>
       </li>
 
       <li class="sidebar-item">
-        <a class="sidebar-link" [routerLink]="'acc-manager'" routerLinkActive="active">
+        <a class="sidebar-link collapsed" [routerLink]="'acc-manager'" routerLinkActive="active" (click)="onClickMenu()">
           <i class="fa-solid fa-users"></i> <span class="align-middle">Quản lý tài khoản</span>
         </a>
       </li>
 
       <li class="sidebar-item">
-        <a class="sidebar-link" [routerLink]="'staff-manager'" routerLinkActive="active">
+        <a class="sidebar-link collapsed" [routerLink]="'staff-manager'" routerLinkActive="active" (click)="onClickMenu()">
           <i class="fa-solid fa-book-journal-whills"></i> <span class="align-middle">Quản lý nhân viên</span>
         </a>
       </li>
 
       <li class="sidebar-item">
-        <a class="sidebar-link" [routerLink]="'category-manager'" routerLinkActive="active">
+        <a class="sidebar-link collapsed" [routerLink]="'category-manager'" routerLinkActive="active" (click)="onClickMenu()">
           <i class="fa-solid fa-business-time"></i> <span class="align-middle">Quản lý thể loại sách</span>
         </a>
       </li>
 
       <li class="sidebar-item">
-        <a class="sidebar-link" [routerLink]="'publishing-company'" routerLinkActive="active">
+        <a class="sidebar-link collapsed" [routerLink]="'publishing-company'" routerLinkActive="active" (click)="onClickMenu()">
           <i class="fa-solid fa-user-secret"></i> <span class="align-middle">Quản lý nhà xuất bản</span>
         </a>
       </li>
 
       <li class="sidebar-item">
-        <a class="sidebar-link" [routerLink]="'loan-pay-manager'" routerLinkActive="active">
+        <a class="sidebar-link collapsed" [routerLink]="'loan-pay-manager'" routerLinkActive="active" (click)="onClickMenu()">
           <i class="fa-solid fa-floppy-disk"></i> <span class="align-middle">Quản lý mượn trả</span>
         </a>
       </li>
 
       <li class="sidebar-item">
-        <a class="sidebar-link" [routerLink]="'delinquent-manager'" routerLinkActive="active">
+        <a class="sidebar-link collapsed" [routerLink]="'delinquent-manager'" routerLinkActive="active" (click)="onClickMenu()">
           <i class="fa-solid fa-fire"></i> <span class="align-middle">Quản lý vi phạm</span>
         </a>
       </li>
 
       <li class="sidebar-item">
-        <a class="sidebar-link" [routerLink]="'role-manager'" routerLinkActive="active">
-          <i class="fa-solid fa-fire"></i> <span class="align-middle">Quản lý nhóm quyền</span>
+        <a class="sidebar-link collapsed" [routerLink]="'role-manager'" routerLinkActive="active" (click)="onClickMenu()">
+          <i class="fa-solid fa-user-group"></i> <span class="align-middle">Quản lý nhóm quyền</span>
         </a>
       </li>
 
       <li class="sidebar-item">
-        <a class="sidebar-link" [routerLink]="'user-manager'" routerLinkActive="active">
-          <i class="fa-solid fa-fire"></i> <span class="align-middle">Quản lý người dùng</span>
+        <a class="sidebar-link collapsed" [routerLink]="'user-manager'" routerLinkActive="active" (click)="onClickMenu()">
+          <i class="fa-solid fa-users-gear"></i> <span class="align-middle">Quản lý người dùng</span>
         </a>
       </li>
-
-
     </ul>
   </div>
 </nav>

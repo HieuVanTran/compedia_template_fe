@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Token} from "@angular/compiler";
 import {TokenService} from "../../../../services/token.service";
-
+declare function toggleMenu(): any
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -15,7 +15,9 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  toggleMenu() {
+    toggleMenu()
+  }
   logout() {
     this.tokenService.clearKey()
   }

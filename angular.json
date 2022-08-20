@@ -31,7 +31,8 @@
               "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": [
-              "src/assets/app-js.js"
+              "src/assets/app-js.js",
+              "src/assets/js/action.js"
             ]
           },
           "configurations": {

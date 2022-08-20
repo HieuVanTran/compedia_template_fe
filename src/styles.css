@@ -71,3 +71,30 @@
 a:hover {
   text-decoration: none !important;
 }
+
+.sidebar-link {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.side-bar-toggle .side-bar {
+  max-width: 75px;
+  transition-duration: .5s;
+}
+.side-bar-toggle .side-bar i{
+  font-size:20px !important;
+}
+.side-bar-toggle .side-bar .align-middle {
+  display: none;
+  transition-duration: .5s;
+}
+
+.side-bar-toggle.toggle .side-bar {
+  width: 200px;
+  max-width: 400px;
+  transition-duration: .5s;
+}
+.side-bar-toggle.toggle .side-bar .align-middle {
+  display: block;
+  transition-duration: .5s;
+}
