@@ -32,7 +32,8 @@
             ],
             "scripts": [
               "src/assets/app-js.js",
-              "src/assets/js/action.js"
+              "src/assets/js/action.js",
+              "../node_modules/chart.js/dist/chart.js"
             ]
           },
           "configurations": {

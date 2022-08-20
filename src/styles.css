@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 *{
   font-size:14px;
+  font-family: 'Roboto', sans-serif;
 }
 ::-webkit-scrollbar {
   width: 5px;
@@ -76,13 +78,17 @@ a:hover {
   display: flex !important;
   align-items: center !important;
 }
-
+/*.sidebar-item{*/
+/*  display: flex;*/
+/*  justify-content: space-between;*/
+/*}*/
 .side-bar-toggle .side-bar {
   max-width: 75px;
   transition-duration: .5s;
+
 }
 .side-bar-toggle .side-bar i{
-  font-size:20px !important;
+  font-size:18px !important;
 }
 .side-bar-toggle .side-bar .align-middle {
   display: none;
@@ -98,3 +104,4 @@ a:hover {
   display: block;
   transition-duration: .5s;
 }
+

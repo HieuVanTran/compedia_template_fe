@@ -97,7 +97,7 @@ export class LoanPayManagerListComponent implements OnInit {
         this.getAllLoanpay()
       },
       err => {
-        console.log(err)
+        console.log(err);
         this.messageService.add({severity:'error', summary:'Thông báo', detail:'Thêm mới danh mục thất bại'});
         console.log('Them moi danh muc that bai')
       }

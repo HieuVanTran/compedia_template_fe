@@ -9,6 +9,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
 import {ChartListComponent} from "./chart/chart-list.component";
+import {ChartModule} from 'primeng/chart';
 
 
 
@@ -22,6 +23,7 @@ import {ChartListComponent} from "./chart/chart-list.component";
       PagesRoutingModule,
       ToolbarModule,
       CommonModule,
+      ChartModule,
       FormsModule,
       ReactiveFormsModule,
       ToastModule

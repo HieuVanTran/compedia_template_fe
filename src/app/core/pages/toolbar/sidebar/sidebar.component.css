@@ -12251,7 +12251,7 @@ a.sidebar-link {
     cursor: pointer;
     display: block;
     font-weight: 400;
-    padding: .625rem 1.625rem;
+    padding: 0.625rem 1.625rem;
     position: relative;
     text-decoration: none;
     transition: background .1s ease-in-out
