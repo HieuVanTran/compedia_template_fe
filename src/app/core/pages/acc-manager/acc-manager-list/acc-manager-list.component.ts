@@ -72,7 +72,7 @@ export class AccManagerListComponent implements OnInit {
       full_name: this.accountInfoForm.value.full_name,
       dob: this.accountInfoForm.value.date_of_birth,
       email: this.accountInfoForm.value.email,
-      phone: '0'+this.accountInfoForm.value.phone,
+      phone: '0' +this.accountInfoForm.value.phone,
       code_role: this.accountInfoForm.value.role_id
     };
     this.accountApiService._createNewAccount(createNewAccountRequest).subscribe(
