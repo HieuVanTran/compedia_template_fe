@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup } from '@angular/forms';
+import { MessageService } from 'primeng/api';
+import { IResponseModel } from 'src/app/models/commons/response.model';
+import {IEditLoanpayRequest, ILoanpayRequest, ListBook } from 'src/app/models/requests/loanpay.request';
+import { ILoanpayResponse } from 'src/app/models/responses/loanpay.response';
+import { ILoanpayView } from 'src/app/models/views/loanpay.view';
+import { LoanpayApiService } from 'src/app/services/api/loanpay-api.service';
 
 @Component({
   selector: 'app-loan-pay-manager-list',
@@ -6,85 +13,179 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./loan-pay-manager-list.component.css']
 })
 export class LoanPayManagerListComponent implements OnInit {
+  loanPayManager : ILoanpayView[] = []
+  loanpayInfoForm!: FormGroup
+  loanpaySelected!: ILoanpayView
 
-  loanPayManager : loanPayManager[] = [
-    {
-      id: 1,
-      name: "Tên sách",
-      card_number: "Mã thẻ",
-      borrow_date: "Ngày mượn",
-      pay_date: "Ngày trả",
-      note: "Ghi chú",
-      status: "Còn",
-      staff_id: "CD123"
-    },
-    {
-      id: 1,
-      name: "Tên sách",
-      card_number: "Mã thẻ",
-      borrow_date: "Ngày mượn",
-      pay_date: "Ngày trả",
-      note: "Ghi chú",
-      status: "Còn",
-      staff_id: "CD123"
-    },
-    {
-      id: 1,
-      name: "Tên sách",
-      card_number: "Mã thẻ",
-      borrow_date: "Ngày mượn",
-      pay_date: "Ngày trả",
-      note: "Ghi chú",
-      status: "Còn",
-      staff_id: "CD123"
-    },
-    {
-      id: 1,
-      name: "Tên sách",
-      card_number: "Mã thẻ",
-      borrow_date: "Ngày mượn",
-      pay_date: "Ngày trả",
-      note: "Ghi chú",
-      status: "Còn",
-      staff_id: "CD123"
-    },
-    {
-      id: 1,
-      name: "Tên sách",
-      card_number: "Mã thẻ",
-      borrow_date: "Ngày mượn",
-      pay_date: "Ngày trả",
-      note: "Ghi chú",
-      status: "Còn",
-      staff_id: "CD123"
-    },
-    {
-      id: 1,
-      name: "Tên sách",
-      card_number: "Mã thẻ",
-      borrow_date: "Ngày mượn",
-      pay_date: "Ngày trả",
-      note: "Ghi chú",
-      status: "Còn",
-      staff_id: "CD123"
-    }
-  ]
+  constructor(private loanpayApiService: LoanpayApiService,
+              private messageService: MessageService,
+              private fb: FormBuilder) {
+    this.loanpayInfoForm = fb.group({
+      amount: [null],
+      note: [null],
+      status: [null],
+      call_card_details_id: [null],
+      book_name: [null],
+      card_number: [null],
+      staff_id: [null],
+      start_date: [null],
+      end_date: [null],
+      call_card_id: [null]
 
-  constructor() { }
+    })
+  }
+
 
   ngOnInit(): void {
+    this.getAllLoanpay()
+  }
+
+  getAllLoanpay() {
+    this.loanpayApiService._getAllLoanpay().subscribe(
+      (res: IResponseModel<ILoanpayResponse[]>) => {
+        this.loanPayManager = []
+        res.data.forEach(loanpayRes => {
+          const loanpayView: ILoanpayView = {
+            amount: loanpayRes.amount,
+            note: loanpayRes.note,
+            status: loanpayRes.status,
+            call_card_id: loanpayRes.call_card_id,
+            call_card_details_id: loanpayRes.call_card_detail_id,
+            book_name: loanpayRes.book_name,
+            card_number: loanpayRes.card_number,
+            staff_id: loanpayRes.staff_id,
+            start_date: loanpayRes.start_date,
+            end_date: loanpayRes.end_date
+
+          }
+          this.loanPayManager.push(loanpayView)
+        })
+      }
+    )
+  }
+
+//  add
+  onAddNewLoanpay() {
+    let list:ListBook[] = [
+      {
+        call_card_details_id: this.loanpayInfoForm.value.call_card_details_id,
+        book_name: this.loanpayInfoForm.value.book_name,
+        amount: this.loanpayInfoForm.value.amount,
+      }
+    ]
+
+    const createNewLoanpayRequest: ILoanpayRequest = {
+      call_card_id: this.loanpayInfoForm.value.call_card_id,
+      start_date: this.loanpayInfoForm.value.start_date,
+      end_date: this.loanpayInfoForm.value.end_date,
+      note: this.loanpayInfoForm.value.note,
+      staff_id: this.loanpayInfoForm.value.staff_id,
+      list_book: list,
+      card_number: this.loanpayInfoForm.value.card_number
+    }
+
+    this.loanpayApiService._createNewLoanpay(createNewLoanpayRequest).subscribe(
+      (res: IResponseModel<any>) => {
+        this.messageService.add({severity:'success', summary:'Thông báo', detail:'Thêm mới danh mục thành công'});
+        console.log('Them moi danh muc thanh cong')
+        this.getAllLoanpay()
+      },
+      err => {
+        console.log(err)
+        this.messageService.add({severity:'error', summary:'Thông báo', detail:'Thêm mới danh mục thất bại'});
+        console.log('Them moi danh muc that bai')
+      }
+    )
+  }
+
+  onDeleteLoanpay() {
+    if(this.loanpaySelected) {
+      this.loanpayApiService._deleteLoanpay(this.loanpaySelected.call_card_id).subscribe(
+        (res: IResponseModel<any>) => {
+          console.log('Xoa danh muc thanh cong')
+          this.messageService.add({severity:'success', summary:'Thông báo', detail:'Xóa danh mục thành công'});
+          this.getAllLoanpay()
+        },
+        err => {
+          this.messageService.add({severity:'error', summary:'Thông báo', detail:'Xoa danh muc that bai'});
+          console.log('Xoa danh muc that bai')
+        }
+      )
+    }
+  }
+
+  //edit
+  editLoanpay(i: ILoanpayView) {
+    this.loanpaySelected = i
+    this.loanpayInfoForm.patchValue(
+      {
+        amount: i.amount,
+        note: i.note,
+        status: i.status,
+        call_card_id: i.call_card_id,
+        call_card_details_id: i.call_card_details_id,
+        book_name: i.book_name,
+        card_number: i.card_number,
+        staff_id: i.staff_id,
+        start_date: i.start_date,
+        end_date: i.end_date
+        // category_name: i.category_name,
+      }
+    )
+  }
+
+  onEditLoanpay() {
+    let list:ListBook[] = [
+      {
+        call_card_details_id: this.loanpayInfoForm.value.call_card_details_id,
+        book_name: this.loanpayInfoForm.value.book_name,
+        amount: this.loanpayInfoForm.value.amount,
+      }
+    ]
+
+    const editLoanpayRequest: IEditLoanpayRequest = {
+      call_card_id: this.loanpayInfoForm.value.call_card_id,
+      start_date: this.loanpayInfoForm.value.start_date,
+      end_date: this.loanpayInfoForm.value.end_date,
+      note: this.loanpayInfoForm.value.note,
+      staff_id: this.loanpayInfoForm.value.staff_id,
+      list_book: list,
+      card_number: this.loanpayInfoForm.value.card_number
+    }
+
+    this.loanpayApiService._editLoanpay(editLoanpayRequest).subscribe(
+      (res: IResponseModel<any>) => {
+        this.messageService.add({severity:'success', summary:'Thông báo', detail:'Chỉnh sửa danh mục thành công'});
+        console.log('Sua danh muc thanh cong')
+        this.getAllLoanpay()
+      },
+      err => {
+        this.messageService.add({severity:'error', summary:'Thông báo', detail:'Chỉnh sửa danh mục thất bại'});
+        console.log('Sua danh muc that bai')
+      }
+    )
+  }
+  selectLoanpay(i: ILoanpayView) {
+    this.loanpaySelected = i
   }
 
 }
 
-interface loanPayManager {
-  id: number,
-  name: string,
-  card_number: string,
-  borrow_date: string,
-  pay_date: string,
-  note: string,
-  status: string,
-  staff_id: string
+// interface loanPayManager {
+//   amount: number,
+//   note: string,
+//   status: number,
+//   call_card_id: number,
+//   call_card_details_id: number,
+//   book_name: string,
+//   card_number: string,
+//   staff_id: number,
+//   start_date: string,
+//   end_date: string
+// }
+
+
+function editLoanpayRequest(editLoanpayRequest: any) {
+    throw new Error('Function not implemented.');
 }
 

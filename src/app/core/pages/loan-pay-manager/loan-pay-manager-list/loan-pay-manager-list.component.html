@@ -7,7 +7,7 @@
             <h4 class="card-title">QUẢN LÝ MƯỢN TRẢ</h4>
           </div>
           <div class="col-md-3 d-flex justify-content-end">
-            <a class="btn btn-info text-light" type="button" data-toggle="modal" data-target="#exampleModal-bookmanager-new">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
+            <a class="btn btn-info text-light" type="button" data-toggle="modal" data-target="#exampleModal-bookmanager-new" (click)="loanpayInfoForm.reset()">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
           </div>
         </div>
       </div>
@@ -25,28 +25,32 @@
           <tr>
             <th>STT</th>
             <th>TÊN SÁCH</th>
+            <th>SỐ LƯỢNG</th>
             <th>MÃ THẺ</th>
             <th>NGÀY MƯỢN</th>
             <th>NGÀY TRẢ</th>
             <th>GHI CHÚ</th>
             <th>TRẠNG THÁI</th>
             <th>MÃ NHÂN VIÊN</th>
+            <th>CHI TIẾT</th>
             <th>THAO TÁC</th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let i of loanPayManager, index as index">
             <td>{{index +1}}</td>
-            <td>{{i.name}}</td>
+            <td>{{i.book_name}}</td>
+            <td>{{i.amount}}</td>
             <td>{{i.card_number}}</td>
-            <td>{{i.borrow_date}}</td>
-            <td>{{i.pay_date}}</td>
+            <td>{{i.start_date}}</td>
+            <td>{{i.end_date}}</td>
             <td>{{i.note}}</td>
             <td>{{i.status}}</td>
             <td>{{i.staff_id}}</td>
+            <td>{{i.call_card_details_id}}</td>
             <td>
-              <a type="button" data-toggle="modal" data-target="#exampleModal-bookmanager"><i class="fa-solid fa-pen-to-square"></i></a>
-              <a type="button" data-toggle="modal" data-target="#delete-book-manager" ><i class="fa-solid fa-trash-can"></i></a>
+              <a type="button" data-toggle="modal" data-target="#exampleModal-bookmanager" (click)="editLoanpay(i)"><i class="fa-solid fa-pen-to-square"></i></a>
+              <a type="button" data-toggle="modal" data-target="#delete-book-manager" (click)="selectLoanpay(i)"><i class="fa-solid fa-trash-can"></i></a>
             </td>
           </tr>
           </tbody>
@@ -73,7 +77,7 @@
 
       <!-- Modal -->
       <div class="modal fade" id="exampleModal-bookmanager-new" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg" [formGroup]="loanpayInfoForm">
           <div class="modal-content border-0">
             <div class="modal-header" style="background: #2C3333">
               <h5 class="modal-title" id="exampleModalLabel" style="color: white">Thêm mới</h5>
@@ -85,57 +89,64 @@
               <div class="form-group row">
                 <label for="book-name" class="col-sm-2 col-form-label">Tên sách <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="book-name">
+                  <input type="text" class="form-control" id="book-name" formControlName="book_name">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="book-name" class="col-sm-2 col-form-label">Số Lượng <span style="color: red">*</span></label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="amount" formControlName="amount">
                 </div>
               </div>
 
               <div class="form-group row">
                 <label for="id_the" class="col-sm-2 col-form-label">Mã Thẻ <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="id_the">
+                  <input type="text" class="form-control" id="id_the" formControlName="card_number">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="date_borrow" class="col-sm-2 col-form-label">Ngày Mượn <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="date_borrow">
+                  <input type="date" class="form-control" id="date_borrow" formControlName="start_date">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="date_pay" class="col-sm-2 col-form-label">Ngày Trả <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="date_pay">
+                  <input type="date" class="form-control" id="date_pay" formControlName="end_date">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="note" class="col-sm-2 col-form-label">Ghi Chú <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" id="note">
+                  <input type="text" class="form-control" id="note" formControlName="note">
                 </div>
               </div>
-              <div class="form-group row">
-                <label for="status" class="col-sm-2 col-form-label">Trạng Thái <span style="color: red">*</span></label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="status">
-                </div>
-              </div>
+<!--              <div class="form-group row">-->
+<!--                <label for="status" class="col-sm-2 col-form-label">Trạng Thái <span style="color: red">*</span></label>-->
+<!--                <div class="col-sm-10">-->
+<!--                  <input type="text" class="form-control" id="status">-->
+<!--                </div>-->
+<!--              </div>-->
               <div class="form-group row">
                 <label for="id_staff" class="col-sm-2 col-form-label">Mã Nhân Viên <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="id_staff">
+                  <input type="text" class="form-control" id="id_staff" formControlName="staff_id">
                 </div>
               </div>
 
+
             </div>
             <div class="modal-footer border-0">
-              <button type="button" class="btn btn-primary" style="font-size: 18px">Thêm mới</button>
+              <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onAddNewLoanpay()" data-dismiss="modal">Thêm mới</button>
             </div>
           </div>
         </div>
       </div>
 
       <div class="modal fade" id="exampleModal-bookmanager" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg" [formGroup]="loanpayInfoForm">
           <div class="modal-content border-0">
             <div class="modal-header" style="background: #2C3333">
               <h5 class="modal-title" id="exampleModalLabel" style="color: white">Chỉnh sửa</h5>
@@ -144,47 +155,57 @@
               </button>
             </div>
             <div class="modal-body">
+
               <div class="form-group row">
                 <label for="book-name" class="col-sm-2 col-form-label">Tên sách <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="book-name">
+                  <input type="text" class="form-control" id="book-name" formControlName="book_name">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="book-name" class="col-sm-2 col-form-label">Số lượng <span style="color: red">*</span></label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="edit_amount" formControlName="amount">
                 </div>
               </div>
 
               <div class="form-group row">
                 <label for="id_the" class="col-sm-2 col-form-label">Mã Thẻ <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="id_the">
+                  <input type="text" class="form-control" id="id_the" formControlName="card_number">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="date_borrow" class="col-sm-2 col-form-label">Ngày Mượn <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="date_borrow">
+                  <input type="date" class="form-control" id="date_borrow" formControlName="start_date">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="date_pay" class="col-sm-2 col-form-label">Ngày Trả <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="date_pay">
+                  <input type="date" class="form-control" id="date_pay" formControlName="end_date">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="note" class="col-sm-2 col-form-label">Ghi Chú <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" id="note">
+                  <input type="text" class="form-control" id="note" formControlName="note">
                 </div>
               </div>
 
               <div class="form-group row">
                 <label for="id_staff" class="col-sm-2 col-form-label">Mã Nhân Viên <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="id_staff">
+                  <input type="text" class="form-control" id="id_staff" formControlName="staff_id">
                 </div>
               </div>
+
+
             </div>
             <div class="modal-footer border-0">
-              <button type="button" class="btn btn-primary" style="font-size: 18px">Cập Nhật</button>
+              <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onEditLoanpay()" data-dismiss="modal">Cập Nhật</button>
             </div>
           </div>
         </div>
@@ -202,8 +223,9 @@
             </div>
             <div class="modal-footer border-0">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
-              <button type="button" class="btn btn-primary">Có</button>
+              <button type="button" class="btn btn-primary" (click)="onDeleteLoanpay()"data-dismiss="modal">Có</button>
             </div>
           </div>
         </div>
       </div>
+<p-toast></p-toast>
