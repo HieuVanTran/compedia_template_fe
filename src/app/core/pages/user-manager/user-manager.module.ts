@@ -7,6 +7,7 @@ import {MessageService} from "primeng/api";
 
 import { UserManagerListComponent } from './user-manager-list/user-manager-list.component';
 import { UserManagerRoutingModule } from "./user-manager-routing.module";
+import {TableModule} from "primeng/table";
 
 @NgModule({
   declarations:  [
@@ -18,7 +19,7 @@ import { UserManagerRoutingModule } from "./user-manager-routing.module";
     UserManagerRoutingModule,
     ReactiveFormsModule,
     ToastModule,
-
+    TableModule
 
 
   ],
