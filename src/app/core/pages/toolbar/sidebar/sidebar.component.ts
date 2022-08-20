@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+declare function clickMenuMobile(): any
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -11,5 +11,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  onClickMenu() {
+    clickMenuMobile()
+  }
 }
