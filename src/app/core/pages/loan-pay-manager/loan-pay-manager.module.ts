@@ -20,7 +20,7 @@ import {TableModule} from "primeng/table";
     FormsModule,
     ReactiveFormsModule,
     ToastModule,
-TableModule
+    TableModule
   ],
   providers:   [
     FormBuilder,

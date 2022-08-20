@@ -3,10 +3,12 @@ import {FormBuilder, FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { IResponseModel } from 'src/app/models/commons/response.model';
 import {IEditLoanpayRequest, ILoanpayRequest, ListBook } from 'src/app/models/requests/loanpay.request';
+import { IBookManagerResponse } from 'src/app/models/responses/book-manager.response';
 import { ILoanpayResponse } from 'src/app/models/responses/loanpay.response';
+import { IBookManagerView } from 'src/app/models/views/book-manager.view';
 import { ILoanpayView } from 'src/app/models/views/loanpay.view';
 import { LoanpayApiService } from 'src/app/services/api/loanpay-api.service';
-
+import {BookApiService} from "../../../../services/api/book-api.service";
 @Component({
   selector: 'app-loan-pay-manager-list',
   templateUrl: './loan-pay-manager-list.component.html',
@@ -16,10 +18,13 @@ export class LoanPayManagerListComponent implements OnInit {
   loanPayManager : ILoanpayView[] = []
   loanpayInfoForm!: FormGroup
   loanpaySelected!: ILoanpayView
+  listBookName: IBookManagerView[]=[]
 
   constructor(private loanpayApiService: LoanpayApiService,
               private messageService: MessageService,
-              private fb: FormBuilder) {
+              private BookApiService: BookApiService,
+              private fb: FormBuilder,
+              ) {
     this.loanpayInfoForm = fb.group({
       amount: [null],
       note: [null],
@@ -37,7 +42,8 @@ export class LoanPayManagerListComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getAllLoanpay()
+    this.getAllLoanpay();
+    this.getAllBook()
   }
 
   getAllLoanpay() {
@@ -169,7 +175,46 @@ export class LoanPayManagerListComponent implements OnInit {
     this.loanpaySelected = i
   }
 
+  //get book_name
+  getAllBook() {
+    this.BookApiService._getAllBook().subscribe(
+      (res: IResponseModel<IBookManagerResponse[]>) => {
+        console.log(res)
+        this.listBookName = []
+        res.data.forEach(bookManagerRes => {
+          const bookManagerView: IBookManagerView = {
+            book_id: bookManagerRes.bookId,
+            book_name:bookManagerRes.bookName,
+            name_author:bookManagerRes.idAuthor,
+            publishing_year:bookManagerRes.publishingYear,
+            page_number:bookManagerRes.pageNumber,
+            image:bookManagerRes.image,
+            price:bookManagerRes.price,
+            category_name:bookManagerRes.idTypeBook,
+            publish_name:bookManagerRes.companyId,
+            amount:bookManagerRes.amount,
+            status:bookManagerRes.status,
+          }
+          this.listBookName.push(bookManagerView)
+        })
+      }
+    )
+  }
+
 }
+
+// interface loanPayManager {
+//   amount: number,
+//   note: string,
+//   status: number,
+//   call_card_id: number,
+//   call_card_details_id: number,
+//   book_name: string,
+//   card_number: string,
+//   staff_id: number,
+//   start_date: string,
+//   end_date: string
+// }
 
 
 function editLoanpayRequest(editLoanpayRequest: any) {
