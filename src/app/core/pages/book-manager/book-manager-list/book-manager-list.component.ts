@@ -153,9 +153,9 @@ export class BookManagerListComponent implements OnInit {
         this.listAuthor = []
         res.data.forEach(bookAuthorRes => {
           const bookAuthorView: IBookAuthorView = {
-            id: bookAuthorRes.idAuthor,
+            id: bookAuthorRes.author_id,
             address: bookAuthorRes.address,
-            name_author: bookAuthorRes.nameAuthor,
+            name_author: bookAuthorRes.author_name,
             note:bookAuthorRes.note,
             title:bookAuthorRes.title,
           }
@@ -170,12 +170,12 @@ export class BookManagerListComponent implements OnInit {
         this.listpublishingCompany = [];
         res.data.forEach( publishCompanyRes => {
           const publishCompanyView: IPublishCompanyView = {
-            id: publishCompanyRes.idPub,
-            name: publishCompanyRes.publishName,
+            id: publishCompanyRes.company_id,
+            name: publishCompanyRes.publish_name,
             address: publishCompanyRes.address,
             email: publishCompanyRes.email,
-            agent_people: publishCompanyRes.agentPeople,
-            date_founding: publishCompanyRes.dateFounding
+            agent_people: publishCompanyRes.agent_people,
+            date_founding: publishCompanyRes.date_founding
           };
           this.listpublishingCompany.push(publishCompanyView)
         })

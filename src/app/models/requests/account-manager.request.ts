@@ -1,5 +1,5 @@
 export interface IAccountManagerRequest {
-  code_role: string,
+  role_id: string,
   dob: string,
   email: string,
   full_name: string,
@@ -10,7 +10,7 @@ export interface IAccountManagerRequest {
 }
 
 export interface IEditAccountManagerRequest {
-  code_role: string,
+  role_id: string,
   dob: string,
   email: string,
   full_name: string,

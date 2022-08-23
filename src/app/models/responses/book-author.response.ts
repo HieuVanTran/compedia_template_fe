@@ -1,7 +1,7 @@
 export interface IBookAuthorResponse {
+  author_id: number,
+  author_name: string,
   address: string,
-  idAuthor: number,
-  nameAuthor: string,
-  note: string,
-  title: string
+  title: string,
+  note: string
 }

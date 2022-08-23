@@ -40,9 +40,9 @@ export class AuthorManagerListComponent implements OnInit {
         this.authorManager = []
         res.data.forEach(bookAuthorRes => {
           const bookAuthorView: IBookAuthorView = {
-            id: bookAuthorRes.idAuthor,
+            id: bookAuthorRes.author_id,
             address: bookAuthorRes.address,
-            name_author: bookAuthorRes.nameAuthor,
+            name_author: bookAuthorRes.author_name,
             note:bookAuthorRes.note,
             title:bookAuthorRes.title,
           }

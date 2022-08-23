@@ -1,7 +1,7 @@
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
 import {ChartListComponent} from "./chart/chart-list.component";
-
+  
 const pageRoutingModule: Routes = [
   {
     path: 'chart',

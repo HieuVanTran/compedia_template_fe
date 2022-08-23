@@ -1,7 +1,7 @@
 export interface IStaffManagerResponse {
-  staffId: number,
-  nameStaff: string,
-  phoneNumber: string,
+  staff_id: number,
+  name_staff: string,
+  phone_number: string,
   address: string,
-  dateOfBirth: string
+  date_of_birth: string
 }

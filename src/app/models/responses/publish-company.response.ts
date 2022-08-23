@@ -1,8 +1,8 @@
 export interface IPublishCompanyResponse {
-  idPub: number,
-  publishName: string,
-  address: string,
+  company_id: number,
+  publish_name: string,
   email: string,
-  agentPeople: string,
-  dateFounding: string
+  agent_people: string,
+  address: string,
+  date_founding: string
 }

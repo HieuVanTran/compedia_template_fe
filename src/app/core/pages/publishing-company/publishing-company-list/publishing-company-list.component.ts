@@ -14,7 +14,7 @@ import {MessageService} from "primeng/api";
 })
 export class PublishingCompanyListComponent implements OnInit {
 
-  publishingCompany : publishingCompany[] = [];
+  publishingCompany : IPublishCompanyView[] = [];
   publishCompanyInfoForm!: FormGroup;
   publishCompanySelected!: IPublishCompanyView;
 
@@ -40,12 +40,12 @@ export class PublishingCompanyListComponent implements OnInit {
         this.publishingCompany = [];
         res.data.forEach( publishCompanyRes => {
           const publishCompanyView: IPublishCompanyView = {
-            id: publishCompanyRes.idPub,
-            name: publishCompanyRes.publishName,
+            id: publishCompanyRes.company_id,
+            name: publishCompanyRes.publish_name,
             address: publishCompanyRes.address,
             email: publishCompanyRes.email,
-            agent_people: publishCompanyRes.agentPeople,
-            date_founding: publishCompanyRes.dateFounding
+            agent_people: publishCompanyRes.agent_people,
+            date_founding: publishCompanyRes.date_founding
           };
           this.publishingCompany.push(publishCompanyView)
         })
@@ -132,11 +132,3 @@ export class PublishingCompanyListComponent implements OnInit {
   }
 }
 
-interface publishingCompany{
-  id: number,
-  name: string,
-  address: string,
-  email: string,
-  agent_people: string,
-  date_founding: string
-}

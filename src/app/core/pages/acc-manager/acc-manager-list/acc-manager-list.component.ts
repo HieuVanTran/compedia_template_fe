@@ -57,7 +57,7 @@ export class AccManagerListComponent implements OnInit {
             date_of_birth: accountManagerRes.date_of_birth,
             email: accountManagerRes.email,
             phone: accountManagerRes.phone,
-            role_id: accountManagerRes.role_id
+            role_id: accountManagerRes.code_role
           };
           this.accManager.push(accountManagerView)
         })
@@ -73,7 +73,7 @@ export class AccManagerListComponent implements OnInit {
       dob: this.accountInfoForm.value.date_of_birth,
       email: this.accountInfoForm.value.email,
       phone: '0' +this.accountInfoForm.value.phone,
-      code_role: this.accountInfoForm.value.role_id
+      role_id: this.accountInfoForm.value.role_id
     };
     this.accountApiService._createNewAccount(createNewAccountRequest).subscribe(
       (res: IResponseModel<any>) => {
@@ -127,7 +127,7 @@ export class AccManagerListComponent implements OnInit {
       dob: this.accountInfoForm.value.date_of_birth,
       email: this.accountInfoForm.value.email,
       phone: this.accountInfoForm.value.phone,
-      code_role: this.accountInfoForm.value.role_id,
+      role_id: this.accountInfoForm.value.role_id,
       id: this.accountSelected.id
     };
     this.accountApiService._editAccount(editAccountManagerRequest).subscribe(

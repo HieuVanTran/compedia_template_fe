@@ -39,12 +39,12 @@ export class DelinquentManagerListComponent implements OnInit {
         this.delinquentManager = [];
         res.data.forEach( collectMoneyRes => {
           const collectMoneyView: ICollectMoneyView = {
-            id: collectMoneyRes.collectMoneyId,
-            fullName: collectMoneyRes.fullName,
-            finedAmount: collectMoneyRes.finedAmount,
+            id: collectMoneyRes.collect_money_id,
+            fullName: collectMoneyRes.full_name,
+            finedAmount: collectMoneyRes.fined_amount,
             proceeds: collectMoneyRes.proceeds,
-            staffId: collectMoneyRes.staffId,
-            userId: collectMoneyRes.userId
+            staffId: collectMoneyRes.staff_name,
+            userId: collectMoneyRes.user_name
           };
           this.delinquentManager.push(collectMoneyView)
         })

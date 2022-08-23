@@ -39,11 +39,11 @@ export class StaffManagerListComponent implements OnInit {
         this.staffManager = [];
         res.data.forEach( staffManagerRes => {
           const staffManagerView: IStaffManagerView = {
-            id: staffManagerRes.staffId,
-            name: staffManagerRes.nameStaff,
-            phoneNum: staffManagerRes.phoneNumber,
+            id: staffManagerRes.staff_id,
+            name: staffManagerRes.name_staff,
+            phoneNum: staffManagerRes.phone_number,
             address: staffManagerRes.address,
-            dateOfBirth: staffManagerRes.dateOfBirth
+            dateOfBirth: staffManagerRes.date_of_birth
           };
           this.staffManager.push(staffManagerView)
         })

@@ -1,7 +1,7 @@
 export interface IAccountManagerResponse {
   date_of_birth: string,
   account_id: number,
-  role_id: string,
+  code_role: string,
   username: string,
   password: string,
   phone: string,
