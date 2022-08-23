@@ -1,10 +1,12 @@
 export interface IUserResponse{
-  userId: number,
-  fullName: string,
-  createDate: string,
-  expirationDate: string,
+  user_id: number,
+  full_name: string,
+  create_date: string,
+  expiration_date: string,
   address: string,
   phone: string,
-  accountId: number,
-  callCardId: number
+  account_id: number,
+  call_card_id: number,
+  username: string,
+  card_number:string
 }

@@ -22,14 +22,16 @@ export class UserManagerListComponent implements OnInit {
               private messageService: MessageService,
               private fb: FormBuilder) {
     this.userInfoForm = fb.group({
-      userId: [null],
-      fullName: [null],
+      user_id: [null],
+      username:[null],
+      full_name: [null],
       create_date: [null],
-      expirationDate: [null],
+      expiration_date: [null],
       address: [null],
       phone: [null],
-      accountId: [null],
-      callCardId: [null]
+      card_number: [null],
+      account_id: [null],
+      call_card_id: [null]
     })
   }
 
@@ -43,17 +45,18 @@ export class UserManagerListComponent implements OnInit {
         this.userManager = []
         res.data.forEach(userRes => {
           const userView: IUserView = {
-            userId: userRes.userId,
-            fullName: userRes.fullName,
-            create_date: userRes.createDate,
-            expirationDate: userRes.expirationDate,
+            user_id: userRes.user_id,
+            username: userRes.username,
+            full_name: userRes.full_name,
+            create_date: userRes.create_date,
+            expiration_date: userRes.expiration_date,
             address: userRes.address,
             phone: userRes.phone,
-            accountId: userRes.accountId,
-            callCardId: userRes.callCardId
+            card_number: userRes.card_number,
+            account_id: userRes.account_id,
+            call_card_id: userRes.call_card_id
 
-            // id: bookCategoryRes.idtypeBook,
-            // category_name: bookCategoryRes.categoryName
+
           }
           this.userManager.push(userView)
         })
@@ -91,7 +94,7 @@ export class UserManagerListComponent implements OnInit {
 //  delete
   onDeleteUser() {
     if(this.userSelected) {
-      this.userApiService._deleteUser(this.userSelected.userId).subscribe(
+      this.userApiService._deleteUser(this.userSelected.user_id).subscribe(
         (res: IResponseModel<any>) => {
           this.messageService.add({severity:'success', summary:'Thông báo', detail:'Xóa danh mục thành công'});
           console.log('Xoa danh muc thanh cong')
@@ -110,14 +113,14 @@ export class UserManagerListComponent implements OnInit {
     this.userSelected = i
     this.userInfoForm.patchValue(
       {
-        userId: i.userId,
-        fullName: i.fullName,
-        create_date: i.create_date,
-        expirationDate: i.expirationDate,
-        address: i.address,
-        phone: i.phone,
-        accountId: i.accountId,
-        callCardId: i.callCardId
+        // userId: i.userId,
+        // fullName: i.fullName,
+        // create_date: i.create_date,
+        // expirationDate: i.expirationDate,
+        // address: i.address,
+        // phone: i.phone,
+        // accountId: i.accountId,
+        // callCardId: i.callCardId
         // category_name: i.category_name,
       }
     )
