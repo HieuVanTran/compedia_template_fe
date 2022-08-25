@@ -1,12 +1,18 @@
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
 import {ChartListComponent} from "./chart/chart-list.component";
-  
+
 const pageRoutingModule: Routes = [
   {
     path: 'chart',
     component: ChartListComponent
   },
+  {
+    path: '',
+    redirectTo: 'chart',
+    pathMatch: 'full'
+  }
+  ,
   {
     path: 'book-manager',
     loadChildren: () => import('./book-manager/book-manager.module').then(module => module.AuthorManagerModule)

@@ -8,8 +8,8 @@
               <a class="rounded-circle bg-danger text-light" style="padding: 5px 15px; font-size: 30px;"><i class="fa-solid fa-dollar-sign" style="font-size: 30px;"></i></a>
             </div>
             <div class="col-md-10 pl-5">
-              <h3>0 VNĐ</h3>
-              <p>Lợi nhuận</p>
+              <h3>{{reportData.money}} VNĐ</h3>
+              <p>Tổng tiền phạt</p>
             </div>
           </div>
         </div>
@@ -24,7 +24,7 @@
             </div>
             <div class="col-md-10 pl-5">
               <h3>0</h3>
-              <p>Tổng số sản phẩm</p>
+              <p>Tổng số sách</p>
             </div>
           </div>
         </div>
@@ -39,7 +39,7 @@
             </div>
             <div class="col-md-10 pl-5">
               <h3>0</h3>
-              <p>Tổng số khách hàng</p>
+              <p>Tổng số nhà xuất bản</p>
             </div>
           </div>
 
@@ -55,7 +55,7 @@
             </div>
             <div class="col-md-10 pl-5">
               <h3>0</h3>
-              <p>Tổng số đơn đặt hàng</p>
+              <p>Tổng số tác giả</p>
             </div>
           </div>
         </div>
@@ -64,4 +64,4 @@
   </div>
 </div>
 <h3 class="mt-3">Biểu đồ theo tháng của thư viện</h3>
-<p-chart type="line" [data]="data" [options]="options"  width="1200px" height="500px" [responsive]="false" ></p-chart>
+<p-chart type="line" [data]="data" [options]="options" height="600px" ></p-chart>
