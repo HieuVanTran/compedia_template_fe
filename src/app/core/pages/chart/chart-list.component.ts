@@ -32,8 +32,6 @@ export class ChartListComponent implements OnInit {
     };
   }
 
-
-
   ngOnInit(): void {
     this.getAllChartData()
   }
