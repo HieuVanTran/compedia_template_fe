@@ -143,8 +143,9 @@ export class LoanPayManagerListComponent implements OnInit {
 
   //edit
   editLoanpay(i: ILoanpayView) {
-    this.loanpaySelected = i
+    this.loanpaySelected = i,
     this.loanpayInfoForm.patchValue(
+
       {
         call_card_id: i.call_card_id,
         username: i.username,
@@ -157,7 +158,7 @@ export class LoanPayManagerListComponent implements OnInit {
         end_date: i.end_date,
         account_id: i.account_id,
 
-        // category_name: i.category_name,
+
       }
     )
   }

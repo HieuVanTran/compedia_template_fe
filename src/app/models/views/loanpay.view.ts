@@ -8,5 +8,13 @@ export  interface ILoanpayView{
   note: string,
   start_date: string,
   end_date: string,
-  account_id: number
+  account_id: number,
+  list_book?: listbook[],
+
+}
+export interface listbook {
+  call_card_details_id: number,
+  book_id: number,
+  book_name: string,
+  amount: number
 }
