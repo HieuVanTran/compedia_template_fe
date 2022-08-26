@@ -186,6 +186,7 @@ export class BookManagerListComponent implements OnInit {
     console.log(this.bookmanagerSelected)
     this.bookmanagerInfoForm.patchValue(
       {
+        book_id: i.book_id,
         book_name:i.book_name,
         name_author:i.name_author,
         publishing_year:i.publishing_year,

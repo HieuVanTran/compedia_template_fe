@@ -83,7 +83,7 @@
             <td>{{i.status}}</td>
             <td>{{i.name_staff}}</td>
             <td>
-<!--              <a type="button" data-toggle="modal" data-target="#exampleModal-chiTiet" (click)="viewDetailes(i)"><i class="fa-solid fa-eye"></i></a>-->
+              <a type="button" data-toggle="modal" data-target="#exampleModal-chiTiet" (click)="viewDetailes(i)"><i class="fa-solid fa-eye"></i></a>
               <a type="button" data-toggle="modal" data-target="#exampleModal-bookmanager" (click)="editLoanpay(i)"><i class="fa-solid fa-pen-to-square"></i></a>
               <a type="button" data-toggle="modal" data-target="#delete-book-manager" (click)="selectLoanpay(i)"><i class="fa-solid fa-trash-can"></i></a>
             </td>
@@ -125,24 +125,13 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="book-name" class="col-sm-2 col-form-label">Số Lượng <span style="color: red">*</span></label>
+                <label for="bookName" class="col-sm-2 col-form-label">Số Lượng <span style="color: red">*</span></label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control" id="amount" formControlName="amount">
                 </div>
               </div>
 
-<!--              <div class="form-group row">-->
-<!--                <label for="id_the" class="col-sm-2 col-form-label">Mã Thẻ <span style="color: red">*</span></label>-->
-<!--                <div class="col-sm-10">-->
-<!--                  <input type="text" class="form-control" id="id_the" formControlName="card_number">-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="form-group row">-->
-<!--                <label for="date_borrow" class="col-sm-2 col-form-label">Ngày Mượn <span style="color: red">*</span></label>-->
-<!--                <div class="col-sm-10">-->
-<!--                  <input type="date" class="form-control" id="date_borrow" formControlName="start_date">-->
-<!--                </div>-->
-<!--              </div>-->
+
               <div class="form-group row">
                 <label for="date_pay" class="col-sm-2 col-form-label">Ngày Trả <span style="color: red">*</span></label>
                 <div class="col-sm-10">
@@ -175,78 +164,81 @@
         </div>
       </div>
 
-<!---->
-<!--      <div class="modal fade" id="exampleModal-bookmanager" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--        <div class="modal-dialog modal-lg" [formGroup]="loanpayInfoForm">-->
-<!--          <div class="modal-content border-0">-->
-<!--            <div class="modal-header" style="background: #2C3333">-->
-<!--              <h5 class="modal-title" id="exampleModalLabel" style="color: white">Chỉnh sửa</h5>-->
-<!--              <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                <span aria-hidden="true" style="color: white">&times;</span>-->
-<!--              </button>-->
-<!--            </div>-->
-<!--            <div class="modal-body">-->
 
-<!--              <div class="form-group row">-->
-<!--                <label for="book_name" class="col-sm-2 col-form-label">Tên sách <span style="color: red">*</span></label>-->
-<!--                <div class="col-sm-10">-->
-<!--                  <select class="form-control" formControlName="book_name" id="id">-->
-<!--                    <option *ngFor="let bookName of listDetailes" value="{{bookName.book_id}}">-->
-<!--                      <span>{{bookName.book_name}}</span>-->
-<!--                    </option>-->
-<!--                  </select>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              -->
+      <div class="modal fade" id="exampleModal-bookmanager" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" [formGroup]="loanpayInfoForm">
+          <div class="modal-content border-0">
+            <div class="modal-header" style="background: #2C3333">
+              <h5 class="modal-title" id="exampleModalLabel" style="color: white">Chỉnh sửa</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" style="color: white">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
 
-<!--              <div class="form-group row">-->
-<!--                <label for="book-name" class="col-sm-2 col-form-label">Số lượng <span style="color: red">*</span></label>-->
-<!--                <div class="col-sm-10">-->
-<!--                  <input type="text" class="form-control" id="edit_amount" formControlName="amount">-->
-<!--                </div>-->
-<!--              </div>-->
+              <div class="form-group row">
+                <label for="bookName" class="col-sm-2 col-form-label">Tên Tài Khoản <span style="color: red">*</span></label>
+                <div class="col-sm-10">
+                  <select class="form-control" formControlName="account_id" id="account_id">
+                    <option *ngFor="let username of listAccount" value="{{username.id}}">
+                      <span>{{username.username}}</span>
+                    </option>
+                  </select>
+                </div>
+              </div>
 
-<!--              <div class="form-group row">-->
-<!--                <label for="id_the" class="col-sm-2 col-form-label">Mã Thẻ <span style="color: red">*</span></label>-->
-<!--                <div class="col-sm-10">-->
-<!--                  <input type="text" class="form-control" id="id_the" formControlName="card_number">-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="form-group row">-->
-<!--                <label for="date_borrow" class="col-sm-2 col-form-label">Ngày Mượn <span style="color: red">*</span></label>-->
-<!--                <div class="col-sm-10">-->
-<!--                  <input type="date" class="form-control" id="date_borrow" formControlName="start_date">-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="form-group row">-->
-<!--                <label for="date_pay" class="col-sm-2 col-form-label">Ngày Trả <span style="color: red">*</span></label>-->
-<!--                <div class="col-sm-10">-->
-<!--                  <input type="date" class="form-control" id="date_pay" formControlName="end_date">-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="form-group row">-->
-<!--                <label for="note" class="col-sm-2 col-form-label">Ghi Chú <span style="color: red">*</span></label>-->
-<!--                <div class="col-sm-10">-->
-<!--                  <input type="text" class="form-control" id="note" formControlName="note">-->
-<!--                </div>-->
-<!--              </div>-->
+              <div class="form-group row">
+                <label for="book_name" class="col-sm-2 col-form-label">Tên sách <span style="color: red">*</span></label>
+                <div class="col-sm-10">
+                  <select class="form-control" formControlName="book_name" id="id">
+                    <option *ngFor="let bookName of listDetailes" value="{{bookName.book_id}}">
+                      <span>{{bookName.book_name}}</span>
+                    </option>
+                  </select>
+                </div>
+              </div>
 
-<!--              <div class="form-group row">-->
-<!--                <label for="id_staff" class="col-sm-2 col-form-label">Mã Nhân Viên <span style="color: red">*</span></label>-->
-<!--                <div class="col-sm-10">-->
-<!--                  <input type="text" class="form-control" id="id_staff" formControlName="staff_id">-->
-<!--                </div>-->
-<!--              </div>-->
 
-<!--            </div>-->
-<!--            <div class="modal-footer border-0">-->
-<!--              <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onEditLoanpay()" data-dismiss="modal">Cập Nhật</button>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
+              <div class="form-group row">
+                <label for="book-name" class="col-sm-2 col-form-label">Số lượng <span style="color: red">*</span></label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="edit_amount" formControlName="amount">
+                </div>
+              </div>
 
-<!--      modal-->
+              <div class="form-group row">
+                <label for="date_pay" class="col-sm-2 col-form-label">Ngày Trả <span style="color: red">*</span></label>
+                <div class="col-sm-10">
+                  <input type="date" class="form-control" id="date_pay" formControlName="end_date">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="note" class="col-sm-2 col-form-label">Ghi Chú <span style="color: red">*</span></label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="note" formControlName="note">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="bookName" class="col-sm-2 col-form-label">Tên Nhân Viên <span style="color: red">*</span></label>
+                <div class="col-sm-10">
+                  <select class="form-control" formControlName="staff_id" id="staff_id">
+                    <option *ngFor="let name_staff of listStaff" value="{{name_staff.id}}">
+                      <span>{{name_staff.name}}</span>
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+            <div class="modal-footer border-0">
+              <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onEditLoanpay()" data-dismiss="modal">Cập Nhật</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
 
       <!-- Modal -->
       <div class="modal fade" id="delete-book-manager" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -266,6 +258,7 @@
         </div>
       </div>
 
+<!--  detailes-->
       <div class="modal fade" id="exampleModal-chiTiet" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" [formGroup]="loanpayInfoForm">
           <div class="modal-content border-0">

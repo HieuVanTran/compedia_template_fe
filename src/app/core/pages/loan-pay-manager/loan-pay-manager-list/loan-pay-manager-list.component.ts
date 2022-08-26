@@ -30,6 +30,7 @@ export class LoanPayManagerListComponent implements OnInit {
   listDetailes: IDetailesView[]=[]
   listAccount: IAccountManagerView []=[]
   listStaff: IStaffManagerView []=[]
+  detailesSelected!: IDetailesView
 
 
   constructor(private loanpayApiService: LoanpayApiService,
@@ -50,7 +51,7 @@ export class LoanPayManagerListComponent implements OnInit {
       start_date: [null],
       end_date: [null],
       call_card_id: [null],
-      account: [null]
+      account_id: [null]
 
     })
   }
@@ -60,7 +61,8 @@ export class LoanPayManagerListComponent implements OnInit {
     this.getAllLoanpay();
     this.getAllDetailes();
     this.getAllAccountManager();
-    this.getAllStaffManager()
+    this.getAllStaffManager();
+
   }
 
   getAllLoanpay() {
@@ -99,12 +101,12 @@ export class LoanPayManagerListComponent implements OnInit {
 
     const createNewLoanpayRequest: ILoanpayRequest = {
       call_card_id: this.loanpayInfoForm.value.call_card_id,
-      start_date: this.loanpayInfoForm.value.start_date,
+
       end_date: this.loanpayInfoForm.value.end_date,
       note: this.loanpayInfoForm.value.note,
       staff_id: this.loanpayInfoForm.value.staff_id,
       list_book: list,
-      status:this.loanpayInfoForm.value.status,
+
       account_id: this.loanpayInfoForm.value.account_id
 
     }
@@ -153,7 +155,8 @@ export class LoanPayManagerListComponent implements OnInit {
         note: i.note,
         start_date: i.start_date,
         end_date: i.end_date,
-        account_id: i.account_id
+        account_id: i.account_id,
+
         // category_name: i.category_name,
       }
     )
@@ -170,7 +173,7 @@ export class LoanPayManagerListComponent implements OnInit {
 
     const editLoanpayRequest: IEditLoanpayRequest = {
       call_card_id: this.loanpayInfoForm.value.call_card_id,
-      start_date: this.loanpayInfoForm.value.start_date,
+
       end_date: this.loanpayInfoForm.value.end_date,
       note: this.loanpayInfoForm.value.note,
       staff_id: this.loanpayInfoForm.value.staff_id,
@@ -215,6 +218,25 @@ export class LoanPayManagerListComponent implements OnInit {
     )
   }
 
+  viewDetailes(i: IDetailesView) {
+    this.detailesSelected = i
+    this.loanpayInfoForm.patchValue(
+      {
+        call_card_details_id: i.call_card_details_id,
+        book_id: i.book_id,
+        book_name: i.book_name,
+        amount: i.amount
+        // category_name: i.category_name,
+      }
+    )
+  }
+
+
+  selectDetailes(i: IDetailesView) {
+    this.detailesSelected = i
+  }
+
+
 //  getAll account
   getAllAccountManager() {
     this.AccountApiService._getAllAccountManager().subscribe(
@@ -255,20 +277,11 @@ export class LoanPayManagerListComponent implements OnInit {
     )
   }
 
+
+
 }
 
-// interface loanPayManager {
-//   amount: number,
-//   note: string,
-//   status: number,
-//   call_card_id: number,
-//   call_card_details_id: number,
-//   book_name: string,
-//   card_number: string,
-//   staff_id: number,
-//   start_date: string,
-//   end_date: string
-// }
+
 
 
 function editLoanpayRequest(editLoanpayRequest: any) {
