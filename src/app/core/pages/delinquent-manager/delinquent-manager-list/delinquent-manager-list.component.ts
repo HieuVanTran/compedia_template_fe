@@ -6,6 +6,9 @@ import {IResponseModel} from "../../../../models/commons/response.model";
 import {ICollectMoneyResponses} from "../../../../models/responses/collect-money.response";
 import {ICollectMoneyRequests, IEditCollectMoneyRequests} from "../../../../models/requests/collect-money.requests";
 import {MessageService} from "primeng/api";
+import {IStaffManagerView} from "../../../../models/views/staff-manager.view";
+import {StaffManagerApiService} from "../../../../services/api/staff-manager-api.service";
+import {IStaffManagerResponse} from "../../../../models/responses/staff-manager.response";
 
 @Component({
   selector: 'app-delinquent-manager-list',
@@ -17,10 +20,12 @@ export class DelinquentManagerListComponent implements OnInit {
   delinquentManager : ICollectMoneyView[] = [];
   moneyInfoForm!: FormGroup;
   collectMoneySelected!: ICollectMoneyView;
+  listStaffManager: IStaffManagerView[] = [];
 
   constructor(private collectMoneyApiService: CollectMoneyApiService,
               private fb:FormBuilder,
-              private messageService: MessageService) {
+              private messageService: MessageService,
+              private staffManagerApiService: StaffManagerApiService) {
     this.moneyInfoForm = fb.group({
       fullName: [null],
       finedAmount: [null],
@@ -30,7 +35,8 @@ export class DelinquentManagerListComponent implements OnInit {
     })
   }
   ngOnInit(): void {
-    this.getAllCollectMoney()
+    this.getAllCollectMoney();
+    this.getAllStaffManager()
   }
 
   getAllCollectMoney() {
@@ -128,5 +134,21 @@ export class DelinquentManagerListComponent implements OnInit {
     this.collectMoneySelected = i
   }
 
-
+  getAllStaffManager() {
+    this.staffManagerApiService._getAllStaffManager().subscribe(
+      (res: IResponseModel<IStaffManagerResponse[]>)  => {
+        this.listStaffManager = [];
+        res.data.forEach( staffManagerRes => {
+          const staffManagerView: IStaffManagerView = {
+            id: staffManagerRes.staff_id,
+            name: staffManagerRes.name_staff,
+            phoneNum: staffManagerRes.phone_number,
+            address: staffManagerRes.address,
+            dateOfBirth: staffManagerRes.date_of_birth
+          };
+          this.listStaffManager.push(staffManagerView)
+        })
+      }
+    )
+  }
 }

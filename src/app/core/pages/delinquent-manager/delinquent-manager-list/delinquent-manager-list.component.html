@@ -110,9 +110,13 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="id_staff1" class="col-sm-3 col-form-label">Mã Nhân Viên <span style="color: red">*</span></label>
+                <label class="col-sm-3 col-form-label">Mã Nhân Viên <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="id_staff1" formControlName="staffId">
+                  <select class="form-control" formControlName="staffId">
+                    <option *ngFor="let staff of listStaffManager" value="{{staff.id}}">
+                      <span>{{staff.name}}</span>
+                    </option>
+                  </select>
                 </div>
               </div>
               <div class="form-group row">
@@ -162,7 +166,11 @@
               <div class="form-group row">
                 <label for="id_staff" class="col-sm-3 col-form-label">Mã Nhân Viên <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="id_staff" formControlName="staffId">
+                  <select class="form-control" formControlName="staffId">
+                    <option *ngFor="let staff of listStaffManager" value="{{staff.id}}">
+                      <span>{{staff.name}}</span>
+                    </option>
+                  </select>
                 </div>
               </div>
               <div class="form-group row">
