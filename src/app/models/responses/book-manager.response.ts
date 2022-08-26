@@ -1,14 +1,14 @@
 export interface IBookManagerResponse {
-  bookId: number,
-  bookName: string,
-  idAuthor: string,
-  publishingYear: string,
-  pageNumber: string,
-  image: string,
+  book_id: number,
+  book_name: string,
+  author_name: string,
+  category_name: string,
+  page_number: string,
+  publishing_year: string,
   price: string,
-  idTypeBook: string,
-  companyId: string,
   amount: string,
-  status:string
+  status: string,
+  publish_name: string,
+  image: string
 }
 

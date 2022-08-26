@@ -43,7 +43,7 @@ export class LoanPayManagerListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllLoanpay();
-    // this.getAllBook()
+    this.getAllBook()
   }
 
   getAllLoanpay() {
@@ -52,12 +52,10 @@ export class LoanPayManagerListComponent implements OnInit {
         this.loanPayManager = []
         res.data.forEach(loanpayRes => {
           const loanpayView: ILoanpayView = {
-            // amount: loanpayRes.amount,
             note: loanpayRes.note,
             status: loanpayRes.status,
             call_card_id: loanpayRes.call_card_id,
             call_card_details_id: loanpayRes.call_card_details_id,
-            // book_name: loanpayRes.book_name,
             card_number: loanpayRes.card_number,
             staff_id: loanpayRes.staff_id,
             start_date: loanpayRes.start_date,
@@ -125,12 +123,10 @@ export class LoanPayManagerListComponent implements OnInit {
     this.loanpaySelected = i
     this.loanpayInfoForm.patchValue(
       {
-        // amount: i.amount,
         note: i.note,
         status: i.status,
         call_card_id: i.call_card_id,
         call_card_details_id: i.call_card_details_id,
-        // book_name: i.book_name,
         card_number: i.card_number,
         staff_id: i.staff_id,
         start_date: i.start_date,
@@ -176,30 +172,30 @@ export class LoanPayManagerListComponent implements OnInit {
   }
 
   //get book_name
-  // getAllBook() {
-  //   this.BookApiService._getAllBook().subscribe(
-  //     (res: IResponseModel<IBookManagerResponse[]>) => {
-  //       console.log(res)
-  //       this.listBookName = []
-  //       res.data.forEach(bookManagerRes => {
-  //         const bookManagerView: IBookManagerView = {
-  //           book_id: bookManagerRes.bookId,
-  //           book_name:bookManagerRes.bookName,
-  //           name_author:bookManagerRes.idAuthor,
-  //           publishing_year:bookManagerRes.publishingYear,
-  //           page_number:bookManagerRes.pageNumber,
-  //           image:bookManagerRes.image,
-  //           price:bookManagerRes.price,
-  //           category_name:bookManagerRes.idTypeBook,
-  //           publish_name:bookManagerRes.companyId,
-  //           amount:bookManagerRes.amount,
-  //           status:bookManagerRes.status,
-  //         }
-  //         this.listBookName.push(bookManagerView)
-  //       })
-  //     }
-  //   )
-  // }
+  getAllBook() {
+    this.BookApiService._getAllBook().subscribe(
+      (res: IResponseModel<IBookManagerResponse[]>) => {
+        console.log(res)
+        this.listBookName = []
+        res.data.forEach(bookManagerRes => {
+          const bookManagerView: IBookManagerView = {
+            book_id: bookManagerRes.book_id,
+            book_name:bookManagerRes.book_name,
+            name_author:bookManagerRes.author_name,
+            publishing_year:bookManagerRes.publishing_year,
+            page_number:bookManagerRes.page_number,
+            image:bookManagerRes.image,
+            price:bookManagerRes.price,
+            category_name:bookManagerRes.category_name,
+            publish_name:bookManagerRes.publish_name,
+            amount:bookManagerRes.amount,
+            status:bookManagerRes.status,
+          }
+          this.listBookName.push(bookManagerView)
+        })
+      }
+    )
+  }
 
 }
 

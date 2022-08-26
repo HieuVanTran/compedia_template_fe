@@ -65,15 +65,15 @@ export class BookManagerListComponent implements OnInit {
         this.bookManager = []
         res.data.forEach(bookManagerRes => {
           const bookManagerView: IBookManagerView = {
-            book_id: bookManagerRes.bookId,
-            book_name:bookManagerRes.bookName,
-            name_author:bookManagerRes.idAuthor,
-            publishing_year:bookManagerRes.publishingYear,
-            page_number:bookManagerRes.pageNumber,
+            book_id: bookManagerRes.book_id,
+            book_name:bookManagerRes.book_name,
+            name_author:bookManagerRes.author_name,
+            publishing_year:bookManagerRes.publishing_year,
+            page_number:bookManagerRes.page_number,
             image:bookManagerRes.image,
             price:bookManagerRes.price,
-            category_name:bookManagerRes.idTypeBook,
-            publish_name:bookManagerRes.companyId,
+            category_name:bookManagerRes.category_name,
+            publish_name:bookManagerRes.publish_name,
             amount:bookManagerRes.amount,
             status:bookManagerRes.status,
           }
@@ -84,16 +84,15 @@ export class BookManagerListComponent implements OnInit {
   }
   onAddNewBook() {
     const createNewBookRequest: IBookManagerRequest = {
-      book_name:this.bookmanagerInfoForm.value.book_name,
-      idAuthor:this.bookmanagerInfoForm.value.name_author,
-      publishing_year:this.bookmanagerInfoForm.value.publishing_year,
+      bookName:this.bookmanagerInfoForm.value.book_name,
+      nameAuthor:this.bookmanagerInfoForm.value.name_author,
+      publishingYear:this.bookmanagerInfoForm.value.publishing_year,
       page_number:this.bookmanagerInfoForm.value.page_number,
       image:this.bookmanagerInfoForm.value.image,
       price:this.bookmanagerInfoForm.value.price,
       idTypeBook:this.bookmanagerInfoForm.value.category_name,
       companyId:this.bookmanagerInfoForm.value.publish_name,
       amount:this.bookmanagerInfoForm.value.amount,
-      status:this.bookmanagerInfoForm.value.status
     };
     this.requestBookForm.set('amount',this.bookmanagerInfoForm.value.amount)
     this.requestBookForm.set('bookName',this.bookmanagerInfoForm.value.book_name)
@@ -104,7 +103,6 @@ export class BookManagerListComponent implements OnInit {
     this.requestBookForm.set('price',this.bookmanagerInfoForm.value.price)
     this.requestBookForm.set('publishName',this.bookmanagerInfoForm.value.publish_name)
     this.requestBookForm.set('publishingYear',this.bookmanagerInfoForm.value.publishing_year)
-    this.requestBookForm.set('status',this.bookmanagerInfoForm.value.status)
 
         this.BookApiService._createNewBook(this.requestBookForm).subscribe(
           (res: IResponseModel<any>) => {
@@ -205,16 +203,15 @@ export class BookManagerListComponent implements OnInit {
   onEditBook() {
     const editBookManagerRequest: IEditBookManagerRequest = {
       id:this.bookmanagerSelected.book_id,
-      book_name:this.bookmanagerInfoForm.value.book_name,
-      idAuthor:this.bookmanagerInfoForm.value.name_author,
-      publishing_year:this.bookmanagerInfoForm.value.publishing_year,
+      bookName:this.bookmanagerInfoForm.value.book_name,
+      nameAuthor:this.bookmanagerInfoForm.value.name_author,
+      publishingYear:this.bookmanagerInfoForm.value.publishing_year,
       page_number:this.bookmanagerInfoForm.value.page_number,
       image:this.bookmanagerInfoForm.value.image,
       price:this.bookmanagerInfoForm.value.price,
       idTypeBook:this.bookmanagerInfoForm.value.category_name,
       companyId:this.bookmanagerInfoForm.value.publish_name,
-      amount:this.bookmanagerInfoForm.value.amount,
-      status:this.bookmanagerInfoForm.value.status
+      amount:this.bookmanagerInfoForm.value.amount
     };
     // @ts-ignore
     this.requestBookForm.set('id',this.bookmanagerSelected.book_id)
@@ -227,7 +224,6 @@ export class BookManagerListComponent implements OnInit {
     this.requestBookForm.set('price',this.bookmanagerInfoForm.value.price)
     this.requestBookForm.set('publishName',this.bookmanagerInfoForm.value.publish_name)
     this.requestBookForm.set('publishingYear',this.bookmanagerInfoForm.value.publishing_year)
-    this.requestBookForm.set('status',this.bookmanagerInfoForm.value.status)
     this.BookApiService._editBook(this.requestBookForm).subscribe(
       (res: IResponseModel<any>) => {
         console.log('Sua danh muc thanh cong')

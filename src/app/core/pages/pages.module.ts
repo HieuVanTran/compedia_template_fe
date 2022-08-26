@@ -17,7 +17,6 @@ import {ChartModule} from 'primeng/chart';
     declarations: [
         ChartListComponent,
         PagesComponent,
-
     ],
     imports: [
       PagesRoutingModule,

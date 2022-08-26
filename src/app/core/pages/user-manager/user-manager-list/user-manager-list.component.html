@@ -12,51 +12,8 @@
           </div>
         </div>
       </div>
-      <!--        <div class="card-content">-->
-      <!--          <div class="card-body">-->
-      <!--            <p>-->
-      <!--              You can also invert the colors—with light text on dark-->
-      <!--              backgrounds—with-->
-      <!--              <code class="highlighter-rouge">.table-dark</code>.-->
-      <!--            </p>-->
-      <!--          </div>-->
-<!--      <div class="table-responsive">-->
-<!--        <table class="table table-light mb-0">-->
-<!--          <thead>-->
-<!--          <tr>-->
-<!--            <th>STT</th>-->
-<!--            <th>TÊN</th>-->
-<!--            <th>NGÀY TẠO</th>-->
-<!--            <th>NGÀY HẾT HẠN</th>-->
-<!--            <th>ĐỊA CHỈ</th>-->
-<!--            <th>SĐT</th>-->
-<!--            <th>ID TÀI KHOẢN</th>-->
-<!--            <th>MÃ THẺ</th>-->
-<!--            <th>THAO TÁC</th>-->
-
-<!--          </tr>-->
-<!--          </thead>-->
-<!--          <tbody>-->
-<!--          <tr *ngFor="let i of userManager, index as index">-->
-<!--            <td>{{index +1}}</td>-->
-<!--            <td>{{i.fullName}}</td>-->
-<!--            <td>{{i.create_date}}</td>-->
-<!--            <td>{{i.expirationDate}}</td>-->
-<!--            <td>{{i.address}}</td>-->
-<!--            <td>{{i.phone}}</td>-->
-<!--            <td>{{i.accountId}}</td>-->
-<!--            <td>{{i.callCardId}}</td>-->
-
-<!--            <td>-->
-<!--              <a type="button" data-toggle="modal" data-target="#exampleModal-bookmanager" (click)="editUser(i)"><i class="fa-solid fa-pen-to-square"></i></a>-->
-<!--              <a type="button" data-toggle="modal" data-target="#delete-book-manager" (click)="selectUser(i)"><i class="fa-solid fa-trash-can"></i></a>-->
-<!--            </td>-->
-<!--          </tr>-->
-<!--          </tbody>-->
-<!--        </table>-->
-<!--      </div>-->
       <p-table [value]="userManager"  [paginator]="true" [rows]="10" >
-        <ng-template pTemplate="header" class="dark">
+        <ng-template pTemplate="header">
           <tr>
             <th>STT</th>
             <th pSortableColumn="username">TÊN TÀI KHOẢN<p-sortIcon field="username"></p-sortIcon></th>
@@ -66,11 +23,9 @@
             <th pSortableColumn="address">ĐỊA CHỈ<p-sortIcon field="address"></p-sortIcon></th>
             <th pSortableColumn="address">PHONE<p-sortIcon field="address"></p-sortIcon></th>
             <th pSortableColumn="address">SỐ THẺ<p-sortIcon field="address"></p-sortIcon></th>
-
             <th>THAO TÁC</th>
           </tr>
         </ng-template>
-
         <ng-template pTemplate="body" let-i let-rowIndex="rowIndex">
           <tr >
             <td>{{rowIndex +1}}</td>
@@ -115,7 +70,7 @@
               <div class="form-group row">
                 <label for="expirationDate" class="col-sm-2 col-form-label">Ngày hết hạn <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <input type="date" class="form-control" id="expirationDate" formControlName="expirationDate">
+                  <input type="date" class="form-control" id="expirationDate" formControlName="expiration_date">
                 </div>
               </div>
               <div class="form-group row">

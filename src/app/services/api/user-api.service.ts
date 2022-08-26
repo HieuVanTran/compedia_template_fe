@@ -3,10 +3,8 @@ import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {IResponseModel} from "../../models/commons/response.model";
-import {IBookCategoryResponse} from "../../models/responses/book-category.response";
-import {IBookCategoryRequest, IEditBookCategoryRequest} from "../../models/requests/book-category.request";
-import { IUserResponse } from "src/app/models/responses/user.reponse";
-import {IEditUserRequest, IUserRequest } from "src/app/models/requests/user.request";
+import {IUserResponse} from "src/app/models/responses/user.reponse";
+import {IEditUserRequest, IUserRequest} from "src/app/models/requests/user.request";
 
 
 @Injectable({

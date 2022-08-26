@@ -55,11 +55,10 @@ export class UserManagerListComponent implements OnInit {
             card_number: userRes.card_number,
             account_id: userRes.account_id,
             call_card_id: userRes.call_card_id
-
-
           }
           this.userManager.push(userView)
         })
+        console.log(this.userManager)
       }
     )
   }

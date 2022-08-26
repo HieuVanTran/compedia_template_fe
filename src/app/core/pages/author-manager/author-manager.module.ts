@@ -6,6 +6,7 @@ import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
 import {TableModule} from "primeng/table";
+import {GMapModule} from "primeng/gmap";
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import {TableModule} from "primeng/table";
     FormsModule,
     ReactiveFormsModule,
     ToastModule,
-    TableModule
+    TableModule,
   ],
   providers: [
     FormBuilder,
