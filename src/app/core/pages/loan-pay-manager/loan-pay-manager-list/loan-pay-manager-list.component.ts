@@ -3,9 +3,11 @@ import {FormBuilder, FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { IResponseModel } from 'src/app/models/commons/response.model';
 import {IEditLoanpayRequest, ILoanpayRequest, ListBook } from 'src/app/models/requests/loanpay.request';
+import { IBookManagerResponse } from 'src/app/models/responses/book-manager.response';
 import { IDetailesResponses } from 'src/app/models/responses/detailes.responses';
 import { ILoanpayResponse } from 'src/app/models/responses/loanpay.response';
 import { IAccountManagerView } from 'src/app/models/views/account-manager.view';
+import { IBookManagerView } from 'src/app/models/views/book-manager.view';
 import { IDetailesView } from 'src/app/models/views/detailes.view';
 import { ILoanpayView } from 'src/app/models/views/loanpay.view';
 import { LoanpayApiService } from 'src/app/services/api/loanpay-api.service';
@@ -28,13 +30,14 @@ export class LoanPayManagerListComponent implements OnInit {
   listDetailes: IDetailesView[]=[]
   listAccount: IAccountManagerView []=[]
   listStaff: IStaffManagerView []=[]
+  detailesSelected!: IDetailesView
 
 
   constructor(private loanpayApiService: LoanpayApiService,
               private messageService: MessageService,
-              private detailesApiService: DetailesApiService,
-              private accountApiService : AccountApiService,
-              private staffManagerApiService: StaffManagerApiService,
+              private DetailesApiService: DetailesApiService,
+              private AccountApiService : AccountApiService,
+              private StaffManagerApiService: StaffManagerApiService,
               private fb: FormBuilder,
               ) {
     this.loanpayInfoForm = fb.group({
@@ -49,6 +52,7 @@ export class LoanPayManagerListComponent implements OnInit {
       end_date: [null],
       call_card_id: [null],
       account_id: [null]
+
     })
   }
 
@@ -57,7 +61,8 @@ export class LoanPayManagerListComponent implements OnInit {
     this.getAllLoanpay();
     this.getAllDetailes();
     this.getAllAccountManager();
-    this.getAllStaffManager()
+    this.getAllStaffManager();
+
   }
 
   getAllLoanpay() {
@@ -76,6 +81,7 @@ export class LoanPayManagerListComponent implements OnInit {
             start_date: loanpayRes.start_date,
             end_date: loanpayRes.end_date,
             account_id: loanpayRes.account_id
+
           }
           this.loanPayManager.push(loanpayView)
         })
@@ -95,11 +101,14 @@ export class LoanPayManagerListComponent implements OnInit {
 
     const createNewLoanpayRequest: ILoanpayRequest = {
       call_card_id: this.loanpayInfoForm.value.call_card_id,
+
       end_date: this.loanpayInfoForm.value.end_date,
       note: this.loanpayInfoForm.value.note,
       staff_id: this.loanpayInfoForm.value.staff_id,
       list_book: list,
+
       account_id: this.loanpayInfoForm.value.account_id
+
     }
 
     this.loanpayApiService._createNewLoanpay(createNewLoanpayRequest).subscribe(
@@ -134,8 +143,9 @@ export class LoanPayManagerListComponent implements OnInit {
 
   //edit
   editLoanpay(i: ILoanpayView) {
-    this.loanpaySelected = i
+    this.loanpaySelected = i,
     this.loanpayInfoForm.patchValue(
+
       {
         call_card_id: i.call_card_id,
         username: i.username,
@@ -146,8 +156,9 @@ export class LoanPayManagerListComponent implements OnInit {
         note: i.note,
         start_date: i.start_date,
         end_date: i.end_date,
-        account_id: i.account_id
-        // category_name: i.category_name,
+        account_id: i.account_id,
+
+
       }
     )
   }
@@ -163,10 +174,12 @@ export class LoanPayManagerListComponent implements OnInit {
 
     const editLoanpayRequest: IEditLoanpayRequest = {
       call_card_id: this.loanpayInfoForm.value.call_card_id,
+
       end_date: this.loanpayInfoForm.value.end_date,
       note: this.loanpayInfoForm.value.note,
       staff_id: this.loanpayInfoForm.value.staff_id,
       list_book: list,
+      card_number: this.loanpayInfoForm.value.card_number,
       account_id: this.loanpayInfoForm.value.account_id
     }
 
@@ -188,7 +201,7 @@ export class LoanPayManagerListComponent implements OnInit {
 
   //get detailes : book_name,amount
   getAllDetailes() {
-    this.detailesApiService._getAllDetailes().subscribe(
+    this.DetailesApiService._getAllDetailes().subscribe(
       (res: IResponseModel<IDetailesResponses[]>) => {
         console.log(res)
         this.listDetailes = []
@@ -206,9 +219,28 @@ export class LoanPayManagerListComponent implements OnInit {
     )
   }
 
+  viewDetailes(i: IDetailesView) {
+    this.detailesSelected = i
+    this.loanpayInfoForm.patchValue(
+      {
+        call_card_details_id: i.call_card_details_id,
+        book_id: i.book_id,
+        book_name: i.book_name,
+        amount: i.amount
+        // category_name: i.category_name,
+      }
+    )
+  }
+
+
+  selectDetailes(i: IDetailesView) {
+    this.detailesSelected = i
+  }
+
+
 //  getAll account
   getAllAccountManager() {
-    this.accountApiService._getAllAccountManager().subscribe(
+    this.AccountApiService._getAllAccountManager().subscribe(
       (res: IResponseModel<IAccountManagerResponse[]>) => {
         this.listAccount = [];
         res.data.forEach(accountManagerRes => {
@@ -229,7 +261,7 @@ export class LoanPayManagerListComponent implements OnInit {
 
 //  getAll staff
   getAllStaffManager() {
-    this.staffManagerApiService._getAllStaffManager().subscribe(
+    this.StaffManagerApiService._getAllStaffManager().subscribe(
       (res: IResponseModel<IStaffManagerResponse[]>)  => {
         this.listStaff = [];
         res.data.forEach( staffManagerRes => {
@@ -246,20 +278,11 @@ export class LoanPayManagerListComponent implements OnInit {
     )
   }
 
+
+
 }
 
-// interface loanPayManager {
-//   amount: number,
-//   note: string,
-//   status: number,
-//   call_card_id: number,
-//   call_card_details_id: number,
-//   book_name: string,
-//   card_number: string,
-//   staff_id: number,
-//   start_date: string,
-//   end_date: string
-// }
+
 
 
 function editLoanpayRequest(editLoanpayRequest: any) {
