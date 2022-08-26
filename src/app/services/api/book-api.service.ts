@@ -4,9 +4,6 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {IResponseModel} from "../../models/commons/response.model";
 import {IBookManagerResponse} from "../../models/responses/book-manager.response";
-import {IBookManagerRequest, IEditBookManagerRequest} from "../../models/requests/book-manager.request";
-
-
 
 
 @Injectable({

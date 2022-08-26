@@ -61,12 +61,11 @@ export class ChartListComponent implements OnInit {
         this.updateChartData(this.reportData.listData)
       }
     )
-    this.chartApiService._getAllChartData().subscribe(
-    )
   }
 
   updateChartData(chartItems: listChartView[]) {
     console.log(chartItems)
+    let listLabel: any[] = []
     let borrowData: any = {
       label: 'Lượt mượn sách',
       data: [],
@@ -79,7 +78,6 @@ export class ChartListComponent implements OnInit {
       backgroundColor: 'green',
       borderColor: 'green',
     }
-    let listLabel: any[] = []
     chartItems.forEach(
       item => {
         listLabel.push(item.monthText)

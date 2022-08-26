@@ -163,7 +163,7 @@
               <div class="form-group row">
                 <label for="old-password" class="col-sm-3 col-form-label">Nhà xuất bản <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <select class="form-control" formControlName="publish_name" id="old-password">
+                  <select class="form-control" formControlName="publish_name" >
                     <option *ngFor="let company of listpublishingCompany" value="{{company.id}}">
                       <span>{{company.name}}</span>
                     </option>
@@ -177,9 +177,9 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="amount" class="col-sm-3 col-form-label">Số lượng <span style="color: red">*</span></label>
+                <label class="col-sm-3 col-form-label">Số lượng <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="amount" formControlName="amount">
+                  <input type="text" class="form-control"  formControlName="amount">
                 </div>
               </div>
             </div>
@@ -244,7 +244,7 @@
               <div class="form-group row">
                 <label for="pages" class="col-sm-3 col-form-label">Số trang <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="number" class="form-control" id="pages2" formControlName="page_number">
+                  <input type="text" class="form-control" id="pages2" formControlName="page_number">
                 </div>
               </div>
               <div class="form-group row">
