@@ -23,7 +23,7 @@ import {TableModule} from "primeng/table";
     TableModule
   ],
   providers:   [
-    FormBuilder,
+    // FormBuilder,
     MessageService
   ]
 

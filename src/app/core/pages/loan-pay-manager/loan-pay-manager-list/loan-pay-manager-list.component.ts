@@ -4,11 +4,20 @@ import { MessageService } from 'primeng/api';
 import { IResponseModel } from 'src/app/models/commons/response.model';
 import {IEditLoanpayRequest, ILoanpayRequest, ListBook } from 'src/app/models/requests/loanpay.request';
 import { IBookManagerResponse } from 'src/app/models/responses/book-manager.response';
+import { IDetailesResponses } from 'src/app/models/responses/detailes.responses';
 import { ILoanpayResponse } from 'src/app/models/responses/loanpay.response';
+import { IAccountManagerView } from 'src/app/models/views/account-manager.view';
 import { IBookManagerView } from 'src/app/models/views/book-manager.view';
+import { IDetailesView } from 'src/app/models/views/detailes.view';
 import { ILoanpayView } from 'src/app/models/views/loanpay.view';
 import { LoanpayApiService } from 'src/app/services/api/loanpay-api.service';
-import {BookApiService} from "../../../../services/api/book-api.service";
+import {DetailesApiService} from "../../../../services/api/detailes-api.service";
+import {AccountApiService} from "../../../../services/api/account-api.service";
+import {StaffManagerApiService} from "../../../../services/api/staff-manager-api.service";
+import { IAccountManagerResponse } from 'src/app/models/responses/account-manager.response';
+import { IStaffManagerView } from 'src/app/models/views/staff-manager.view';
+import { IStaffManagerResponse } from 'src/app/models/responses/staff-manager.response';
+
 @Component({
   selector: 'app-loan-pay-manager-list',
   templateUrl: './loan-pay-manager-list.component.html',
@@ -18,11 +27,16 @@ export class LoanPayManagerListComponent implements OnInit {
   loanPayManager : ILoanpayView[] = []
   loanpayInfoForm!: FormGroup
   loanpaySelected!: ILoanpayView
-  listBookName: IBookManagerView[]=[]
+  listDetailes: IDetailesView[]=[]
+  listAccount: IAccountManagerView []=[]
+  listStaff: IStaffManagerView []=[]
+
 
   constructor(private loanpayApiService: LoanpayApiService,
               private messageService: MessageService,
-              private BookApiService: BookApiService,
+              private DetailesApiService: DetailesApiService,
+              private AccountApiService : AccountApiService,
+              private StaffManagerApiService: StaffManagerApiService,
               private fb: FormBuilder,
               ) {
     this.loanpayInfoForm = fb.group({
@@ -30,12 +44,13 @@ export class LoanPayManagerListComponent implements OnInit {
       note: [null],
       status: [null],
       call_card_details_id: [null],
-      book_name: [null],
+      book_id: [null],
       card_number: [null],
       staff_id: [null],
       start_date: [null],
       end_date: [null],
-      call_card_id: [null]
+      call_card_id: [null],
+      account: [null]
 
     })
   }
@@ -43,7 +58,9 @@ export class LoanPayManagerListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllLoanpay();
-    this.getAllBook()
+    this.getAllDetailes();
+    this.getAllAccountManager();
+    this.getAllStaffManager()
   }
 
   getAllLoanpay() {
@@ -52,14 +69,17 @@ export class LoanPayManagerListComponent implements OnInit {
         this.loanPayManager = []
         res.data.forEach(loanpayRes => {
           const loanpayView: ILoanpayView = {
-            note: loanpayRes.note,
-            status: loanpayRes.status,
             call_card_id: loanpayRes.call_card_id,
-            call_card_details_id: loanpayRes.call_card_details_id,
-            card_number: loanpayRes.card_number,
+            username: loanpayRes.username,
             staff_id: loanpayRes.staff_id,
+            name_staff: loanpayRes.name_staff,
+            status: loanpayRes.status,
+            call_card_details_id: loanpayRes.call_card_details_id,
+            note: loanpayRes.note,
             start_date: loanpayRes.start_date,
-            end_date: loanpayRes.end_date
+            end_date: loanpayRes.end_date,
+            account_id: loanpayRes.account_id
+
           }
           this.loanPayManager.push(loanpayView)
         })
@@ -67,12 +87,12 @@ export class LoanPayManagerListComponent implements OnInit {
     )
   }
 
-//  add
+ // add
   onAddNewLoanpay() {
     let list:ListBook[] = [
       {
         call_card_details_id: this.loanpayInfoForm.value.call_card_details_id,
-        book_name: this.loanpayInfoForm.value.book_name,
+        book_id: this.loanpayInfoForm.value.book_id,
         amount: this.loanpayInfoForm.value.amount,
       }
     ]
@@ -84,7 +104,9 @@ export class LoanPayManagerListComponent implements OnInit {
       note: this.loanpayInfoForm.value.note,
       staff_id: this.loanpayInfoForm.value.staff_id,
       list_book: list,
-      card_number: this.loanpayInfoForm.value.card_number
+      status:this.loanpayInfoForm.value.status,
+      account_id: this.loanpayInfoForm.value.account_id
+
     }
 
     this.loanpayApiService._createNewLoanpay(createNewLoanpayRequest).subscribe(
@@ -122,14 +144,16 @@ export class LoanPayManagerListComponent implements OnInit {
     this.loanpaySelected = i
     this.loanpayInfoForm.patchValue(
       {
-        note: i.note,
-        status: i.status,
         call_card_id: i.call_card_id,
-        call_card_details_id: i.call_card_details_id,
-        card_number: i.card_number,
+        username: i.username,
         staff_id: i.staff_id,
+        name_staff: i.name_staff,
+        status: i.status,
+        call_card_details_id: i.call_card_details_id,
+        note: i.note,
         start_date: i.start_date,
-        end_date: i.end_date
+        end_date: i.end_date,
+        account_id: i.account_id
         // category_name: i.category_name,
       }
     )
@@ -139,7 +163,7 @@ export class LoanPayManagerListComponent implements OnInit {
     let list:ListBook[] = [
       {
         call_card_details_id: this.loanpayInfoForm.value.call_card_details_id,
-        book_name: this.loanpayInfoForm.value.book_name,
+        book_id: this.loanpayInfoForm.value.book_id,
         amount: this.loanpayInfoForm.value.amount,
       }
     ]
@@ -151,7 +175,8 @@ export class LoanPayManagerListComponent implements OnInit {
       note: this.loanpayInfoForm.value.note,
       staff_id: this.loanpayInfoForm.value.staff_id,
       list_book: list,
-      card_number: this.loanpayInfoForm.value.card_number
+      card_number: this.loanpayInfoForm.value.card_number,
+      account_id: this.loanpayInfoForm.value.account_id
     }
 
     this.loanpayApiService._editLoanpay(editLoanpayRequest).subscribe(
@@ -170,27 +195,61 @@ export class LoanPayManagerListComponent implements OnInit {
     this.loanpaySelected = i
   }
 
-  //get book_name
-  getAllBook() {
-    this.BookApiService._getAllBook().subscribe(
-      (res: IResponseModel<IBookManagerResponse[]>) => {
+  //get detailes : book_name,amount
+  getAllDetailes() {
+    this.DetailesApiService._getAllDetailes().subscribe(
+      (res: IResponseModel<IDetailesResponses[]>) => {
         console.log(res)
-        this.listBookName = []
-        res.data.forEach(bookManagerRes => {
-          const bookManagerView: IBookManagerView = {
-            book_id: bookManagerRes.book_id,
-            book_name:bookManagerRes.book_name,
-            name_author:bookManagerRes.author_name,
-            publishing_year:bookManagerRes.publishing_year,
-            page_number:bookManagerRes.page_number,
-            image:bookManagerRes.image,
-            price:bookManagerRes.price,
-            category_name:bookManagerRes.category_name,
-            publish_name:bookManagerRes.publish_name,
-            amount:bookManagerRes.amount,
-            status:bookManagerRes.status,
+        this.listDetailes = []
+        res.data.forEach(detailesRes => {
+          const detailesView: IDetailesView = {
+            call_card_details_id: detailesRes.call_card_details_id,
+            book_id: detailesRes.book_id,
+            book_name: detailesRes.book_name,
+            amount: detailesRes.amount
+            // status:bookManagerRes.status,
           }
-          this.listBookName.push(bookManagerView)
+          this.listDetailes.push(detailesView)
+        })
+      }
+    )
+  }
+
+//  getAll account
+  getAllAccountManager() {
+    this.AccountApiService._getAllAccountManager().subscribe(
+      (res: IResponseModel<IAccountManagerResponse[]>) => {
+        this.listAccount = [];
+        res.data.forEach(accountManagerRes => {
+          const accountManagerView: IAccountManagerView = {
+            id: accountManagerRes.account_id,
+            username: accountManagerRes.username,
+            full_name: accountManagerRes.full_name,
+            date_of_birth: accountManagerRes.date_of_birth,
+            email: accountManagerRes.email,
+            phone: accountManagerRes.phone,
+            role_id: accountManagerRes.code_role
+          };
+          this.listAccount.push(accountManagerView)
+        })
+      }
+    )
+  }
+
+//  getAll staff
+  getAllStaffManager() {
+    this.StaffManagerApiService._getAllStaffManager().subscribe(
+      (res: IResponseModel<IStaffManagerResponse[]>)  => {
+        this.listStaff = [];
+        res.data.forEach( staffManagerRes => {
+          const staffManagerView: IStaffManagerView = {
+            id: staffManagerRes.staff_id,
+            name: staffManagerRes.name_staff,
+            phoneNum: staffManagerRes.phone_number,
+            address: staffManagerRes.address,
+            dateOfBirth: staffManagerRes.date_of_birth
+          };
+          this.listStaff.push(staffManagerView)
         })
       }
     )

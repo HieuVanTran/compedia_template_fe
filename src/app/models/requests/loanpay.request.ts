@@ -6,12 +6,13 @@ export interface ILoanpayRequest{
   staff_id: number,
   start_date: string,
   end_date: string,
-  card_number: string
+  account_id: number
+
 }
 
 export interface ListBook {
   call_card_details_id: number,
-  book_name: string,
+  book_id: string,
   amount: number,
 }
 
@@ -23,6 +24,8 @@ export interface IEditLoanpayRequest{
   staff_id: number,
   start_date: string,
   end_date: string,
-  card_number: string
+  card_number: string,
+  account_id: number
+
 }
 
