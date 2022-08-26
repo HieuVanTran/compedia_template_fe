@@ -3,11 +3,9 @@ import {FormBuilder, FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { IResponseModel } from 'src/app/models/commons/response.model';
 import {IEditLoanpayRequest, ILoanpayRequest, ListBook } from 'src/app/models/requests/loanpay.request';
-import { IBookManagerResponse } from 'src/app/models/responses/book-manager.response';
 import { IDetailesResponses } from 'src/app/models/responses/detailes.responses';
 import { ILoanpayResponse } from 'src/app/models/responses/loanpay.response';
 import { IAccountManagerView } from 'src/app/models/views/account-manager.view';
-import { IBookManagerView } from 'src/app/models/views/book-manager.view';
 import { IDetailesView } from 'src/app/models/views/detailes.view';
 import { ILoanpayView } from 'src/app/models/views/loanpay.view';
 import { LoanpayApiService } from 'src/app/services/api/loanpay-api.service';
@@ -34,9 +32,9 @@ export class LoanPayManagerListComponent implements OnInit {
 
   constructor(private loanpayApiService: LoanpayApiService,
               private messageService: MessageService,
-              private DetailesApiService: DetailesApiService,
-              private AccountApiService : AccountApiService,
-              private StaffManagerApiService: StaffManagerApiService,
+              private detailesApiService: DetailesApiService,
+              private accountApiService : AccountApiService,
+              private staffManagerApiService: StaffManagerApiService,
               private fb: FormBuilder,
               ) {
     this.loanpayInfoForm = fb.group({
@@ -50,8 +48,7 @@ export class LoanPayManagerListComponent implements OnInit {
       start_date: [null],
       end_date: [null],
       call_card_id: [null],
-      account: [null]
-
+      account_id: [null]
     })
   }
 
@@ -79,7 +76,6 @@ export class LoanPayManagerListComponent implements OnInit {
             start_date: loanpayRes.start_date,
             end_date: loanpayRes.end_date,
             account_id: loanpayRes.account_id
-
           }
           this.loanPayManager.push(loanpayView)
         })
@@ -99,14 +95,11 @@ export class LoanPayManagerListComponent implements OnInit {
 
     const createNewLoanpayRequest: ILoanpayRequest = {
       call_card_id: this.loanpayInfoForm.value.call_card_id,
-      start_date: this.loanpayInfoForm.value.start_date,
       end_date: this.loanpayInfoForm.value.end_date,
       note: this.loanpayInfoForm.value.note,
       staff_id: this.loanpayInfoForm.value.staff_id,
       list_book: list,
-      status:this.loanpayInfoForm.value.status,
       account_id: this.loanpayInfoForm.value.account_id
-
     }
 
     this.loanpayApiService._createNewLoanpay(createNewLoanpayRequest).subscribe(
@@ -170,12 +163,10 @@ export class LoanPayManagerListComponent implements OnInit {
 
     const editLoanpayRequest: IEditLoanpayRequest = {
       call_card_id: this.loanpayInfoForm.value.call_card_id,
-      start_date: this.loanpayInfoForm.value.start_date,
       end_date: this.loanpayInfoForm.value.end_date,
       note: this.loanpayInfoForm.value.note,
       staff_id: this.loanpayInfoForm.value.staff_id,
       list_book: list,
-      card_number: this.loanpayInfoForm.value.card_number,
       account_id: this.loanpayInfoForm.value.account_id
     }
 
@@ -197,7 +188,7 @@ export class LoanPayManagerListComponent implements OnInit {
 
   //get detailes : book_name,amount
   getAllDetailes() {
-    this.DetailesApiService._getAllDetailes().subscribe(
+    this.detailesApiService._getAllDetailes().subscribe(
       (res: IResponseModel<IDetailesResponses[]>) => {
         console.log(res)
         this.listDetailes = []
@@ -217,7 +208,7 @@ export class LoanPayManagerListComponent implements OnInit {
 
 //  getAll account
   getAllAccountManager() {
-    this.AccountApiService._getAllAccountManager().subscribe(
+    this.accountApiService._getAllAccountManager().subscribe(
       (res: IResponseModel<IAccountManagerResponse[]>) => {
         this.listAccount = [];
         res.data.forEach(accountManagerRes => {
@@ -238,7 +229,7 @@ export class LoanPayManagerListComponent implements OnInit {
 
 //  getAll staff
   getAllStaffManager() {
-    this.StaffManagerApiService._getAllStaffManager().subscribe(
+    this.staffManagerApiService._getAllStaffManager().subscribe(
       (res: IResponseModel<IStaffManagerResponse[]>)  => {
         this.listStaff = [];
         res.data.forEach( staffManagerRes => {

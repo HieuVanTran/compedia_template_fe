@@ -9,5 +9,6 @@ export interface IBookManagerView {
   category_name: string,
   publish_name: string,
   amount: string,
-  status:string
+  status:string,
+  note: string
 }
