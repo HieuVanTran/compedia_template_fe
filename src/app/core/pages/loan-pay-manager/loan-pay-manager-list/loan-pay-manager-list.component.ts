@@ -174,12 +174,10 @@ export class LoanPayManagerListComponent implements OnInit {
 
     const editLoanpayRequest: IEditLoanpayRequest = {
       call_card_id: this.loanpayInfoForm.value.call_card_id,
-
       end_date: this.loanpayInfoForm.value.end_date,
       note: this.loanpayInfoForm.value.note,
       staff_id: this.loanpayInfoForm.value.staff_id,
       list_book: list,
-      card_number: this.loanpayInfoForm.value.card_number,
       account_id: this.loanpayInfoForm.value.account_id
     }
 

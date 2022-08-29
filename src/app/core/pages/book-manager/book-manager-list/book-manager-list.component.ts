@@ -255,3 +255,5 @@ export class BookManagerListComponent implements OnInit {
     console.log(this.uploadFile)
   }
 }
+
+

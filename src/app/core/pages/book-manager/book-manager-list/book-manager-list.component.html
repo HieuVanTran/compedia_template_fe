@@ -7,9 +7,44 @@
           <div class="col-md-9">
             <h4 class="card-title">QUẢN LÝ SÁCH</h4>
           </div>
+
           <div class="col-md-3 d-flex justify-content-end" style="padding-bottom: 12px">
             <a class="btn btn-info text-light" type="button" data-toggle="modal"
                data-target="#exampleModal-bookmanager-new">Thêm mới <span><i class="fa-solid fa-plus" (click)="bookmanagerInfoForm.reset()"></i></span></a>
+          </div>
+          <div class="search">
+            <ul>
+              <li>
+                <input class="form-control" type="text" placeholder="Nhập tên sách">
+              </li>
+              <li>
+                <select class="form-control">
+                  <option>Thể loại sách</option>
+                  <option *ngFor="let bookCategory of listBookCategory" value="{{bookCategory.id}}">
+                    <span>{{bookCategory.category_name}}</span>
+                  </option>
+              </select>
+              </li>
+              <li>
+                <select class="form-control">
+                <option>Tác giả</option>
+                  <option *ngFor="let bookAuthor of listAuthor" value="{{bookAuthor.id}}">
+                    <span>{{bookAuthor.name_author}}</span>
+                  </option>
+              </select>
+              </li>
+              <li>
+                <select class="form-control">
+                <option>Nhà xuất bản</option>
+                  <option *ngFor="let company of listpublishingCompany" value="{{company.id}}">
+                    <span>{{company.name}}</span>
+                  </option>
+              </select>
+              </li>
+              <li>
+                <a class="btn btn-info text-light" type="button" data-toggle="modal">Tìm kiếm</a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
