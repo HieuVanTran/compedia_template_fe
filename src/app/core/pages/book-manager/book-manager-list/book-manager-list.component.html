@@ -74,6 +74,7 @@
             <th pSortableColumn="page_number">SỐ TRANG<p-sortIcon field="page_number"></p-sortIcon></th>
             <th pSortableColumn="publish_name">NHÀ XB<p-sortIcon field="publish_name"></p-sortIcon></th>
             <th pSortableColumn="publishing_year">NĂM XB<p-sortIcon field="publishing_year"></p-sortIcon></th>
+            <th pSortableColumn="note">GHI CHÚ<p-sortIcon field="note"></p-sortIcon></th>
             <th pSortableColumn="amount">SỐ LƯỢNG<p-sortIcon field="amount"></p-sortIcon></th>
             <th pSortableColumn="status">TRẠNG THÁI<p-sortIcon field="status"></p-sortIcon></th>
             <th>THAO TÁC</th>
@@ -91,6 +92,7 @@
             <td>{{i.page_number}}</td>
             <td>{{i.publish_name}}</td>
             <td>{{i.publishing_year}}</td>
+            <td>{{i.note}}</td>
             <td>{{i.amount}}</td>
             <td>{{i.status}}</td>
             <td>
@@ -182,6 +184,12 @@
                   <input type="text" class="form-control"  formControlName="amount">
                 </div>
               </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Ghi chú<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control"  formControlName="note">
+                </div>
+              </div>
             </div>
             <div class="modal-footer border-0">
               <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onAddNewBook()" data-dismiss="modal">Thêm mới</button>
@@ -267,6 +275,12 @@
                 <label for="amount" class="col-sm-3 col-form-label">Số lượng <span style="color: red">*</span></label>
                 <div class="col-sm-9">
                   <input type="number" class="form-control" id="amount" formControlName="amount">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Ghi chú<span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control"  formControlName="note">
                 </div>
               </div>
             </div>

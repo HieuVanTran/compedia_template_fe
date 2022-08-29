@@ -1,21 +1,24 @@
 export interface ILoanpayRequest{
-  account_id: number,
-  amount: number,
-  book_id: number,
-  call_card_id: number,
-  end_date: string,
   note: string,
-  staff_id: number
+  call_card_id?: number,
+  list_book: ListBook[],
+  staff_id: number,
+  end_date: string,
+  account_id: number
+}
+
+export interface ListBook {
+  call_card_details_id: number,
+  book_id: string,
+  amount: number,
 }
 
 export interface IEditLoanpayRequest{
-  account_id: number,
-  amount: number,
-  book_id: number,
-  call_card_id: number,
-  end_date: string,
   note: string,
-  staff_id: number
-
+  call_card_id?: number,
+  list_book: ListBook[],
+  staff_id: number,
+  end_date: string,
+  account_id: number
 }
 

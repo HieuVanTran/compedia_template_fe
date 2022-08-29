@@ -9,6 +9,7 @@ export interface IBookManagerResponse {
   amount: string,
   status: string,
   publish_name: string,
-  image: string
+  image: string,
+  note: string
 }
 
