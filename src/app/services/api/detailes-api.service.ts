@@ -23,3 +23,4 @@ export class DetailesApiService {
     return this.http.get<IResponseModel<IDetailesResponses[]>>(url)
   }
 }
+

@@ -35,4 +35,5 @@ export class LoanpayApiService {
     const url = `${this.api}/call-card`
     return this.http.put<IResponseModel<any>>(url, requestBody)
   }
+
 }
