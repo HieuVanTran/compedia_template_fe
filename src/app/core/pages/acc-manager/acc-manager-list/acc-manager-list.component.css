@@ -13,5 +13,23 @@ td i {
 }
 
 
+.search {
+  width: 100%
+}
+
+.search ul {
+  list-style-type: none;
+  padding-left: 16px;
+}
+
+.search li {
+  display: inline-block;
+  padding-right: 8px
+}
+
+.search .btn {
+  padding: 5px 18px
+}
+
 
 

@@ -9,6 +9,30 @@
           <div class="col-md-3 d-flex justify-content-end" style="padding-bottom: 12px">
             <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="accountInfoForm.reset()" data-target="#exampleModal-accmanager-new">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
           </div>
+          <div class="search">
+            <ul>
+              <li>
+                <input class="form-control" type="text" placeholder="Tên đăng nhập">
+              </li>
+              <li>
+                <input class="form-control" type="text" placeholder="Tên đầy đủ">
+              </li>
+              <li>
+                <input class="form-control" type="text" placeholder="Email">
+              </li>
+              <li>
+                <select class="form-control">
+                  <option>Role</option>
+                  <option *ngFor="let roleID of listRoleManager" value="{{roleID.id}}">
+                    <span>{{roleID.code}}</span>
+                  </option>
+                </select>
+              </li>
+              <li>
+                <a class="btn btn-info text-light" type="button" data-toggle="modal">Tìm kiếm</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <!--        <div class="card-content">-->

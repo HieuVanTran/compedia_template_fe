@@ -9,6 +9,22 @@
           <div class="col-md-3 d-flex justify-content-end" style="padding-bottom: 12px">
             <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="staffManagerInfoForm.reset()"  data-target="#exampleModal-staffmanager-new" >Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
           </div>
+          <div class="search">
+            <ul>
+              <li>
+                <input class="form-control" type="text" placeholder="Tên đầy đủ">
+              </li>
+              <li>
+                <input class="form-control" type="text" placeholder="Số điện thoại">
+              </li>
+              <li>
+                <input class="form-control" type="text" placeholder="Địa chỉ">
+              </li>
+              <li>
+                <a class="btn btn-info text-light" type="button" data-toggle="modal">Tìm kiếm</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <!--        <div class="card-content">-->
@@ -50,7 +66,7 @@
         <ng-template pTemplate="header" class="dark">
           <tr>
             <th>STT</th>
-            <th pSortableColumn="name">TÊN ĐĂNG NHẬP<p-sortIcon field="name"></p-sortIcon></th>
+            <th pSortableColumn="name">TÊN ĐẦY ĐỦ<p-sortIcon field="name"></p-sortIcon></th>
             <th pSortableColumn="phoneNum">SỐ ĐIỆN THOẠI<p-sortIcon field="phoneNum"></p-sortIcon></th>
             <th pSortableColumn="address">ĐỊA CHỈ<p-sortIcon field="address"></p-sortIcon></th>
             <th pSortableColumn="dateOfBirth">NGÀY SINH<p-sortIcon field="dateOfBirth"></p-sortIcon></th>

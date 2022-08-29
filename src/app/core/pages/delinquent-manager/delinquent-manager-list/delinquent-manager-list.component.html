@@ -10,6 +10,24 @@
           <div class="col-md-3 d-flex justify-content-end" style="padding-bottom: 12px">
             <a class="btn btn-info text-light" type="button" data-toggle="modal" data-target="#exampleModal-collect-money-new" (click)="moneyInfoForm.reset()">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
           </div>
+          <div class="search">
+            <ul>
+              <li>
+                <input class="form-control" type="text" placeholder="Tên người vi phạm">
+              </li>
+              <li>
+                <select class="form-control">
+                  <option>Tên nhân viên</option>
+                  <option *ngFor="let staff of listStaffManager" value="{{staff.id}}">
+                    <span>{{staff.name}}</span>
+                  </option>
+                </select>
+              </li>
+              <li>
+                <a class="btn btn-info text-light" type="button" data-toggle="modal">Tìm kiếm</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <!--        <div class="card-content">-->
@@ -56,7 +74,7 @@
             <th pSortableColumn="fullname">TÊN<p-sortIcon field="fullname"></p-sortIcon></th>
             <th pSortableColumn="finedAmount">SỐ TIỀN BỊ PHẠT<p-sortIcon field="finedAmount"></p-sortIcon></th>
             <th pSortableColumn="proceeds">SỐ TIỀN ĐÃ NỘP<p-sortIcon field="proceeds"></p-sortIcon></th>
-            <th pSortableColumn="staffId">MÃ NHÂN VIÊN<p-sortIcon field="staffId"></p-sortIcon></th>
+            <th pSortableColumn="staffId">TÊN NHÂN VIÊN<p-sortIcon field="staffId"></p-sortIcon></th>
             <th pSortableColumn="userId">MÃ THẺ THƯ VIỆN<p-sortIcon field="userId"></p-sortIcon></th>
             <th>THAO TÁC</th>
           </tr>
@@ -110,7 +128,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Mã Nhân Viên <span style="color: red">*</span></label>
+                <label class="col-sm-3 col-form-label">Tên Nhân Viên <span style="color: red">*</span></label>
                 <div class="col-sm-9">
                   <select class="form-control" formControlName="staffId">
                     <option *ngFor="let staff of listStaffManager" value="{{staff.id}}">
@@ -120,7 +138,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label  class="col-sm-3 col-form-label">Mã Thẻ thư viện <span style="color: red">*</span></label>
+                <label  class="col-sm-3 col-form-label">Mã Thẻ Thư viện <span style="color: red">*</span></label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control"  formControlName="userId">
                 </div>
@@ -164,7 +182,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="id_staff" class="col-sm-3 col-form-label">Mã Nhân Viên <span style="color: red">*</span></label>
+                <label class="col-sm-3 col-form-label">Tên Nhân Viên <span style="color: red">*</span></label>
                 <div class="col-sm-9">
                   <select class="form-control" formControlName="staffId">
                     <option *ngFor="let staff of listStaffManager" value="{{staff.id}}">
@@ -174,7 +192,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="id_staff12" class="col-sm-3 col-form-label">Mã Thẻ thư viện <span style="color: red">*</span></label>
+                <label for="id_staff12" class="col-sm-3 col-form-label">Mã Thẻ Thư viện <span style="color: red">*</span></label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control" id="id_staff12" formControlName="userId">
                 </div>
