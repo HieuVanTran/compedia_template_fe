@@ -189,16 +189,17 @@ export class LoanPayManagerListComponent implements OnInit {
         res.data.forEach(bookManagerRes => {
           const bookManagerView: IBookManagerView = {
             book_id: bookManagerRes.book_id,
-            book_name:bookManagerRes.book_name,
-            name_author:bookManagerRes.name_author,
-            publishing_year:bookManagerRes.publishing_year,
-            page_number:bookManagerRes.page_number,
-            image:bookManagerRes.image,
-            price:bookManagerRes.price,
-            category_name:bookManagerRes.category_name,
-            publish_name:bookManagerRes.publish_name,
-            amount:bookManagerRes.amount,
-            status:bookManagerRes.status,
+            book_name: bookManagerRes.book_name,
+            name_author: bookManagerRes.name_author,
+            publishing_year: bookManagerRes.publishing_year,
+            page_number: bookManagerRes.page_number,
+            image: bookManagerRes.image,
+            price: bookManagerRes.price,
+            category_name: bookManagerRes.category_name,
+            publish_name: bookManagerRes.publish_name,
+            amount: bookManagerRes.amount,
+            status: bookManagerRes.status,
+            note: bookManagerRes.note
           }
           this.listBook.push(bookManagerView)
         })
