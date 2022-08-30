@@ -4,5 +4,6 @@ export interface ICollectMoneyView {
   fullName: string,
   id: number,
   proceeds: string,
-  staffId:string
+  staffId:string,
+  username: string
 }

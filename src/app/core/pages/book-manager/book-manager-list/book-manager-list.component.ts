@@ -57,6 +57,11 @@ export class BookManagerListComponent implements OnInit {
     this.getAllBookCategory()
     this.getAllBookAuthor()
     this.getAllPublishCompany()
+    this.loadData()
+  }
+
+  loadData() {
+
   }
 
   getAllBook() {

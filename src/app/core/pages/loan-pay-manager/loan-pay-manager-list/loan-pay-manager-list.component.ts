@@ -4,7 +4,6 @@ import { MessageService } from 'primeng/api';
 import { IResponseModel } from 'src/app/models/commons/response.model';
 import {IEditLoanpayRequest, ILoanpayRequest } from 'src/app/models/requests/loanpay.request';
 import { IBookManagerResponse } from 'src/app/models/responses/book-manager.response';
-import { IDetailesResponses } from 'src/app/models/responses/detailes.responses';
 import { ILoanpayResponse } from 'src/app/models/responses/loanpay.response';
 import { IAccountManagerView } from 'src/app/models/views/account-manager.view';
 import { IBookManagerView } from 'src/app/models/views/book-manager.view';
@@ -52,7 +51,6 @@ export class LoanPayManagerListComponent implements OnInit {
       end_date: [null],
       call_card_id: [null],
       account_id: [null]
-
     })
   }
 

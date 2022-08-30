@@ -16,6 +16,9 @@
                 <input class="form-control" type="text" placeholder="Tên người vi phạm">
               </li>
               <li>
+                <input class="form-control" type="text" placeholder="Tên đăng nhập">
+              </li>
+              <li>
                 <select class="form-control">
                   <option>Tên nhân viên</option>
                   <option *ngFor="let staff of listStaffManager" value="{{staff.id}}">
@@ -71,11 +74,11 @@
         <ng-template pTemplate="header" class="dark">
           <tr>
             <th>STT</th>
-            <th pSortableColumn="fullname">TÊN<p-sortIcon field="fullname"></p-sortIcon></th>
+            <th pSortableColumn="username">TÊN ĐĂNG NHẬP<p-sortIcon field="username"></p-sortIcon></th>
+            <th pSortableColumn="fullName">TÊN<p-sortIcon field="fullName"></p-sortIcon></th>
             <th pSortableColumn="finedAmount">SỐ TIỀN BỊ PHẠT<p-sortIcon field="finedAmount"></p-sortIcon></th>
             <th pSortableColumn="proceeds">SỐ TIỀN ĐÃ NỘP<p-sortIcon field="proceeds"></p-sortIcon></th>
             <th pSortableColumn="staffId">TÊN NHÂN VIÊN<p-sortIcon field="staffId"></p-sortIcon></th>
-            <th pSortableColumn="userId">MÃ THẺ THƯ VIỆN<p-sortIcon field="userId"></p-sortIcon></th>
             <th>THAO TÁC</th>
           </tr>
         </ng-template>
@@ -84,11 +87,11 @@
         <ng-template pTemplate="body" let-i let-rowIndex="rowIndex">
           <tr >
             <td>{{rowIndex +1}}</td>
+            <td>{{i.username}}</td>
             <td class="text-bold-500">{{i.fullName}}</td>
             <td>{{i.finedAmount}}</td>
             <td>{{i.proceeds}}</td>
             <td>{{i.staffId}}</td>
-            <td>{{i.userId}}</td>
             <td>
               <a type="button" data-toggle="modal" data-target="#exampleModal-collect-money" (click)="editCollectMoney(i)"><i class="fa-solid fa-pen-to-square"></i></a>
               <a type="button" data-toggle="modal" data-target="#delete-collect-money" (click)="selectCollectMoney(i)"><i class="fa-solid fa-trash-can"></i></a>
@@ -109,12 +112,15 @@
             </div>
             <div class="modal-body">
               <div class="form-group row">
-                <label for="name1" class="col-sm-3 col-form-label">Tên <span style="color: red">*</span></label>
+                <label class="col-sm-3 col-form-label">Tên Tài Khoản <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="name1" formControlName="fullName">
+                  <select class="form-control" formControlName="userId">
+                    <option *ngFor="let username of listAccount" value="{{username.id}}">
+                      <span>{{username.username}}</span>
+                    </option>
+                  </select>
                 </div>
               </div>
-
               <div class="form-group row">
                 <label for="forfeit1" class="col-sm-3 col-form-label">Số Tiền Bị Phạt <span style="color: red">*</span></label>
                 <div class="col-sm-9">
@@ -137,13 +143,7 @@
                   </select>
                 </div>
               </div>
-              <div class="form-group row">
-                <label  class="col-sm-3 col-form-label">Mã Thẻ Thư viện <span style="color: red">*</span></label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control"  formControlName="userId">
-                </div>
-              </div>
-            </div>
+
             <div class="modal-footer border-0">
               <button type="button" class="btn btn-primary" style="font-size: 18px"  data-dismiss="modal" (click)="onAddNewCollectMoney()">Thêm mới</button>
             </div>
@@ -156,29 +156,32 @@
         <div class="modal-dialog modal-lg" [formGroup]="moneyInfoForm">
           <div class="modal-content border-0">
             <div class="modal-header" style="background: #2C3333">
-              <h5 class="modal-title" id="exampleModalLabel" style="color: white">Chỉnh sửa</h5>
+              <h5 class="modal-title" style="color: white">Chỉnh sửa </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true" style="color: white">&times;</span>
               </button>
             </div>
             <div class="modal-body">
               <div class="form-group row">
-                <label for="name" class="col-sm-3 col-form-label">Tên <span style="color: red">*</span></label>
+                <label class="col-sm-3 col-form-label">Tên Tài Khoản <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="name" formControlName="fullName">
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <label for="forfeit" class="col-sm-3 col-form-label">Số Tiền Bị Phạt <span style="color: red">*</span></label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" id="forfeit" formControlName="finedAmount" >
+                  <select class="form-control" formControlName="userId">
+                    <option *ngFor="let username of listAccount" value="{{username.id}}">
+                      <span>{{username.username}}</span>
+                    </option>
+                  </select>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="monney" class="col-sm-3 col-form-label">Số Tiền Đã Nộp <span style="color: red">*</span></label>
+                <label for="forfeit1" class="col-sm-3 col-form-label">Số Tiền Bị Phạt <span style="color: red">*</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="monney" formControlName="proceeds">
+                  <input type="text" class="form-control"  formControlName="finedAmount">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="monney1" class="col-sm-3 col-form-label">Số Tiền Đã Nộp <span style="color: red">*</span></label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control"  formControlName="proceeds">
                 </div>
               </div>
               <div class="form-group row">
@@ -191,15 +194,10 @@
                   </select>
                 </div>
               </div>
-              <div class="form-group row">
-                <label for="id_staff12" class="col-sm-3 col-form-label">Mã Thẻ Thư viện <span style="color: red">*</span></label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" id="id_staff12" formControlName="userId">
-                </div>
+
+              <div class="modal-footer border-0">
+                <button type="button" class="btn btn-primary" style="font-size: 18px"  data-dismiss="modal" (click)="onEditCollectMoney()">Cập nhật</button>
               </div>
-            </div>
-            <div class="modal-footer border-0">
-              <button type="button" class="btn btn-primary" style="font-size: 18px"  data-dismiss="modal" (click)="onEditCollectMoney()">Cập Nhật</button>
             </div>
           </div>
         </div>

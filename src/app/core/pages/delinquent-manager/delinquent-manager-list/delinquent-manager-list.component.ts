@@ -9,6 +9,9 @@ import {MessageService} from "primeng/api";
 import {IStaffManagerView} from "../../../../models/views/staff-manager.view";
 import {StaffManagerApiService} from "../../../../services/api/staff-manager-api.service";
 import {IStaffManagerResponse} from "../../../../models/responses/staff-manager.response";
+import {IAccountManagerView} from "../../../../models/views/account-manager.view";
+import {IAccountManagerResponse} from "../../../../models/responses/account-manager.response";
+import {AccountApiService} from "../../../../services/api/account-api.service";
 
 @Component({
   selector: 'app-delinquent-manager-list',
@@ -21,13 +24,14 @@ export class DelinquentManagerListComponent implements OnInit {
   moneyInfoForm!: FormGroup;
   collectMoneySelected!: ICollectMoneyView;
   listStaffManager: IStaffManagerView[] = [];
+  listAccount: IAccountManagerView[] = [];
 
   constructor(private collectMoneyApiService: CollectMoneyApiService,
               private fb:FormBuilder,
               private messageService: MessageService,
-              private staffManagerApiService: StaffManagerApiService) {
+              private staffManagerApiService: StaffManagerApiService,
+              private accountApiService: AccountApiService) {
     this.moneyInfoForm = fb.group({
-      fullName: [null],
       finedAmount: [null],
       proceeds: [null],
       staffId: [null],
@@ -36,7 +40,8 @@ export class DelinquentManagerListComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getAllCollectMoney();
-    this.getAllStaffManager()
+    this.getAllStaffManager();
+    this.getAllAccountManager()
   }
 
   getAllCollectMoney() {
@@ -50,7 +55,8 @@ export class DelinquentManagerListComponent implements OnInit {
             finedAmount: collectMoneyRes.fined_amount,
             proceeds: collectMoneyRes.proceeds,
             staffId: collectMoneyRes.staff_name,
-            userId: collectMoneyRes.user_name
+            userId: collectMoneyRes.account_id,
+            username: collectMoneyRes.user_name
           };
           this.delinquentManager.push(collectMoneyView)
         })
@@ -60,11 +66,10 @@ export class DelinquentManagerListComponent implements OnInit {
 
   onAddNewCollectMoney() {
     const createNewCollectMoneyRequest: ICollectMoneyRequests = {
-      full_name: this.moneyInfoForm.value.fullName,
       fined_amount: this.moneyInfoForm.value.finedAmount,
       proceeds: this.moneyInfoForm.value.proceeds,
       staff_id: this.moneyInfoForm.value.staffId,
-      user_id: this.moneyInfoForm.value.userId
+      account_id: this.moneyInfoForm.value.userId
     };
     this.collectMoneyApiService._createNewCollectMoney(createNewCollectMoneyRequest).subscribe(
       (res: IResponseModel<any>) => {
@@ -99,10 +104,9 @@ export class DelinquentManagerListComponent implements OnInit {
   onEditCollectMoney() {
     const editCollectMoneyRequests: IEditCollectMoneyRequests = {
       fined_amount: this.moneyInfoForm.value.finedAmount,
-      full_name: this.moneyInfoForm.value.fullName,
       proceeds: this.moneyInfoForm.value.proceeds,
       staff_id: this.moneyInfoForm.value.staffId,
-      user_id: this.moneyInfoForm.value.userId,
+      account_id: this.moneyInfoForm.value.userId,
       id: this.collectMoneySelected.id
     };
     this.collectMoneyApiService._editCollectMoney(editCollectMoneyRequests).subscribe(
@@ -126,7 +130,8 @@ export class DelinquentManagerListComponent implements OnInit {
         finedAmount: i.finedAmount,
         fullName: i.fullName,
         proceeds: i.proceeds,
-        staffId: i.staffId
+        staffId: i.staffId,
+        username: i.username
     })
   }
 
@@ -147,6 +152,26 @@ export class DelinquentManagerListComponent implements OnInit {
             dateOfBirth: staffManagerRes.date_of_birth
           };
           this.listStaffManager.push(staffManagerView)
+        })
+      }
+    )
+  }
+
+  getAllAccountManager() {
+    this.accountApiService._getAllAccountManager().subscribe(
+      (res: IResponseModel<IAccountManagerResponse[]>) => {
+        this.listAccount = [];
+        res.data.forEach(accountManagerRes => {
+          const accountManagerView: IAccountManagerView = {
+            id: accountManagerRes.account_id,
+            username: accountManagerRes.username,
+            full_name: accountManagerRes.full_name,
+            date_of_birth: accountManagerRes.date_of_birth,
+            email: accountManagerRes.email,
+            phone: accountManagerRes.phone,
+            role_id: accountManagerRes.code_role
+          };
+          this.listAccount.push(accountManagerView)
         })
       }
     )
