@@ -9,18 +9,25 @@ td i {
 .fa-solid.fa-trash-can{
   color: red;
 }
-/*.table-responsive td i {*/
-/*  font-size: 20px;*/
-/*  padding: 8px;*/
-/*}*/
-.fa-solid.fa-eye{
-  color: #d7c067;
+.search {
+  width: 100%
 }
-.justify-content-end {
-  justify-content: flex-end !important;
-  margin-bottom: 20px;
-}
-.search_list-item{
-  display: inline-block;
+
+.search ul {
   list-style-type: none;
+  padding-left: 0;
+  margin-top: 23px;
 }
+.search li {
+  display: inline-block;
+  padding-right: 8px
+}
+
+.search .btn {
+  padding: 5px 18px
+}
+
+p-table{
+  margin-left: 15px;
+}
+

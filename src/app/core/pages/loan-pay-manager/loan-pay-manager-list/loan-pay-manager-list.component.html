@@ -4,21 +4,42 @@
       <div class="">
         <div class="row">
           <div class="col-md-9">
-            <h4 class="card-title">QUẢN LÝ MƯỢN TRẢ</h4>
+            <h4 class="card-title title_heading">QUẢN LÝ MƯỢN TRẢ</h4>
           </div>
           <div class="col-md-3 d-flex justify-content-end">
-
             <a class="btn btn-info text-light" type="button" data-toggle="modal" data-target="#exampleModal-bookmanager-new" (click)="loanpayInfoForm.reset()">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
           </div>
         </div>
       </div>
+      <div class="search">
+        <ul>
+          <li>
+            <input class="form-control" type="text" placeholder="Tên tài khoản">
+          </li>
+          <li>
+            <input class="form-control" type="text" placeholder="Tên nhân viên">
+          </li>
+          <li>
+<!--            <input class="form-control" type="text" placeholder="Trạng thái">-->
+            <select class="form-control">
+              <option>Trạng thái</option>
+              <option *ngFor="let status of loanPayManager" value="{{status.call_card_id}}">
+                <span>{{status.status}}</span>
+              </option>
+            </select>
+          </li>
+          <li>
+            <a class="btn btn-info text-light" type="button" data-toggle="modal">Tìm kiếm</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
       <p-table [value]="loanPayManager"  [paginator]="true" [rows]="10" >
         <ng-template pTemplate="header" class="dark">
           <tr>
             <th>STT</th>
-
-
             <th pSortableColumn="username">TÊN TÀI KHOẢN<p-sortIcon field="username"></p-sortIcon></th>
             <th pSortableColumn="book_name">TÊN SÁCH<p-sortIcon field="book_name"></p-sortIcon></th>
             <th pSortableColumn="amount">SỐ LƯỢNG<p-sortIcon field="amount"></p-sortIcon></th>
@@ -27,7 +48,6 @@
             <th pSortableColumn="note">GHI CHÚ<p-sortIcon field="note"></p-sortIcon></th>
             <th pSortableColumn="status">TRẠNG THÁI<p-sortIcon field="status"></p-sortIcon></th>
             <th pSortableColumn="name_staff">TÊN NHÂN VIÊN<p-sortIcon field="name_staff"></p-sortIcon></th>
-
             <th>THAO TÁC</th>
           </tr>
         </ng-template>
@@ -222,7 +242,7 @@
 
 
     </div>
-  </div>
-</div>
+
+
 
   <p-toast></p-toast>

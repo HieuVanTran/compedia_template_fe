@@ -7,7 +7,6 @@ import { IBookManagerResponse } from 'src/app/models/responses/book-manager.resp
 import { ILoanpayResponse } from 'src/app/models/responses/loanpay.response';
 import { IAccountManagerView } from 'src/app/models/views/account-manager.view';
 import { IBookManagerView } from 'src/app/models/views/book-manager.view';
-
 import { ILoanpayView } from 'src/app/models/views/loanpay.view';
 import { LoanpayApiService } from 'src/app/services/api/loanpay-api.service';
 import {BookApiService} from 'src/app/services/api/book-api.service';
