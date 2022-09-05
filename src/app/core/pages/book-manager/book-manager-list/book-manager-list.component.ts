@@ -37,6 +37,7 @@ export class BookManagerListComponent implements OnInit {
   size: number = Constant.SIZE_INIT
   categoryId!: number
   authorId!: number
+  publishId!: number
   constructor(private BookApiService: BookApiService,
               private fb: FormBuilder,
               private categoryApiService: CategoryApiService,
@@ -273,7 +274,8 @@ export class BookManagerListComponent implements OnInit {
       page: this.page,
       size: this.size,
       categoryId: this.categoryId,
-      authorId: this.authorId
+      authorId: this.authorId,
+      publishId: this.publishId
     }
     console.log(searchRequest)
     this.BookApiService._searchBook(searchRequest).subscribe(
