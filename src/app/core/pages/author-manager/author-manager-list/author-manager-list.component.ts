@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {IResponseModel} from "../../../../models/commons/response.model";
+import {IPageResponseModel, IResponseModel} from "../../../../models/commons/response.model";
 import {IBookAuthorResponse} from "../../../../models/responses/book-author.response";
 import {IBookAuthorView} from "../../../../models/views/book-author.view";
 import {AuthorApiService} from "../../../../services/api/author-api.service";
 import {IBookAuthorRequest, IEditBookAuthorRequest} from "../../../../models/requests/book-author.request";
 import {MessageService} from "primeng/api";
+import {IBookManagerResponse} from "../../../../models/responses/book-manager.response";
+import {IBookManagerView} from "../../../../models/views/book-manager.view";
+import {Constant} from "../../../../util/constant";
 
 @Component({
   selector: 'app-author-manager-list',
@@ -16,6 +19,11 @@ export class AuthorManagerListComponent implements OnInit {
   authorManager : IBookAuthorView[] = []
   AuthorInfoForm!: FormGroup
   bookAuthorSelected!: IBookAuthorView;
+  authorNameSearch!: string
+  page: number = Constant.PAGE_INIT
+  size: number = Constant.SIZE_INIT
+  address!: string
+  title!: string
 
 
 
@@ -39,6 +47,32 @@ export class AuthorManagerListComponent implements OnInit {
         console.log(res)
         this.authorManager = []
         res.data.forEach(bookAuthorRes => {
+          const bookAuthorView: IBookAuthorView = {
+            id: bookAuthorRes.author_id,
+            address: bookAuthorRes.address,
+            name_author: bookAuthorRes.author_name,
+            note:bookAuthorRes.note,
+            title:bookAuthorRes.title,
+          }
+          this.authorManager.push(bookAuthorView)
+        })
+      }
+    )
+  }
+  onSearchAuthor() {
+    const searchRequest = {
+      authorName: this.authorNameSearch,
+      page: this.page,
+      size: this.size,
+      address: this.address,
+      title: this.title,
+    }
+    console.log(searchRequest)
+    this.AuthorApiService._searchAuthor(searchRequest).subscribe(
+      (res: IResponseModel<IPageResponseModel<IBookAuthorResponse>>) => {
+        console.log(res)
+        this.authorManager = []
+        res.data.results.forEach(bookAuthorRes => {
           const bookAuthorView: IBookAuthorView = {
             id: bookAuthorRes.author_id,
             address: bookAuthorRes.address,
