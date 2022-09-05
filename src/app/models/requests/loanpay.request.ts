@@ -7,8 +7,6 @@ export interface ILoanpayRequest{
   note: string,
   staff_id: number
 }
-
-
 export interface IEditLoanpayRequest{
   account_id: number,
   amount: number,
@@ -17,5 +15,13 @@ export interface IEditLoanpayRequest{
   end_date: string,
   note: string,
   staff_id: number
+}
+export interface IGetAllLoanpayRequest {
+  bookName: string
+  categoryName: string,
+  page:  number,
+  size: number,
+  sort_field: string,
+  sort_order: string
 }
 

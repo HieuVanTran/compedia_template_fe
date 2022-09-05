@@ -28,7 +28,6 @@ export class LoanPayManagerListComponent implements OnInit {
   listBook: IBookManagerView []=[]
   listAccount: IAccountManagerView []=[]
   listStaff: IStaffManagerView []=[]
-  // detailesSelected!: IDetailesView
 
 
   constructor(private loanpayApiService: LoanpayApiService,
