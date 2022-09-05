@@ -15,18 +15,19 @@
           <div class="search">
             <ul>
               <li>
-                <input class="form-control" type="text" placeholder="Nhập tên sách">
+                <input class="form-control" type="text" [(ngModel)]="bookNameSearch" placeholder="Nhập tên sách">
               </li>
               <li>
-                <select class="form-control">
-                  <option>Thể loại sách</option>
-                  <option *ngFor="let bookCategory of listBookCategory" value="{{bookCategory.id}}">
+                <select class="form-control" (change)="selectCategory()" [(ngModel)]="categoryId">
+                  <option value="">Thể loại sách</option>
+                  <option *ngFor="let bookCategory of listBookCategory"
+                          value="{{bookCategory.id}}">
                     <span>{{bookCategory.category_name}}</span>
                   </option>
               </select>
               </li>
               <li>
-                <select class="form-control">
+                <select class="form-control" [(ngModel)]="authorId">
                 <option>Tác giả</option>
                   <option *ngFor="let bookAuthor of listAuthor" value="{{bookAuthor.id}}">
                     <span>{{bookAuthor.name_author}}</span>
@@ -42,7 +43,7 @@
               </select>
               </li>
               <li>
-                <a class="btn btn-info text-light" type="button" data-toggle="modal">Tìm kiếm</a>
+                <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="onSearch()">Tìm kiếm</a>
               </li>
             </ul>
           </div>
@@ -127,7 +128,7 @@
             <td>{{i.page_number}}</td>
             <td>{{i.publish_name}}</td>
             <td>{{i.publishing_year}}</td>
-            <td>{{i.note}}</td>
+            <td class="max-width__300">{{i.note}}</td>
             <td>{{i.amount}}</td>
             <td>{{i.status}}</td>
             <td>

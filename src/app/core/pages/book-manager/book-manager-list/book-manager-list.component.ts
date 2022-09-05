@@ -7,7 +7,7 @@ import {IPublishCompanyView} from "../../../../models/views/publish-company.view
 import {CategoryApiService} from "../../../../services/api/category-api.service";
 import {PublishCompanyApiService} from "../../../../services/api/publish-company-api.service";
 import {MessageService} from "primeng/api";
-import {IResponseModel} from "../../../../models/commons/response.model";
+import {IPageResponseModel, IResponseModel} from "../../../../models/commons/response.model";
 import {IBookManagerResponse} from "../../../../models/responses/book-manager.response";
 import {IBookManagerRequest, IEditBookManagerRequest} from "../../../../models/requests/book-manager.request";
 import {IBookCategoryResponse} from "../../../../models/responses/book-category.response";
@@ -15,6 +15,7 @@ import {IBookAuthorResponse} from "../../../../models/responses/book-author.resp
 import {IPublishCompanyResponse} from "../../../../models/responses/publish-company.response";
 import {BookApiService} from "../../../../services/api/book-api.service";
 import {AuthorApiService} from "../../../../services/api/author-api.service";
+import {Constant} from "../../../../util/constant";
 
 @Component({
   selector: 'app-book-manager-list',
@@ -31,6 +32,11 @@ export class BookManagerListComponent implements OnInit {
   listpublishingCompany:IPublishCompanyView[]=[];
   uploadFile!: File
   requestBookForm: FormData = new FormData()
+  bookNameSearch!: string
+  page: number = Constant.PAGE_INIT
+  size: number = Constant.SIZE_INIT
+  categoryId!: number
+  authorId!: number
   constructor(private BookApiService: BookApiService,
               private fb: FormBuilder,
               private categoryApiService: CategoryApiService,
@@ -168,6 +174,7 @@ export class BookManagerListComponent implements OnInit {
           }
           this.listAuthor.push(bookAuthorView)
         })
+        console.log(this.listAuthor)
       }
     )
   }
@@ -258,6 +265,45 @@ export class BookManagerListComponent implements OnInit {
     // @ts-ignore
     this.uploadFile = event.target?.files[0]
     console.log(this.uploadFile)
+  }
+
+  onSearch() {
+    const searchRequest = {
+      bookName: this.bookNameSearch,
+      page: this.page,
+      size: this.size,
+      categoryId: this.categoryId,
+      authorId: this.authorId
+    }
+    console.log(searchRequest)
+    this.BookApiService._searchBook(searchRequest).subscribe(
+      (res: IResponseModel<IPageResponseModel<IBookManagerResponse>>) => {
+        console.log(res)
+        this.bookManager = []
+        res.data.results.forEach(bookManagerRes => {
+          const bookManagerView: IBookManagerView = {
+            book_id: bookManagerRes.book_id,
+            book_name:bookManagerRes.book_name,
+            name_author:bookManagerRes.name_author,
+            publishing_year:bookManagerRes.publishing_year,
+            page_number:bookManagerRes.page_number,
+            image:bookManagerRes.image,
+            price:bookManagerRes.price,
+            category_name:bookManagerRes.category_name,
+            publish_name:bookManagerRes.publish_name,
+            amount:bookManagerRes.amount,
+            status:bookManagerRes.status,
+            note: bookManagerRes.note
+          }
+          this.bookManager.push(bookManagerView)
+        })
+        console.log(this.bookManager)
+      }
+    )
+  }
+
+  selectCategory() {
+    console.log(this.categoryId)
   }
 }
 

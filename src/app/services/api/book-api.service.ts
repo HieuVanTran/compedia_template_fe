@@ -2,8 +2,10 @@ import {Injectable} from "@angular/core";
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {IResponseModel} from "../../models/commons/response.model";
+import {IPageResponseModel, IResponseModel} from "../../models/commons/response.model";
 import {IBookManagerResponse} from "../../models/responses/book-manager.response";
+import {generateParams} from "../../util/public-function";
+import {Constant} from "../../util/constant";
 
 
 @Injectable({
@@ -19,6 +21,13 @@ export class BookApiService{
   _getAllBook(): Observable<IResponseModel<IBookManagerResponse[]>> {
     const url = `${this.api}/book/book`;
     return this.http.get<IResponseModel<IBookManagerResponse[]>>(url)
+  }
+
+  _searchBook(request: any): Observable<IResponseModel<IPageResponseModel<IBookManagerResponse>>> {
+    const url = `${this.api}/book/search?page=${request.page}&size=${request.size}
+    ${request.bookName? '&bookName='+request.bookName : ''}
+    ${request.categoryId? '&category_id='+request.categoryId : ''}`;
+    return this.http.get<IResponseModel<IPageResponseModel<IBookManagerResponse>>>(url)
   }
 
   _createNewBook(requestBody: FormData): Observable<IResponseModel<any>> {
