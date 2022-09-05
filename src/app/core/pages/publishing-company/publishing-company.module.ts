@@ -2,7 +2,7 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {PublishingCompanyListComponent} from "./publishing-company-list/publishing-company-list.component";
 import {PublishingCompanyRoutingModule} from "./publishing-company-routing.module";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
 import {TableModule} from "primeng/table";
@@ -13,13 +13,14 @@ import {TableModule} from "primeng/table";
     PublishingCompanyListComponent
   ],
 
-  imports: [
-    CommonModule,
-    PublishingCompanyRoutingModule,
-    ReactiveFormsModule,
-    ToastModule,
-    TableModule
-  ],
+    imports: [
+        CommonModule,
+        PublishingCompanyRoutingModule,
+        ReactiveFormsModule,
+        ToastModule,
+        TableModule,
+        FormsModule
+    ],
 
   providers: [
     MessageService

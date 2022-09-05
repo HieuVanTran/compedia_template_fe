@@ -1,7 +1,7 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
 import {StaffManagerListComponent} from "./staff-manager-list/staff-manager-list.component";
@@ -14,13 +14,14 @@ import {TableModule} from "primeng/table";
     StaffManagerListComponent
   ],
 
-  imports: [
-    CommonModule,
-    StaffManagerRoutingModule,
-    ReactiveFormsModule,
-    ToastModule,
-    TableModule
-  ],
+    imports: [
+        CommonModule,
+        StaffManagerRoutingModule,
+        ReactiveFormsModule,
+        ToastModule,
+        TableModule,
+        FormsModule
+    ],
 
   providers: [
     MessageService
