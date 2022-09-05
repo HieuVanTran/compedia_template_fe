@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {CategoryApiService} from "../../../../services/api/category-api.service";
-import {IResponseModel} from "../../../../models/commons/response.model";
+import {IPageResponseModel, IResponseModel} from "../../../../models/commons/response.model";
 import {IBookCategoryResponse} from "../../../../models/responses/book-category.response";
 import {IBookCategoryView} from "../../../../models/views/book-category.view";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {IBookCategoryRequest, IEditBookCategoryRequest} from "../../../../models/requests/book-category.request";
 import {MessageService} from "primeng/api";
+import {IBookAuthorResponse} from "../../../../models/responses/book-author.response";
+import {IBookAuthorView} from "../../../../models/views/book-author.view";
+import {Constant} from "../../../../util/constant";
 
 @Component({
   selector: 'app-category-manager-list',
@@ -16,6 +19,9 @@ export class CategoryManagerListComponent implements OnInit {
   categoryManager : IBookCategoryView[] = [];
   bookInfoForm!: FormGroup;
   bookCategorySelected!: IBookCategoryView;
+  categoryNameSearch!: string
+  page: number = Constant.PAGE_INIT
+  size: number = Constant.SIZE_INIT
 
   constructor(private categoryApiService: CategoryApiService,
               private messageService: MessageService,
@@ -43,6 +49,26 @@ export class CategoryManagerListComponent implements OnInit {
         }
       )
     }
+  onSearchBookCategory() {
+    const searchRequest = {
+      categoryName: this.categoryNameSearch,
+      page: this.page,
+      size: this.size,
+    }
+    console.log(searchRequest)
+    this.categoryApiService._searchBookCategory(searchRequest).subscribe(
+      (res: IResponseModel<IPageResponseModel<IBookCategoryResponse>>) => {
+        this.categoryManager = [];
+        res.data.results.forEach(bookCategoryRes => {
+          const bookCategoryView: IBookCategoryView = {
+            id: bookCategoryRes.idTypeBook,
+            category_name: bookCategoryRes.categoryName
+          };
+          this.categoryManager.push(bookCategoryView)
+        })
+      }
+    )
+  }
 
   onAddNewBookCategory() {
     const createNewBookRequest: IBookCategoryRequest = {
