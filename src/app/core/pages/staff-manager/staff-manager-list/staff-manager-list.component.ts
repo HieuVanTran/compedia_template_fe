@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {IStaffManagerView} from "../../../../models/views/staff-manager.view";
 import {StaffManagerApiService} from "../../../../services/api/staff-manager-api.service";
-import {IResponseModel} from "../../../../models/commons/response.model";
+import {IPageResponseModel, IResponseModel} from "../../../../models/commons/response.model";
 import {IStaffManagerResponse} from "../../../../models/responses/staff-manager.response";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {MessageService} from "primeng/api";
 import {IEditStaffRequest, IStaffManagerRequest} from "../../../../models/requests/staff-manager.request";
+import {Constant} from "../../../../util/constant";
 
 @Component({
   selector: 'app-staff-manager-list',
@@ -17,6 +18,11 @@ export class StaffManagerListComponent implements OnInit {
   staffManager: IStaffManagerView[] = [];
   staffManagerInfoForm!: FormGroup;
   staffManagerSelected!: IStaffManagerView;
+  fullNameSearch!: string;
+  phoneSearch!: string;
+  addressSearch!: string;
+  page: number = Constant.PAGE_INIT
+  size: number = Constant.SIZE_INIT
 
   constructor(private staffManagerApiService: StaffManagerApiService,
               private fb: FormBuilder,
@@ -35,9 +41,9 @@ export class StaffManagerListComponent implements OnInit {
 
   getAllStaffManager() {
     this.staffManagerApiService._getAllStaffManager().subscribe(
-      (res: IResponseModel<IStaffManagerResponse[]>)  => {
+      (res: IResponseModel<IStaffManagerResponse[]>) => {
         this.staffManager = [];
-        res.data.forEach( staffManagerRes => {
+        res.data.forEach(staffManagerRes => {
           const staffManagerView: IStaffManagerView = {
             id: staffManagerRes.staff_id,
             name: staffManagerRes.name_staff,
@@ -60,27 +66,27 @@ export class StaffManagerListComponent implements OnInit {
     };
     this.staffManagerApiService._createNewStaff(createNewStaffRequest).subscribe(
       (res: IResponseModel<any>) => {
-        this.messageService.add({severity:'success', summary:'Thông báo!', detail:'Thêm thành công! '});
+        this.messageService.add({severity: 'success', summary: 'Thông báo!', detail: 'Thêm thành công! '});
         console.log('Thanh cong');
         this.getAllStaffManager()
       },
       err => {
-        this.messageService.add({severity:'error', summary:'Thông báo!', detail:'Thêm thất bại! '});
+        this.messageService.add({severity: 'error', summary: 'Thông báo!', detail: 'Thêm thất bại! '});
         console.log('That bai');
       }
     )
   }
 
   onDeleteStaff() {
-    if(this.staffManagerSelected) {
+    if (this.staffManagerSelected) {
       this.staffManagerApiService._deleteStaff(this.staffManagerSelected.id).subscribe(
         (res: IResponseModel<any>) => {
-          this.messageService.add({severity:'success', summary:'Thông báo', detail:'Xóa thành công'});
+          this.messageService.add({severity: 'success', summary: 'Thông báo', detail: 'Xóa thành công'});
           console.log('Xoa thanh cong');
           this.getAllStaffManager()
         },
         err => {
-          this.messageService.add({severity:'error', summary:'Thông báo', detail:'Xóa thất bại'});
+          this.messageService.add({severity: 'error', summary: 'Thông báo', detail: 'Xóa thất bại'});
           console.log('Xoa that bai');
         }
       )
@@ -97,12 +103,12 @@ export class StaffManagerListComponent implements OnInit {
     };
     this.staffManagerApiService._editStaff(editStaffRequest).subscribe(
       (res: IResponseModel<any>) => {
-        this.messageService.add({severity:'success', summary:'Thông báo!', detail:'Cập nhật thành công!'});
+        this.messageService.add({severity: 'success', summary: 'Thông báo!', detail: 'Cập nhật thành công!'});
         console.log('Success');
         this.getAllStaffManager()
       },
       err => {
-        this.messageService.add({severity:'error', summary:'Thông báo!', detail:'Cập nhật thất bại!'});
+        this.messageService.add({severity: 'error', summary: 'Thông báo!', detail: 'Cập nhật thất bại!'});
         console.log('Failed');
       }
     )
@@ -124,5 +130,30 @@ export class StaffManagerListComponent implements OnInit {
   selectStaff(i: IStaffManagerView) {
     this.staffManagerSelected = i
   }
-}
 
+  onSearch() {
+    const searchRequest = {
+      nameStaff: this.fullNameSearch,
+      phoneNumber: this.phoneSearch,
+      address: this.addressSearch,
+      page: this.page,
+      size: this.size
+    }
+    this.staffManagerApiService._searchStaff(searchRequest).subscribe(
+      (res: IResponseModel<IPageResponseModel<IStaffManagerResponse>>) => {
+        this.staffManager = [];
+        res.data.results.forEach(staffManagerRes => {
+          const staffManagerView: IStaffManagerView = {
+            id: staffManagerRes.staff_id,
+            name: staffManagerRes.name_staff,
+            phoneNum: staffManagerRes.phone_number,
+            address: staffManagerRes.address,
+            dateOfBirth: staffManagerRes.date_of_birth
+          };
+          this.staffManager.push(staffManagerView)
+        })
+        console.log(this.staffManager)
+      }
+    )
+  }
+}

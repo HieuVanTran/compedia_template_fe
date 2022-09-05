@@ -12,16 +12,16 @@
           <div class="search">
             <ul>
               <li>
-                <input class="form-control" type="text" placeholder="Tên đầy đủ">
+                <input class="form-control" type="text" [(ngModel)]="fullNameSearch" placeholder="Tên đầy đủ">
               </li>
               <li>
-                <input class="form-control" type="text" placeholder="Số điện thoại">
+                <input class="form-control" type="text" [(ngModel)]="phoneSearch" placeholder="Số điện thoại">
               </li>
               <li>
-                <input class="form-control" type="text" placeholder="Địa chỉ">
+                <input class="form-control" type="text" [(ngModel)]="addressSearch" placeholder="Địa chỉ">
               </li>
               <li>
-                <a class="btn btn-info text-light" type="button" data-toggle="modal">Tìm kiếm</a>
+                <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="onSearch()">Tìm kiếm</a>
               </li>
             </ul>
           </div>

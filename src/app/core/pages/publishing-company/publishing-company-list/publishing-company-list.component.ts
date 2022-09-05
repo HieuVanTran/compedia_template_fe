@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {PublishCompanyApiService} from "../../../../services/api/publish-company-api.service";
-import {IResponseModel} from "../../../../models/commons/response.model";
+import {IPageResponseModel, IResponseModel} from "../../../../models/commons/response.model";
 import {IPublishCompanyResponse} from "../../../../models/responses/publish-company.response";
 import {IPublishCompanyView} from "../../../../models/views/publish-company.view";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {IEditPublishCompanyRequest, IPublishCompanyRequest} from "../../../../models/requests/publish-company.request";
 import {MessageService} from "primeng/api";
+import {Constant} from "../../../../util/constant";
 
 @Component({
   selector: 'app-publishing-company-list',
@@ -17,6 +18,11 @@ export class PublishingCompanyListComponent implements OnInit {
   publishingCompany : IPublishCompanyView[] = [];
   publishCompanyInfoForm!: FormGroup;
   publishCompanySelected!: IPublishCompanyView;
+  agentPeopleSearch!: string;
+  emailSearch!: string;
+  publishNameSearch!: string;
+  page: number = Constant.PAGE_INIT
+  size: number = Constant.SIZE_INIT
 
   constructor(private publishCompanyApiService: PublishCompanyApiService,
               private fb:FormBuilder,
@@ -130,5 +136,31 @@ export class PublishingCompanyListComponent implements OnInit {
     this.publishCompanySelected = i;
     console.log(this.publishCompanySelected)
   }
-}
 
+  onSearch() {
+    const searchRequest = {
+      publishName: this.publishNameSearch,
+      email: this.emailSearch,
+      agentPeople: this.agentPeopleSearch,
+      page: this.page,
+      size: this.size
+    }
+    this.publishCompanyApiService._searchPublishCompany(searchRequest).subscribe(
+      (res: IResponseModel<IPageResponseModel<IPublishCompanyResponse>>) => {
+        this.publishingCompany = [];
+        res.data.results.forEach( publishCompanyRes => {
+          const publishCompanyView: IPublishCompanyView = {
+            id: publishCompanyRes.company_id,
+            name: publishCompanyRes.publish_name,
+            address: publishCompanyRes.address,
+            email: publishCompanyRes.email,
+            agent_people: publishCompanyRes.agent_people,
+            date_founding: publishCompanyRes.date_founding
+          };
+          this.publishingCompany.push(publishCompanyView)
+        })
+          console.log(this.publishingCompany)
+      }
+    )
+  }
+}

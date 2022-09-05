@@ -12,21 +12,16 @@
           <div class="search">
             <ul>
               <li>
-                <select class="form-control">
-                  <option>Nhà xuất bản</option>
-                  <option *ngFor="let company of publishingCompany" value="{{company.id}}">
-                    <span>{{company.name}}</span>
-                  </option>
-                </select>
+                <input class="form-control" type="text" [(ngModel)]="publishNameSearch" placeholder="Nhà xuất bản">
               </li>
               <li>
-                <input class="form-control" type="text" placeholder="Email">
+                <input class="form-control" type="text" [(ngModel)]="emailSearch" placeholder="Email">
               </li>
               <li>
-                <input class="form-control" type="text" placeholder="Người đại diện">
+                <input class="form-control" type="text" [(ngModel)]="agentPeopleSearch" placeholder="Người đại diện">
               </li>
               <li>
-                <a class="btn btn-info text-light" type="button" data-toggle="modal">Tìm kiếm</a>
+                <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="onSearch()">Tìm kiếm</a>
               </li>
             </ul>
           </div>
