@@ -14,22 +14,15 @@
       <div class="search">
         <ul>
           <li>
-            <input class="form-control" type="text" placeholder="Tên tài khoản">
+            <input class="form-control" type="text" [(ngModel)]="usernameSearch" placeholder="Tên tài khoản">
           </li>
           <li>
-            <input class="form-control" type="text" placeholder="Tên nhân viên">
+            <input class="form-control" type="text"  [(ngModel)]="staffSearch"  placeholder="Tên nhân viên">
+
           </li>
+
           <li>
-            <input class="form-control" type="text" placeholder="Trạng thái">
-<!--            <select class="form-control">-->
-<!--              <option>Trạng thái</option>-->
-<!--              <option *ngFor="let status of loanPayManager" value="{{status.call_card_id}}">-->
-<!--                <span>{{status.status}}</span>-->
-<!--              </option>-->
-<!--            </select>-->
-          </li>
-          <li>
-            <a class="btn btn-info text-light" type="button" data-toggle="modal">Tìm kiếm</a>
+            <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="onSearch()">Tìm kiếm</a>
           </li>
         </ul>
       </div>
