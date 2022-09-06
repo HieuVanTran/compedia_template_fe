@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {IResponseModel} from "../../models/commons/response.model";
+import {IPageResponseModel, IResponseModel} from "../../models/commons/response.model";
 import {IStaffManagerResponse} from "../../models/responses/staff-manager.response";
 import {IEditStaffRequest, IStaffManagerRequest} from "../../models/requests/staff-manager.request";
 
@@ -20,6 +20,14 @@ export class StaffManagerApiService {
   _getAllStaffManager(): Observable<IResponseModel<IStaffManagerResponse[]>> {
     const url = `${this.api}/staff/staff`;
     return this.http.get<IResponseModel<IStaffManagerResponse[]>>(url)
+  }
+
+  _searchStaff(request: any): Observable<IResponseModel<IPageResponseModel<IStaffManagerResponse>>> {
+    const url = `${this.api}/staff/search?page=${request.page}&size=${request.size}
+    ${request.nameStaff? '&nameStaff='+request.nameStaff : ''}
+    ${request.phoneNumber? '&phoneNumber='+request.phoneNumber : ''}
+    ${request.address? '&address='+request.address : ''}`;
+    return this.http.get<IResponseModel<IPageResponseModel<IStaffManagerResponse>>>(url)
   }
 
   _createNewStaff(requestBody: IStaffManagerRequest): Observable<IResponseModel<any>> {

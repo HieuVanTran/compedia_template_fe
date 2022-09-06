@@ -12,24 +12,24 @@
           <div class="search">
             <ul>
               <li>
-                <input class="form-control" type="text" placeholder="Tên đăng nhập">
+                <input class="form-control" type="text" [(ngModel)]="usernameSearch" placeholder="Tên đăng nhập">
               </li>
               <li>
-                <input class="form-control" type="text" placeholder="Tên đầy đủ">
+                <input class="form-control" type="text" [(ngModel)]="fullNameSearch" placeholder="Tên đầy đủ">
               </li>
               <li>
-                <input class="form-control" type="text" placeholder="Email">
+                <input class="form-control" type="text" [(ngModel)]="emailSearch" placeholder="Email">
               </li>
               <li>
-                <select class="form-control">
-                  <option>Role</option>
-                  <option *ngFor="let roleID of listRoleManager" value="{{roleID.id}}">
+                <select class="form-control" (change)="selectRole()" [(ngModel)]="roleIdSearch">
+                  <option value="">Role</option>
+                    <option *ngFor="let roleID of listRoleManager" value="{{roleID.id}}">
                     <span>{{roleID.code}}</span>
                   </option>
                 </select>
               </li>
               <li>
-                <a class="btn btn-info text-light" type="button" data-toggle="modal">Tìm kiếm</a>
+                <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="onSearch()" >Tìm kiếm</a>
               </li>
             </ul>
           </div>

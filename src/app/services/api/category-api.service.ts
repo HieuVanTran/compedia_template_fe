@@ -8,6 +8,7 @@ import {IBookCategoryRequest, IEditBookCategoryRequest} from "../../models/reque
 import {IGetCategoryBookRequest} from "../../models/requests/get-category-book.request";
 import {generate} from "rxjs";
 import {generateParams} from "../../util/public-function";
+import {IBookAuthorResponse} from "../../models/responses/book-author.response";
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,11 @@ export class CategoryApiService{
   _getAllCategory(): Observable<IResponseModel<IBookCategoryResponse[]>> {
     const url = `${this.api}/book-category/book-category`
     return this.http.get<IResponseModel<IBookCategoryResponse[]>>(url)
+  }
+  _searchBookCategory(request: any): Observable<IResponseModel<IPageResponseModel<IBookCategoryResponse>>> {
+    const url = `${this.api}/book-category/search?page=${request.page}&size=${request.size}
+    ${request.categoryName? '&categoryName='+request.categoryName : ''}`
+    return this.http.get<IResponseModel<IPageResponseModel<IBookCategoryResponse>>>(url)
   }
 
   _createNewCategory(requestBody: IBookCategoryRequest): Observable<IResponseModel<any>> {

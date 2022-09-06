@@ -26,7 +26,9 @@ export class BookApiService{
   _searchBook(request: any): Observable<IResponseModel<IPageResponseModel<IBookManagerResponse>>> {
     const url = `${this.api}/book/search?page=${request.page}&size=${request.size}
     ${request.bookName? '&bookName='+request.bookName : ''}
-    ${request.categoryId? '&category_id='+request.categoryId : ''}`;
+    ${request.categoryId? '&categoryId='+request.categoryId : ''}
+     ${request.authorId? '&authorId='+request.authorId : ''}
+    ${request.publishId? '&publishId='+request.publishId : ''}`
     return this.http.get<IResponseModel<IPageResponseModel<IBookManagerResponse>>>(url)
   }
 

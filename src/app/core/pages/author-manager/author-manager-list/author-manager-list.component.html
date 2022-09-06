@@ -14,27 +14,16 @@
           <div class="search">
             <ul>
               <li>
-                <select class="form-control">
-                  <option>Tác giả</option>
-                  <option *ngFor="let bookAuthor of authorManager" value="{{bookAuthor.id}}">
-                    <span>{{bookAuthor.name_author}}</span>
-                  </option>
-                </select>
-
+                <input class="form-control" type="text" placeholder="Tên tác giả" [(ngModel)]="authorNameSearch">
               </li>
               <li>
-                <input class="form-control" type="text" placeholder="Địa chỉ">
+                <input class="form-control" type="text" placeholder="Địa chỉ" [(ngModel)]="address">
               </li>
               <li>
-                <select class="form-control">
-                  <option>Chức danh</option>
-                  <option *ngFor="let titleAuthor of authorManager" value="{{titleAuthor.id}}">
-                    <span>{{titleAuthor.title}}</span>
-                  </option>
-                </select>
+                <input class="form-control" type="text" placeholder="Chức danh" [(ngModel)]="title">
               </li>
               <li>
-                <a class="btn btn-info text-light" type="button" data-toggle="modal">Tìm kiếm</a>
+                <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="onSearchAuthor()">Tìm kiếm</a>
               </li>
             </ul>
           </div>

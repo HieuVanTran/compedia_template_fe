@@ -14,18 +14,10 @@
           <div class="search">
             <ul>
               <li>
-                <input class="form-control" type="text" placeholder="Tên sách">
+                <input class="form-control" type="text" placeholder="Thể loại sách" [(ngModel)]="categoryNameSearch">
               </li>
               <li>
-                <select class="form-control">
-                  <option>Thể loại sách</option>
-                  <option *ngFor="let titleAuthor of categoryManager" value="{{titleAuthor.id}}">
-                    <span>{{titleAuthor.category_name}}</span>
-                  </option>
-                </select>
-              </li>
-              <li>
-                <a class="btn btn-info text-light" type="button" data-toggle="modal">Tìm kiếm</a>
+                <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="onSearchBookCategory()">Tìm kiếm</a>
               </li>
             </ul>
           </div>
@@ -64,7 +56,7 @@
         <ng-template pTemplate="header" class="dark">
           <tr>
             <th>STT</th>
-            <th pSortableColumn="category_name">MÃ SÁCH<p-sortIcon field="category_name"></p-sortIcon></th>
+            <th pSortableColumn="category_name">Thể loại sách<p-sortIcon field="category_name"></p-sortIcon></th>
             <th>THAO TÁC</th>
           </tr>
         </ng-template>

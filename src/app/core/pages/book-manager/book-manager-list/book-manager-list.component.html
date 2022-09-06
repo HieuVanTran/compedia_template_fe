@@ -28,15 +28,15 @@
               </li>
               <li>
                 <select class="form-control" [(ngModel)]="authorId">
-                <option>Tác giả</option>
+                <option value="">Tác giả</option>
                   <option *ngFor="let bookAuthor of listAuthor" value="{{bookAuthor.id}}">
                     <span>{{bookAuthor.name_author}}</span>
                   </option>
               </select>
               </li>
               <li>
-                <select class="form-control">
-                <option>Nhà xuất bản</option>
+                <select class="form-control" [(ngModel)]="publishId">
+                <option value="">Nhà xuất bản</option>
                   <option *ngFor="let company of listpublishingCompany" value="{{company.id}}">
                     <span>{{company.name}}</span>
                   </option>
@@ -49,55 +49,6 @@
           </div>
         </div>
       </div>
-      <!--        <div class="card-content">-->
-      <!--          <div class="card-body">-->
-      <!--            <p>-->
-      <!--              You can also invert the colors—with light text on dark-->
-      <!--              backgrounds—with-->
-      <!--              <code class="highlighter-rouge">.table-dark</code>.-->
-      <!--            </p>-->
-      <!--          </div>-->
-<!--      <div class="table-responsive">-->
-<!--        <table class="table table-light mb-0">-->
-<!--          <thead>-->
-<!--          <tr>-->
-<!--            <th>STT</th>-->
-<!--            <th>TÊN SÁCH</th>-->
-<!--            <th>ẢNH</th>-->
-<!--            <th>GIÁ TIỀN</th>-->
-<!--            <th>LOẠI SÁCH</th>-->
-<!--            <th>TÁC GIẢ</th>-->
-<!--            <th>SỐ TRANG</th>-->
-<!--            <th>NHÀ XUẤT BẢN</th>-->
-<!--            <th>NĂM XUẤT BẢN</th>-->
-<!--            <th>SỐ LƯỢNG</th>-->
-<!--            <th>Trạng Thái</th>-->
-<!--            <th>THAO TÁC</th>-->
-<!--          </tr>-->
-<!--          </thead>-->
-<!--          <tbody>-->
-<!--          <tr *ngFor="let i of bookManager, index as index">-->
-<!--            <td>{{index + 1}}</td>-->
-<!--            <td class="text-bold-500">{{i.book_name}}</td>-->
-<!--            <td>{{i.image}}</td>-->
-<!--            <td>{{i.price}}</td>-->
-<!--            <td>{{i.category_name}}</td>-->
-<!--            <td class="text-bold-500">{{i.name_author}}</td>-->
-<!--            <td>{{i.page_number}}</td>-->
-<!--            <td>{{i.publish_name}}</td>-->
-<!--            <td>{{i.publishing_year}}</td>-->
-<!--            <td>{{i.amount}}</td>-->
-<!--            <td>{{i.status}}</td>-->
-<!--            <td>-->
-<!--              <a type="button" data-toggle="modal" data-target="#exampleModal-bookmanager" (click)="editBook(i)" style="color: #00cc00"><i-->
-<!--                class="fa-solid fa-pen-to-square"></i></a>-->
-<!--              <a type="button" data-toggle="modal" data-target="#delete-book-manager" (click)="selectBook(i)" style="color: red"><i-->
-<!--                class="fa-solid fa-trash-can"></i></a>-->
-<!--            </td>-->
-<!--          </tr>-->
-<!--          </tbody>-->
-<!--        </table>-->
-<!--      </div>-->
       <p-table [value]="bookManager"  [paginator]="true" [rows]="10" >
         <ng-template pTemplate="header" class="dark">
           <tr>
@@ -220,9 +171,9 @@
                   <input type="text" class="form-control"  formControlName="amount">
                 </div>
               </div>
-              <div class="form-group row">
+              <div class="form-group row ">
                 <label class="col-sm-3 col-form-label">Ghi chú<span style="color: red">*</span></label>
-                <div class="col-sm-9">
+                <div class="col-sm-9 ">
                   <input type="text" class="form-control"  formControlName="note">
                 </div>
               </div>
