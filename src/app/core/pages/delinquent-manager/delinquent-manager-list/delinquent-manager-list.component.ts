@@ -33,6 +33,7 @@ export class DelinquentManagerListComponent implements OnInit {
   nameStaff!: string
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
+  staffId!: number
 
   constructor(private collectMoneyApiService: CollectMoneyApiService,
               private fb:FormBuilder,
@@ -190,7 +191,7 @@ export class DelinquentManagerListComponent implements OnInit {
       username: this.usernameSearch,
       page: this.page,
       size: this.size,
-      nameStaff: this.nameStaff,
+      staffId: this.staffId,
       fullName: this.fullNameSearch
       // categoryId: this.categoryId,
       // authorId: this.authorId
@@ -217,4 +218,7 @@ export class DelinquentManagerListComponent implements OnInit {
   }
 
 
+  selectCategory() {
+    console.log(this.staffId)
+  }
 }

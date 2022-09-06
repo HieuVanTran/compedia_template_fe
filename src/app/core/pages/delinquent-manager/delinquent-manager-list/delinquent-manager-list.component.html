@@ -19,7 +19,7 @@
                 <input class="form-control" type="text" [(ngModel)]="usernameSearch" placeholder="Tên đăng nhập">
               </li>
               <li>
-                <select class="form-control" [(ngModel)]="nameStaff">
+                <select class="form-control" (change)="selectCategory()" [(ngModel)]="staffId">
                   <option>Tên nhân viên</option>
                   <option *ngFor="let staff of listStaffManager" value="{{staff.id}}">
                     <span>{{staff.name}}</span>

@@ -27,7 +27,7 @@ export class CollectMoneyApiService{
     const url = `${this.api}/collect-money/search?page=${request.page}&size=${request.size}
     ${request.fullName? '&fullName='+request.fullName : ''}
     ${request.username? '&username='+request.username : ''}
-    ${request.nameStaff? '&nameStaff='+request.nameStaff : ''}`
+    ${request.staffId? '&staffId='+request.staffId : ''}`
     // ${request.bookName? '&bookName='+request.bookName : ''}
     // ${request.categoryId? '&category_id='+request.categoryId : ''}`;
     return this.http.get<IResponseModel<IPageResponseModel<ICollectMoneyResponses>>>(url)
