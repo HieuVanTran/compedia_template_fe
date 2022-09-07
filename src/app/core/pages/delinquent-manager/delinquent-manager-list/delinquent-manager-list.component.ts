@@ -33,7 +33,7 @@ export class DelinquentManagerListComponent implements OnInit {
   nameStaff!: string
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
-  staffId!: number
+  staffId: number | null = null
 
   constructor(private collectMoneyApiService: CollectMoneyApiService,
               private fb:FormBuilder,
