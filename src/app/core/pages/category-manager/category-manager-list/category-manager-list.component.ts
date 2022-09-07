@@ -6,8 +6,6 @@ import {IBookCategoryView} from "../../../../models/views/book-category.view";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {IBookCategoryRequest, IEditBookCategoryRequest} from "../../../../models/requests/book-category.request";
 import {MessageService} from "primeng/api";
-import {IBookAuthorResponse} from "../../../../models/responses/book-author.response";
-import {IBookAuthorView} from "../../../../models/views/book-author.view";
 import {Constant} from "../../../../util/constant";
 
 @Component({
