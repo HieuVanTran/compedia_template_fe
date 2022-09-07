@@ -15,14 +15,14 @@
                 <input class="form-control" type="text" [(ngModel)]="usernameSearch" placeholder="Tên đăng nhập">
               </li>
               <li>
-                <input class="form-control" type="text" [(ngModel)]="fullNameSearch" placeholder="Tên đầy đủ">
+                <input class="form-control" type="text" [(ngModel)]="fullNameSearch" placeholder="Họ và tên">
               </li>
               <li>
                 <input class="form-control" type="text" [(ngModel)]="emailSearch" placeholder="Email">
               </li>
               <li>
                 <select class="form-control" (change)="selectRole()" [(ngModel)]="roleIdSearch">
-                  <option value="">Role</option>
+                  <option [value]="null" [disabled]="true" selected>Nhóm quyền</option>
                     <option *ngFor="let roleID of listRoleManager" value="{{roleID.id}}">
                     <span>{{roleID.code}}</span>
                   </option>
@@ -79,11 +79,11 @@
           <tr>
             <th>STT</th>
             <th pSortableColumn="username">TÊN ĐĂNG NHẬP<p-sortIcon field="username"></p-sortIcon></th>
-            <th pSortableColumn="full_name">TÊN ĐẦY ĐỦ<p-sortIcon field="full_name"></p-sortIcon></th>
+            <th pSortableColumn="full_name">HỌ VÀ TÊN<p-sortIcon field="full_name"></p-sortIcon></th>
             <th pSortableColumn="date_of_birth">NGÀY SINH<p-sortIcon field="date_of_birth"></p-sortIcon></th>
             <th pSortableColumn="email">EMAIL<p-sortIcon field="email"></p-sortIcon></th>
             <th pSortableColumn="phone">ĐIỆN THOẠI<p-sortIcon field="phone"></p-sortIcon></th>
-            <th pSortableColumn="role_id">ROLE<p-sortIcon field="role_id"></p-sortIcon></th>
+            <th pSortableColumn="role_id">NHÓM QUYỀN<p-sortIcon field="role_id"></p-sortIcon></th>
             <th>THAO TÁC</th>
           </tr>
         </ng-template>
@@ -119,43 +119,43 @@
             </div>
             <div class="modal-body">
               <div class="form-group row">
-                <label for="username_add" class="col-sm-3 col-form-label">Tên đăng nhập<span style="color: red">*</span></label>
+                <label for="username_add" class="col-sm-3 col-form-label">Tên đăng nhập<span style="color: red"> *</span></label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control" id="username_add" formControlName = "username">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="password_add" class="col-sm-3 col-form-label">Mật khẩu<span style="color: red">*</span></label>
+                <label for="password_add" class="col-sm-3 col-form-label">Mật khẩu<span style="color: red"> *</span></label>
                 <div class="col-sm-9">
                   <input type="password" class="form-control" id="password_add" formControlName = "password">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="full-name_add" class="col-sm-3 col-form-label">Tên đầy đủ<span style="color: red">*</span></label>
+                <label for="full-name_add" class="col-sm-3 col-form-label">Họ và tên<span style="color: red"> *</span></label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control" id="full-name_add" formControlName = "full_name">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="date_of_birth_add" class="col-sm-3 col-form-label">Ngày sinh<span style="color: red">*</span></label>
+                <label for="date_of_birth_add" class="col-sm-3 col-form-label">Ngày sinh<span style="color: red"> *</span></label>
                 <div class="col-sm-9">
                   <input type="date" class="form-control" id="date_of_birth_add" formControlName = "date_of_birth">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="email_add" class="col-sm-3 col-form-label">Email<span style="color: red">*</span></label>
+                <label for="email_add" class="col-sm-3 col-form-label">Email<span style="color: red"> *</span></label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control" id="email_add" formControlName = "email">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="phone_number_add" class="col-sm-3 col-form-label">Số điện thoại<span style="color: red">*</span></label>
+                <label for="phone_number_add" class="col-sm-3 col-form-label">Số điện thoại<span style="color: red"> *</span></label>
                 <div class="col-sm-9">
                   <input type="number" class="form-control" id="phone_number_add" formControlName = "phone">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Role<span style="color: red">*</span></label>
+                <label class="col-sm-3 col-form-label">Nhóm quyền<span style="color: red"> *</span></label>
                 <div class="col-sm-9">
                   <select class="form-control" formControlName="role_id" >
                     <option *ngFor="let roleID of listRoleManager" value="{{roleID.id}}">
@@ -183,43 +183,43 @@
             </div>
             <div class="modal-body">
               <div class="form-group row">
-                <label for="username" class="col-sm-3 col-form-label">Tên đăng nhập<span style="color: red">*</span></label>
+                <label for="username" class="col-sm-3 col-form-label">Tên đăng nhập<span style="color: red"> *</span></label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control" id="username" formControlName = "username">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="password" class="col-sm-3 col-form-label">Mật khẩu<span style="color: red">*</span></label>
+                <label for="password" class="col-sm-3 col-form-label">Mật khẩu<span style="color: red"> *</span></label>
                 <div class="col-sm-9">
                   <input type="password" class="form-control" id="password" formControlName ="password">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="full-name" class="col-sm-3 col-form-label">Tên đầy đủ<span style="color: red">*</span></label>
+                <label for="full-name" class="col-sm-3 col-form-label">Họ và tên<span style="color: red"> *</span></label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control" id="full-name" formControlName ="full_name">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="date_of_birth" class="col-sm-3 col-form-label">Ngày sinh<span style="color: red">*</span></label>
+                <label for="date_of_birth" class="col-sm-3 col-form-label">Ngày sinh<span style="color: red"> *</span></label>
                 <div class="col-sm-9">
                   <input type="date" class="form-control" id="date_of_birth" formControlName ="date_of_birth">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="email" class="col-sm-3 col-form-label">Email<span style="color: red">*</span></label>
+                <label for="email" class="col-sm-3 col-form-label">Email<span style="color: red"> *</span></label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control" id="email" formControlName ="email">
                 </div>
               </div>
               <div class="form-group row">
-                <label  class="col-sm-3 col-form-label">Số điện thoại<span style="color: red">*</span></label>
+                <label  class="col-sm-3 col-form-label">Số điện thoại<span style="color: red"> *</span></label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control"  formControlName ="phone">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Role<span style="color: red">*</span></label>
+                <label class="col-sm-3 col-form-label">Nhóm quyền<span style="color: red"> *</span></label>
                 <div class="col-sm-9">
                   <select class="form-control" formControlName="role_id" >
                     <option *ngFor="let roleID of listRoleManager" value="{{roleID.id}}">

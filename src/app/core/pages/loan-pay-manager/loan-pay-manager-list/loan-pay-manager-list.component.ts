@@ -227,6 +227,7 @@ export class LoanPayManagerListComponent implements OnInit {
           const accountManagerView: IAccountManagerView = {
             id: accountManagerRes.account_id,
             username: accountManagerRes.username,
+            password: accountManagerRes.password,
             full_name: accountManagerRes.full_name,
             date_of_birth: accountManagerRes.date_of_birth,
             email: accountManagerRes.email,

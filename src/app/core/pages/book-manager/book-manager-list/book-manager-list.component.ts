@@ -35,9 +35,12 @@ export class BookManagerListComponent implements OnInit {
   bookNameSearch!: string
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
-  categoryId!: number
-  authorId!: number
-  publishId!: number
+  categoryId: number | null = null
+  authorId: number | null = null
+  publishId: number | null = null;
+
+
+
   constructor(private BookApiService: BookApiService,
               private fb: FormBuilder,
               private categoryApiService: CategoryApiService,
@@ -64,11 +67,6 @@ export class BookManagerListComponent implements OnInit {
     this.getAllBookCategory()
     this.getAllBookAuthor()
     this.getAllPublishCompany()
-    this.loadData()
-  }
-
-  loadData() {
-
   }
 
   getAllBook() {
