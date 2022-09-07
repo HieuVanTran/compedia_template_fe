@@ -2,9 +2,10 @@ import {Injectable} from "@angular/core";
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {IResponseModel} from "../../models/commons/response.model";
+import {IPageResponseModel, IResponseModel} from "../../models/commons/response.model";
 import { ILoanpayResponse } from "src/app/models/responses/loanpay.response";
 import {IEditLoanpayRequest, ILoanpayRequest } from "src/app/models/requests/loanpay.request";
+import {IBookManagerResponse} from "../../models/responses/book-manager.response";
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,15 @@ export class LoanpayApiService {
   _getAllLoanpay(): Observable<IResponseModel<ILoanpayResponse[]>> {
     const url = `${this.api}/call-card`
     return this.http.get<IResponseModel<ILoanpayResponse[]>>(url)
+  }
+
+  _searchLoanpay(request: any): Observable<IResponseModel<IPageResponseModel<ILoanpayResponse>>> {
+    const url = `${this.api}/call-card/search?page=${request.page}&size=${request.size}
+    ${request.username? '&username='+request.username : ''}
+    ${request.nameStaff? '&nameStaff='+request.nameStaff : ''}`
+    // ${request.bookName? '&bookName='+request.bookName : ''}
+    // ${request.categoryId? '&category_id='+request.categoryId : ''}`;
+    return this.http.get<IResponseModel<IPageResponseModel<ILoanpayResponse>>>(url)
   }
 
   _createNewLoanpay(requestBody: ILoanpayRequest): Observable<IResponseModel<any>> {

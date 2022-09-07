@@ -14,10 +14,10 @@
           <div class="search">
             <ul>
               <li>
-                <input class="form-control" type="text" placeholder="Thể loại sách">
+                <input class="form-control" type="text" placeholder="Thể loại sách" [(ngModel)]="categoryNameSearch">
               </li>
               <li>
-                <a class="btn btn-info text-light" type="button" data-toggle="modal">Tìm kiếm</a>
+                <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="onSearchBookCategory()">Tìm kiếm</a>
               </li>
             </ul>
           </div>

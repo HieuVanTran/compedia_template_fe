@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ICollectMoneyView} from "../../../../models/views/collect-money.view";
 import {CollectMoneyApiService} from "../../../../services/api/collect-money-api.service";
-import {IResponseModel} from "../../../../models/commons/response.model";
+import {IPageResponseModel, IResponseModel} from "../../../../models/commons/response.model";
 import {ICollectMoneyResponses} from "../../../../models/responses/collect-money.response";
 import {ICollectMoneyRequests, IEditCollectMoneyRequests} from "../../../../models/requests/collect-money.requests";
 import {MessageService} from "primeng/api";
@@ -12,6 +12,9 @@ import {IStaffManagerResponse} from "../../../../models/responses/staff-manager.
 import {IAccountManagerView} from "../../../../models/views/account-manager.view";
 import {IAccountManagerResponse} from "../../../../models/responses/account-manager.response";
 import {AccountApiService} from "../../../../services/api/account-api.service";
+import {Constant} from "../../../../util/constant";
+import {ILoanpayResponse} from "../../../../models/responses/loanpay.response";
+import {ILoanpayView} from "../../../../models/views/loanpay.view";
 
 @Component({
   selector: 'app-delinquent-manager-list',
@@ -25,6 +28,12 @@ export class DelinquentManagerListComponent implements OnInit {
   collectMoneySelected!: ICollectMoneyView;
   listStaffManager: IStaffManagerView[] = [];
   listAccount: IAccountManagerView[] = [];
+  fullNameSearch!: string
+  usernameSearch!: string;
+  nameStaff!: string
+  page: number = Constant.PAGE_INIT
+  size: number = Constant.SIZE_INIT
+  staffId!: number
 
   constructor(private collectMoneyApiService: CollectMoneyApiService,
               private fb:FormBuilder,
@@ -176,5 +185,41 @@ export class DelinquentManagerListComponent implements OnInit {
         })
       }
     )
+  }
+
+  onSearch() {
+    const searchRequest = {
+      username: this.usernameSearch,
+      page: this.page,
+      size: this.size,
+      staffId: this.staffId,
+      fullName: this.fullNameSearch
+      // categoryId: this.categoryId,
+      // authorId: this.authorId
+    }
+    console.log(searchRequest)
+    this.collectMoneyApiService._searchColect(searchRequest).subscribe(
+      (res: IResponseModel<IPageResponseModel<ICollectMoneyResponses>>) => {
+        console.log(res)
+        this.delinquentManager = []
+        res.data.results.forEach(collectMoneyRes => {
+          const collectMoneyView: ICollectMoneyView = {
+            id: collectMoneyRes.collect_money_id,
+            fullName: collectMoneyRes.full_name,
+            finedAmount: collectMoneyRes.fined_amount,
+            proceeds: collectMoneyRes.proceeds,
+            staffId: collectMoneyRes.staff_name,
+            userId: collectMoneyRes.account_id,
+            username: collectMoneyRes.user_name
+          };
+          this.delinquentManager.push(collectMoneyView)
+        })
+      }
+    )
+  }
+
+
+  selectCategory() {
+    console.log(this.staffId)
   }
 }

@@ -2,9 +2,10 @@ import {Injectable} from "@angular/core";
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {IResponseModel} from "../../models/commons/response.model";
+import {IPageResponseModel, IResponseModel} from "../../models/commons/response.model";
 import {ICollectMoneyResponses} from "../../models/responses/collect-money.response";
 import {ICollectMoneyRequests, IEditCollectMoneyRequests} from "../../models/requests/collect-money.requests";
+import {ILoanpayResponse} from "../../models/responses/loanpay.response";
 
 
 @Injectable({
@@ -20,6 +21,16 @@ export class CollectMoneyApiService{
   _getAllCollectMoney(): Observable<IResponseModel<ICollectMoneyResponses[]>> {
     const url = `${this.api}/collect-money/collect-money`;
     return this.http.get<IResponseModel<ICollectMoneyResponses[]>>(url)
+  }
+
+  _searchColect(request: any): Observable<IResponseModel<IPageResponseModel<ICollectMoneyResponses>>> {
+    const url = `${this.api}/collect-money/search?page=${request.page}&size=${request.size}
+    ${request.fullName? '&fullName='+request.fullName : ''}
+    ${request.username? '&username='+request.username : ''}
+    ${request.staffId? '&staffId='+request.staffId : ''}`
+    // ${request.bookName? '&bookName='+request.bookName : ''}
+    // ${request.categoryId? '&category_id='+request.categoryId : ''}`;
+    return this.http.get<IResponseModel<IPageResponseModel<ICollectMoneyResponses>>>(url)
   }
 
   _createNewCollectMoney(requestBody: ICollectMoneyRequests): Observable<IResponseModel<any>> {
