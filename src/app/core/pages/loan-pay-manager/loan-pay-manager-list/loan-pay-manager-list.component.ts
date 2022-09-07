@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { IResponseModel } from 'src/app/models/commons/response.model';
+import {IPageResponseModel, IResponseModel} from 'src/app/models/commons/response.model';
 import {IEditLoanpayRequest, ILoanpayRequest } from 'src/app/models/requests/loanpay.request';
 import { IBookManagerResponse } from 'src/app/models/responses/book-manager.response';
 import { ILoanpayResponse } from 'src/app/models/responses/loanpay.response';
@@ -15,6 +15,7 @@ import {StaffManagerApiService} from "../../../../services/api/staff-manager-api
 import { IAccountManagerResponse } from 'src/app/models/responses/account-manager.response';
 import { IStaffManagerView } from 'src/app/models/views/staff-manager.view';
 import { IStaffManagerResponse } from 'src/app/models/responses/staff-manager.response';
+import {Constant} from "../../../../util/constant";
 
 @Component({
   selector: 'app-loan-pay-manager-list',
@@ -28,6 +29,12 @@ export class LoanPayManagerListComponent implements OnInit {
   listBook: IBookManagerView []=[]
   listAccount: IAccountManagerView []=[]
   listStaff: IStaffManagerView []=[]
+  usernameSearch!: string
+  staffSearch!: string;
+  page: number = Constant.PAGE_INIT
+  size: number = Constant.SIZE_INIT
+  // categoryId!: number
+  // authorId!: number
 
 
   constructor(private loanpayApiService: LoanpayApiService,
@@ -257,6 +264,42 @@ export class LoanPayManagerListComponent implements OnInit {
       }
     )
   }
+
+  onSearch() {
+    const searchRequest = {
+      username: this.usernameSearch,
+      page: this.page,
+      size: this.size,
+      nameStaff: this.staffSearch
+      // categoryId: this.categoryId,
+      // authorId: this.authorId
+    }
+    console.log(searchRequest)
+    this.loanpayApiService._searchLoanpay(searchRequest).subscribe(
+      (res: IResponseModel<IPageResponseModel<ILoanpayResponse>>) => {
+        console.log(res)
+        this.loanPayManager = []
+        res.data.results.forEach(loanpayRes => {
+          const loanpayView: ILoanpayView = {
+            call_card_id: loanpayRes.call_card_id,
+            username: loanpayRes.username,
+            staff_id: loanpayRes.staff_id,
+            name_staff: loanpayRes.name_staff,
+            status: loanpayRes.status,
+            amount: loanpayRes.amount,
+            book_name: loanpayRes.book_name,
+            note: loanpayRes.note,
+            start_date: loanpayRes.start_date,
+            end_date: loanpayRes.end_date,
+            account_id: loanpayRes.account_id
+
+          }
+          this.loanPayManager.push(loanpayView)
+        })
+      }
+    )
+  }
+
 
 }
 
