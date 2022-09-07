@@ -27,12 +27,12 @@ td i {
 }
 
 .search ul {
+  display: flex;
   list-style-type: none;
   padding-left: 16px;
 }
 
 .search li {
-  display: inline-block;
   padding-right: 8px
 }
 
