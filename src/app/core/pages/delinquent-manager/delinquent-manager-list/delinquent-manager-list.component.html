@@ -12,12 +12,14 @@
           </div>
           <div class="search">
             <ul>
-              <li>
-                <input class="form-control" type="text" [(ngModel)]="fullNameSearch" placeholder="Tên người vi phạm">
-              </li>
+
               <li>
                 <input class="form-control" type="text" [(ngModel)]="usernameSearch" placeholder="Tên đăng nhập">
               </li>
+              <li>
+                <input class="form-control" type="text" [(ngModel)]="fullNameSearch" placeholder="Tên người vi phạm">
+              </li>
+
               <li>
                 <select class="form-control" (change)="selectCategory()" [(ngModel)]="staffId">
                   <option>Tên nhân viên</option>
@@ -75,7 +77,7 @@
           <tr>
             <th>STT</th>
             <th pSortableColumn="username">TÊN ĐĂNG NHẬP<p-sortIcon field="username"></p-sortIcon></th>
-            <th pSortableColumn="fullName">TÊN<p-sortIcon field="fullName"></p-sortIcon></th>
+            <th pSortableColumn="fullName">TÊN NGƯỜI VI PHẠM<p-sortIcon field="fullName"></p-sortIcon></th>
             <th pSortableColumn="finedAmount">SỐ TIỀN BỊ PHẠT<p-sortIcon field="finedAmount"></p-sortIcon></th>
             <th pSortableColumn="proceeds">SỐ TIỀN ĐÃ NỘP<p-sortIcon field="proceeds"></p-sortIcon></th>
             <th pSortableColumn="staffId">TÊN NHÂN VIÊN<p-sortIcon field="staffId"></p-sortIcon></th>
