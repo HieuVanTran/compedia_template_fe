@@ -27,7 +27,7 @@ export class AccManagerListComponent implements OnInit {
   usernameSearch!: string;
   fullNameSearch!: string;
   emailSearch!: string;
-  roleIdSearch!: number;
+  roleIdSearch: number | null = null;
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
 
@@ -60,6 +60,7 @@ export class AccManagerListComponent implements OnInit {
           const accountManagerView: IAccountManagerView = {
             id: accountManagerRes.account_id,
             username: accountManagerRes.username,
+            password: accountManagerRes.password,
             full_name: accountManagerRes.full_name,
             date_of_birth: accountManagerRes.date_of_birth,
             email: accountManagerRes.email,
@@ -118,6 +119,7 @@ export class AccManagerListComponent implements OnInit {
       {
         username: i.username,
         full_name: i.full_name,
+        password: i.password,
         date_of_birth: i.date_of_birth,
         email: i.email,
         phone: i.phone,
@@ -191,6 +193,7 @@ export class AccManagerListComponent implements OnInit {
           const accountManagerView: IAccountManagerView = {
             id: accountManagerRes.account_id,
             username: accountManagerRes.username,
+            password: accountManagerRes.password,
             full_name: accountManagerRes.full_name,
             date_of_birth: accountManagerRes.date_of_birth,
             email: accountManagerRes.email,

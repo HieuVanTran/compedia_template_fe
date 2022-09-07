@@ -12,7 +12,7 @@
           <div class="search">
             <ul>
               <li>
-                <input class="form-control" type="text" [(ngModel)]="fullNameSearch" placeholder="Tên đầy đủ">
+                <input class="form-control" type="text" [(ngModel)]="fullNameSearch" placeholder="Họ và tên">
               </li>
               <li>
                 <input class="form-control" type="text" [(ngModel)]="phoneSearch" placeholder="Số điện thoại">
@@ -66,7 +66,7 @@
         <ng-template pTemplate="header" class="dark">
           <tr>
             <th>STT</th>
-            <th pSortableColumn="name">TÊN ĐẦY ĐỦ<p-sortIcon field="name"></p-sortIcon></th>
+            <th pSortableColumn="name">HỌ VÀ TÊN<p-sortIcon field="name"></p-sortIcon></th>
             <th pSortableColumn="phoneNum">SỐ ĐIỆN THOẠI<p-sortIcon field="phoneNum"></p-sortIcon></th>
             <th pSortableColumn="address">ĐỊA CHỈ<p-sortIcon field="address"></p-sortIcon></th>
             <th pSortableColumn="dateOfBirth">NGÀY SINH<p-sortIcon field="dateOfBirth"></p-sortIcon></th>
@@ -102,25 +102,25 @@
             </div>
             <div class="modal-body">
               <div class="form-group row">
-                <label for="username_add" class="col-sm-3 col-form-label">Tên đầy đủ<span style="color: red">*</span></label>
+                <label for="username_add" class="col-sm-3 col-form-label">Họ và tên<span style="color: red"> *</span></label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control" id="username_add" formControlName="name">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="password_add" class="col-sm-3 col-form-label">Số điện thoại<span style="color: red">*</span></label>
+                <label for="password_add" class="col-sm-3 col-form-label">Số điện thoại<span style="color: red"> *</span></label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control" id="password_add" formControlName="phoneNum">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="full-name_add" class="col-sm-3 col-form-label">Địa chỉ<span style="color: red">*</span></label>
+                <label for="full-name_add" class="col-sm-3 col-form-label">Địa chỉ<span style="color: red"> *</span></label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control" id="full-name_add" formControlName="address" >
                 </div>
               </div>
               <div class="form-group row">
-                <label for="date_of_birth_add" class="col-sm-3 col-form-label">Ngày sinh<span style="color: red">*</span></label>
+                <label for="date_of_birth_add" class="col-sm-3 col-form-label">Ngày sinh<span style="color: red"> *</span></label>
                 <div class="col-sm-9">
                   <input type="date" class="form-control" id="date_of_birth_add" formControlName="dateOfBirth">
                 </div>
@@ -144,25 +144,25 @@
             </div>
             <div class="modal-body">
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Tên đầy đủ<span style="color: red">*</span></label>
+                <label class="col-sm-3 col-form-label">Họ và tên<span style="color: red"> *</span></label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control" formControlName="name">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Số điện thoại<span style="color: red">*</span></label>
+                <label class="col-sm-3 col-form-label">Số điện thoại<span style="color: red"> *</span></label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control"  formControlName="phoneNum">
                 </div>
               </div>
               <div class="form-group row">
-                <label  class="col-sm-3 col-form-label">Địa chỉ<span style="color: red">*</span></label>
+                <label  class="col-sm-3 col-form-label">Địa chỉ<span style="color: red"> *</span></label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control" formControlName="address" >
                 </div>
               </div>
               <div class="form-group row">
-                <label  class="col-sm-3 col-form-label">Ngày sinh<span style="color: red">*</span></label>
+                <label  class="col-sm-3 col-form-label">Ngày sinh<span style="color: red"> *</span></label>
                 <div class="col-sm-9">
                   <input type="date" class="form-control"  formControlName="dateOfBirth">
                 </div>

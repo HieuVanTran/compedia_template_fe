@@ -33,7 +33,7 @@ export class DelinquentManagerListComponent implements OnInit {
   nameStaff!: string
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
-  staffId!: number
+  staffId: number | null = null
 
   constructor(private collectMoneyApiService: CollectMoneyApiService,
               private fb:FormBuilder,
@@ -174,6 +174,7 @@ export class DelinquentManagerListComponent implements OnInit {
           const accountManagerView: IAccountManagerView = {
             id: accountManagerRes.account_id,
             username: accountManagerRes.username,
+            password: accountManagerRes.password,
             full_name: accountManagerRes.full_name,
             date_of_birth: accountManagerRes.date_of_birth,
             email: accountManagerRes.email,
