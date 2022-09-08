@@ -6,5 +6,6 @@ export interface IAccountManagerView {
   date_of_birth: string,
   phone: string,
   email: string,
-  role_id: string,
+  roleCode: string,
+  roleId: string
 }

@@ -17,13 +17,4 @@ export interface IEditLoanpayRequest{
   staff_id: number,
   status: number
 }
-export interface IGetAllLoanpayRequest {
-  bookName: string
-  categoryName: string,
-  page:  number,
-  size: number,
-  sort_field: string,
-  sort_order: string,
-  status: number
-}
 

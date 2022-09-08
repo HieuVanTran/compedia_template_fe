@@ -65,10 +65,8 @@ export class AccManagerListComponent implements OnInit {
             date_of_birth: accountManagerRes.date_of_birth,
             email: accountManagerRes.email,
             phone: accountManagerRes.phone,
-            role_id: accountManagerRes.code_role,
-
-
-
+            roleCode: accountManagerRes.code_role,
+            roleId: accountManagerRes.role_id
           };
           this.accManager.push(accountManagerView)
         })
@@ -118,6 +116,7 @@ export class AccManagerListComponent implements OnInit {
 
   editAccount(i: IAccountManagerView) {
     this.accountSelected = i;
+    console.log(this.accountSelected)
     this.accountInfoForm.patchValue(
       {
         username: i.username,
@@ -126,8 +125,7 @@ export class AccManagerListComponent implements OnInit {
         date_of_birth: i.date_of_birth,
         email: i.email,
         phone: i.phone,
-        role_id: i.role_id,
-
+        role_id: i.roleId
       }
     )
   }
@@ -202,7 +200,8 @@ export class AccManagerListComponent implements OnInit {
             date_of_birth: accountManagerRes.date_of_birth,
             email: accountManagerRes.email,
             phone: accountManagerRes.phone,
-            role_id: accountManagerRes.code_role,
+            roleCode: accountManagerRes.code_role,
+            roleId: accountManagerRes.role_id
           };
           this.accManager.push(accountManagerView)
         })
