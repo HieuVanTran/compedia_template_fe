@@ -10,6 +10,6 @@ export  interface ILoanpayView{
   end_date: string,
   account_id: number,
   book_name: string
-
+  book_id: number
 }
 

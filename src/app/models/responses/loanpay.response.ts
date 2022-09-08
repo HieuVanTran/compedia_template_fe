@@ -9,6 +9,7 @@ export interface ILoanpayResponse{
   start_date: string,
   end_date: string,
   account_id: number,
-  book_name: string
+  book_name: string,
+  book_id: number
 }
 

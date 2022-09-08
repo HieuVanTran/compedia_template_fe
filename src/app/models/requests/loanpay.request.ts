@@ -14,7 +14,8 @@ export interface IEditLoanpayRequest{
   call_card_id: number,
   end_date: string,
   note: string,
-  staff_id: number
+  staff_id: number,
+  status: number
 }
 export interface IGetAllLoanpayRequest {
   bookName: string
@@ -22,6 +23,7 @@ export interface IGetAllLoanpayRequest {
   page:  number,
   size: number,
   sort_field: string,
-  sort_order: string
+  sort_order: string,
+  status: number
 }
 

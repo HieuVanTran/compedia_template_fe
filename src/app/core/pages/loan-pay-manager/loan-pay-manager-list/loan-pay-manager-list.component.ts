@@ -84,7 +84,8 @@ export class LoanPayManagerListComponent implements OnInit {
             note: loanpayRes.note,
             start_date: loanpayRes.start_date,
             end_date: loanpayRes.end_date,
-            account_id: loanpayRes.account_id
+            account_id: loanpayRes.account_id,
+            book_id: loanpayRes.book_id
 
           }
           this.loanPayManager.push(loanpayView)
@@ -151,6 +152,7 @@ export class LoanPayManagerListComponent implements OnInit {
         end_date: i.end_date,
         account_id: i.account_id,
         amount: i.amount,
+        book_id: i.book_id,
         book_name: i.book_name
       }
     )
@@ -164,7 +166,8 @@ export class LoanPayManagerListComponent implements OnInit {
       call_card_id: this.loanpayInfoForm.value.call_card_id,
       end_date: this.loanpayInfoForm.value.end_date,
       note: this.loanpayInfoForm.value.note,
-      staff_id: this.loanpayInfoForm.value.staff_id
+      staff_id: this.loanpayInfoForm.value.staff_id,
+      status: this.loanpayInfoForm.value.status
     }
 
     this.loanpayApiService._editLoanpay(editLoanpayRequest).subscribe(
@@ -247,6 +250,7 @@ export class LoanPayManagerListComponent implements OnInit {
     )
   }
 
+
 //  getAll staff
   getAllStaffManager() {
     this.StaffManagerApiService._getAllStaffManager().subscribe(
@@ -292,7 +296,8 @@ export class LoanPayManagerListComponent implements OnInit {
             note: loanpayRes.note,
             start_date: loanpayRes.start_date,
             end_date: loanpayRes.end_date,
-            account_id: loanpayRes.account_id
+            account_id: loanpayRes.account_id,
+            book_id: loanpayRes.book_id
 
           }
           this.loanPayManager.push(loanpayView)

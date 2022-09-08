@@ -63,9 +63,11 @@ export class DelinquentManagerListComponent implements OnInit {
             fullName: collectMoneyRes.full_name,
             finedAmount: collectMoneyRes.fined_amount,
             proceeds: collectMoneyRes.proceeds,
-            staffId: collectMoneyRes.staff_name,
+            staffId: collectMoneyRes.staff_id,
             userId: collectMoneyRes.account_id,
-            username: collectMoneyRes.user_name
+            username: collectMoneyRes.user_name,
+            staff_name: collectMoneyRes.staff_name
+
           };
           this.delinquentManager.push(collectMoneyView)
         })
@@ -140,7 +142,8 @@ export class DelinquentManagerListComponent implements OnInit {
         fullName: i.fullName,
         proceeds: i.proceeds,
         staffId: i.staffId,
-        username: i.username
+        username: i.username,
+
     })
   }
 
@@ -208,9 +211,11 @@ export class DelinquentManagerListComponent implements OnInit {
             fullName: collectMoneyRes.full_name,
             finedAmount: collectMoneyRes.fined_amount,
             proceeds: collectMoneyRes.proceeds,
-            staffId: collectMoneyRes.staff_name,
+            staffId: collectMoneyRes.staff_id,
             userId: collectMoneyRes.account_id,
-            username: collectMoneyRes.user_name
+            username: collectMoneyRes.user_name,
+            staff_name: collectMoneyRes.staff_name
+
           };
           this.delinquentManager.push(collectMoneyView)
         })

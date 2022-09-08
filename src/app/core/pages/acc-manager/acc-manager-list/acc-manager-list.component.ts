@@ -65,7 +65,10 @@ export class AccManagerListComponent implements OnInit {
             date_of_birth: accountManagerRes.date_of_birth,
             email: accountManagerRes.email,
             phone: accountManagerRes.phone,
-            role_id: accountManagerRes.code_role
+            role_id: accountManagerRes.code_role,
+
+
+
           };
           this.accManager.push(accountManagerView)
         })
@@ -123,7 +126,8 @@ export class AccManagerListComponent implements OnInit {
         date_of_birth: i.date_of_birth,
         email: i.email,
         phone: i.phone,
-        role_id: i.role_id
+        role_id: i.role_id,
+
       }
     )
   }
@@ -198,7 +202,7 @@ export class AccManagerListComponent implements OnInit {
             date_of_birth: accountManagerRes.date_of_birth,
             email: accountManagerRes.email,
             phone: accountManagerRes.phone,
-            role_id: accountManagerRes.code_role
+            role_id: accountManagerRes.code_role,
           };
           this.accManager.push(accountManagerView)
         })

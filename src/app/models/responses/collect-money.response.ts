@@ -5,5 +5,6 @@ export interface ICollectMoneyResponses {
   account_id: string,
   user_name: string,
   proceeds: string,
-  fined_amount: string
+  fined_amount: string,
+  staff_id: string
 }
