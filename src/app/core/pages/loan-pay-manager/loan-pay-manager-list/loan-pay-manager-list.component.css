@@ -16,8 +16,8 @@ td i {
 .search ul {
   display: flex;
   list-style-type: none;
-  margin-top: 12px;
-  padding-left: 0;
+  margin-top: 10px;
+  padding-left: 1px;
 }
 .search li {
   padding-right: 8px
