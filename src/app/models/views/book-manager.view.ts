@@ -10,5 +10,8 @@ export interface IBookManagerView {
   publish_name: string,
   amount: string,
   status:string,
-  note: string
+  note: string,
+  id_author: number,
+  company_id: number,
+  id_type_book: number
 }

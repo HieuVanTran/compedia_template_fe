@@ -205,7 +205,10 @@ export class LoanPayManagerListComponent implements OnInit {
             publish_name: bookManagerRes.publish_name,
             amount: bookManagerRes.amount,
             status: bookManagerRes.status,
-            note: bookManagerRes.note
+            note: bookManagerRes.note,
+            id_author: bookManagerRes.id_author,
+            company_id: bookManagerRes.company_id,
+            id_type_book: bookManagerRes.id_type_book
           }
           this.listBook.push(bookManagerView)
         })

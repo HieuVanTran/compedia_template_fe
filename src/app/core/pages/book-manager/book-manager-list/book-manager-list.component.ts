@@ -58,7 +58,10 @@ export class BookManagerListComponent implements OnInit {
       publish_name: [null],
       amount: [null],
       status:[null],
-      note: [null]
+      note: [null],
+      id_author: [null],
+      company_id: [null],
+      id_type_book: [null]
     })
   }
 
@@ -87,7 +90,10 @@ export class BookManagerListComponent implements OnInit {
             publish_name:bookManagerRes.publish_name,
             amount:bookManagerRes.amount,
             status:bookManagerRes.status,
-            note: bookManagerRes.note
+            note: bookManagerRes.note,
+            id_author: bookManagerRes.id_author,
+            company_id: bookManagerRes.company_id,
+            id_type_book: bookManagerRes.id_type_book
           }
           this.bookManager.push(bookManagerView)
         })
@@ -211,7 +217,10 @@ export class BookManagerListComponent implements OnInit {
         category_name:i.category_name,
         publish_name:i.publish_name,
         amount:i.amount,
-        note: i.note
+        note: i.note,
+        id_author: i.id_author,
+        company_id: i.company_id,
+        id_type_book: i.id_type_book
       }
     )
     console.log(this.bookmanagerInfoForm.value)
@@ -293,7 +302,10 @@ export class BookManagerListComponent implements OnInit {
             publish_name:bookManagerRes.publish_name,
             amount:bookManagerRes.amount,
             status:bookManagerRes.status,
-            note: bookManagerRes.note
+            note: bookManagerRes.note,
+            id_author: bookManagerRes.id_author,
+            company_id: bookManagerRes.company_id,
+            id_type_book: bookManagerRes.id_type_book
           }
           this.bookManager.push(bookManagerView)
         })
