@@ -218,7 +218,7 @@
                 <label for="book-kind" class="col-sm-3 col-form-label">Loại sách <span
                   style="color: red"> *</span></label>
                 <div class="col-sm-9">
-                  <select class="form-control" formControlName="category_name">
+                  <select class="form-control" formControlName="id_type_book">
                     <option *ngFor="let bookCategory of listBookCategory" value="{{bookCategory.id}}">
                       <span>{{bookCategory.category_name}}</span>
                     </option>
@@ -228,7 +228,7 @@
               <div class="form-group row">
                 <label for="author2" class="col-sm-3 col-form-label">Tác giả <span style="color: red"> *</span></label>
                 <div class="col-sm-9">
-                  <select class="form-control" formControlName="name_author" id="author2">
+                  <select class="form-control" formControlName="id_author" id="author2">
                     <option *ngFor="let bookAuthor of listAuthor" value="{{bookAuthor.id}}">
                       <span>{{bookAuthor.name_author}}</span>
                     </option>
@@ -244,7 +244,7 @@
               <div class="form-group row">
                 <label for="old-password" class="col-sm-3 col-form-label">Nhà xuất bản <span style="color: red"> *</span></label>
                 <div class="col-sm-9">
-                  <select class="form-control" formControlName="publish_name" id="old-password">
+                  <select class="form-control" formControlName="company_id" id="old-password">
                     <option *ngFor="let company of listpublishingCompany" value="{{company.id}}">
                       <span>{{company.name}}</span>
                     </option>

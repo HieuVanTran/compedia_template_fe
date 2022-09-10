@@ -182,7 +182,8 @@ export class DelinquentManagerListComponent implements OnInit {
             date_of_birth: accountManagerRes.date_of_birth,
             email: accountManagerRes.email,
             phone: accountManagerRes.phone,
-            role_id: accountManagerRes.code_role
+            roleCode: accountManagerRes.code_role,
+            roleId: accountManagerRes.role_id
           };
           this.listAccount.push(accountManagerView)
         })
