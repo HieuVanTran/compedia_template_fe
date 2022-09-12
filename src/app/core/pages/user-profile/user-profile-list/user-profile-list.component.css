@@ -1,0 +1,10 @@
+section{
+  width: 100%;
+  height: 1600px;
+}
+.edit_user_profile{
+  margin-left: 525px;
+}
+.fa-regular.fa-pen-to-square{
+  margin-left: 5px;
+}

@@ -10,14 +10,15 @@ import {MessageService} from "primeng/api";
 import {ChartListComponent} from "./chart/chart-list.component";
 import {ChartModule} from 'primeng/chart';
 import {AutoCompleteModule} from 'primeng/autocomplete';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+
+import { UserProfileListComponent } from './user-profile/user-profile-list/user-profile-list.component';
 
 
 @NgModule({
     declarations: [
         ChartListComponent,
         PagesComponent,
-        UserProfileComponent,
+
     ],
     imports: [
       PagesRoutingModule,

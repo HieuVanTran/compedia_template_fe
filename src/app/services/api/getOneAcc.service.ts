@@ -18,9 +18,9 @@ export class GetOneAccApiService {
     private http: HttpClient
   ) {
   }
-  _getOneAcc() : Observable<IResponseModel<IGetOnAccResponse[]>>{
-    const url = `${this.api}/account/get-one`
-    return this.http.get<IResponseModel<IGetOnAccResponse[]>>(url)
 
+  _getOneAcc(request: any): Observable<IResponseModel<IGetOnAccResponse>> {
+    const url = `${this.api}/account/get-one?account_id=${request}`;
+    return this.http.get<IResponseModel<IGetOnAccResponse>>(url)
   }
 }

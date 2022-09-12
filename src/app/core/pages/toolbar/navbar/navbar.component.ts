@@ -7,6 +7,7 @@ import {IGetOneAccView} from "../../../../models/views/getOneAcc.view";
 import {IGetOnAccResponse} from "../../../../models/responses/getOnAcc.response";
 import {FormBuilder, FormGroup} from "@angular/forms";
 declare function toggleMenu(): any
+declare function clickMenuMobile(): any
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -71,5 +72,9 @@ export class NavbarComponent implements OnInit {
   //     }
   //   )
   // }
+  onClickMenu() {
+    clickMenuMobile()
+
+  }
 }
 
