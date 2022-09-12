@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {PublishCompanyApiService} from "../../../../services/api/publish-company-api.service";
 import {IPageResponseModel, IResponseModel} from "../../../../models/commons/response.model";
 import {IPublishCompanyResponse} from "../../../../models/responses/publish-company.response";
@@ -7,6 +7,12 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {IEditPublishCompanyRequest, IPublishCompanyRequest} from "../../../../models/requests/publish-company.request";
 import {MessageService} from "primeng/api";
 import {Constant} from "../../../../util/constant";
+
+class ResetForm {
+  company_name!: string
+  company_email!: string
+  company_deputy!: string
+}
 
 @Component({
   selector: 'app-publishing-company-list',
@@ -23,6 +29,8 @@ export class PublishingCompanyListComponent implements OnInit {
   publishNameSearch!: string;
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
+  resetForm: ResetForm = new ResetForm()
+
 
   constructor(private publishCompanyApiService: PublishCompanyApiService,
               private fb:FormBuilder,
@@ -162,5 +170,13 @@ export class PublishingCompanyListComponent implements OnInit {
           console.log(this.publishingCompany)
       }
     )
+  }
+
+//  onClear
+  onClear(){
+      this.resetForm.company_name = '',
+        this.resetForm.company_email = '',
+        this.resetForm.company_deputy = ''
+
   }
 }

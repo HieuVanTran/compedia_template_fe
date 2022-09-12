@@ -42,7 +42,7 @@ export class LoanPayManagerListComponent implements OnInit {
               private BookApiService: BookApiService,
               private AccountApiService : AccountApiService,
               private StaffManagerApiService: StaffManagerApiService,
-              private fb: FormBuilder,
+              private fb: FormBuilder
               ) {
     this.loanpayInfoForm = fb.group({
       amount: [null],

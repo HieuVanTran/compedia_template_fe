@@ -12,16 +12,19 @@
           <div class="search">
             <ul>
               <li>
-                <input class="form-control" type="text" [(ngModel)]="publishNameSearch" placeholder="Nhà xuất bản">
+                <input class="form-control" type="text" [(ngModel)]="publishNameSearch" [(ngModel)]="resetForm.company_name" placeholder="Nhà xuất bản">
               </li>
               <li>
-                <input class="form-control" type="text" [(ngModel)]="emailSearch" placeholder="Email">
+                <input class="form-control" type="text" [(ngModel)]="emailSearch" [(ngModel)]="resetForm.company_email"placeholder="Email">
               </li>
               <li>
-                <input class="form-control" type="text" [(ngModel)]="agentPeopleSearch" placeholder="Người đại diện">
+                <input class="form-control" type="text" [(ngModel)]="agentPeopleSearch" [(ngModel)]="resetForm.company_deputy" placeholder="Người đại diện">
               </li>
               <li>
                 <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="onSearch()">Tìm kiếm</a>
+              </li>
+              <li>
+                <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="onClear()">Reset</a>
               </li>
             </ul>
           </div>

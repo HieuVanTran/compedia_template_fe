@@ -3,6 +3,7 @@ import {NavbarComponent} from "./navbar/navbar.component";
 import {SidebarComponent} from "./sidebar/sidebar.component";
 import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -16,6 +17,8 @@ import {RouterModule} from "@angular/router";
   imports: [
     CommonModule,
     RouterModule,
+    // FormsModule,
+    ReactiveFormsModule
   ]
 })
 
