@@ -10,6 +10,7 @@ import {MessageService} from "primeng/api";
 import {ChartListComponent} from "./chart/chart-list.component";
 import {ChartModule} from 'primeng/chart';
 import {AutoCompleteModule} from 'primeng/autocomplete';
+import {CalendarModule} from "primeng/calendar";
 
 import { UserProfileListComponent } from './user-profile/user-profile-list/user-profile-list.component';
 
@@ -28,7 +29,8 @@ import { UserProfileListComponent } from './user-profile/user-profile-list/user-
       FormsModule,
       ReactiveFormsModule,
       ToastModule,
-      AutoCompleteModule
+      AutoCompleteModule,
+      CalendarModule
     ],
     providers: [
       MessageService

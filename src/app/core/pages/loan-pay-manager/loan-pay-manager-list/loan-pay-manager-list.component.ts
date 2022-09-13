@@ -104,7 +104,6 @@ export class LoanPayManagerListComponent implements OnInit {
       end_date: this.loanpayInfoForm.value.end_date,
       note: this.loanpayInfoForm.value.note,
       staff_id: this.loanpayInfoForm.value.staff_id
-
     }
 
     this.loanpayApiService._createNewLoanpay(createNewLoanpayRequest).subscribe(

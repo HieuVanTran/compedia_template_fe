@@ -311,6 +311,11 @@ export class BookManagerListComponent implements OnInit {
   selectCategory() {
     console.log(this.categoryId)
   }
+
+  resetValue() {
+    this.bookmanagerInfoForm.reset()
+    this.bookmanagerInfoForm.patchValue({})
+  }
 }
 
 
