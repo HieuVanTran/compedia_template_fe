@@ -1,4 +1,4 @@
-export interface IGetOnAccResponse {
+export interface IAccountViewModal {
   account_id: number,
   role_id: number,
   username: string,

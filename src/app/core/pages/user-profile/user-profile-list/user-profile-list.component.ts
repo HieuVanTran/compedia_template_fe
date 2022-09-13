@@ -1,9 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {IGetOneAccView} from "../../../../models/views/getOneAcc.view";
+
 import {GetOneAccApiService} from "../../../../services/api/getOneAcc.service";
 import {IStaffManagerView} from "../../../../models/views/staff-manager.view";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
+import {AccountService} from "../../../../services/intercept/account.service";
+import {IAccountViewModal} from "../../../../models/views/account.view";
+import {IAccountManagerView} from "../../../../models/views/account-manager.view";
+import {IEditAccountManagerRequest} from "../../../../models/requests/account-manager.request";
+import {IResponseModel} from "../../../../models/commons/response.model";
 
 @Component({
   selector: 'app-user-profile-list',
@@ -12,65 +17,97 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class UserProfileListComponent implements OnInit {
 
-  getOneAccManager!: IGetOneAccView;
-  getOneAccInfoForm!: FormGroup;
+
+  accInfoForm!: FormGroup;
   account_id!: number
   staffManagerSelected!: IStaffManagerView;
+  currentAccount!: IAccountViewModal;
+  accountSelected!: IAccountViewModal;
 
 
   constructor(private getOneAccApiService: GetOneAccApiService,
               private activatedRoute: ActivatedRoute,
-              private fb: FormBuilder)
-  {
-    this.activatedRoute.paramMap.subscribe(
-      (params) => {
-        console.log(params)
-        this.account_id = parseInt(<string>params.get('id'))
-        if(this.account_id){
-          this.getAcc(this.account_id)
-        }
-      }
-    )
-    this.getOneAccInfoForm = this.fb.group({
-        account_id: [null],
-        role_id: [null],
-        username: [null],
-        password: [null],
-        phone: [null],
-        email: [null],
-        full_name: [null],
-        creat_date: [null],
-        update_date: [null],
-        date_of_birth: [null],
-        code_role: [null]
+              private fb: FormBuilder,
+              private accountService: AccountService) {
+
+    this.accInfoForm = this.fb.group({
+      account_id: [null],
+      role_id: [null],
+      username: [null],
+      password: [null],
+      phone: [null],
+      email: [null],
+      full_name: [null],
+      creat_date: [null],
+      update_date: [null],
+      date_of_birth: [null],
+      code_role: [null]
     })
   }
 
   ngOnInit(): void {
     // this.getOneAcc()
+    this.getCurrentAccount()
 
   }
 
-  getAcc(account_id: number) {
-    console.log(account_id)
-    this.getOneAccApiService._getOneAcc(account_id).subscribe(data =>
-    {
-      console.log(data)
-      this.getOneAccManager = {
-        account_id: data.data.account_id,
-        role_id: data.data.role_id,
-        username: data.data.username,
-        password: data.data.password,
-        phone: data.data.phone,
-        email: data.data.email,
-        full_name: data.data.full_name,
-        creat_date: data.data.creat_date,
-        update_date: data.data.update_date,
-        date_of_birth:data.data.date_of_birth,
-        code_role: data.data.code_role
+  getCurrentAccount() {
+    this.accountService.getCurrentAccount().subscribe(
+      res => {
+        if (res) {
+          this.currentAccount = res
+          console.log(this.currentAccount)
+        }
       }
-    })
+    )
   }
+
+  editAccount(i: IAccountViewModal) {
+    this.accountSelected = i;
+    console.log(this.accountSelected)
+    this.accInfoForm.patchValue(
+      {
+        account_id: i.account_id,
+        role_id: i.role_id,
+        username: i.username,
+        password: i.password,
+        phone: i.phone,
+        email: i.email,
+        full_name: i.full_name,
+        creat_date: i.creat_date,
+        update_date: i.update_date,
+        date_of_birth: i.date_of_birth,
+        code_role: i.code_role
+      }
+    )
+  }
+
+  onEditAccount() {
+    const editAccountManagerRequest: IEditAccountManagerRequest = {
+      username: this.accInfoForm.value.username,
+      password: this.accInfoForm.value.password,
+      full_name: this.accInfoForm.value.full_name,
+      dob: this.accInfoForm.value.date_of_birth,
+      email: this.accInfoForm.value.email,
+      phone: this.accInfoForm.value.phone,
+      role_id: this.accInfoForm.value.role_id,
+      id: this.accountSelected.account_id
+    };
+    //   this.getOneAccApiService._editAccount(editAccountManagerRequest).subscribe(
+    //     (res: IResponseModel<any>) => {
+    //       this.messageService.add({severity: 'success', summary: 'Thông báo!', detail: 'Chỉnh sửa thành công! '});
+    //       console.log('Thay doi thong tin thanh cong');
+    //       this.getAllAccountManager()
+    //     },
+    //     err => {
+    //       this.messageService.add({severity: 'error', summary: 'Thông báo!', detail: 'Chỉnh sửa thất bại! '});
+    //       console.log('Thay doi thong tin that bai')
+    //     }
+    //   )
+    // }
+    //
+
+
+  }
+
 }
-
-

@@ -6,7 +6,8 @@ import {IPageResponseModel, IResponseModel} from "../../models/commons/response.
 import { ILoanpayResponse } from "src/app/models/responses/loanpay.response";
 import {IEditLoanpayRequest, ILoanpayRequest } from "src/app/models/requests/loanpay.request";
 import {IBookManagerResponse} from "../../models/responses/book-manager.response";
-import {IGetOnAccResponse} from "../../models/responses/getOnAcc.response";
+import {IAccountResponseModal} from "../../models/responses/account.response";
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,8 @@ export class GetOneAccApiService {
   ) {
   }
 
-  _getOneAcc(request: any): Observable<IResponseModel<IGetOnAccResponse>> {
-    const url = `${this.api}/account/get-one?account_id=${request}`;
-    return this.http.get<IResponseModel<IGetOnAccResponse>>(url)
+  _getOneAcc(): Observable<IResponseModel<IAccountResponseModal>> {
+    const url = `${this.api}/account/get-one`;
+    return this.http.get<IResponseModel<IAccountResponseModal>>(url)
   }
 }
