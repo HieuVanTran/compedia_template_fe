@@ -3,9 +3,10 @@ import {Token} from "@angular/compiler";
 import {TokenService} from "../../../../services/token.service";
 import {IResponseModel} from "../../../../models/commons/response.model";
 import {GetOneAccApiService} from "../../../../services/api/getOneAcc.service";
-import {IGetOneAccView} from "../../../../models/views/getOneAcc.view";
-import {IGetOnAccResponse} from "../../../../models/responses/getOnAcc.response";
+
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {IAccountViewModal} from "../../../../models/views/account.view";
+import {AccountService} from "../../../../services/intercept/account.service";
 declare function toggleMenu(): any
 declare function clickMenuMobile(): any
 @Component({
@@ -14,33 +15,22 @@ declare function clickMenuMobile(): any
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  getOneAccManager: IGetOneAccView[]=[]
+
   getOneAccInfoForm!: FormGroup
+  currentAccount!: IAccountViewModal
 
 
 
   constructor(
     private getOneApiService: GetOneAccApiService,
     private tokenService: TokenService,
-    // private fb: FormBuilder
+    private accountService: AccountService
   ) {
-    // this.getOneAccInfoForm = this.fb.group({
-    //   account_id: [null],
-    //   role_id: [null],
-    //   username: [null],
-    //   password: [null],
-    //   phone: [null],
-    //   email: [null],
-    //   full_name: [null],
-    //   creat_date: [null],
-    //   update_date: [null],
-    //   date_of_birth: [null],
-    //   code_role: [null]
-    // })
   }
 
   ngOnInit(): void {
     // this.getOneAcc()
+    this.getCurrentAccount()
   }
   toggleMenu() {
     toggleMenu()
@@ -48,33 +38,21 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.tokenService.clearKey()
   }
-  // getOneAcc(){
-  //   this.getOneApiService._getOneAcc().subscribe(
-  //     (res: IResponseModel<IGetOnAccResponse[]>) => {
-  //       this.getOneAccManager = []
-  //       res.data.forEach(getOneAccRes => {
-  //         const getOneAccView: IGetOneAccView = {
-  //           account_id: getOneAccRes.account_id,
-  //           role_id: getOneAccRes.role_id,
-  //           username: getOneAccRes.username,
-  //           password: getOneAccRes.password,
-  //           phone: getOneAccRes.phone,
-  //           email: getOneAccRes.email,
-  //           full_name: getOneAccRes.full_name,
-  //           creat_date: getOneAccRes.creat_date,
-  //           update_date: getOneAccRes.update_date,
-  //           date_of_birth: getOneAccRes.date_of_birth,
-  //           code_role: getOneAccRes.code_role
-  //
-  //         }
-  //         this.getOneAccManager.push(getOneAccView)
-  //       })
-  //     }
-  //   )
-  // }
+
   onClickMenu() {
     clickMenuMobile()
 
+  }
+
+  getCurrentAccount() {
+    this.accountService.getCurrentAccount().subscribe(
+      res => {
+        if(res) {
+          this.currentAccount = res
+          console.log(this.currentAccount)
+        }
+      }
+    )
   }
 }
 
