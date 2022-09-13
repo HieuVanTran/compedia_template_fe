@@ -10,6 +10,7 @@ import {MessageService} from "primeng/api";
 import {ChartListComponent} from "./chart/chart-list.component";
 import {ChartModule} from 'primeng/chart';
 import {AutoCompleteModule} from 'primeng/autocomplete';
+import {CalendarModule} from "primeng/calendar";
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
       FormsModule,
       ReactiveFormsModule,
       ToastModule,
-      AutoCompleteModule
+      AutoCompleteModule,
+      CalendarModule
     ],
     providers: [
       MessageService

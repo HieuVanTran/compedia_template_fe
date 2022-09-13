@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {IChartView, listChartView} from "../../../models/views/chart.view,ts";
+import {Component, OnInit} from '@angular/core';
+import {IChartDataView, IChartView} from "../../../models/views/chart.view,ts";
 import {ChartApiService} from "../../../services/api/chart-api.service";
 import {IResponseModel} from "../../../models/commons/response.model";
 import {IChartRespone} from "../../../models/responses/chart.respone";
-import {analyticsDisabled} from "@angular/cli/src/utilities/environment-options";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-chart-list',
@@ -16,9 +16,12 @@ export class ChartListComponent implements OnInit {
 
   data: any;
   options: any;
-
-  constructor(private chartApiService: ChartApiService) {
-
+  year!: number;
+  selectedChartYear: Date = new Date()
+  constructor(private chartApiService: ChartApiService,
+              private activatedRoute: ActivatedRoute
+  )
+  {
     this.options = {
       title: {
         display: true,
@@ -34,6 +37,8 @@ export class ChartListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllChartData()
+    this.selectedChartYear.setFullYear(2022,5,6)
+    this.getChartYear()
   }
 
   getAllChartData() {
@@ -47,23 +52,46 @@ export class ChartListComponent implements OnInit {
           money: res.data.total_money,
           listData: []
         }
-        res.data.list_data.forEach(
-          item => {
-            const itemData: listChartView = {
-              month: item.month,
-              monthText: item.month_text,
-              amountBorrow: item.amount_borrow,
-              amountPay: item.amount_pay
-            }
-            this.reportData.listData.push(itemData)
-          }
-        )
-        this.updateChartData(this.reportData.listData)
+        // res.data.list_data.forEach(
+        //   item => {
+        //     const itemData: listChartView = {
+        //       month: item.month,
+        //       monthText: item.month_text,
+        //       amountBorrow: item.amount_borrow,
+        //       amountPay: item.amount_pay
+        //     }
+        //     this.reportData.listData.push(itemData)
+        //   }
+        // )
+        // this.updateChartData(this.reportData.listData)
       }
     )
   }
 
-  updateChartData(chartItems: listChartView[]) {
+
+  getChartYear(){
+    console.log('get')
+   this.chartApiService._getChartDataYear(this.selectedChartYear.getFullYear()).subscribe((data )=>
+     {
+       console.log(data.data)
+       let listChartItem : IChartDataView[] = []
+       data.data.forEach(
+         item => {
+           const chartItem: IChartDataView = {
+             month: item.month,
+             monthText: item.month_text,
+             amountBorrow: item.amount_borrow,
+             amountPay: item.amount_pay
+           }
+           listChartItem.push(chartItem)
+         }
+       )
+       this.updateChartData(listChartItem)
+     }
+   )
+  }
+
+  updateChartData(chartItems: IChartDataView[]) {
     console.log(chartItems)
     let listLabel: any[] = []
     let borrowData: any = {
@@ -90,6 +118,7 @@ export class ChartListComponent implements OnInit {
       labels: listLabel,
       datasets: [borrowData,payData]
     }
-  }
 
+    console.log(this.data)
+  }
 }

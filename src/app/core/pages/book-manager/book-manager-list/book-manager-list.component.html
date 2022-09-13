@@ -9,8 +9,8 @@
           </div>
 
           <div class="col-md-3 d-flex justify-content-end" style="padding-bottom: 12px">
-            <a class="btn btn-info text-light" type="button" data-toggle="modal"
-               data-target="#exampleModal-bookmanager-new">Thêm mới <span><i class="fa-solid fa-plus" (click)="bookmanagerInfoForm.reset()"></i></span></a>
+            <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="resetValue()"
+               data-target="#exampleModal-bookmanager-new">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
           </div>
           <div class="search">
             <ul>
@@ -205,7 +205,7 @@
               <div class="form-group row">
                 <label for="images2" class="col-sm-3 col-form-label">Ảnh <span style="color: red"> *</span></label>
                 <div class="col-sm-9">
-                  <input type="file" class="form-control-file" id="images2" formControlName="file" (change)="getFile($event)">
+                  <input type="file" class="form-control-file" id="images2" (change)="getFile($event)">
                 </div>
               </div>
               <div class="form-group row">

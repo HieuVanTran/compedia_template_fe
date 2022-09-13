@@ -12,3 +12,9 @@ export interface listChartRespone {
   amount_borrow: string,
   amount_pay: string
 }
+export interface IChartYearRespone{
+  month: string,
+  month_text: string,
+  amount_borrow: string,
+  amount_pay: string
+}
