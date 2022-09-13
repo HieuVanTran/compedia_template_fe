@@ -10,6 +10,9 @@ export interface IBookManagerResponse {
   status: string,
   publish_name: string,
   image: string,
-  note: string
+  note: string,
+  id_author: number,
+  company_id: number,
+  id_type_book: number
 }
 

@@ -7,7 +7,7 @@
             <h4 class="card-title">QUẢN LÝ TÀI KHOẢN</h4>
           </div>
           <div class="col-md-3 d-flex justify-content-end" style="padding-bottom: 12px">
-            <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="accountInfoForm.reset()" data-target="#exampleModal-accmanager-new">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
+            <a class="btn btn-info text-light add_new" type="button" data-toggle="modal" (click)="accountInfoForm.reset()" data-target="#exampleModal-accmanager-new">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
           </div>
           <div class="search">
             <ul>
@@ -30,6 +30,9 @@
               </li>
               <li>
                 <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="onSearch()" >Tìm kiếm</a>
+              </li>
+              <li>
+                <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="onSearch()" >Reset</a>
               </li>
             </ul>
           </div>
@@ -97,7 +100,7 @@
             <td>{{i.date_of_birth}}</td>
             <td>{{i.email}}</td>
             <td>{{i.phone}}</td>
-            <td>{{i.role_id}}</td>
+            <td>{{i.roleCode}}</td>
             <td>
               <a type="button" data-toggle="modal" data-target="#exampleModal-accmanager" (click)="editAccount(i)"><i class="fa-solid fa-pen-to-square" style="color: #00cc00"></i></a>
               <a type="button" data-toggle="modal" data-target="#delete-acc-manager" (click)="selectAccount(i)"><i class="fa-solid fa-trash-can" style="color: red"></i></a>

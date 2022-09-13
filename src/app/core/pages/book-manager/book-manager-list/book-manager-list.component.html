@@ -9,8 +9,8 @@
           </div>
 
           <div class="col-md-3 d-flex justify-content-end" style="padding-bottom: 12px">
-            <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="resetValue()"
-               data-target="#exampleModal-bookmanager-new">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
+            <a class="btn btn-info text-light add_new" type="button" data-toggle="modal"
+               data-target="#exampleModal-bookmanager-new" (click)="bookmanagerInfoForm.reset()">Thêm mới <span><i class="fa-solid fa-plus" ></i></span></a>
           </div>
           <div class="search">
             <ul>
@@ -43,6 +43,9 @@
               </li>
               <li>
                 <a class="btn btn-info text-light form-control" type="button" data-toggle="modal" (click)="onSearch()">Tìm kiếm</a>
+              </li>
+              <li>
+                <a class="btn btn-info text-light form-control" type="button" data-toggle="modal" (click)="onSearch()">Reset</a>
               </li>
             </ul>
           </div>
@@ -205,7 +208,7 @@
               <div class="form-group row">
                 <label for="images2" class="col-sm-3 col-form-label">Ảnh <span style="color: red"> *</span></label>
                 <div class="col-sm-9">
-                  <input type="file" class="form-control-file" id="images2" (change)="getFile($event)">
+                  <input type="file" class="form-control-file" id="images2" formControlName="file" (change)="getFile($event)">
                 </div>
               </div>
               <div class="form-group row">
@@ -218,7 +221,7 @@
                 <label for="book-kind" class="col-sm-3 col-form-label">Loại sách <span
                   style="color: red"> *</span></label>
                 <div class="col-sm-9">
-                  <select class="form-control" formControlName="category_name">
+                  <select class="form-control" formControlName="id_type_book">
                     <option *ngFor="let bookCategory of listBookCategory" value="{{bookCategory.id}}">
                       <span>{{bookCategory.category_name}}</span>
                     </option>
@@ -228,7 +231,7 @@
               <div class="form-group row">
                 <label for="author2" class="col-sm-3 col-form-label">Tác giả <span style="color: red"> *</span></label>
                 <div class="col-sm-9">
-                  <select class="form-control" formControlName="name_author" id="author2">
+                  <select class="form-control" formControlName="id_author" id="author2">
                     <option *ngFor="let bookAuthor of listAuthor" value="{{bookAuthor.id}}">
                       <span>{{bookAuthor.name_author}}</span>
                     </option>
@@ -244,7 +247,7 @@
               <div class="form-group row">
                 <label for="old-password" class="col-sm-3 col-form-label">Nhà xuất bản <span style="color: red"> *</span></label>
                 <div class="col-sm-9">
-                  <select class="form-control" formControlName="publish_name" id="old-password">
+                  <select class="form-control" formControlName="company_id" id="old-password">
                     <option *ngFor="let company of listpublishingCompany" value="{{company.id}}">
                       <span>{{company.name}}</span>
                     </option>

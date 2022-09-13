@@ -6,5 +6,6 @@ export interface IAccountManagerResponse {
   password: string,
   phone: string,
   email: string,
-  full_name: string
+  full_name: string,
+  role_id: string
 }

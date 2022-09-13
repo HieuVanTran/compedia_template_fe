@@ -42,7 +42,7 @@ export class LoanPayManagerListComponent implements OnInit {
               private BookApiService: BookApiService,
               private AccountApiService : AccountApiService,
               private StaffManagerApiService: StaffManagerApiService,
-              private fb: FormBuilder,
+              private fb: FormBuilder
               ) {
     this.loanpayInfoForm = fb.group({
       amount: [null],
@@ -84,7 +84,8 @@ export class LoanPayManagerListComponent implements OnInit {
             note: loanpayRes.note,
             start_date: loanpayRes.start_date,
             end_date: loanpayRes.end_date,
-            account_id: loanpayRes.account_id
+            account_id: loanpayRes.account_id,
+            book_id: loanpayRes.book_id
 
           }
           this.loanPayManager.push(loanpayView)
@@ -150,6 +151,7 @@ export class LoanPayManagerListComponent implements OnInit {
         end_date: i.end_date,
         account_id: i.account_id,
         amount: i.amount,
+        book_id: i.book_id,
         book_name: i.book_name
       }
     )
@@ -163,7 +165,8 @@ export class LoanPayManagerListComponent implements OnInit {
       call_card_id: this.loanpayInfoForm.value.call_card_id,
       end_date: this.loanpayInfoForm.value.end_date,
       note: this.loanpayInfoForm.value.note,
-      staff_id: this.loanpayInfoForm.value.staff_id
+      staff_id: this.loanpayInfoForm.value.staff_id,
+      status: this.loanpayInfoForm.value.status
     }
 
     this.loanpayApiService._editLoanpay(editLoanpayRequest).subscribe(
@@ -201,7 +204,10 @@ export class LoanPayManagerListComponent implements OnInit {
             publish_name: bookManagerRes.publish_name,
             amount: bookManagerRes.amount,
             status: bookManagerRes.status,
-            note: bookManagerRes.note
+            note: bookManagerRes.note,
+            id_author: bookManagerRes.id_author,
+            company_id: bookManagerRes.company_id,
+            id_type_book: bookManagerRes.id_type_book
           }
           this.listBook.push(bookManagerView)
         })
@@ -238,13 +244,15 @@ export class LoanPayManagerListComponent implements OnInit {
             date_of_birth: accountManagerRes.date_of_birth,
             email: accountManagerRes.email,
             phone: accountManagerRes.phone,
-            role_id: accountManagerRes.code_role
+            roleCode: accountManagerRes.code_role,
+            roleId: accountManagerRes.role_id
           };
           this.listAccount.push(accountManagerView)
         })
       }
     )
   }
+
 
 //  getAll staff
   getAllStaffManager() {
@@ -291,7 +299,8 @@ export class LoanPayManagerListComponent implements OnInit {
             note: loanpayRes.note,
             start_date: loanpayRes.start_date,
             end_date: loanpayRes.end_date,
-            account_id: loanpayRes.account_id
+            account_id: loanpayRes.account_id,
+            book_id: loanpayRes.book_id
 
           }
           this.loanPayManager.push(loanpayView)

@@ -14,12 +14,12 @@ td i {
 }
 
 .search ul {
+  display: flex;
   list-style-type: none;
-  padding-left: 0;
-  margin-top: 23px;
+  margin-top: 10px;
+  padding-left: 1px;
 }
 .search li {
-  display: inline-block;
   padding-right: 8px
 }
 
@@ -29,6 +29,9 @@ td i {
 
 p-table{
   width: 100%;
-  margin-left: 15px;
+  margin-left: 16px;
+}
+.add_new{
+  margin-right: 16px;
 }
 
