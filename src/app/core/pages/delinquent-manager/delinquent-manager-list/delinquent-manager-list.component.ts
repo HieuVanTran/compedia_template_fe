@@ -216,7 +216,6 @@ export class DelinquentManagerListComponent implements OnInit {
             userId: collectMoneyRes.account_id,
             username: collectMoneyRes.user_name,
             staff_name: collectMoneyRes.staff_name
-
           };
           this.delinquentManager.push(collectMoneyView)
         })

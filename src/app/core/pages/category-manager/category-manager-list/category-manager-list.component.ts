@@ -30,7 +30,7 @@ export class CategoryManagerListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllBookCategory()
+  this.getAllBookCategory()
   }
 
     getAllBookCategory() {
