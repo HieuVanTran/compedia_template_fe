@@ -50,31 +50,7 @@ export class UserProfileListComponent implements OnInit {
     // this.getOneAcc()
 
   }
-    // getOneAcc(){
-    //   this.getOneAccApiService._getOneAcc().subscribe(
-    //     (res: IResponseModel<IGetOnAccResponse[]>) => {
-    //       this.getOneAccManager = [];
-    //       res.data.forEach(getOneAccRes => {
-    //         const getOneAccView: IGetOneAccView = {
-    //           account_id: getOneAccRes.account_id,
-    //           role_id: getOneAccRes.role_id,
-    //           username: getOneAccRes.username,
-    //           password: getOneAccRes.password,
-    //           phone: getOneAccRes.phone,
-    //           email: getOneAccRes.email,
-    //           full_name: getOneAccRes.full_name,
-    //           creat_date: getOneAccRes.creat_date,
-    //           update_date: getOneAccRes.update_date,
-    //           date_of_birth: getOneAccRes.date_of_birth,
-    //           code_role: getOneAccRes.code_role
-    //
-    //         }
-    //         this.getOneAccManager.push(getOneAccView)
-    //         console.log(getOneAccView)
-    //       })
-    //     }
-    //   )
-    // }
+
   getAcc(account_id: number) {
     console.log(account_id)
     this.getOneAccApiService._getOneAcc(account_id).subscribe(data =>
