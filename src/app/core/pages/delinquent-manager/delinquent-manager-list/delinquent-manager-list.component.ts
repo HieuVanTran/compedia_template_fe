@@ -228,4 +228,12 @@ export class DelinquentManagerListComponent implements OnInit {
   selectCategory() {
     console.log(this.staffId)
   }
+  onReset() {
+    this.usernameSearch = Constant.NULL_VALUE
+    this.page = Constant.PAGE_INIT
+    this.size = Constant.SIZE_INIT
+    this.staffId = Constant.NULL_VALUE
+    this.fullNameSearch = Constant.NULL_VALUE
+    this.onSearch()
+  }
 }

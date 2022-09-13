@@ -158,12 +158,14 @@ export class AuthorManagerListComponent implements OnInit {
     console.log(i)
     this.bookAuthorSelected = i
   }
+  onReset() {
+    this.authorNameSearch = Constant.NULL_VALUE
+    this.page = Constant.PAGE_INIT
+    this.size = Constant.SIZE_INIT
+    this.address = Constant.NULL_VALUE
+    this.title = Constant.NULL_VALUE
+    this.onSearchAuthor()
+  }
 }
 
-interface authorManager {
-  address: string,
-  id: number,
-  name: string,
-  note: string,
-  title: string
-}
+

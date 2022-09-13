@@ -308,6 +308,14 @@ export class LoanPayManagerListComponent implements OnInit {
       }
     )
   }
+  onReset() {
+    this.usernameSearch = Constant.NULL_VALUE
+    this.page = Constant.PAGE_INIT
+    this.size = Constant.SIZE_INIT
+    this.staffSearch = Constant.NULL_VALUE
+    this.onSearch()
+  }
+
 
 
 }
@@ -315,4 +323,6 @@ export class LoanPayManagerListComponent implements OnInit {
 function editLoanpayRequest(editLoanpayRequest: any) {
     throw new Error('Function not implemented.');
 }
+
+
 

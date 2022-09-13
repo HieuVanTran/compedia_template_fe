@@ -131,5 +131,11 @@ export class CategoryManagerListComponent implements OnInit {
   selectBookCategory(i: IBookCategoryView) {
     this.bookCategorySelected = i
   }
+  onReset() {
+    this.categoryNameSearch = Constant.NULL_VALUE
+    this.page = Constant.PAGE_INIT
+    this.size = Constant.SIZE_INIT
+    this.onSearchBookCategory()
+  }
 }
 
