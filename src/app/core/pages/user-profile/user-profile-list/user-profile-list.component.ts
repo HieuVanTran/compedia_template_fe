@@ -9,6 +9,7 @@ import {IAccountViewModal} from "../../../../models/views/account.view";
 import {IAccountManagerView} from "../../../../models/views/account-manager.view";
 import {IEditAccountManagerRequest} from "../../../../models/requests/account-manager.request";
 import {IResponseModel} from "../../../../models/commons/response.model";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-user-profile-list',
@@ -28,7 +29,8 @@ export class UserProfileListComponent implements OnInit {
   constructor(private getOneAccApiService: GetOneAccApiService,
               private activatedRoute: ActivatedRoute,
               private fb: FormBuilder,
-              private accountService: AccountService) {
+              private accountService: AccountService,
+              private messageService: MessageService,) {
 
     this.accInfoForm = this.fb.group({
       account_id: [null],
@@ -48,7 +50,6 @@ export class UserProfileListComponent implements OnInit {
   ngOnInit(): void {
     // this.getOneAcc()
     this.getCurrentAccount()
-
   }
 
   getCurrentAccount() {
@@ -93,21 +94,16 @@ export class UserProfileListComponent implements OnInit {
       role_id: this.accInfoForm.value.role_id,
       id: this.accountSelected.account_id
     };
-    //   this.getOneAccApiService._editAccount(editAccountManagerRequest).subscribe(
-    //     (res: IResponseModel<any>) => {
-    //       this.messageService.add({severity: 'success', summary: 'Thông báo!', detail: 'Chỉnh sửa thành công! '});
-    //       console.log('Thay doi thong tin thanh cong');
-    //       this.getAllAccountManager()
-    //     },
-    //     err => {
-    //       this.messageService.add({severity: 'error', summary: 'Thông báo!', detail: 'Chỉnh sửa thất bại! '});
-    //       console.log('Thay doi thong tin that bai')
-    //     }
-    //   )
-    // }
-    //
-
-
-  }
-
+      this.getOneAccApiService._editAccount(editAccountManagerRequest).subscribe(
+        (res: IResponseModel<any>) => {
+          this.messageService.add({severity: 'success', summary: 'Thông báo!', detail: 'Chỉnh sửa thành công! '});
+          console.log('Thay doi thong tin thanh cong');
+          this.getCurrentAccount()
+        },
+        err => {
+          this.messageService.add({severity: 'error', summary: 'Thông báo!', detail: 'Chỉnh sửa thất bại! '});
+          console.log('Thay doi thong tin that bai')
+        }
+      )
+    }
 }

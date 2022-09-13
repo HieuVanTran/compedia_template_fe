@@ -215,20 +215,6 @@ export class LoanPayManagerListComponent implements OnInit {
     )
   }
 
-  // viewDetailes(i: IDetailesView) {
-  //   this.detailesSelected = i
-  //   this.loanpayInfoForm.patchValue(
-  //     {
-  //       call_card_details_id: i.call_card_details_id,
-  //       book_id: i.book_id,
-  //       book_name: i.book_name,
-  //       amount: i.amount
-  //       // category_name: i.category_name,
-  //     }
-  //   )
-  // }
-
-
 
 //  getAll account
   getAllAccountManager() {
