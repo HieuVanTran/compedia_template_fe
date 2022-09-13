@@ -40,8 +40,7 @@ export class NavbarComponent implements OnInit {
   }
 
   onClickMenu() {
-    clickMenuMobile()
-
+    window.location.replace('/pages/user-profile')
   }
 
   getCurrentAccount() {

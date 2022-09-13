@@ -213,4 +213,15 @@ export class AccManagerListComponent implements OnInit {
   selectRole() {
     console.log(this.roleIdSearch)
   }
+  onReset() {
+    this.usernameSearch = Constant.NULL_VALUE
+    this.page = Constant.PAGE_INIT
+    this.size = Constant.SIZE_INIT
+    this.fullNameSearch = Constant.NULL_VALUE
+    this.emailSearch = Constant.NULL_VALUE
+    this.roleIdSearch = Constant.NULL_VALUE
+    this.onSearch()
+
+
+  }
 }

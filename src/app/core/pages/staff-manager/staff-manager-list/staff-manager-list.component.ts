@@ -156,4 +156,14 @@ export class StaffManagerListComponent implements OnInit {
       }
     )
   }
+  onReset() {
+    this.fullNameSearch = Constant.NULL_VALUE
+    this.page = Constant.PAGE_INIT
+    this.size = Constant.SIZE_INIT
+    this.phoneSearch = Constant.NULL_VALUE
+    this.addressSearch = Constant.NULL_VALUE
+    this.onSearch()
+
+
+  }
 }
