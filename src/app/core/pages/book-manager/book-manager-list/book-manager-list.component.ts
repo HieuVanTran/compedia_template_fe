@@ -16,6 +16,7 @@ import {IPublishCompanyResponse} from "../../../../models/responses/publish-comp
 import {BookApiService} from "../../../../services/api/book-api.service";
 import {AuthorApiService} from "../../../../services/api/author-api.service";
 import {Constant} from "../../../../util/constant";
+import {NavigationExtras} from "@angular/router";
 
 @Component({
   selector: 'app-book-manager-list',
@@ -315,6 +316,16 @@ export class BookManagerListComponent implements OnInit {
   resetValue() {
     this.bookmanagerInfoForm.reset()
     this.bookmanagerInfoForm.patchValue({})
+  }
+
+  onReset() {
+    this.bookNameSearch = Constant.NULL_VALUE
+    this.page = Constant.PAGE_INIT
+    this.size = Constant.SIZE_INIT
+    this.categoryId = Constant.NULL_VALUE
+    this.authorId = Constant.NULL_VALUE
+    this.publishId = Constant.NULL_VALUE
+    this.onSearch()
   }
 }
 
