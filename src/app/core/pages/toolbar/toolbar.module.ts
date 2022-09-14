@@ -4,6 +4,7 @@ import {SidebarComponent} from "./sidebar/sidebar.component";
 import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {ModalModule} from "../Modal/modal.module";
 
 @NgModule({
   declarations: [
@@ -14,12 +15,13 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     NavbarComponent,
     SidebarComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    FormsModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ModalModule
+    ]
 })
 
 export class ToolbarModule {}
