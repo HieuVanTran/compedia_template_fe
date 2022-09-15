@@ -96,55 +96,55 @@
 
 
       <!-- Modal -->
-      <div class="modal fade" id="exampleModal-category-new" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" [formGroup]="bookInfoForm">
-          <div class="modal-content border-0">
-            <div class="modal-header" style="background: #2C3333">
-              <h5 class="modal-title" style="color: white">Thêm mới</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true" style="color: white">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="form-group row">
-                <label for="price" class="col-sm-3 col-form-label">Mã Sách<span style="color: red"> *</span></label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" formControlName="category_name">
-                </div>
+        <div class="modal fade" id="exampleModal-category-new" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" [formGroup]="bookInfoForm">
+            <div class="modal-content border-0">
+              <div class="modal-header" style="background: #2C3333">
+                <h5 class="modal-title" style="color: white">Thêm mới</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true" style="color: white">&times;</span>
+                </button>
               </div>
-            </div>
-            <div class="modal-footer border-0">
-              <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onAddNewBookCategory()" data-dismiss="modal">Thêm mới</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal fade" id="exampleModal-catergory-create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" [formGroup]="bookInfoForm">
-          <div class="modal-content border-0">
-            <div class="modal-header" style="background: #2C3333">
-              <h5 class="modal-title" style="color: white">Chỉnh sửa</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true" style="color: white">&times;</span>
-              </button>
-            </div>
-
               <div class="modal-body">
                 <div class="form-group row">
                   <label for="price" class="col-sm-3 col-form-label">Mã Sách<span style="color: red"> *</span></label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="price" formControlName="category_name">
+                    <input type="text" class="form-control" formControlName="category_name">
                   </div>
                 </div>
               </div>
-
-            <div class="modal-footer border-0">
-              <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onEditBookCategory()" data-dismiss="modal">Cập Nhật</button>
+              <div class="modal-footer border-0">
+                <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onAddNewBookCategory()" data-dismiss="modal">Thêm mới</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+
+        <div class="modal fade" id="exampleModal-catergory-create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" [formGroup]="bookInfoForm">
+            <div class="modal-content border-0">
+              <div class="modal-header" style="background: #2C3333">
+                <h5 class="modal-title" style="color: white">Chỉnh sửa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true" style="color: white">&times;</span>
+                </button>
+              </div>
+
+                <div class="modal-body">
+                  <div class="form-group row">
+                    <label for="price" class="col-sm-3 col-form-label">Mã Sách<span style="color: red"> *</span></label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="price" formControlName="category_name">
+                    </div>
+                  </div>
+                </div>
+
+              <div class="modal-footer border-0">
+                <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onEditBookCategory()" data-dismiss="modal">Cập Nhật</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
       <!-- Modal delete-->
       <div class="modal fade" id="delete-category" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

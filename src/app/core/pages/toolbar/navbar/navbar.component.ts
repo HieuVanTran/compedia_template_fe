@@ -7,6 +7,7 @@ import {GetOneAccApiService} from "../../../../services/api/getOneAcc.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {IAccountViewModal} from "../../../../models/views/account.view";
 import {AccountService} from "../../../../services/intercept/account.service";
+import {AuthApiService} from "../../../../services/api/auth-api.service";
 declare function toggleMenu(): any
 declare function clickMenuMobile(): any
 @Component({
@@ -18,18 +19,24 @@ export class NavbarComponent implements OnInit {
 
   getOneAccInfoForm!: FormGroup
   currentAccount!: IAccountViewModal
-
+  // changePasswordForm: FormGroup
 
 
   constructor(
     private getOneApiService: GetOneAccApiService,
     private tokenService: TokenService,
-    private accountService: AccountService
-  ) {
+    private accountService: AccountService,
+    private authApiService: AuthApiService,
+    // private fb: FormBuilder
+    ) {
+    // this.changePasswordForm = fb.group({
+    //   new_password: [null],
+    //   old_password: [null],
+    //   re_password: [null]
+    // })
   }
 
   ngOnInit(): void {
-    // this.getOneAcc()
     this.getCurrentAccount()
   }
   toggleMenu() {
@@ -54,4 +61,3 @@ export class NavbarComponent implements OnInit {
     )
   }
 }
-
