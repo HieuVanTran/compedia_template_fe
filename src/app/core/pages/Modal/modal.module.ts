@@ -23,7 +23,6 @@ import {ChangPasswordComponent} from "./chang-password/chang-password.component"
   ],
   providers: [
     MessageService,
-
   ]
 })
 
