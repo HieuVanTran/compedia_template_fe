@@ -45,7 +45,16 @@ td i {
   margin-right: 16px;
 }
 
-
+.short-cut {
+  width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 30px;
+  -webkit-line-clamp: 3;
+  height: 101px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical
+}
 
 
 

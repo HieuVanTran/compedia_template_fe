@@ -3,4 +3,5 @@ export class Constant {
   public static readonly PAGE_INIT: number = 0
   public static readonly SIZE_INIT: number = 10
   public static readonly NULL_VALUE = <any> null
+  public static readonly REGEX_PASSWORD_FOR_VALIDATOR =  "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,20}$"
 }

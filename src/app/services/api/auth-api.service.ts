@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {IResponseModel} from "../../models/commons/response.model";
 import {ILoginResponse} from "../../models/responses/login.response";
 import {HttpClient} from "@angular/common/http";
+    import {IChangePasswordRequests} from "../../models/requests/change-password.requests";
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +20,9 @@ export class AuthApiService{
   _login(requestBody: ILoginRequest): Observable<IResponseModel<ILoginResponse>> {
     const url = `${this.api}/auth/login`
     return this.http.post<IResponseModel<ILoginResponse>>(url, requestBody)
+  }
+  _changePassword(request: IChangePasswordRequests): Observable<IResponseModel<any>>{
+    const url = `${this.api}/account/change-password`
+    return  this.http.put<IResponseModel<any>>(url,request)
   }
 }
