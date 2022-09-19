@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <section style="background-color: #eee;">
   <div class="container py-5">
 
@@ -5,20 +6,20 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-            <img src="https://image.lag.vn/upload/news/22/07/18/lisa-blackpink-anya-spy-x-family-6_SFCC.jpg" alt="avatar" class="rounded-circle img-fluid" style="width: 200px;">
+            <img src="http://thucungonline.com/Images/upload/IMG_20200218_095045.jpg" alt="avatar" class="rounded-circle img-fluid" style="width: 200px;">
             <h5 class="my-3">{{currentAccount.full_name}}</h5>
           </div>
         </div>
       </div>
       <div class="col-lg-8" >
-        <div class="card mb-4" >
+        <div class="card mb-4">
           <div class="card-body">
             <div class="row">
               <div class="col-sm-3" >
                 <p class="mb-0">Họ tên</p>
               </div>
-              <div class="col-sm-9">
-                <input class="form-control" type="text" [(ngModel)]="currentAccount.full_name" formControlName="full_name">
+              <div class="col-sm-9" >
+                <p>{{currentAccount.full_name}}</p>
               </div>
             </div>
             <hr>
@@ -26,19 +27,17 @@
               <div class="col-sm-3">
                 <p class="mb-0">Tên tài khoản</p>
               </div>
-              <div class="col-sm-9">
-                <input class="form-control" type="text" [(ngModel)]="currentAccount.username" formControlName="username">
+              <div class="col-sm-9"  >
+                <p>{{currentAccount.username}}</p>
               </div>
             </div>
-            <hr>
-
             <hr>
             <div class="row">
               <div class="col-sm-3">
                 <p class="mb-0">Ngày sinh</p>
               </div>
               <div class="col-sm-9">
-                <input class="form-control" type="text" [(ngModel)]="currentAccount.date_of_birth" formControlName="date_of_birth">
+                <p>{{currentAccount.date_of_birth}}</p>
               </div>
             </div>
             <hr>
@@ -47,7 +46,7 @@
                 <p class="mb-0">Email</p>
               </div>
               <div class="col-sm-9">
-                <input class="form-control" type="text" [(ngModel)]="currentAccount.email" formControlName="email">
+                <p>{{currentAccount.email}}</p>
               </div>
             </div>
             <hr>
@@ -56,7 +55,7 @@
                 <p class="mb-0">Phone</p>
               </div>
               <div class="col-sm-9">
-                <input class="form-control" type="text" [(ngModel)]="currentAccount.phone" formControlName="phone">
+                <p>{{currentAccount.phone}}</p>
               </div>
             </div>
             <hr>
@@ -65,7 +64,7 @@
                 <p class="mb-0">Nhóm quyền</p>
               </div>
               <div class="col-sm-9">
-                <input class="form-control" type="text" [(ngModel)]="currentAccount.code_role" formControlName="code_role">
+                <p>{{currentAccount.code_role}}</p>
               </div>
             </div>
             <hr>
@@ -74,21 +73,12 @@
                 <p class="mb-0">Ngày tạo</p>
               </div>
               <div class="col-sm-9">
-                <input class="form-control" type="text" [(ngModel)]="currentAccount.creat_date" formControlName="creat_date">
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Ngày sửa đổi</p>
-              </div>
-              <div class="col-sm-9">
-                <input class="form-control" type="text" [(ngModel)]="currentAccount.update_date" formControlName="update_date">
+                <p>{{currentAccount.creat_date}}</p>
               </div>
             </div>
             <hr>
             <div class="col-md-3 d-flex justify-content-end edit_user_profile">
-              <a class="btn btn-info text-light add_new" type="button" data-toggle="modal" data-target="#exampleModal-bookmanager-new" (click)="onEditAccount()">Cập nhật<i class="fa-regular fa-pen-to-square"></i></a>
+              <a class="btn btn-info text-light add_new" type="button" data-toggle="modal" data-target="#exampleModal-bookmanager-new" (click)="editAccount(currentAccount)">Chỉnh sửa<i class="fa-regular fa-pen-to-square"></i></a>
             </div>
           </div>
         </div>
@@ -97,6 +87,71 @@
   </div>
 
 <!--  modal-->
+  <div class="modal fade" id="exampleModal-bookmanager-new" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" [formGroup]="accInfoForm">
+      <div class="modal-content border-0">
+        <div class="modal-header" style="background: #2C3333">
+          <h5 class="modal-title" id="exampleModalLabel" style="color: white">Chỉnh sửa thông tin</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" style="color: white">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Họ tên <span style="color: red">*</span></label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="amount" formControlName="full_name">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Tên tài khoản <span style="color: red">*</span></label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="amount" formControlName="username">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Ngày sinh <span style="color: red">*</span></label>
+            <div class="col-sm-10">
+              <input type="date" class="form-control" id="amount" formControlName="date_of_birth">
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label for="date_pay" class="col-sm-2 col-form-label">Email <span style="color: red">*</span></label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="date_pay" formControlName="email">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="note" class="col-sm-2 col-form-label">Phone <span style="color: red">*</span></label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="note" formControlName="phone">
+            </div>
+          </div>
+
+<!--          <div class="form-group row">-->
+<!--            <label class="col-sm-2 col-form-label">Tên Nhân Viên <span style="color: red">*</span></label>-->
+<!--            <div class="col-sm-10">-->
+<!--              <select class="form-control" formControlName="staff_id" id="staff_id">-->
+<!--                <option *ngFor="let name_staff of listStaff" value="{{name_staff.id}}">-->
+<!--                  <span>{{name_staff.name}}</span>-->
+<!--                </option>-->
+<!--              </select>-->
+<!--            </div>-->
+<!--          </div>-->
+
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-primary" style="font-size: 18px" (click)="onEditAccount()" data-dismiss="modal">Cập Nhật</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
+
 
 

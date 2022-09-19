@@ -24,7 +24,8 @@ import {CarouselModule} from "primeng/carousel";
     ReactiveFormsModule,
     ToastModule,
     TableModule,
-    FormsModule
+    FormsModule,
+    CarouselModule
   ],
 
   providers: [

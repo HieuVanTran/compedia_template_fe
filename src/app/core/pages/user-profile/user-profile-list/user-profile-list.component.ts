@@ -10,6 +10,7 @@ import {IAccountManagerView} from "../../../../models/views/account-manager.view
 import {IEditAccountManagerRequest} from "../../../../models/requests/account-manager.request";
 import {IResponseModel} from "../../../../models/commons/response.model";
 import {MessageService} from "primeng/api";
+import {ILoanpayView} from "../../../../models/views/loanpay.view";
 
 @Component({
   selector: 'app-user-profile-list',
@@ -64,8 +65,7 @@ export class UserProfileListComponent implements OnInit {
   }
 
   editAccount(i: IAccountViewModal) {
-    this.accountSelected = i;
-    console.log(this.accountSelected)
+    this.accountSelected = i,
     this.accInfoForm.patchValue(
       {
         account_id: i.account_id,
@@ -82,6 +82,10 @@ export class UserProfileListComponent implements OnInit {
       }
     )
   }
+  selectAcc(i: IAccountViewModal) {
+    this.accountSelected = i
+  }
+
 
   onEditAccount() {
     const editAccountManagerRequest: IEditAccountManagerRequest = {
