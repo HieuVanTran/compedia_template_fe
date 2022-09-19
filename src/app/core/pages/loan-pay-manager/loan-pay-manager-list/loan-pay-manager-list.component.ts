@@ -86,7 +86,6 @@ export class LoanPayManagerListComponent implements OnInit {
             end_date: loanpayRes.end_date,
             account_id: loanpayRes.account_id,
             book_id: loanpayRes.book_id
-
           }
           this.loanPayManager.push(loanpayView)
         })
