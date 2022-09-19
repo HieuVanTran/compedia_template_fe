@@ -4,13 +4,14 @@ import {EventEmitter, Injectable} from "@angular/core";
 import {IAccountViewModal} from "../../models/views/account.view";
 import {GetOneAccApiService} from "../api/getOneAcc.service";
 import {Constant} from "../../util/constant";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AccountService {
-  currentAccount: EventEmitter<IAccountViewModal> = new EventEmitter<IAccountViewModal>(Constant.NULL_VALUE)
+  private currentAccount = new BehaviorSubject<IAccountViewModal>(Constant.NULL_VALUE)
 
   constructor(private accountApiService: GetOneAccApiService) {
     this.accountApiService._getOneAcc().subscribe(data => {

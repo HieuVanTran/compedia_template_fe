@@ -39,6 +39,8 @@ export class BookManagerListComponent implements OnInit {
   categoryId: number | null = null
   authorId: number | null = null
   publishId: number | null = null;
+  listPage!: number[]
+  totalPage!: number
 
 
 
@@ -282,6 +284,11 @@ export class BookManagerListComponent implements OnInit {
     console.log(searchRequest)
     this.BookApiService._searchBook(searchRequest).subscribe(
       (res: IResponseModel<IPageResponseModel<IBookManagerResponse>>) => {
+        this.listPage = []
+        this.totalPage = Math.floor(res.data.total_elements / this.size) + 1
+        for (let i = 0; i<this.totalPage; i++) {
+            this.listPage.push(i)
+        }
         console.log(res)
         this.bookManager = []
         res.data.results.forEach(bookManagerRes => {

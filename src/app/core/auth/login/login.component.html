@@ -34,7 +34,7 @@
         </div>
         <button type="submit" class="btn btn-primary form-control" (click)="login()">Đăng nhập</button>
         <div class="forget-password">
-          <a href="" class="text-dark">Quên mật khẩu ?</a>
+          <a [routerLink]="['/auth/forgot-password']" class="text-dark">Quên mật khẩu ?</a>
         </div>
         <div class="register py-3" >
           <button type="submit" class="btn btn-primary form-control" [routerLink]="'/auth/register'">Đăng Ký</button>

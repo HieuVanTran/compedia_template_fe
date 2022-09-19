@@ -25,4 +25,9 @@ export class AuthApiService{
     const url = `${this.api}/account/change-password`
     return  this.http.put<IResponseModel<any>>(url,request)
   }
+
+  _forgotPassword(email: string): Observable<IResponseModel<any>> {
+    const url = `${this.api}/account/forget-password?email=${email}`;
+    return this.http.get<IResponseModel<any>>(url)
+  }
 }
