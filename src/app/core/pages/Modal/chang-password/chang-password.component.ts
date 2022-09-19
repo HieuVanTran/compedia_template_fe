@@ -54,6 +54,7 @@ export class ChangPasswordComponent implements OnInit {
         this.tokenService.clearKey()
       }, error => {
         this.messageService.add({severity:'error', summary:'Thông báo', detail:'Đổi mật khẩu thất bại!'})
+        this.changPasswordFroms.reset()
       }
     )
   }
