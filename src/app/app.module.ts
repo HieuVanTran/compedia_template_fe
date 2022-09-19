@@ -8,6 +8,7 @@ import {AuthInterceptor} from "./services/intercept/auth.interceptor";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormBuilder} from "@angular/forms";
 import {MessageService} from "primeng/api";
+import {AuthGuard} from "./guards/auth-guard.service";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {MessageService} from "primeng/api";
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     FormBuilder,
-    MessageService
+    MessageService,
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })
