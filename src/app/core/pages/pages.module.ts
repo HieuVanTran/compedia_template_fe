@@ -12,7 +12,6 @@ import {ChartModule} from 'primeng/chart';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {CalendarModule} from "primeng/calendar";
 
-import { UserProfileListComponent } from './user-profile/user-profile-list/user-profile-list.component';
 
 
 @NgModule({
