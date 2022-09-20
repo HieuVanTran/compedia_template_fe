@@ -30,6 +30,7 @@ export class PublishingCompanyListComponent implements OnInit {
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
   resetForm: ResetForm = new ResetForm()
+  totalElement: number = 300;
 
 
   constructor(private publishCompanyApiService: PublishCompanyApiService,
@@ -187,6 +188,19 @@ export class PublishingCompanyListComponent implements OnInit {
     this.agentPeopleSearch = Constant.NULL_VALUE
     this.onSearch()
 
+
+  }
+
+  pageChange($event: any) {
+    // @ts-ignore
+    this.page = $event.first/$event.rows
+    // @ts-ignore
+    this.size = $event.rows
+    // @ts-ignore
+    // this.selectedSortField = $event.sortField
+    // this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
+    console.log($event)
+    this.onSearch()
 
   }
 }

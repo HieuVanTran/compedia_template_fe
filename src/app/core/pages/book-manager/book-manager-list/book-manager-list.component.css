@@ -46,7 +46,7 @@ td i {
 }
 
 .short-cut {
-  width: 400px;
+  width: 300px;
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 30px;

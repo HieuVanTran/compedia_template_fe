@@ -4,6 +4,7 @@ export class Constant {
   public static readonly LIBRARY_STORAGE_KEY =  '3b354a25d9fa723326fd7e1a6d312515'
   public static readonly PAGE_INIT: number = 0
   public static readonly SIZE_INIT: number = 10
+  public static readonly PAGE_LINK_SIZE = 3
   public static readonly NULL_VALUE = <any> null
   public static readonly REGEX_PASSWORD_FOR_VALIDATOR =  "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,20}$"
 
@@ -24,7 +25,7 @@ export class Constant {
       name: 'Quản lý tác giả',
       icon: 'fa-solid fa-bars-progress',
       path: 'author-manager',
-      roles: ['admin', 'staff']
+      roles: ['admin']
     },
     {
       name: 'Quản lý tài khoản',
@@ -42,13 +43,13 @@ export class Constant {
       name: 'Quản lý thể loại sách',
       icon: 'fa-solid fa-business-time',
       path: 'category-manager',
-      roles: ['admin', 'staff']
+      roles: ['admin']
     },
     {
       name: 'Quản lý nhà xuất bản',
       icon: 'fa-solid fa-user-secret',
       path: 'publishing-company',
-      roles: ['admin', 'staff']
+      roles: ['admin']
     },
     {
       name: 'Quản lý mượn trả',
