@@ -116,12 +116,12 @@ export class BookManagerListComponent implements OnInit {
     };
     this.requestBookForm.set('amount',this.bookmanagerInfoForm.value.amount)
     this.requestBookForm.set('bookName',this.bookmanagerInfoForm.value.book_name)
-    this.requestBookForm.set('idTypeBook',this.bookmanagerInfoForm.value.category_name)
+    this.requestBookForm.set('idTypeBook',this.bookmanagerInfoForm.value.id_type_book)
     this.requestBookForm.set('file',this.uploadFile)
-    this.requestBookForm.set('idAuthor',this.bookmanagerInfoForm.value.name_author)
+    this.requestBookForm.set('idAuthor',this.bookmanagerInfoForm.value.id_author)
     this.requestBookForm.set('pageNumber',this.bookmanagerInfoForm.value.page_number)
     this.requestBookForm.set('price',this.bookmanagerInfoForm.value.price)
-    this.requestBookForm.set('companyId',this.bookmanagerInfoForm.value.publish_name)
+    this.requestBookForm.set('companyId',this.bookmanagerInfoForm.value.company_id)
     this.requestBookForm.set('publishingYear',this.bookmanagerInfoForm.value.publishing_year)
     this.requestBookForm.set('note',this.bookmanagerInfoForm.value.note)
 
