@@ -6,6 +6,9 @@ import {MessageService} from "primeng/api";
 import {BookManagerListComponent} from "./book-manager-list/book-manager-list.component";
 import {BookManagerRoutingModule} from "./book-manager-routing.module";
 import {TableModule} from "primeng/table";
+import {SkeletonModule} from "primeng/skeleton";
+import {SkeletonCustomModule} from "../../../util/skeleton/skeleton-custom.module";
+import {PaginatorModule} from "primeng/paginator";
 
 
 @NgModule({
@@ -13,14 +16,17 @@ import {TableModule} from "primeng/table";
     BookManagerListComponent
   ],
 
-  imports: [
-    CommonModule,
-    BookManagerRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ToastModule,
-    TableModule
-  ],
+    imports: [
+        CommonModule,
+        BookManagerRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ToastModule,
+        TableModule,
+        SkeletonModule,
+        SkeletonCustomModule,
+        PaginatorModule
+    ],
   providers: [
     FormBuilder,
     MessageService

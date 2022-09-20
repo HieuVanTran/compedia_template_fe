@@ -6,7 +6,8 @@
 
     <ul class="sidebar-nav">
       <li class="sidebar-item" *ngFor="let item of menu">
-        <a class="sidebar-link collapsed" [routerLink]="item.path" routerLinkActive="active" (click)="onClickMenu()">
+        <a class="sidebar-link collapsed" *ngIf="item.roles.includes(accountRole)"
+           [routerLink]="item.path" routerLinkActive="active" (click)="onClickMenu()">
           <i class="{{item.icon}}"></i> <span class="align-middle">{{item.name}}</span>
         </a>
       </li>
@@ -16,50 +17,6 @@
 <!--          <i class="fa-solid fa-bars-progress"></i> <span class="align-middle">Quản lý tác giả</span>-->
 <!--        </a>-->
 <!--      </li>-->
-
-<!--      <li class="sidebar-item">-->
-<!--        <a class="sidebar-link collapsed" [routerLink]="'acc-manager'" routerLinkActive="active" (click)="onClickMenu()">-->
-<!--          <i class="fa-solid fa-users"></i> <span class="align-middle">Quản lý tài khoản</span>-->
-<!--        </a>-->
-<!--      </li>-->
-
-<!--      <li class="sidebar-item">-->
-<!--        <a class="sidebar-link collapsed" [routerLink]="'staff-manager'" routerLinkActive="active" (click)="onClickMenu()">-->
-<!--          <i class="fa-solid fa-book-journal-whills"></i> <span class="align-middle">Quản lý nhân viên</span>-->
-<!--        </a>-->
-<!--      </li>-->
-
-<!--      <li class="sidebar-item">-->
-<!--        <a class="sidebar-link collapsed" [routerLink]="'category-manager'" routerLinkActive="active" (click)="onClickMenu()">-->
-<!--          <i class="fa-solid fa-business-time"></i> <span class="align-middle">Quản lý thể loại sách</span>-->
-<!--        </a>-->
-<!--      </li>-->
-
-<!--      <li class="sidebar-item">-->
-<!--        <a class="sidebar-link collapsed" [routerLink]="'publishing-company'" routerLinkActive="active" (click)="onClickMenu()">-->
-<!--          <i class="fa-solid fa-user-secret"></i> <span class="align-middle">Quản lý nhà xuất bản</span>-->
-<!--        </a>-->
-<!--      </li>-->
-
-<!--      <li class="sidebar-item">-->
-<!--        <a class="sidebar-link collapsed" [routerLink]="'loan-pay-manager'" routerLinkActive="active" (click)="onClickMenu()">-->
-<!--          <i class="fa-solid fa-floppy-disk"></i> <span class="align-middle">Quản lý mượn trả</span>-->
-<!--        </a>-->
-<!--      </li>-->
-
-<!--      <li class="sidebar-item ">-->
-<!--        <a class="sidebar-link collapsed" [routerLink]="'delinquent-manager'" routerLinkActive="active" (click)="onClickMenu()">-->
-<!--          <i class="fa-solid fa-fire"></i> <span class="align-middle">Quản lý vi phạm</span>-->
-<!--        </a>-->
-<!--      </li>-->
-
-<!--      <li class="sidebar-item ">-->
-<!--        <a class="sidebar-link collapsed" [routerLink]="'role-manager'" routerLinkActive="active" (click)="onClickMenu()">-->
-<!--          <i class="fa-solid fa-user-group"></i> <span class="align-middle">Quản lý nhóm quyền</span>-->
-<!--        </a>-->
-<!--      </li>-->
-
-
     </ul>
   </div>
 </nav>

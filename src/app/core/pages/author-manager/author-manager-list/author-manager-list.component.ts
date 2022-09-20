@@ -82,6 +82,7 @@ export class AuthorManagerListComponent implements OnInit {
           }
           this.authorManager.push(bookAuthorView)
         })
+        this.messageService.add({severity:'success', summary:'Thông báo', detail:'Thành công!'});
       }
     )
   }

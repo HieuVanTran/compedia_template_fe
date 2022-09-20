@@ -8,6 +8,7 @@ import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
+import {ProgressSpinnerModule} from "primeng/progressspinner";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import {MessageService} from "primeng/api";
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    ToastModule
+    ToastModule,
+    ProgressSpinnerModule
+
   ],
   providers: [
     MessageService,

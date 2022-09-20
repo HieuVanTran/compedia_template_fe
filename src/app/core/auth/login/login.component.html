@@ -26,13 +26,15 @@
               Vui lòng nhập password
             </div>
           </div>
-
         </div>
         <div class="form-group form-check">
           <input type="checkbox" class="form-check-input form-input" id="exampleCheck1">
           <label class="form-check-label" for="exampleCheck1">Ghi nhớ đăng nhập</label>
         </div>
-        <button type="submit" class="btn btn-primary form-control" (click)="login()">Đăng nhập</button>
+        <button id="btn_login" type="submit" class="btn btn-primary form-control" (click)="login()" onclick="spinnerLoad()">Đăng nhập</button>
+        <button id="btn_spinner" type="submit" class="btn btn-primary form-control" (click)="login()">
+          <p-progressSpinner [style]="{width: '24px', height: '24px'}"  strokeWidth="10"></p-progressSpinner>
+        </button>
         <div class="forget-password">
           <a [routerLink]="['/auth/forgot-password']" class="text-dark">Quên mật khẩu ?</a>
         </div>
