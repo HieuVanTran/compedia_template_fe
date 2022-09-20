@@ -206,6 +206,7 @@ export class AccManagerListComponent implements OnInit {
           this.accManager.push(accountManagerView)
         })
         console.log(this.accManager)
+        this.messageService.add({severity:'success', summary:'Thông báo', detail:'Thành công!'});
       }
     )
   }

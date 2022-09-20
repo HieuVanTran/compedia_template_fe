@@ -14,6 +14,10 @@ export class AccountService {
   private currentAccount = new BehaviorSubject<IAccountViewModal>(Constant.NULL_VALUE)
 
   constructor(private accountApiService: GetOneAccApiService) {
+    this.getAccountFromApi()
+  }
+
+  getAccountFromApi() {
     this.accountApiService._getOneAcc().subscribe(data => {
       const accountData: IAccountViewModal = {
         account_id: data.data.account_id,

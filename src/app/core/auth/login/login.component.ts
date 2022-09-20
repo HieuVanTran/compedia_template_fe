@@ -6,6 +6,7 @@ import {AuthApiService} from "../../../services/api/auth-api.service";
 import {IResponseModel} from "../../../models/commons/response.model";
 import {TokenService} from "../../../services/token.service";
 import {Router} from "@angular/router";
+import {AccountService} from "../../../services/intercept/account.service";
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private authApiService: AuthApiService,
               private router: Router,
-              private TokenService: TokenService) {
+              private TokenService: TokenService,
+              private accountService: AccountService) {
     this.loginForm = fb.group({
       email: [null, [Validators.required, Validators.email]],
       password: [null, Validators.required]
@@ -42,6 +44,7 @@ export class LoginComponent implements OnInit {
       (res: IResponseModel<ILoginResponse>) => {
         this.router.navigate(['/pages/chart'])
         this.TokenService.setKey(JSON.stringify(res.data.token))
+        this.accountService.getAccountFromApi()
       },
       err => {
         console.log(err)

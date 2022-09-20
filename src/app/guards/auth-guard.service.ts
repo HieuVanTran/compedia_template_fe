@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
-import {map, Observable, take} from 'rxjs';
+import {Observable} from 'rxjs';
 import {AccountService} from "../services/intercept/account.service";
-import {Token} from "@angular/compiler";
 import {TokenService} from "../services/token.service";
 
 @Injectable({
@@ -20,7 +19,7 @@ export class AuthGuard implements CanActivate {
         console.log('da active')
         return true
       } else {
-        console.log('chưa active')
+        this.router.navigateByUrl('/auth/login')
         return false
       }
   }

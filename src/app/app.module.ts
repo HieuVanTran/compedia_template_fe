@@ -13,7 +13,7 @@ import {AuthGuard} from "./guards/auth-guard.service";
 @NgModule({
   declarations: [
     NotFoundComponent,
-    AppComponent,
+    AppComponent
   ],
   imports: [
     AppRoutingModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IBookManagerView} from "../../../../models/views/book-manager.view";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {IBookCategoryView} from "../../../../models/views/book-category.view";
@@ -16,7 +16,6 @@ import {IPublishCompanyResponse} from "../../../../models/responses/publish-comp
 import {BookApiService} from "../../../../services/api/book-api.service";
 import {AuthorApiService} from "../../../../services/api/author-api.service";
 import {Constant} from "../../../../util/constant";
-import {NavigationExtras} from "@angular/router";
 
 @Component({
   selector: 'app-book-manager-list',
@@ -41,6 +40,7 @@ export class BookManagerListComponent implements OnInit {
   publishId: number | null = null;
   listPage!: number[]
   totalPage!: number
+  totalElement: number = 100
 
 
 
@@ -66,7 +66,8 @@ export class BookManagerListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllBook()
+    // this.getAllBook()
+    this.onSearch()
     this.getAllBookCategory()
     this.getAllBookAuthor()
     this.getAllPublishCompany()
@@ -281,7 +282,6 @@ export class BookManagerListComponent implements OnInit {
       authorId: this.authorId,
       publishId: this.publishId
     }
-    console.log(searchRequest)
     this.BookApiService._searchBook(searchRequest).subscribe(
       (res: IResponseModel<IPageResponseModel<IBookManagerResponse>>) => {
         this.listPage = []
@@ -290,6 +290,7 @@ export class BookManagerListComponent implements OnInit {
             this.listPage.push(i)
         }
         console.log(res)
+        this.totalElement = res.data.total_elements
         this.bookManager = []
         res.data.results.forEach(bookManagerRes => {
           const bookManagerView: IBookManagerView = {
@@ -312,6 +313,7 @@ export class BookManagerListComponent implements OnInit {
           this.bookManager.push(bookManagerView)
         })
         console.log(this.bookManager)
+        this.messageService.add({severity:'success', summary:'Thông báo', detail:'Thành công!'});
       }
     )
   }
@@ -332,6 +334,12 @@ export class BookManagerListComponent implements OnInit {
     this.categoryId = Constant.NULL_VALUE
     this.authorId = Constant.NULL_VALUE
     this.publishId = Constant.NULL_VALUE
+    this.onSearch()
+  }
+
+  onChangePage(event: any) {
+    this.page = event.page
+    this.size = event.rows
     this.onSearch()
   }
 }

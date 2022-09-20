@@ -56,5 +56,17 @@ td i {
   -webkit-box-orient: vertical
 }
 
+/* ------------------- */
 
-
+@media (max-width: 100em) {
+  .short-cut {
+    width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 28px;
+    -webkit-line-clamp: 6;
+    height: 180px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical
+  }
+}
