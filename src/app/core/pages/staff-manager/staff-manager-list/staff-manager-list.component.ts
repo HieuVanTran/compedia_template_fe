@@ -60,6 +60,7 @@ export class StaffManagerListComponent implements OnInit {
 
   onAddNewStaff() {
     const createNewStaffRequest: IStaffManagerRequest = {
+      id: this.staffManagerInfoForm.value.id,
       name_staff: this.staffManagerInfoForm.value.name,
       phone_number: this.staffManagerInfoForm.value.phoneNum,
       address: this.staffManagerInfoForm.value.address,
@@ -140,6 +141,7 @@ export class StaffManagerListComponent implements OnInit {
       page: this.page,
       size: this.size
     }
+    console.log(searchRequest)
     this.staffManagerApiService._searchStaff(searchRequest).subscribe(
       (res: IResponseModel<IPageResponseModel<IStaffManagerResponse>>) => {
         this.totalElement = res.data.total_elements
@@ -165,8 +167,6 @@ export class StaffManagerListComponent implements OnInit {
     this.phoneSearch = Constant.NULL_VALUE
     this.addressSearch = Constant.NULL_VALUE
     this.onSearch()
-
-
   }
 
   pageChange($event: any) {

@@ -6,8 +6,6 @@ import {IBookAuthorView} from "../../../../models/views/book-author.view";
 import {AuthorApiService} from "../../../../services/api/author-api.service";
 import {IBookAuthorRequest, IEditBookAuthorRequest} from "../../../../models/requests/book-author.request";
 import {MessageService} from "primeng/api";
-import {IBookManagerResponse} from "../../../../models/responses/book-manager.response";
-import {IBookManagerView} from "../../../../models/views/book-manager.view";
 import {Constant} from "../../../../util/constant";
 
 @Component({
@@ -16,6 +14,7 @@ import {Constant} from "../../../../util/constant";
   styleUrls: ['./author-manager-list.component.css']
 })
 export class AuthorManagerListComponent implements OnInit {
+
   authorManager : IBookAuthorView[] = []
   AuthorInfoForm!: FormGroup
   bookAuthorSelected!: IBookAuthorView;
