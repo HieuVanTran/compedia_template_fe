@@ -33,6 +33,7 @@ export class LoanPayManagerListComponent implements OnInit {
   staffSearch!: string;
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
+  totalElement: number = 300;
   // categoryId!: number
   // authorId!: number
 
@@ -271,6 +272,7 @@ export class LoanPayManagerListComponent implements OnInit {
     this.loanpayApiService._searchLoanpay(searchRequest).subscribe(
       (res: IResponseModel<IPageResponseModel<ILoanpayResponse>>) => {
         console.log(res)
+        this.totalElement = res.data.total_elements
         this.loanPayManager = []
         res.data.results.forEach(loanpayRes => {
           const loanpayView: ILoanpayView = {
@@ -302,7 +304,17 @@ export class LoanPayManagerListComponent implements OnInit {
   }
 
 
-
+  pageChange($event: any) {
+    // @ts-ignore
+    this.page = $event.first/$event.rows
+    // @ts-ignore
+    this.size = $event.rows
+    // @ts-ignore
+    // this.selectedSortField = $event.sortField
+    // this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
+    console.log($event)
+    this.onSearch()
+  }
 }
 
 function editLoanpayRequest(editLoanpayRequest: any) {

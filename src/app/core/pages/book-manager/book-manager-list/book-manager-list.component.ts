@@ -6,7 +6,7 @@ import {IBookAuthorView} from "../../../../models/views/book-author.view";
 import {IPublishCompanyView} from "../../../../models/views/publish-company.view";
 import {CategoryApiService} from "../../../../services/api/category-api.service";
 import {PublishCompanyApiService} from "../../../../services/api/publish-company-api.service";
-import {MessageService} from "primeng/api";
+import {LazyLoadEvent, MessageService} from "primeng/api";
 import {IPageResponseModel, IResponseModel} from "../../../../models/commons/response.model";
 import {IBookManagerResponse} from "../../../../models/responses/book-manager.response";
 import {IBookManagerRequest, IEditBookManagerRequest} from "../../../../models/requests/book-manager.request";
@@ -35,12 +35,13 @@ export class BookManagerListComponent implements OnInit {
   bookNameSearch!: string
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
+  pageLink = Constant.PAGE_LINK_SIZE;
   categoryId: number | null = null
   authorId: number | null = null
   publishId: number | null = null;
   listPage!: number[]
   totalPage!: number
-  totalElement: number = 100
+  totalElement: number = 300
 
 
 
@@ -313,7 +314,6 @@ export class BookManagerListComponent implements OnInit {
           this.bookManager.push(bookManagerView)
         })
         console.log(this.bookManager)
-        this.messageService.add({severity:'success', summary:'Thông báo', detail:'Thành công!'});
       }
     )
   }
@@ -340,6 +340,18 @@ export class BookManagerListComponent implements OnInit {
   onChangePage(event: any) {
     this.page = event.page
     this.size = event.rows
+    this.onSearch()
+  }
+
+  pageChange($event: any) {
+    // @ts-ignore
+    this.page = $event.first/$event.rows
+    // @ts-ignore
+    this.size = $event.rows
+    // @ts-ignore
+    // this.selectedSortField = $event.sortField
+    // this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
+    console.log($event)
     this.onSearch()
   }
 }

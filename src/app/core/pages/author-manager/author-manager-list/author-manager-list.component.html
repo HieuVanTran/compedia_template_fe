@@ -69,7 +69,14 @@
 <!--          </tbody>-->
 <!--        </table>-->
 <!--      </div>-->
-      <p-table [value]="authorManager"  [paginator]="true" [rows]="10" >
+      <p-table [value]="authorManager"
+               [paginator]="true"
+               [lazy]="true"
+               [scrollable]="true"
+               [showPageLinks]="true"
+               (onLazyLoad)="pageChange($event)"
+               [rows]="size"
+               [totalRecords]="totalElement" >
         <ng-template pTemplate="header" class="dark">
           <tr>
             <th>STT</th>
@@ -96,6 +103,9 @@
                 class="fa-solid fa-trash-can"></i></a>
             </td>
           </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft" let-state>
+          <td colspan="5">Tổng số bản ghi: {{state.totalRecords}}</td>
         </ng-template>
       </p-table>
 

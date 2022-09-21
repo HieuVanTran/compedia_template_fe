@@ -34,6 +34,7 @@ export class DelinquentManagerListComponent implements OnInit {
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
   staffId: number | null = null
+  totalElement: number = 300;
 
   constructor(private collectMoneyApiService: CollectMoneyApiService,
               private fb:FormBuilder,
@@ -205,6 +206,7 @@ export class DelinquentManagerListComponent implements OnInit {
     this.collectMoneyApiService._searchColect(searchRequest).subscribe(
       (res: IResponseModel<IPageResponseModel<ICollectMoneyResponses>>) => {
         console.log(res)
+        this.totalElement = res.data.total_elements
         this.delinquentManager = []
         res.data.results.forEach(collectMoneyRes => {
           const collectMoneyView: ICollectMoneyView = {
@@ -233,6 +235,18 @@ export class DelinquentManagerListComponent implements OnInit {
     this.size = Constant.SIZE_INIT
     this.staffId = Constant.NULL_VALUE
     this.fullNameSearch = Constant.NULL_VALUE
+    this.onSearch()
+  }
+
+  pageChange($event: any) {
+    // @ts-ignore
+    this.page = $event.first/$event.rows
+    // @ts-ignore
+    this.size = $event.rows
+    // @ts-ignore
+    // this.selectedSortField = $event.sortField
+    // this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
+    console.log($event)
     this.onSearch()
   }
 }

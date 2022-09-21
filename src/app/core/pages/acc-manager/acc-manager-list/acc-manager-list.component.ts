@@ -30,6 +30,7 @@ export class AccManagerListComponent implements OnInit {
   roleIdSearch: number | null = null;
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
+  totalElement: number = 300;
 
 
   constructor(private accountApiService: AccountApiService,
@@ -190,6 +191,7 @@ export class AccManagerListComponent implements OnInit {
     this.accountApiService._searchAccount(searchRequest).subscribe(
       (res: IResponseModel<IPageResponseModel<IAccountManagerResponse>>) => {
         console.log(res)
+        this.totalElement = res.data.total_elements
         this.accManager = [];
         res.data.results.forEach(accountManagerRes => {
           const accountManagerView: IAccountManagerView = {
@@ -206,7 +208,6 @@ export class AccManagerListComponent implements OnInit {
           this.accManager.push(accountManagerView)
         })
         console.log(this.accManager)
-        this.messageService.add({severity:'success', summary:'Thông báo', detail:'Thành công!'});
       }
     )
   }
@@ -224,5 +225,15 @@ export class AccManagerListComponent implements OnInit {
     this.onSearch()
 
 
+  }
+
+  pageChange($event: any) {
+    // @ts-ignore
+    this.page = $event.first/$event.rows
+    // @ts-ignore
+    this.size = $event.rows
+    // @ts-ignore
+    console.log($event)
+    this.onSearch()
   }
 }

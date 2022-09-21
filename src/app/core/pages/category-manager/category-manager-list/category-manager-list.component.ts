@@ -20,6 +20,7 @@ export class CategoryManagerListComponent implements OnInit {
   categoryNameSearch!: string
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
+  totalElement: number = 300;
 
   constructor(private categoryApiService: CategoryApiService,
               private messageService: MessageService,
@@ -56,6 +57,7 @@ export class CategoryManagerListComponent implements OnInit {
     console.log(searchRequest)
     this.categoryApiService._searchBookCategory(searchRequest).subscribe(
       (res: IResponseModel<IPageResponseModel<IBookCategoryResponse>>) => {
+        this.totalElement = res.data.total_elements
         this.categoryManager = [];
         res.data.results.forEach(bookCategoryRes => {
           const bookCategoryView: IBookCategoryView = {
@@ -135,6 +137,18 @@ export class CategoryManagerListComponent implements OnInit {
     this.categoryNameSearch = Constant.NULL_VALUE
     this.page = Constant.PAGE_INIT
     this.size = Constant.SIZE_INIT
+    this.onSearchBookCategory()
+  }
+
+  pageChange($event: any) {
+    // @ts-ignore
+    this.page = $event.first/$event.rows
+    // @ts-ignore
+    this.size = $event.rows
+    // @ts-ignore
+    // this.selectedSortField = $event.sortField
+    // this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
+    console.log($event)
     this.onSearchBookCategory()
   }
 }

@@ -67,7 +67,14 @@
 <!--          </tbody>-->
 <!--        </table>-->
 <!--      </div>-->
-      <p-table [value]="publishingCompany"  [paginator]="true" [rows]="10" >
+      <p-table [value]="publishingCompany"
+               [paginator]="true"
+               [lazy]="true"
+               [scrollable]="true"
+               [showPageLinks]="true"
+               (onLazyLoad)="pageChange($event)"
+               [rows]="size"
+               [totalRecords]="totalElement">
         <ng-template pTemplate="header" class="dark">
           <tr>
             <th>STT</th>
@@ -94,6 +101,10 @@
               <a type="button" data-toggle="modal" data-target="#delete-publishing-company" (click)="selectPublishCompany(i)"><i class="fa-solid fa-trash-can" style="color: red"></i></a>
             </td>
           </tr>
+        </ng-template>
+
+        <ng-template pTemplate="paginatorleft" let-state>
+          <td colspan="5">Tổng số bản ghi: {{state.totalRecords}}</td>
         </ng-template>
       </p-table>
 

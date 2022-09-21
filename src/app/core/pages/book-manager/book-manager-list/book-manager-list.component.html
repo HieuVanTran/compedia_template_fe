@@ -51,8 +51,14 @@
           </div>
         </div>
       </div>
-      <p-table [value]="bookManager"  [paginator]="true"
-               [rows]="size" >
+      <p-table [value]="bookManager"
+               [paginator]="true"
+               [lazy]="true"
+               [scrollable]="true"
+               [showPageLinks]="true"
+               (onLazyLoad)="pageChange($event)"
+               [rows]="size"
+               [totalRecords]="totalElement">
         <ng-template pTemplate="header" class="dark">
           <tr>
             <th>STT</th>
@@ -91,6 +97,10 @@
             </td>
           </tr>
         </ng-template>
+
+        <ng-template pTemplate="paginatorleft" let-state>
+          <td colspan="5">Tổng số bản ghi: {{state.totalRecords}}</td>
+        </ng-template>
       </p-table>
 
 
@@ -100,29 +110,29 @@
         <div class="modal-dialog modal-lg" [formGroup]="bookmanagerInfoForm">
           <div class="modal-content border-0">
             <div class="modal-header" style="background: #2C3333">
-              <h5 class="modal-title" id="exampleModalLabel2" style="color: white">Thêm mới</h5>
+              <h5 class="modal-title" style="color: white">Thêm mới</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true" style="color: white">&times;</span>
               </button>
             </div>
             <div class="modal-body">
               <div class="form-group row">
-                <label for="book-name2" class="col-sm-3 col-form-label" >Tên sách <span
+                <label class="col-sm-3 col-form-label" >Tên sách <span
                   style="color: red"> *</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="book-name2" formControlName="book_name">
+                  <input type="text" class="form-control"formControlName="book_name">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="images2" class="col-sm-3 col-form-label">Ảnh <span style="color: red"> *</span></label>
+                <label class="col-sm-3 col-form-label">Ảnh <span style="color: red"> *</span></label>
                 <div class="col-sm-9">
-                  <input type="file" class="form-control-file" id="images2" formControlName="file" (change)="getFile($event)">
+                  <input type="file" class="form-control-file" formControlName="file" (change)="getFile($event)">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="price2" class="col-sm-3 col-form-label">Giá tiền <span style="color: red"> *</span></label>
+                <label class="col-sm-3 col-form-label">Giá tiền <span style="color: red"> *</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="price2" formControlName="price">
+                  <input type="text" class="form-control"  formControlName="price">
                 </div>
               </div>
               <div class="form-group row">
@@ -137,9 +147,9 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="author2" class="col-sm-3 col-form-label">Tác giả <span style="color: red"> *</span></label>
+                <label class="col-sm-3 col-form-label">Tác giả <span style="color: red"> *</span></label>
                 <div class="col-sm-9">
-                  <select class="form-control" formControlName="id_author" id="author2">
+                  <select class="form-control" formControlName="id_author" >
                     <option *ngFor="let bookAuthor of listAuthor" value="{{bookAuthor.id}}">
                       <span>{{bookAuthor.name_author}}</span>
                     </option>
@@ -147,15 +157,15 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="pages" class="col-sm-3 col-form-label">Số trang <span style="color: red"> *</span></label>
+                <label class="col-sm-3 col-form-label">Số trang <span style="color: red"> *</span></label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="pages2" formControlName="page_number">
+                  <input type="text" class="form-control" formControlName="page_number">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="old-password" class="col-sm-3 col-form-label">Nhà xuất bản <span style="color: red"> *</span></label>
+                <label class="col-sm-3 col-form-label">Nhà xuất bản <span style="color: red"> *</span></label>
                 <div class="col-sm-9">
-                  <select class="form-control" formControlName="company_id" id="old-password">
+                  <select class="form-control" formControlName="company_id" >
                     <option *ngFor="let company of listpublishingCompany" value="{{company.id}}">
                       <span>{{company.name}}</span>
                     </option>
@@ -163,15 +173,15 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="year" class="col-sm-3 col-form-label">Năm xuất bản <span style="color: red"> *</span></label>
+                <label  class="col-sm-3 col-form-label">Năm xuất bản <span style="color: red"> *</span></label>
                 <div class="col-sm-9">
-                  <input type="date" placeholder="yyyy-mm-dd" class="form-control" id="year2" formControlName="publishing_year">
+                  <input type="date" placeholder="yyyy-mm-dd" class="form-control"  formControlName="publishing_year">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="amount" class="col-sm-3 col-form-label">Số lượng <span style="color: red"> *</span></label>
+                <label class="col-sm-3 col-form-label">Số lượng <span style="color: red"> *</span></label>
                 <div class="col-sm-9">
-                  <input type="number" class="form-control" id="amount" formControlName="amount">
+                  <input type="number" class="form-control"formControlName="amount">
                 </div>
               </div>
               <div class="form-group row">
