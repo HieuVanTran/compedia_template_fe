@@ -6,7 +6,7 @@ import {IBookAuthorView} from "../../../../models/views/book-author.view";
 import {IPublishCompanyView} from "../../../../models/views/publish-company.view";
 import {CategoryApiService} from "../../../../services/api/category-api.service";
 import {PublishCompanyApiService} from "../../../../services/api/publish-company-api.service";
-import {MessageService} from "primeng/api";
+import {LazyLoadEvent, MessageService} from "primeng/api";
 import {IPageResponseModel, IResponseModel} from "../../../../models/commons/response.model";
 import {IBookManagerResponse} from "../../../../models/responses/book-manager.response";
 import {IBookManagerRequest, IEditBookManagerRequest} from "../../../../models/requests/book-manager.request";
@@ -35,12 +35,13 @@ export class BookManagerListComponent implements OnInit {
   bookNameSearch!: string
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
+  pageLink = Constant.PAGE_LINK_SIZE;
   categoryId: number | null = null
   authorId: number | null = null
   publishId: number | null = null;
   listPage!: number[]
   totalPage!: number
-  totalElement: number = 100
+  totalElement: number = 300
 
 
 
@@ -116,12 +117,12 @@ export class BookManagerListComponent implements OnInit {
     };
     this.requestBookForm.set('amount',this.bookmanagerInfoForm.value.amount)
     this.requestBookForm.set('bookName',this.bookmanagerInfoForm.value.book_name)
-    this.requestBookForm.set('idTypeBook',this.bookmanagerInfoForm.value.category_name)
+    this.requestBookForm.set('idTypeBook',this.bookmanagerInfoForm.value.id_type_book)
     this.requestBookForm.set('file',this.uploadFile)
-    this.requestBookForm.set('idAuthor',this.bookmanagerInfoForm.value.name_author)
+    this.requestBookForm.set('idAuthor',this.bookmanagerInfoForm.value.id_author)
     this.requestBookForm.set('pageNumber',this.bookmanagerInfoForm.value.page_number)
     this.requestBookForm.set('price',this.bookmanagerInfoForm.value.price)
-    this.requestBookForm.set('companyId',this.bookmanagerInfoForm.value.publish_name)
+    this.requestBookForm.set('companyId',this.bookmanagerInfoForm.value.company_id)
     this.requestBookForm.set('publishingYear',this.bookmanagerInfoForm.value.publishing_year)
     this.requestBookForm.set('note',this.bookmanagerInfoForm.value.note)
 
@@ -313,7 +314,6 @@ export class BookManagerListComponent implements OnInit {
           this.bookManager.push(bookManagerView)
         })
         console.log(this.bookManager)
-        this.messageService.add({severity:'success', summary:'Thông báo', detail:'Thành công!'});
       }
     )
   }
@@ -340,6 +340,18 @@ export class BookManagerListComponent implements OnInit {
   onChangePage(event: any) {
     this.page = event.page
     this.size = event.rows
+    this.onSearch()
+  }
+
+  pageChange($event: any) {
+    // @ts-ignore
+    this.page = $event.first/$event.rows
+    // @ts-ignore
+    this.size = $event.rows
+    // @ts-ignore
+    // this.selectedSortField = $event.sortField
+    // this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
+    console.log($event)
     this.onSearch()
   }
 }

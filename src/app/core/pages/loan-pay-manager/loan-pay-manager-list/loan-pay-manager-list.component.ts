@@ -33,6 +33,7 @@ export class LoanPayManagerListComponent implements OnInit {
   staffSearch!: string;
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
+  totalElement: number = 300;
   // categoryId!: number
   // authorId!: number
 
@@ -302,7 +303,17 @@ export class LoanPayManagerListComponent implements OnInit {
   }
 
 
-
+  pageChange($event: any) {
+    // @ts-ignore
+    this.page = $event.first/$event.rows
+    // @ts-ignore
+    this.size = $event.rows
+    // @ts-ignore
+    // this.selectedSortField = $event.sortField
+    // this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
+    console.log($event)
+    this.onSearch()
+  }
 }
 
 function editLoanpayRequest(editLoanpayRequest: any) {

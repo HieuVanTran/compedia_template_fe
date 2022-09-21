@@ -24,6 +24,7 @@ export class AuthorManagerListComponent implements OnInit {
   size: number = Constant.SIZE_INIT
   address!: string
   title!: string
+  totalElement: number = 300;
 
 
 
@@ -165,6 +166,18 @@ export class AuthorManagerListComponent implements OnInit {
     this.size = Constant.SIZE_INIT
     this.address = Constant.NULL_VALUE
     this.title = Constant.NULL_VALUE
+    this.onSearchAuthor()
+  }
+
+  pageChange($event: any) {
+    // @ts-ignore
+    this.page = $event.first/$event.rows
+    // @ts-ignore
+    this.size = $event.rows
+    // @ts-ignore
+    // this.selectedSortField = $event.sortField
+    // this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
+    console.log($event)
     this.onSearchAuthor()
   }
 }

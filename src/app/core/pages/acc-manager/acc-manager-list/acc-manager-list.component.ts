@@ -30,6 +30,7 @@ export class AccManagerListComponent implements OnInit {
   roleIdSearch: number | null = null;
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
+  totalElement: number = 300;
 
 
   constructor(private accountApiService: AccountApiService,
@@ -224,5 +225,15 @@ export class AccManagerListComponent implements OnInit {
     this.onSearch()
 
 
+  }
+
+  pageChange($event: any) {
+    // @ts-ignore
+    this.page = $event.first/$event.rows
+    // @ts-ignore
+    this.size = $event.rows
+    // @ts-ignore
+    console.log($event)
+    this.onSearch()
   }
 }

@@ -23,6 +23,7 @@ export class StaffManagerListComponent implements OnInit {
   addressSearch!: string;
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
+  totalElement: number = 300;
 
   constructor(private staffManagerApiService: StaffManagerApiService,
               private fb: FormBuilder,
@@ -165,5 +166,17 @@ export class StaffManagerListComponent implements OnInit {
     this.onSearch()
 
 
+  }
+
+  pageChange($event: any) {
+    // @ts-ignore
+    this.page = $event.first/$event.rows
+    // @ts-ignore
+    this.size = $event.rows
+    // @ts-ignore
+    // this.selectedSortField = $event.sortField
+    // this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
+    console.log($event)
+    this.onSearch()
   }
 }
