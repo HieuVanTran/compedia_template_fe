@@ -58,6 +58,7 @@
                [showPageLinks]="true"
                (onLazyLoad)="pageChange($event)"
                [rows]="size"
+               [(first)]="first"
                [totalRecords]="totalElement">
         <ng-template pTemplate="header" class="dark">
           <tr>
@@ -81,7 +82,7 @@
           <tr >
             <td>{{rowIndex + 1}}</td>
             <td class="text-bold-500">{{i.book_name}}</td>
-            <td><img src="{{i.image}}"></td>
+            <td><img src="{{fileUrl}}{{i.image}}" style="width: 150px; height: 100px"></td>
             <td>{{i.price}}</td>
             <td>{{i.category_name}}</td>
             <td class="text-bold-500">{{i.name_author}}</td>

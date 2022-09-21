@@ -6,7 +6,7 @@ import {IBookAuthorView} from "../../../../models/views/book-author.view";
 import {IPublishCompanyView} from "../../../../models/views/publish-company.view";
 import {CategoryApiService} from "../../../../services/api/category-api.service";
 import {PublishCompanyApiService} from "../../../../services/api/publish-company-api.service";
-import {LazyLoadEvent, MessageService} from "primeng/api";
+import {MessageService} from "primeng/api";
 import {IPageResponseModel, IResponseModel} from "../../../../models/commons/response.model";
 import {IBookManagerResponse} from "../../../../models/responses/book-manager.response";
 import {IBookManagerRequest, IEditBookManagerRequest} from "../../../../models/requests/book-manager.request";
@@ -16,6 +16,7 @@ import {IPublishCompanyResponse} from "../../../../models/responses/publish-comp
 import {BookApiService} from "../../../../services/api/book-api.service";
 import {AuthorApiService} from "../../../../services/api/author-api.service";
 import {Constant} from "../../../../util/constant";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-book-manager-list',
@@ -43,7 +44,8 @@ export class BookManagerListComponent implements OnInit {
   totalPage!: number
   totalElement: number = 300
 
-
+  fileUrl = environment.file_url
+  first: number = 0
 
   constructor(private BookApiService: BookApiService,
               private fb: FormBuilder,
@@ -103,18 +105,18 @@ export class BookManagerListComponent implements OnInit {
     )
   }
   onAddNewBook() {
-    const createNewBookRequest: IBookManagerRequest = {
-      bookName:this.bookmanagerInfoForm.value.book_name,
-      idAuthor:this.bookmanagerInfoForm.value.name_author,
-      publishingYear:this.bookmanagerInfoForm.value.publishing_year,
-      pageNumber:this.bookmanagerInfoForm.value.page_number,
-      file:this.bookmanagerInfoForm.value.image,
-      price:this.bookmanagerInfoForm.value.price,
-      idTypeBook:this.bookmanagerInfoForm.value.category_name,
-      companyId:this.bookmanagerInfoForm.value.publish_name,
-      amount:this.bookmanagerInfoForm.value.amount,
-      note: this.bookmanagerInfoForm.value.note
-    };
+    // const createNewBookRequest: IBookManagerRequest = {
+    //   bookName:this.bookmanagerInfoForm.value.book_name,
+    //   idAuthor:this.bookmanagerInfoForm.value.name_author,
+    //   publishingYear:this.bookmanagerInfoForm.value.publishing_year,
+    //   pageNumber:this.bookmanagerInfoForm.value.page_number,
+    //   file:this.bookmanagerInfoForm.value.image,
+    //   price:this.bookmanagerInfoForm.value.price,
+    //   idTypeBook:this.bookmanagerInfoForm.value.category_name,
+    //   companyId:this.bookmanagerInfoForm.value.publish_name,
+    //   amount:this.bookmanagerInfoForm.value.amount,
+    //   note: this.bookmanagerInfoForm.value.note
+    // };
     this.requestBookForm.set('amount',this.bookmanagerInfoForm.value.amount)
     this.requestBookForm.set('bookName',this.bookmanagerInfoForm.value.book_name)
     this.requestBookForm.set('idTypeBook',this.bookmanagerInfoForm.value.id_type_book)
@@ -129,14 +131,16 @@ export class BookManagerListComponent implements OnInit {
         this.BookApiService._createNewBook(this.requestBookForm).subscribe(
           (res: IResponseModel<any>) => {
         this.messageService.add({severity:'success', summary:'Thông báo', detail:'Thêm mới danh mục thành công'});
-        this.getAllBook()
-      },
+            this.onReset()
+          },
       err => {
         this.messageService.add({severity:'error', summary:'Thông báo', detail:' Thêm mới danh muc that bai'});
         console.log('Them moi danh muc that bai')
       }
     )
   }
+
+
   onDeleteBookManager() {
     if(this.bookmanagerSelected) {
       this.BookApiService._deleteBook(this.bookmanagerSelected.book_id).subscribe(
@@ -334,6 +338,7 @@ export class BookManagerListComponent implements OnInit {
     this.categoryId = Constant.NULL_VALUE
     this.authorId = Constant.NULL_VALUE
     this.publishId = Constant.NULL_VALUE
+    this.first = 0
     this.onSearch()
   }
 

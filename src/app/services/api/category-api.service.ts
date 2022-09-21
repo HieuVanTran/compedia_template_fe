@@ -6,9 +6,7 @@ import {IPageResponseModel, IResponseModel} from "../../models/commons/response.
 import {IBookCategoryResponse} from "../../models/responses/book-category.response";
 import {IBookCategoryRequest, IEditBookCategoryRequest} from "../../models/requests/book-category.request";
 import {IGetCategoryBookRequest} from "../../models/requests/get-category-book.request";
-import {generate} from "rxjs";
 import {generateParams} from "../../util/public-function";
-import {IBookAuthorResponse} from "../../models/responses/book-author.response";
 
 @Injectable({
   providedIn: 'root'
