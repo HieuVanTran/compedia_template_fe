@@ -82,8 +82,8 @@
           <tr >
             <td class="flex-60px">{{rowIndex + 1}}</td>
             <td class="flex-100px text-bold-500">{{i.book_name}}</td>
-            <td><img src="{{fileUrl}}{{i.image}}" style="width: 150px; height: 100px"></td>
-            <td>{{i.price}}</td>
+            <td><img src="{{fileUrl}}{{i.image}}" style="width: 120px; height: 80px"></td>
+            <td>{{i.price.toLocaleString()}}</td>
             <td>{{i.category_name}}</td>
             <td class="text-bold-500">{{i.name_author}}</td>
             <td>{{i.page_number}}</td>
@@ -91,7 +91,7 @@
             <td>{{i.publishing_year}}</td>
             <td class="short-cut flex-160px" >{{i.note}}</td>
             <td class="flex-60px">{{i.amount}}</td>
-            <td>{{i.status}}</td>
+            <td class="flex-end">{{i.status}}</td>
             <td>
               <a type="button" data-toggle="modal" data-target="#exampleModal-bookmanager" (click)="editBook(i)"><i class="fa-solid fa-pen-to-square" style="color: #00cc00"></i></a>
               <a type="button" data-toggle="modal" data-target="#delete-book-manager" (click)="selectBook(i)"><i class="fa-solid fa-trash-can" style="color: red"></i></a>

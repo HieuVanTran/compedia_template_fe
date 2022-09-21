@@ -125,3 +125,7 @@ a:hover {
 .flex-160px{
   flex: 0 0 160px !important;
 }
+
+.flex-end {
+  justify-content: flex-end!important;
+}

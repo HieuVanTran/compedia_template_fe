@@ -102,8 +102,8 @@
             <td class="flex-60px">{{rowIndex +1}}</td>
             <td>{{i.username}}</td>
             <td class="text-bold-500">{{i.fullName}}</td>
-            <td>{{i.finedAmount}}</td>
-            <td>{{i.proceeds}}</td>
+            <td>{{i.finedAmount.toLocaleString()}}</td>
+            <td>{{i.proceeds.toLocaleString()}}</td>
             <td>{{i.staff_name}}</td>
             <td>
               <a type="button" data-toggle="modal" data-target="#exampleModal-collect-money" (click)="editCollectMoney(i)"><i class="fa-solid fa-pen-to-square"></i></a>
