@@ -106,7 +106,7 @@ export class AccManagerListComponent implements OnInit {
         (res: IResponseModel<any>) => {
           this.messageService.add({severity: 'success', summary: 'Thông báo!', detail: 'Xóa thành công! '});
           console.log('Xoa tai khoan thanh cong');
-         this.onReset()
+         this.onSearch()
         },
         err => {
           this.messageService.add({severity: 'error', summary: 'Thông báo!', detail: 'Xóa thất bại! '});
@@ -147,7 +147,7 @@ export class AccManagerListComponent implements OnInit {
       (res: IResponseModel<any>) => {
         this.messageService.add({severity: 'success', summary: 'Thông báo!', detail: 'Chỉnh sửa thành công! '});
         console.log('Thay doi thong tin thanh cong');
-       this.onReset()
+       this.onSearch()
       },
       err => {
         this.messageService.add({severity: 'error', summary: 'Thông báo!', detail: 'Chỉnh sửa thất bại! '});
@@ -224,8 +224,7 @@ export class AccManagerListComponent implements OnInit {
     this.emailSearch = Constant.NULL_VALUE
     this.roleIdSearch = Constant.NULL_VALUE
     this.onSearch()
-
-
+    this.first = 0
   }
 
   pageChange($event: any) {
