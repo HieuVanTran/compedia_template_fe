@@ -40,11 +40,11 @@
                [showPageLinks]="true"
                (onLazyLoad)="pageChange($event)"
                [rows]="size"
-               [first]="first"
+               [(first)]="first"
                [totalRecords]="totalElement">
         <ng-template pTemplate="header" class="dark">
           <tr>
-            <th>STT</th>
+            <th class="flex-60px">STT</th>
             <th pSortableColumn="username">TÊN TÀI KHOẢN<p-sortIcon field="username"></p-sortIcon></th>
             <th pSortableColumn="book_name">TÊN SÁCH<p-sortIcon field="book_name"></p-sortIcon></th>
             <th pSortableColumn="amount">SỐ LƯỢNG<p-sortIcon field="amount"></p-sortIcon></th>
@@ -59,7 +59,7 @@
 
         <ng-template pTemplate="body" let-i let-rowIndex="rowIndex">
           <tr >
-            <td>{{rowIndex +1}}</td>
+            <td class="flex-60px">{{rowIndex +1}}</td>
             <td>{{i.username}}</td>
             <td>{{i.book_name}}</td>
             <td>{{i.amount}}</td>

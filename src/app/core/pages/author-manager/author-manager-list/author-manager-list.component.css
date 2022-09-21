@@ -42,13 +42,13 @@ td i {
 }
 
 .short-cut {
-  width: 880px;
+  width: 400px;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 30px;
-  -webkit-line-clamp: 3;
-  height: 101px;
-  display: -webkit-box;
+  line-height: 28px;
+  -webkit-line-clamp: 4;
+  height: 129px;
+  display: -webkit-box !important;
   -webkit-box-orient: vertical
 }
 
@@ -56,13 +56,13 @@ td i {
 
 @media (max-width: 100em) {
   .short-cut {
-    width: 880px;
+    width: 400px;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 30px;
-    -webkit-line-clamp: 5;
-    height: 160px;
-    display: -webkit-box;
+    line-height: 28px;
+    -webkit-line-clamp: 6;
+    height: 180px;
+    display: -webkit-box !important;
     -webkit-box-orient: vertical
   }
 }

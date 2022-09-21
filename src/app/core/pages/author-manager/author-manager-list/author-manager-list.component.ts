@@ -112,7 +112,7 @@ export class AuthorManagerListComponent implements OnInit {
         (res: IResponseModel<any>) => {
           this.messageService.add({severity:'success', summary:'Thông báo', detail:'Xóa danh mục thành công'});
           console.log('Xoa danh muc thanh cong')
-          this.onReset()
+          this.onSearchAuthor()
         },
         err => {
           this.messageService.add({severity:'error', summary:'Thông báo', detail:'Xóa danh mục thành công'});
@@ -147,7 +147,7 @@ export class AuthorManagerListComponent implements OnInit {
       (res: IResponseModel<any>) => {
         this.messageService.add({severity:'success', summary:'Thông báo', detail:'Chỉnh sửa danh mục thành công'});
         console.log('Sua danh muc thanh cong')
-        this.onReset()
+        this.onSearchAuthor()
       },
       err => {
         this.messageService.add({severity:'error', summary:'Thông báo', detail:'Chỉnh sửa danh mục thành công'});
@@ -166,6 +166,7 @@ export class AuthorManagerListComponent implements OnInit {
     this.size = Constant.SIZE_INIT
     this.address = Constant.NULL_VALUE
     this.title = Constant.NULL_VALUE
+    this.first = 0
     this.onSearchAuthor()
   }
 

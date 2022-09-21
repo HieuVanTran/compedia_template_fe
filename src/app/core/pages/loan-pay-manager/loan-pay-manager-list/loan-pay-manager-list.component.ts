@@ -128,7 +128,7 @@ export class LoanPayManagerListComponent implements OnInit {
         (res: IResponseModel<any>) => {
           console.log('Xoa danh muc thanh cong')
           this.messageService.add({severity:'success', summary:'Thông báo', detail:'Xóa danh mục thành công'});
-          this.onReset()
+          this.onSearch()
         },
         err => {
           this.messageService.add({severity:'error', summary:'Thông báo', detail:'Xoa danh muc that bai'});
@@ -302,6 +302,7 @@ export class LoanPayManagerListComponent implements OnInit {
     this.page = Constant.PAGE_INIT
     this.size = Constant.SIZE_INIT
     this.staffSearch = Constant.NULL_VALUE
+    this.first = 0
     this.onSearch()
   }
 

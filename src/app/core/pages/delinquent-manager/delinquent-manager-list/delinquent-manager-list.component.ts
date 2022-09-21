@@ -236,6 +236,7 @@ export class DelinquentManagerListComponent implements OnInit {
     this.size = Constant.SIZE_INIT
     this.staffId = Constant.NULL_VALUE
     this.fullNameSearch = Constant.NULL_VALUE
+    this.first = 0
     this.onSearch()
   }
 

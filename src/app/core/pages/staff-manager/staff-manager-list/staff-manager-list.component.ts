@@ -107,7 +107,7 @@ export class StaffManagerListComponent implements OnInit {
       (res: IResponseModel<any>) => {
         this.messageService.add({severity: 'success', summary: 'Thông báo!', detail: 'Cập nhật thành công!'});
         console.log('Success');
-        this.onReset()
+        this.onSearch()
       },
       err => {
         this.messageService.add({severity: 'error', summary: 'Thông báo!', detail: 'Cập nhật thất bại!'});
@@ -166,6 +166,7 @@ export class StaffManagerListComponent implements OnInit {
     this.size = Constant.SIZE_INIT
     this.phoneSearch = Constant.NULL_VALUE
     this.addressSearch = Constant.NULL_VALUE
+    this.first = 0
     this.onSearch()
   }
 

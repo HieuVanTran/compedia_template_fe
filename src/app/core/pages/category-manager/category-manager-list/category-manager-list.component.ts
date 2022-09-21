@@ -94,7 +94,7 @@ export class CategoryManagerListComponent implements OnInit {
         (res: IResponseModel<any>) => {
           this.messageService.add({severity:'success', summary:'Thông báo', detail:'Xóa danh mục thành công'});
           console.log('Xoa danh muc thanh cong');
-         this.onReset()
+         this.onSearchBookCategory()
         },
         err => {
           this.messageService.add({severity:'error', summary:'Thông báo', detail:'Xóa danh mục thất bại'});
@@ -122,7 +122,7 @@ export class CategoryManagerListComponent implements OnInit {
       (res: IResponseModel<any>) => {
         this.messageService.add({severity:'success', summary:'Thông báo', detail:'Chỉnh sửa danh mục thành công'});
         console.log('Sua danh muc thanh cong');
-        this.onReset()
+        this.onSearchBookCategory()
       },
       err => {
         this.messageService.add({severity:'error', summary:'Thông báo', detail:'Chỉnh sửa danh mục thất bại'});
@@ -138,6 +138,7 @@ export class CategoryManagerListComponent implements OnInit {
     this.categoryNameSearch = Constant.NULL_VALUE
     this.page = Constant.PAGE_INIT
     this.size = Constant.SIZE_INIT
+    this.first = 0
     this.onSearchBookCategory()
   }
 

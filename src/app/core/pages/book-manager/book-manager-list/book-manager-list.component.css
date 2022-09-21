@@ -46,13 +46,13 @@ td i {
 }
 
 .short-cut {
-  width: 300px;
+  width: 400px;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 30px;
-  -webkit-line-clamp: 3;
-  height: 101px;
-  display: -webkit-box;
+  line-height: 28px;
+  -webkit-line-clamp: 4;
+  height: 129px;
+  display: -webkit-box !important;
   -webkit-box-orient: vertical
 }
 
@@ -70,6 +70,4 @@ td i {
     -webkit-box-orient: vertical
   }
 }
-.p-datatable-scrollable .p-datatable-thead>tr>th, .p-datatable-scrollable .p-datatable-tbody>tr>td, .p-datatable-scrollable .p-datatable-tfoot>tr>td{
-  flex:1 1 1;
-}
+
