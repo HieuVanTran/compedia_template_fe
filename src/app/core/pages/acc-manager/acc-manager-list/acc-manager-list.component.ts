@@ -191,6 +191,7 @@ export class AccManagerListComponent implements OnInit {
     this.accountApiService._searchAccount(searchRequest).subscribe(
       (res: IResponseModel<IPageResponseModel<IAccountManagerResponse>>) => {
         console.log(res)
+        this.totalElement = res.data.total_elements
         this.accManager = [];
         res.data.results.forEach(accountManagerRes => {
           const accountManagerView: IAccountManagerView = {
@@ -207,7 +208,6 @@ export class AccManagerListComponent implements OnInit {
           this.accManager.push(accountManagerView)
         })
         console.log(this.accManager)
-        this.messageService.add({severity:'success', summary:'Thông báo', detail:'Thành công!'});
       }
     )
   }

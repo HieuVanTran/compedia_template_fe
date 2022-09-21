@@ -34,13 +34,13 @@ export class ForgotPasswordComponent implements OnInit {
       }
     this.authApiService._forgotPassword(this.email).subscribe(
       (res ) => {
-        this.router.navigateByUrl('/auth/login')
         this.messageService.add({severity:'success', summary:'Thông báo', detail: "Đổi mật khẩu thành công!"})
         alert('Đổi mật khẩu thành công')
+        this.router.navigateByUrl('/auth/login')
         console.log(res)
       }, error => {
         this.forgotPasswordForm.reset()
-        this.messageService.add({severity:'error', summary:'Thông báo', detail: "Đổi mật khẩu thất bại!"})
+        this.messageService.add({severity:'error', summary:'Thông báo', detail: error.error.message})
         console.log(error)
       }
     )
