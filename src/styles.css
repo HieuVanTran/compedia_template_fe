@@ -103,8 +103,14 @@ a:hover {
   display: block;
   transition-duration: .5s;
 }
-@media (max-width: 768px) {
-  #sidebar{
-    display : none;
+@media (max-width: 1470px) {
+  .side-bar-toggle .side-bar {
+    max-width: 75px !important;
+    transition-duration: 0.5s;
+  }
+
+  .side-bar-toggle .side-bar .align-middle {
+    display: none !important;
+    transition-duration: 0.5s;
   }
 }
