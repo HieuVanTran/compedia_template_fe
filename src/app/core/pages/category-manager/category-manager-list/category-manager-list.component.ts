@@ -21,7 +21,7 @@ export class CategoryManagerListComponent implements OnInit {
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
   totalElement: number = 300;
-
+  first: number = 0
   constructor(private categoryApiService: CategoryApiService,
               private messageService: MessageService,
               private fb: FormBuilder) {
@@ -31,7 +31,8 @@ export class CategoryManagerListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  this.getAllBookCategory()
+  // this.getAllBookCategory();
+  this.onSearchBookCategory()
   }
 
     getAllBookCategory() {
@@ -78,7 +79,7 @@ export class CategoryManagerListComponent implements OnInit {
       (res: IResponseModel<any>) => {
         this.messageService.add({severity:'success', summary:'Thông báo', detail:'Thêm mới danh mục thành công'});
         console.log('Them moi danh muc thanh cong');
-        this.getAllBookCategory()
+       this.onReset()
       },
       err => {
         this.messageService.add({severity:'error', summary:'Thông báo', detail:'Thêm mới danh mục thất bại'});
@@ -93,7 +94,7 @@ export class CategoryManagerListComponent implements OnInit {
         (res: IResponseModel<any>) => {
           this.messageService.add({severity:'success', summary:'Thông báo', detail:'Xóa danh mục thành công'});
           console.log('Xoa danh muc thanh cong');
-          this.getAllBookCategory()
+         this.onReset()
         },
         err => {
           this.messageService.add({severity:'error', summary:'Thông báo', detail:'Xóa danh mục thất bại'});
@@ -121,7 +122,7 @@ export class CategoryManagerListComponent implements OnInit {
       (res: IResponseModel<any>) => {
         this.messageService.add({severity:'success', summary:'Thông báo', detail:'Chỉnh sửa danh mục thành công'});
         console.log('Sua danh muc thanh cong');
-        this.getAllBookCategory()
+        this.onReset()
       },
       err => {
         this.messageService.add({severity:'error', summary:'Thông báo', detail:'Chỉnh sửa danh mục thất bại'});

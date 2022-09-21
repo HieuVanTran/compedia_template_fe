@@ -36,6 +36,7 @@ export class LoanPayManagerListComponent implements OnInit {
   totalElement: number = 300;
   // categoryId!: number
   // authorId!: number
+  first: number = 0
 
 
   constructor(private loanpayApiService: LoanpayApiService,
@@ -62,7 +63,8 @@ export class LoanPayManagerListComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getAllLoanpay();
+    // this.getAllLoanpay();
+    this.onSearch()
     this.getAllBook();
     this.getAllAccountManager();
     this.getAllStaffManager();
@@ -110,7 +112,7 @@ export class LoanPayManagerListComponent implements OnInit {
       (res: IResponseModel<any>) => {
         this.messageService.add({severity:'success', summary:'Thông báo', detail:'Thêm mới danh mục thành công'});
         console.log('Them moi danh muc thanh cong')
-        this.getAllLoanpay()
+        this.onReset()
       },
       err => {
         console.log(err);
@@ -126,7 +128,7 @@ export class LoanPayManagerListComponent implements OnInit {
         (res: IResponseModel<any>) => {
           console.log('Xoa danh muc thanh cong')
           this.messageService.add({severity:'success', summary:'Thông báo', detail:'Xóa danh mục thành công'});
-          this.getAllLoanpay()
+          this.onReset()
         },
         err => {
           this.messageService.add({severity:'error', summary:'Thông báo', detail:'Xoa danh muc that bai'});
@@ -173,7 +175,7 @@ export class LoanPayManagerListComponent implements OnInit {
       (res: IResponseModel<any>) => {
         this.messageService.add({severity:'success', summary:'Thông báo', detail:'Chỉnh sửa danh mục thành công'});
         console.log('Sua danh muc thanh cong')
-        this.getAllLoanpay()
+       this.onSearch()
       },
       err => {
         this.messageService.add({severity:'error', summary:'Thông báo', detail:'Chỉnh sửa danh mục thất bại'});

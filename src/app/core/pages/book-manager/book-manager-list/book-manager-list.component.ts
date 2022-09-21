@@ -147,7 +147,7 @@ export class BookManagerListComponent implements OnInit {
         (res: IResponseModel<any>) => {
           console.log('Xoa danh muc thanh cong')
           this.messageService.add({severity:'success', summary:'Thông báo', detail:'Xóa danh mục thành công'});
-          this.getAllBook()
+          this.onReset()
         },
         err => {
           this.messageService.add({severity:'error', summary:'Thông báo', detail:'Xoa danh muc that bai'});
@@ -259,7 +259,7 @@ export class BookManagerListComponent implements OnInit {
       (res: IResponseModel<any>) => {
         console.log('Sua danh muc thanh cong')
         this.messageService.add({severity:'success', summary:'Thông báo', detail:' Chỉnh sửa danh muc thành công'});
-        this.getAllBook()
+       this.onSearch()
       },
       err => {
         this.messageService.add({severity:'error', summary:'Thông báo', detail:' Chỉnh sửa danh muc that bai'});

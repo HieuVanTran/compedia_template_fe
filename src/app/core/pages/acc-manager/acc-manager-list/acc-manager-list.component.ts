@@ -31,7 +31,7 @@ export class AccManagerListComponent implements OnInit {
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
   totalElement: number = 300;
-
+  first: number = 0
 
   constructor(private accountApiService: AccountApiService,
               private fb: FormBuilder,
@@ -49,7 +49,8 @@ export class AccManagerListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllAccountManager();
+    // this.getAllAccountManager();
+    this.onSearch();
     this.getAllRoleManager();
   }
 
@@ -89,7 +90,7 @@ export class AccManagerListComponent implements OnInit {
       (res: IResponseModel<any>) => {
         this.messageService.add({severity: 'success', summary: 'Thông báo!', detail: 'Tạo tài khoản thành công! '});
         console.log('Tao tai khoan thanh cong');
-        this.getAllAccountManager()
+        this.onReset()
       },
       err => {
         console.log(err)
@@ -105,7 +106,7 @@ export class AccManagerListComponent implements OnInit {
         (res: IResponseModel<any>) => {
           this.messageService.add({severity: 'success', summary: 'Thông báo!', detail: 'Xóa thành công! '});
           console.log('Xoa tai khoan thanh cong');
-          this.getAllAccountManager()
+         this.onReset()
         },
         err => {
           this.messageService.add({severity: 'error', summary: 'Thông báo!', detail: 'Xóa thất bại! '});
@@ -146,7 +147,7 @@ export class AccManagerListComponent implements OnInit {
       (res: IResponseModel<any>) => {
         this.messageService.add({severity: 'success', summary: 'Thông báo!', detail: 'Chỉnh sửa thành công! '});
         console.log('Thay doi thong tin thanh cong');
-        this.getAllAccountManager()
+       this.onReset()
       },
       err => {
         this.messageService.add({severity: 'error', summary: 'Thông báo!', detail: 'Chỉnh sửa thất bại! '});

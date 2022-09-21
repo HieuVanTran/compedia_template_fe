@@ -114,3 +114,14 @@ a:hover {
     transition-duration: 0.5s;
   }
 }
+
+.flex-60px {
+  flex: 0 0 60px !important;
+}
+
+.flex-100px {
+  flex: 0 0 100px !important;
+}
+.flex-160px{
+  flex: 0 0 160px !important;
+}

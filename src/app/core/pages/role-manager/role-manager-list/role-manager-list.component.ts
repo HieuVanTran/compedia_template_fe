@@ -18,6 +18,7 @@ export class RoleManagerListComponent implements OnInit {
   roleManagerInfoForm!: FormGroup;
   roleManagerSelected!: IRoleManagerView;
 
+
   constructor(private roleManagerApiService: RoleManagerApiService,
               private fb: FormBuilder,
               private messageService: MessageService) {

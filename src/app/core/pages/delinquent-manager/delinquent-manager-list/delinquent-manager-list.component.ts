@@ -35,7 +35,7 @@ export class DelinquentManagerListComponent implements OnInit {
   size: number = Constant.SIZE_INIT
   staffId: number | null = null
   totalElement: number = 300;
-
+  first: number = 0
   constructor(private collectMoneyApiService: CollectMoneyApiService,
               private fb:FormBuilder,
               private messageService: MessageService,
@@ -49,7 +49,8 @@ export class DelinquentManagerListComponent implements OnInit {
     })
   }
   ngOnInit(): void {
-    this.getAllCollectMoney();
+    // this.getAllCollectMoney();
+    this.onSearch()
     this.getAllStaffManager();
     this.getAllAccountManager()
   }
@@ -87,7 +88,7 @@ export class DelinquentManagerListComponent implements OnInit {
       (res: IResponseModel<any>) => {
         this.messageService.add({severity:'success', summary:'Thông báo!', detail:'Tạo mới thành công! '});
         console.log('Success');
-        this.getAllCollectMoney()
+        this.onReset()
       },
       err => {
         this.messageService.add({severity:'error', summary:'Thông báo!', detail:'Tạo thất bại! '});
@@ -103,7 +104,7 @@ export class DelinquentManagerListComponent implements OnInit {
         (res: IResponseModel<any>) => {
           this.messageService.add({severity:'success', summary:'Thông báo!', detail:'Xóa thành công! '});
           console.log('Xoa tai khoan thanh cong');
-          this.getAllCollectMoney()
+          this.onSearch()
         },
         err => {
           this.messageService.add({severity:'error', summary:'Thông báo!', detail:'Xóa thất bại! '});
@@ -125,7 +126,7 @@ export class DelinquentManagerListComponent implements OnInit {
       (res: IResponseModel<any>) => {
         this.messageService.add({severity:'success', summary:'Thông báo!', detail:'Chỉnh sửa thành công! '});
         console.log('Thay doi thong tin thanh cong');
-        this.getAllCollectMoney()
+       this.onSearch()
       },
       err => {
         this.messageService.add({severity:'error', summary:'Thông báo!', detail:'Chỉnh sửa thất bại! '});

@@ -24,7 +24,7 @@ export class AuthorManagerListComponent implements OnInit {
   address!: string
   title!: string
   totalElement: number = 300;
-
+  first: number = 0
 
 
   constructor(private AuthorApiService: AuthorApiService,
@@ -39,7 +39,8 @@ export class AuthorManagerListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllBookAuthor()
+    // this.getAllBookAuthor()
+    this.onSearchAuthor()
   }
   getAllBookAuthor() {
     this.AuthorApiService._getAllAuthor().subscribe(
@@ -97,7 +98,7 @@ export class AuthorManagerListComponent implements OnInit {
       (res: IResponseModel<any>) => {
         this.messageService.add({severity:'success', summary:'Thông báo', detail:'Thêm mới danh mục thành công'});
         console.log('Them moi danh muc thanh cong')
-        this.getAllBookAuthor()
+      this.onReset()
       },
       err => {
         this.messageService.add({severity:'error', summary:'Thông báo', detail:'Thêm mới danh mục thất bại'});
@@ -111,7 +112,7 @@ export class AuthorManagerListComponent implements OnInit {
         (res: IResponseModel<any>) => {
           this.messageService.add({severity:'success', summary:'Thông báo', detail:'Xóa danh mục thành công'});
           console.log('Xoa danh muc thanh cong')
-          this.getAllBookAuthor()
+          this.onReset()
         },
         err => {
           this.messageService.add({severity:'error', summary:'Thông báo', detail:'Xóa danh mục thành công'});
@@ -146,7 +147,7 @@ export class AuthorManagerListComponent implements OnInit {
       (res: IResponseModel<any>) => {
         this.messageService.add({severity:'success', summary:'Thông báo', detail:'Chỉnh sửa danh mục thành công'});
         console.log('Sua danh muc thanh cong')
-        this.getAllBookAuthor()
+        this.onReset()
       },
       err => {
         this.messageService.add({severity:'error', summary:'Thông báo', detail:'Chỉnh sửa danh mục thành công'});

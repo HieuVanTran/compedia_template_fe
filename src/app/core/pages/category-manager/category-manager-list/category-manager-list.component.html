@@ -62,6 +62,7 @@
                [showPageLinks]="true"
                (onLazyLoad)="pageChange($event)"
                [rows]="size"
+               [first]="first"
                [totalRecords]="totalElement" >
         <ng-template pTemplate="header" class="dark">
           <tr>

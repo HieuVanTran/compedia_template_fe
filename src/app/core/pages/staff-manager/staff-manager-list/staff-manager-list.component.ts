@@ -24,7 +24,7 @@ export class StaffManagerListComponent implements OnInit {
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
   totalElement: number = 300;
-
+  first: number = 0
   constructor(private staffManagerApiService: StaffManagerApiService,
               private fb: FormBuilder,
               private messageService: MessageService) {
@@ -37,7 +37,7 @@ export class StaffManagerListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllStaffManager()
+    this.onSearch()
   }
 
   getAllStaffManager() {
@@ -70,7 +70,7 @@ export class StaffManagerListComponent implements OnInit {
       (res: IResponseModel<any>) => {
         this.messageService.add({severity: 'success', summary: 'Thông báo!', detail: 'Thêm thành công! '});
         console.log('Thanh cong');
-        this.getAllStaffManager()
+       this.onReset()
       },
       err => {
         this.messageService.add({severity: 'error', summary: 'Thông báo!', detail: 'Thêm thất bại! '});
@@ -85,7 +85,7 @@ export class StaffManagerListComponent implements OnInit {
         (res: IResponseModel<any>) => {
           this.messageService.add({severity: 'success', summary: 'Thông báo', detail: 'Xóa thành công'});
           console.log('Xoa thanh cong');
-          this.getAllStaffManager()
+          this.onSearch()
         },
         err => {
           this.messageService.add({severity: 'error', summary: 'Thông báo', detail: 'Xóa thất bại'});
@@ -107,7 +107,7 @@ export class StaffManagerListComponent implements OnInit {
       (res: IResponseModel<any>) => {
         this.messageService.add({severity: 'success', summary: 'Thông báo!', detail: 'Cập nhật thành công!'});
         console.log('Success');
-        this.getAllStaffManager()
+        this.onReset()
       },
       err => {
         this.messageService.add({severity: 'error', summary: 'Thông báo!', detail: 'Cập nhật thất bại!'});

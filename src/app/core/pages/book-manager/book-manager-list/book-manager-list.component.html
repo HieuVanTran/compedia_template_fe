@@ -62,8 +62,8 @@
                [totalRecords]="totalElement">
         <ng-template pTemplate="header" class="dark">
           <tr>
-            <th>STT</th>
-            <th pSortableColumn="book_name">TÊN SÁCH<p-sortIcon field="book_name"></p-sortIcon></th>
+            <th class="flex-60px">STT</th>
+            <th pSortableColumn="book_name" class="flex-100px">TÊN SÁCH<p-sortIcon field="book_name"></p-sortIcon></th>
             <th pSortableColumn="image">Ảnh<p-sortIcon field="image"></p-sortIcon></th>
             <th pSortableColumn="price">GIÁ TIỀN<p-sortIcon field="price"></p-sortIcon></th>
             <th pSortableColumn="category_name">LOẠI SÁCH<p-sortIcon field="category_name"></p-sortIcon></th>
@@ -80,8 +80,8 @@
 
         <ng-template pTemplate="body" let-i let-rowIndex="rowIndex">
           <tr >
-            <td>{{rowIndex + 1}}</td>
-            <td class="text-bold-500">{{i.book_name}}</td>
+            <td class="flex-60px">{{rowIndex + 1}}</td>
+            <td class="flex-100px text-bold-500">{{i.book_name}}</td>
             <td><img src="{{fileUrl}}{{i.image}}" style="width: 150px; height: 100px"></td>
             <td>{{i.price}}</td>
             <td>{{i.category_name}}</td>
@@ -89,8 +89,8 @@
             <td>{{i.page_number}}</td>
             <td>{{i.publish_name}}</td>
             <td>{{i.publishing_year}}</td>
-            <td class="short-cut" >{{i.note}}</td>
-            <td>{{i.amount}}</td>
+            <td class="short-cut flex-160px" >{{i.note}}</td>
+            <td class="flex-60px">{{i.amount}}</td>
             <td>{{i.status}}</td>
             <td>
               <a type="button" data-toggle="modal" data-target="#exampleModal-bookmanager" (click)="editBook(i)"><i class="fa-solid fa-pen-to-square" style="color: #00cc00"></i></a>

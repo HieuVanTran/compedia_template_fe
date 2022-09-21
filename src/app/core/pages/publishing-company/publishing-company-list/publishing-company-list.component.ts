@@ -31,6 +31,7 @@ export class PublishingCompanyListComponent implements OnInit {
   size: number = Constant.SIZE_INIT
   resetForm: ResetForm = new ResetForm()
   totalElement: number = 300;
+  first: number = 0
 
 
   constructor(private publishCompanyApiService: PublishCompanyApiService,
@@ -46,7 +47,8 @@ export class PublishingCompanyListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllPublishCompany()
+    // this.getAllPublishCompany()
+    this.onSearch()
   }
 
   getAllPublishCompany() {
@@ -81,7 +83,7 @@ export class PublishingCompanyListComponent implements OnInit {
       (res: IResponseModel<any>) => {
         this.messageService.add({severity:'success', summary:'Thông báo!', detail:'Thêm nhà xuất bản thành công! '});
         console.log('Them nha xuat ban thanh cong');
-        this.getAllPublishCompany()
+        this.onReset()
       },
       err => {
         this.messageService.add({severity:'error', summary:'Thông báo!', detail:'Thêm nhà xuất bản thất bại!'});
@@ -96,7 +98,7 @@ export class PublishingCompanyListComponent implements OnInit {
         (res: IResponseModel<any>) => {
           this.messageService.add({severity:'success', summary:'Thông báo!', detail:'Xóa thành công! '});
           console.log('');
-          this.getAllPublishCompany()
+          this.onReset()
         },
         err => {
           this.messageService.add({severity:'error', summary:'Thông báo!', detail:'Xóa thất bại! '});
@@ -132,7 +134,7 @@ export class PublishingCompanyListComponent implements OnInit {
       (res: IResponseModel<any>) => {
         this.messageService.add({severity:'success', summary:'Thông báo!', detail:'Cập nhật thành công!'});
         console.log('Cập nhật thành công');
-        this.getAllPublishCompany()
+        this.onReset()
       },
       err => {
         this.messageService.add({severity:'error', summary:'Thông báo!', detail:'Cập nhật thất bại!'});
