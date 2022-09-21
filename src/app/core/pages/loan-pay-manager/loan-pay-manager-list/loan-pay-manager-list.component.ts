@@ -272,6 +272,7 @@ export class LoanPayManagerListComponent implements OnInit {
     this.loanpayApiService._searchLoanpay(searchRequest).subscribe(
       (res: IResponseModel<IPageResponseModel<ILoanpayResponse>>) => {
         console.log(res)
+        this.totalElement = res.data.total_elements
         this.loanPayManager = []
         res.data.results.forEach(loanpayRes => {
           const loanpayView: ILoanpayView = {

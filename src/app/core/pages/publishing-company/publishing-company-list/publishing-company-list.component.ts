@@ -156,6 +156,7 @@ export class PublishingCompanyListComponent implements OnInit {
     }
     this.publishCompanyApiService._searchPublishCompany(searchRequest).subscribe(
       (res: IResponseModel<IPageResponseModel<IPublishCompanyResponse>>) => {
+        this.totalElement = res.data.total_elements
         this.publishingCompany = [];
         res.data.results.forEach( publishCompanyRes => {
           const publishCompanyView: IPublishCompanyView = {

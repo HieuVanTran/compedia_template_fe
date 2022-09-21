@@ -206,6 +206,7 @@ export class DelinquentManagerListComponent implements OnInit {
     this.collectMoneyApiService._searchColect(searchRequest).subscribe(
       (res: IResponseModel<IPageResponseModel<ICollectMoneyResponses>>) => {
         console.log(res)
+        this.totalElement = res.data.total_elements
         this.delinquentManager = []
         res.data.results.forEach(collectMoneyRes => {
           const collectMoneyView: ICollectMoneyView = {

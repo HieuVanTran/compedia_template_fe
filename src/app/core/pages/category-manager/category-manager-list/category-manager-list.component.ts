@@ -57,6 +57,7 @@ export class CategoryManagerListComponent implements OnInit {
     console.log(searchRequest)
     this.categoryApiService._searchBookCategory(searchRequest).subscribe(
       (res: IResponseModel<IPageResponseModel<IBookCategoryResponse>>) => {
+        this.totalElement = res.data.total_elements
         this.categoryManager = [];
         res.data.results.forEach(bookCategoryRes => {
           const bookCategoryView: IBookCategoryView = {

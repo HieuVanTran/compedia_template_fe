@@ -142,6 +142,7 @@ export class StaffManagerListComponent implements OnInit {
     }
     this.staffManagerApiService._searchStaff(searchRequest).subscribe(
       (res: IResponseModel<IPageResponseModel<IStaffManagerResponse>>) => {
+        this.totalElement = res.data.total_elements
         this.staffManager = [];
         res.data.results.forEach(staffManagerRes => {
           const staffManagerView: IStaffManagerView = {

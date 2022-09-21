@@ -72,6 +72,7 @@ export class AuthorManagerListComponent implements OnInit {
     this.AuthorApiService._searchAuthor(searchRequest).subscribe(
       (res: IResponseModel<IPageResponseModel<IBookAuthorResponse>>) => {
         console.log(res)
+        this.totalElement = res.data.total_elements
         this.authorManager = []
         res.data.results.forEach(bookAuthorRes => {
           const bookAuthorView: IBookAuthorView = {
