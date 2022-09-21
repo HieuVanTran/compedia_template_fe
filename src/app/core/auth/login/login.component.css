@@ -5,3 +5,11 @@
 #btn_spinner {
   display: none
 }
+
+.forget-password {
+  border: none
+}
+
+.pass-form {
+  padding-bottom: 12px;
+}

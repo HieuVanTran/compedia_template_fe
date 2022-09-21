@@ -14,7 +14,7 @@
             </div>
           </div>
         </div>
-        <div class="form-group" id="password">
+        <div class="form-group pass-form" id="password">
           <label for="exampleInputPassword1">Mật Khẩu</label>
           <input type="{{!showEye ? 'password' : 'text'}}" formControlName="password" class="form-control" id="exampleInputPassword1">
           <div id="eye" (click)="showEye = !showEye">
@@ -27,10 +27,10 @@
             </div>
           </div>
         </div>
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input form-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Ghi nhớ đăng nhập</label>
-        </div>
+<!--        <div class="form-group form-check">-->
+<!--          <input type="checkbox" class="form-check-input form-input" id="exampleCheck1">-->
+<!--          <label class="form-check-label" for="exampleCheck1">Ghi nhớ đăng nhập</label>-->
+<!--        </div>-->
         <button id="btn_login" type="submit" class="btn btn-primary form-control" (click)="login()" onclick="spinnerLoad()">Đăng nhập</button>
         <button id="btn_spinner" type="submit" class="btn btn-primary form-control" (click)="login()">
           <p-progressSpinner [style]="{width: '24px', height: '24px'}"  strokeWidth="10"></p-progressSpinner>
@@ -38,13 +38,10 @@
         <div class="forget-password">
           <a [routerLink]="['/auth/forgot-password']" class="text-dark">Quên mật khẩu ?</a>
         </div>
-        <div class="register py-3" >
-          <button type="submit" class="btn btn-primary form-control" [routerLink]="'/auth/register'">Đăng Ký</button>
-        </div>
       </form>
     </div>
   </div>
 
-
+<p-toast></p-toast>
 
 
