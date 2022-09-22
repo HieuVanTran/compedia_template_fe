@@ -15,7 +15,7 @@
           <div class="search">
             <ul>
               <li>
-                <input class="form-control" type="text" [(ngModel)]="bookNameSearch" placeholder="Nhập tên sách">
+                <p-autoComplete [(ngModel)]="bookNameSearch" [showEmptyMessage]="false" [suggestions]="results"  (completeMethod)="search($event)" [minLength]="1" (onLazyLoad)="pageChange($event)" placeholder="Nhập tên sách"></p-autoComplete>
               </li>
               <li>
                 <select class="form-control" (change)="selectCategory()" [(ngModel)]="categoryId">
