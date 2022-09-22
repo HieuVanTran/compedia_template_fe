@@ -91,6 +91,8 @@
               </td>
             </ng-container>
             <ng-container *ngIf="i.is_action == 2"><td>Vi phạm</td></ng-container>
+
+            <ng-container *ngIf="i.is_action === null"><td></td></ng-container>
             <td>{{i.name_staff}}</td>
             <td>
               <a type="button" data-toggle="modal" data-target="#exampleModal-bookmanager" (click)="editLoanpay(i)"><i class="fa-solid fa-pen-to-square"></i></a>
