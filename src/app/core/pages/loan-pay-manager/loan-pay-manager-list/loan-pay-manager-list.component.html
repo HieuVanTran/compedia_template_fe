@@ -70,29 +70,29 @@
 <!--            <td>{{i.status}}</td>-->
             <ng-container *ngIf="i.status ==0 ">
               <td>
-                Chưa mượn
+                Chưa duyệt
               </td>
             </ng-container>
             <ng-container *ngIf="i.status ==1 ">
               <td>
-                Đã mượn
+                Đã duyệt
               </td>
             </ng-container>
             <ng-container *ngIf="i.status == 2"><td>Không cho mượn</td></ng-container>
 <!--            <td>{{i.is_action}}</td>-->
             <ng-container *ngIf="i.is_action ==0 ">
               <td>
-                Đang trong thời gian mượn
+                empty
               </td>
             </ng-container>
             <ng-container *ngIf="i.is_action ==1 ">
               <td>
-                Đã trả
+                Đang trong thời gian mượn
               </td>
             </ng-container>
-            <ng-container *ngIf="i.is_action == 2"><td>Vi phạm</td></ng-container>
+            <ng-container *ngIf="i.is_action == 2"><td>Đã trả</td></ng-container>
 
-            <ng-container *ngIf="i.is_action === null"><td></td></ng-container>
+            <ng-container *ngIf="i.is_action == 3"><td>Vi phạm</td></ng-container>
             <td>{{i.name_staff}}</td>
             <td>
               <a type="button" data-toggle="modal" data-target="#exampleModal-bookmanager" (click)="editLoanpay(i)"><i class="fa-solid fa-pen-to-square"></i></a>
@@ -238,8 +238,8 @@
                 <label class="col-sm-2 col-form-label">Trạng thái <span style="color: red">*</span></label>
                 <div class="col-sm-10">
                   <select class="form-control" formControlName="status" id="status">
-                    <option value="0">Chưa mượn</option>
-                    <option value="1">Đã mượn</option>
+                    <option value="0">Chưa duyệt</option>
+                    <option value="1">Đã duyệt</option>
                     <option value="2">Không cho mượn</option>
                   </select>
                 </div>
@@ -254,9 +254,10 @@
                 <label class="col-sm-2 col-form-label">Hoạt động <span style="color: red">*</span></label>
                 <div class="col-sm-10">
                   <select class="form-control" formControlName="is_action" id="is_action">
-                    <option value="0">Đang trong thời gian mượn</option>
-                    <option value="1">Đã trả</option>
-                    <option value="2">Vi phạm</option>
+                    <option value="0">empty</option>
+                    <option value="1">Đang trong thời gian mượn</option>
+                    <option value="2">Đã trả</option>
+                    <option value="3">Vi phạm</option>
 
                   </select>
                 </div>
