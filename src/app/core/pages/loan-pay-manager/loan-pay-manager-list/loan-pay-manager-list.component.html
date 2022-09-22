@@ -67,17 +67,9 @@
             <td>{{i.end_date}}</td>
             <td>{{i.note}}</td>
 <!--            <td>{{i.status}}</td>-->
-            <ng-container *ngIf="i.status ==0 ">
-              <td>
-                Chưa mượn
-              </td>
-            </ng-container>
-            <ng-container *ngIf="i.status ==1 ">
-              <td>
-                Đã mượn
-              </td>
-            </ng-container>
-
+            <td>
+              {{i.status === 0 ? 'Chưa mượn' : 'Đã mượn'}}
+            </td>
             <td>{{i.name_staff}}</td>
             <td>
               <a type="button" data-toggle="modal" data-target="#exampleModal-bookmanager" (click)="editLoanpay(i)"><i class="fa-solid fa-pen-to-square"></i></a>
