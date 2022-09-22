@@ -66,7 +66,18 @@
             <td>{{i.start_date}}</td>
             <td>{{i.end_date}}</td>
             <td>{{i.note}}</td>
-            <td>{{i.status}}</td>
+<!--            <td>{{i.status}}</td>-->
+            <ng-container *ngIf="i.status ==0 ">
+              <td>
+                Chưa mượn
+              </td>
+            </ng-container>
+            <ng-container *ngIf="i.status ==1 ">
+              <td>
+                Đã mượn
+              </td>
+            </ng-container>
+
             <td>{{i.name_staff}}</td>
             <td>
               <a type="button" data-toggle="modal" data-target="#exampleModal-bookmanager" (click)="editLoanpay(i)"><i class="fa-solid fa-pen-to-square"></i></a>
@@ -212,8 +223,8 @@
                 <label class="col-sm-2 col-form-label">Trạng thái <span style="color: red">*</span></label>
                 <div class="col-sm-10">
                   <select class="form-control" formControlName="status" id="status">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
+                    <option value="0">Chưa mượn</option>
+                    <option value="1">Đã mượn</option>
                   </select>
                 </div>
               </div>
