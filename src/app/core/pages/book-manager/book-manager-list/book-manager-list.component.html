@@ -97,7 +97,16 @@
             <td>{{i.publishing_year}}</td>
             <td class="short-cut flex-160px" >{{i.note}}</td>
             <td class="flex-60px">{{i.amount}}</td>
-            <td class="flex-end">{{i.status}}</td>
+            <ng-container *ngIf="i.status ==0 ">
+              <td>
+                Chưa mượn
+              </td>
+            </ng-container>
+            <ng-container *ngIf="i.status ==1 ">
+              <td>
+                Đã mượn
+              </td>
+            </ng-container>
             <td>
               <a type="button" data-toggle="modal" data-target="#exampleModal-bookmanager" (click)="editBook(i)"><i class="fa-solid fa-pen-to-square" style="color: #00cc00"></i></a>
               <a type="button" data-toggle="modal" data-target="#delete-book-manager" (click)="selectBook(i)"><i class="fa-solid fa-trash-can" style="color: red"></i></a>

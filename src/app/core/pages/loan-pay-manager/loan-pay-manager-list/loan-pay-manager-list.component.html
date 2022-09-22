@@ -52,6 +52,7 @@
             <th pSortableColumn="end_date">NGÀY TRẢ<p-sortIcon field="end_date"></p-sortIcon></th>
             <th pSortableColumn="note">GHI CHÚ<p-sortIcon field="note"></p-sortIcon></th>
             <th pSortableColumn="status">TRẠNG THÁI<p-sortIcon field="status"></p-sortIcon></th>
+            <th pSortableColumn="is_action">HÀNH ĐỘNG<p-sortIcon field="is_action"></p-sortIcon></th>
             <th pSortableColumn="name_staff">TÊN NHÂN VIÊN<p-sortIcon field="name_staff"></p-sortIcon></th>
             <th>THAO TÁC</th>
           </tr>
@@ -66,7 +67,32 @@
             <td>{{i.start_date}}</td>
             <td>{{i.end_date}}</td>
             <td>{{i.note}}</td>
-            <td>{{i.status}}</td>
+<!--            <td>{{i.status}}</td>-->
+            <ng-container *ngIf="i.status ==0 ">
+              <td>
+                Chưa mượn
+              </td>
+            </ng-container>
+            <ng-container *ngIf="i.status ==1 ">
+              <td>
+                Đã mượn
+              </td>
+            </ng-container>
+            <ng-container *ngIf="i.status == 2"><td>Không cho mượn</td></ng-container>
+<!--            <td>{{i.is_action}}</td>-->
+            <ng-container *ngIf="i.is_action ==0 ">
+              <td>
+                Đang trong thời gian mượn
+              </td>
+            </ng-container>
+            <ng-container *ngIf="i.is_action ==1 ">
+              <td>
+                Đã trả
+              </td>
+            </ng-container>
+            <ng-container *ngIf="i.is_action == 2"><td>Vi phạm</td></ng-container>
+
+            <ng-container *ngIf="i.is_action === null"><td></td></ng-container>
             <td>{{i.name_staff}}</td>
             <td>
               <a type="button" data-toggle="modal" data-target="#exampleModal-bookmanager" (click)="editLoanpay(i)"><i class="fa-solid fa-pen-to-square"></i></a>
@@ -212,8 +238,9 @@
                 <label class="col-sm-2 col-form-label">Trạng thái <span style="color: red">*</span></label>
                 <div class="col-sm-10">
                   <select class="form-control" formControlName="status" id="status">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
+                    <option value="0">Chưa mượn</option>
+                    <option value="1">Đã mượn</option>
+                    <option value="2">Không cho mượn</option>
                   </select>
                 </div>
               </div>
@@ -223,6 +250,17 @@
 <!--                  <input type="text" class="form-control" id="note" formControlName="status">-->
 <!--                </div>-->
 <!--              </div>-->
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Hoạt động <span style="color: red">*</span></label>
+                <div class="col-sm-10">
+                  <select class="form-control" formControlName="is_action" id="is_action">
+                    <option value="0">Đang trong thời gian mượn</option>
+                    <option value="1">Đã trả</option>
+                    <option value="2">Vi phạm</option>
+
+                  </select>
+                </div>
+              </div>
 
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Tên Nhân Viên <span style="color: red">*</span></label>
