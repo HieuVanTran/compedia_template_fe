@@ -59,7 +59,10 @@
                (onLazyLoad)="pageChange($event)"
                [rows]="size"
                [(first)]="first"
-               [totalRecords]="totalElement">
+               [totalRecords]="totalElement"
+               [loadingIcon]="''"
+               [showLoader]="false"
+               [loading]="true">
         <ng-template pTemplate="header" class="dark">
           <tr>
             <th class="flex-60px">STT</th>
@@ -77,8 +80,11 @@
             <th>THAO TÁC</th>
           </tr>
         </ng-template>
+        <ng-template pTemplate="loadingbody" >
+          <app-book-manager-skeleton></app-book-manager-skeleton>
+        </ng-template>
 
-        <ng-template pTemplate="body" let-i let-rowIndex="rowIndex">
+        <ng-template   pTemplate="body" let-i let-rowIndex="rowIndex">
           <tr >
             <td class="flex-60px">{{rowIndex + 1}}</td>
             <td class="flex-100px text-bold-500">{{i.book_name}}</td>
