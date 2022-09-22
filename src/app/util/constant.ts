@@ -25,7 +25,7 @@ export class Constant {
       name: 'Quản lý tác giả',
       icon: 'fa-solid fa-bars-progress',
       path: 'author-manager',
-      roles: ['admin']
+      roles: ['admin', 'staff']
     },
     {
       name: 'Quản lý tài khoản',
@@ -43,13 +43,13 @@ export class Constant {
       name: 'Quản lý thể loại sách',
       icon: 'fa-solid fa-business-time',
       path: 'category-manager',
-      roles: ['admin']
+      roles: ['admin', 'staff']
     },
     {
       name: 'Quản lý nhà xuất bản',
       icon: 'fa-solid fa-user-secret',
       path: 'publishing-company',
-      roles: ['admin']
+      roles: ['admin', 'staff']
     },
     {
       name: 'Quản lý mượn trả',

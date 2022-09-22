@@ -85,7 +85,10 @@
                (onLazyLoad)="pageChange($event)"
                [rows]="size"
                [(first)]="first"
-               [totalRecords]="totalElement">
+               [totalRecords]="totalElement"
+               [loadingIcon]="''"
+               [showLoader]="false"
+               [loading]="true">
         <ng-template pTemplate="header" class="dark">
           <tr>
             <th class="flex-60px">STT</th>
@@ -98,7 +101,9 @@
             <th>THAO TÁC</th>
           </tr>
         </ng-template>
-
+        <ng-template pTemplate="loadingbody"  *ngIf="!accManager || accManager.length===0">
+          <app-acc-manager-skeleton></app-acc-manager-skeleton>
+        </ng-template>
 
         <ng-template pTemplate="body" let-i let-rowIndex="rowIndex">
           <tr >

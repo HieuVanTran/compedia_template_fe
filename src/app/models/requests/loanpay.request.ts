@@ -15,6 +15,7 @@ export interface IEditLoanpayRequest{
   end_date: string,
   note: string,
   staff_id: number,
-  status: number
+  status: number,
+  is_action: number
 }
 

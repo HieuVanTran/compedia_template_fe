@@ -17,7 +17,7 @@ const pageRoutingModule: Routes = [
   ,
   {
     path: 'book-manager',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     loadChildren: () => import('./book-manager/book-manager.module').then(module => module.AuthorManagerModule)
   },
   {

@@ -57,7 +57,8 @@ export class LoanPayManagerListComponent implements OnInit {
       start_date: [null],
       end_date: [null],
       call_card_id: [null],
-      account_id: [null]
+      account_id: [null],
+      is_action: [null]
     })
   }
 
@@ -88,7 +89,8 @@ export class LoanPayManagerListComponent implements OnInit {
             start_date: loanpayRes.start_date,
             end_date: loanpayRes.end_date,
             account_id: loanpayRes.account_id,
-            book_id: loanpayRes.book_id
+            book_id: loanpayRes.book_id,
+            is_action: loanpayRes.is_action
           }
           this.loanPayManager.push(loanpayView)
         })
@@ -154,7 +156,8 @@ export class LoanPayManagerListComponent implements OnInit {
         account_id: i.account_id,
         amount: i.amount,
         book_id: i.book_id,
-        book_name: i.book_name
+        book_name: i.book_name,
+        is_action: i.is_action
       }
     )
   }
@@ -168,7 +171,8 @@ export class LoanPayManagerListComponent implements OnInit {
       end_date: this.loanpayInfoForm.value.end_date,
       note: this.loanpayInfoForm.value.note,
       staff_id: this.loanpayInfoForm.value.staff_id,
-      status: this.loanpayInfoForm.value.status
+      status: this.loanpayInfoForm.value.status,
+      is_action: this.loanpayInfoForm.value.is_action
     }
 
     this.loanpayApiService._editLoanpay(editLoanpayRequest).subscribe(
@@ -260,7 +264,7 @@ export class LoanPayManagerListComponent implements OnInit {
       }
     )
   }
-
+// search + phân trang + getAll
   onSearch() {
     const searchRequest = {
       username: this.usernameSearch,
@@ -289,7 +293,8 @@ export class LoanPayManagerListComponent implements OnInit {
             start_date: loanpayRes.start_date,
             end_date: loanpayRes.end_date,
             account_id: loanpayRes.account_id,
-            book_id: loanpayRes.book_id
+            book_id: loanpayRes.book_id,
+            is_action: loanpayRes.is_action
 
           }
           this.loanPayManager.push(loanpayView)

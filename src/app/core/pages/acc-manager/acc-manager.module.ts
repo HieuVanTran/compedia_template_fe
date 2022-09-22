@@ -7,9 +7,8 @@ import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
 import {PaginatorModule} from "primeng/paginator";
 import {TableModule} from "primeng/table";
-import {DropdownModule} from "primeng/dropdown";
-import {InputTextModule} from "primeng/inputtext";
-import {DialogModule} from "primeng/dialog";
+import {SkeletonModule} from "primeng/skeleton";
+import {SkeletonCustomModule} from "../../../util/skeleton/skeleton-custom.module";
 
 
 @NgModule({
@@ -25,6 +24,8 @@ import {DialogModule} from "primeng/dialog";
     ToastModule,
     PaginatorModule,
     TableModule,
+    SkeletonModule,
+    SkeletonCustomModule,
   ],
 
   providers: [
