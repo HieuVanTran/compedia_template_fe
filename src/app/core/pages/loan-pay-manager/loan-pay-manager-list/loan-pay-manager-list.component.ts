@@ -24,6 +24,7 @@ import {finalize} from "rxjs";
   styleUrls: ['./loan-pay-manager-list.component.css']
 })
 export class LoanPayManagerListComponent implements OnInit {
+  nameSelect = 'Hành động'
   loanPayManager : ILoanpayView[] = []
   loanpayInfoForm!: FormGroup
   loanpaySelected!: ILoanpayView
@@ -32,6 +33,7 @@ export class LoanPayManagerListComponent implements OnInit {
   listStaff: IStaffManagerView []=[]
   usernameSearch!: string
   staffSearch!: string;
+  isActionSearch!: string
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
   totalElement: number = 300;
@@ -272,7 +274,8 @@ export class LoanPayManagerListComponent implements OnInit {
       username: this.usernameSearch,
       page: this.page,
       size: this.size,
-      nameStaff: this.staffSearch
+      nameStaff: this.staffSearch,
+      isAction: this.isActionSearch
       // categoryId: this.categoryId,
       // authorId: this.authorId
     }
@@ -327,6 +330,7 @@ export class LoanPayManagerListComponent implements OnInit {
     console.log($event)
     this.onSearch()
   }
+
 }
 
 function editLoanpayRequest(editLoanpayRequest: any) {
