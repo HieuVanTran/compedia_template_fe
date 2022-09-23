@@ -19,8 +19,19 @@
           </li>
           <li>
             <input class="form-control" type="text"  [(ngModel)]="staffSearch"  placeholder="Tên nhân viên">
-
           </li>
+          <li>
+            <select class="form-control" [(ngModel)]="isActionSearch" >
+              <option value="null" disabled selected  >Hành động</option>
+              <option value="0">empty</option>
+              <option value="1">Đang trong thời gian mượn</option>
+              <option value="2">Đã trả</option>
+              <option value="3">Vi phạm</option>
+            </select>
+          </li>
+<!--          <h5>Multiple</h5>-->
+<!--          <p-treeSelect [(ngModel)]="isActionSearch" [options]="" [metaKeySelection]="false" selectionMode="multiple" placeholder="Select Item"></p-treeSelect>-->
+
 
           <li>
             <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="onSearch()">Tìm kiếm</a>
