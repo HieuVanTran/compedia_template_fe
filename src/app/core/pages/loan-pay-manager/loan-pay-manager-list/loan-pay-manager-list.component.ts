@@ -23,6 +23,7 @@ import {Constant} from "../../../../util/constant";
   styleUrls: ['./loan-pay-manager-list.component.css']
 })
 export class LoanPayManagerListComponent implements OnInit {
+  nameSelect = 'Hành động'
   loanPayManager : ILoanpayView[] = []
   loanpayInfoForm!: FormGroup
   loanpaySelected!: ILoanpayView
@@ -31,12 +32,14 @@ export class LoanPayManagerListComponent implements OnInit {
   listStaff: IStaffManagerView []=[]
   usernameSearch!: string
   staffSearch!: string;
+  isActionSearch!: string
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
   totalElement: number = 300;
   // categoryId!: number
   // authorId!: number
   first: number = 0
+  // isAction: number | null = null;
 
 
   constructor(private loanpayApiService: LoanpayApiService,
@@ -270,7 +273,8 @@ export class LoanPayManagerListComponent implements OnInit {
       username: this.usernameSearch,
       page: this.page,
       size: this.size,
-      nameStaff: this.staffSearch
+      nameStaff: this.staffSearch,
+      isAction: this.isActionSearch
       // categoryId: this.categoryId,
       // authorId: this.authorId
     }
@@ -307,6 +311,7 @@ export class LoanPayManagerListComponent implements OnInit {
     this.page = Constant.PAGE_INIT
     this.size = Constant.SIZE_INIT
     this.staffSearch = Constant.NULL_VALUE
+    this.isActionSearch = Constant.NULL_VALUE
     this.first = 0
     this.onSearch()
   }
@@ -323,6 +328,7 @@ export class LoanPayManagerListComponent implements OnInit {
     console.log($event)
     this.onSearch()
   }
+
 }
 
 function editLoanpayRequest(editLoanpayRequest: any) {

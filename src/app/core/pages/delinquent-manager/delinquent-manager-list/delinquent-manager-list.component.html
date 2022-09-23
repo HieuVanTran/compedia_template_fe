@@ -21,13 +21,13 @@
               </li>
 
               <li>
-                <select class="form-control" (change)="selectCategory()" [(ngModel)]="staffId">
-                  <option [value]="null" [disabled]="true" selected>Tên nhân viên</option>
-                  <option *ngFor="let staff of listStaffManager" value="{{staff.id}}">
-                    <span>{{staff.name}}</span>
-                  </option>
-                </select>
-              </li>
+              <select class="form-control" (change)="selectCategory()" [(ngModel)]="staffId">
+                <option [value]="null" [disabled]="true" selected>Tên nhân viên</option>
+                <option *ngFor="let staff of listStaffManager" value="{{staff.id}}">
+                  <span>{{staff.name}}</span>
+                </option>
+              </select>
+            </li>
               <li>
                 <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="onSearch()">Tìm kiếm</a>
               </li>
