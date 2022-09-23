@@ -25,6 +25,9 @@ export class AuthorManagerListComponent implements OnInit {
   title!: string
   totalElement: number = 300;
   first: number = 0
+  authorName!: string[];
+  addresss!: string[];
+  titles!: string[];
 
 
   constructor(private AuthorApiService: AuthorApiService,
@@ -179,6 +182,50 @@ export class AuthorManagerListComponent implements OnInit {
     // this.selectedSortField = $event.sortField
     // this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
     console.log($event)
+    this.onSearchAuthor()
+  }
+  searchBookName(keyword: string): string[] {
+    let names: string[] = [];
+    for (let i = 0; i < this.authorManager.length; i++){
+      if (this.authorManager[i].name_author.includes(keyword)){
+        names.push(this.authorManager[i].name_author);
+      }
+    }
+    // this.onSearch()
+    return names
+  }
+ searchAddress(keyword: string): string[]{
+    let address: string[] = [];
+    for (let i = 0; i < this.authorManager.length; i++){
+      if (this.authorManager[i].address.includes(keyword)){
+        address.push(this.authorManager[i].address);
+      }
+    }
+    return address
+ }
+  onSearchBookName(event : any) {
+    console.log(event.query)
+    this.authorName = this.searchBookName(event.query)
+    this.onSearchAuthor()
+  }
+  onSearchAddress(event : any) {
+    console.log(event.query)
+    this.addresss = this.searchAddress(event.query)
+    this.onSearchAuthor()
+  }
+  searchTitleName(keyword: string): string[] {
+    let title: string[] = [];
+    for (let i = 0; i < this.authorManager.length; i++){
+      if (this.authorManager[i].title.includes(keyword)){
+        title.push(this.authorManager[i].title);
+      }
+    }
+    // this.onSearch()
+    return title
+  }
+  onSearchTitle(event : any) {
+    console.log(event.query)
+    this.titles = this.searchTitleName(event.query)
     this.onSearchAuthor()
   }
 }
