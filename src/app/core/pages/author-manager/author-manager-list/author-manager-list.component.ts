@@ -74,7 +74,9 @@ export class AuthorManagerListComponent implements OnInit {
       title: this.title,
     }
     console.log(searchRequest)
-    this.AuthorApiService._searchAuthor(searchRequest).subscribe(
+    this.AuthorApiService._searchAuthor(searchRequest)
+      .pipe(finalize(() => this.loading = false))
+      .subscribe(
       (res: IResponseModel<IPageResponseModel<IBookAuthorResponse>>) => {
         console.log(res)
         this.totalElement = res.data.total_elements
