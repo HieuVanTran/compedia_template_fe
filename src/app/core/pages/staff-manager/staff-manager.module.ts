@@ -9,6 +9,7 @@ import {StaffManagerRoutingModule} from "./staff-manager-routing.module";
 import {TableModule} from "primeng/table";
 import {SkeletonCustomModule} from "../../../util/skeleton/skeleton-custom.module";
 import {SkeletonModule} from "primeng/skeleton";
+import {AutoCompleteModule} from "primeng/autocomplete";
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {SkeletonModule} from "primeng/skeleton";
         TableModule,
         FormsModule,
         SkeletonModule,
-        SkeletonCustomModule
+        SkeletonCustomModule,
+        AutoCompleteModule
     ],
 
   providers: [

@@ -12,13 +12,13 @@
           <div class="search">
             <ul>
               <li>
-                <input class="form-control" type="text" [(ngModel)]="usernameSearch" placeholder="Tên đăng nhập">
+                <p-autoComplete [(ngModel)]="usernameSearch" [showEmptyMessage]="false" [suggestions]="usernameComplete"  (completeMethod)="searchUsername($event)" [minLength]="1" (onLazyLoad)="pageChange($event)" placeholder="Tên đăng nhập"></p-autoComplete>
               </li>
               <li>
-                <input class="form-control" type="text" [(ngModel)]="fullNameSearch" placeholder="Họ và tên">
+                <p-autoComplete [(ngModel)]="fullNameSearch" [showEmptyMessage]="false" [suggestions]="fullNameComplete"  (completeMethod)="searchFullName($event)" [minLength]="1" (onLazyLoad)="pageChange($event)" placeholder="Họ và tên"></p-autoComplete>
               </li>
               <li>
-                <input class="form-control" type="text" [(ngModel)]="emailSearch" placeholder="Email">
+                <p-autoComplete [(ngModel)]="emailSearch" [showEmptyMessage]="false" [suggestions]="emailComplete"  (completeMethod)="searchEmail($event)" [minLength]="1" (onLazyLoad)="pageChange($event)" placeholder="Email"></p-autoComplete>
               </li>
               <li>
                 <select class="form-control" (change)="selectRole()" [(ngModel)]="roleIdSearch">
