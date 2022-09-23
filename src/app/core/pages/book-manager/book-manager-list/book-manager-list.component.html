@@ -62,13 +62,13 @@
                [totalRecords]="totalElement"
                [loadingIcon]="''"
                [showLoader]="false"
-               [loading]="true">
+               [loading]="loading">
         <ng-template pTemplate="header" class="dark">
           <tr>
             <th class="flex-60px">STT</th>
             <th pSortableColumn="book_name" class="flex-100px">TÊN SÁCH<p-sortIcon field="book_name"></p-sortIcon></th>
             <th pSortableColumn="image">Ảnh<p-sortIcon field="image"></p-sortIcon></th>
-            <th pSortableColumn="price">GIÁ TIỀN<p-sortIcon field="price"></p-sortIcon></th>
+            <th pSortableColumn="price">Giá tiền<p-sortIcon field="price"></p-sortIcon></th>
             <th pSortableColumn="category_name">LOẠI SÁCH<p-sortIcon field="category_name"></p-sortIcon></th>
             <th pSortableColumn="name_author">TÁC GIẢ<p-sortIcon field="name_author"></p-sortIcon></th>
             <th pSortableColumn="page_number">SỐ TRANG<p-sortIcon field="page_number"></p-sortIcon></th>
@@ -85,7 +85,7 @@
         </ng-template>
 
         <ng-template   pTemplate="body" let-i let-rowIndex="rowIndex">
-          <tr >
+          <tr *ngIf="!loading" >
             <td class="flex-60px">{{rowIndex + 1}}</td>
             <td class="flex-100px text-bold-500">{{i.book_name}}</td>
             <td><img src="{{fileUrl}}{{i.image}}" style="width: 120px; height: 80px"></td>

@@ -15,6 +15,7 @@ import {AccountApiService} from "../../../../services/api/account-api.service";
 import {Constant} from "../../../../util/constant";
 import {ILoanpayResponse} from "../../../../models/responses/loanpay.response";
 import {ILoanpayView} from "../../../../models/views/loanpay.view";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'app-delinquent-manager-list',
@@ -36,6 +37,7 @@ export class DelinquentManagerListComponent implements OnInit {
   staffId: number | null = null
   totalElement: number = 300;
   first: number = 0
+  loading: boolean = true;
   constructor(private collectMoneyApiService: CollectMoneyApiService,
               private fb:FormBuilder,
               private messageService: MessageService,
@@ -204,7 +206,9 @@ export class DelinquentManagerListComponent implements OnInit {
       // authorId: this.authorId
     }
     console.log(searchRequest)
-    this.collectMoneyApiService._searchColect(searchRequest).subscribe(
+    this.collectMoneyApiService._searchColect(searchRequest)
+      .pipe(finalize(() => this.loading = false))
+      .subscribe(
       (res: IResponseModel<IPageResponseModel<ICollectMoneyResponses>>) => {
         console.log(res)
         this.totalElement = res.data.total_elements

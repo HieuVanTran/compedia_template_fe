@@ -16,6 +16,7 @@ import { IAccountManagerResponse } from 'src/app/models/responses/account-manage
 import { IStaffManagerView } from 'src/app/models/views/staff-manager.view';
 import { IStaffManagerResponse } from 'src/app/models/responses/staff-manager.response';
 import {Constant} from "../../../../util/constant";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'app-loan-pay-manager-list',
@@ -39,7 +40,7 @@ export class LoanPayManagerListComponent implements OnInit {
   // categoryId!: number
   // authorId!: number
   first: number = 0
-  // isAction: number | null = null;
+  loading: boolean = true;
 
 
   constructor(private loanpayApiService: LoanpayApiService,
@@ -279,7 +280,9 @@ export class LoanPayManagerListComponent implements OnInit {
       // authorId: this.authorId
     }
     console.log(searchRequest)
-    this.loanpayApiService._searchLoanpay(searchRequest).subscribe(
+    this.loanpayApiService._searchLoanpay(searchRequest)
+      .pipe(finalize(() => this.loading = false))
+      .subscribe(
       (res: IResponseModel<IPageResponseModel<ILoanpayResponse>>) => {
         console.log(res)
         this.totalElement = res.data.total_elements
@@ -311,7 +314,6 @@ export class LoanPayManagerListComponent implements OnInit {
     this.page = Constant.PAGE_INIT
     this.size = Constant.SIZE_INIT
     this.staffSearch = Constant.NULL_VALUE
-    this.isActionSearch = Constant.NULL_VALUE
     this.first = 0
     this.onSearch()
   }

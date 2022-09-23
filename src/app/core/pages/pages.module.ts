@@ -29,7 +29,7 @@ import {CalendarModule} from "primeng/calendar";
       ReactiveFormsModule,
       ToastModule,
       AutoCompleteModule,
-      CalendarModule
+      CalendarModule,
     ],
     providers: [
       MessageService

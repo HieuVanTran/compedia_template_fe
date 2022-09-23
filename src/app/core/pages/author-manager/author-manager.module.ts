@@ -7,6 +7,9 @@ import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
 import {TableModule} from "primeng/table";
 import {GMapModule} from "primeng/gmap";
+import {SkeletonModule} from "primeng/skeleton";
+import {SkeletonCustomModule} from "../../../util/skeleton/skeleton-custom.module";
+import {AutoCompleteModule} from "primeng/autocomplete";
 
 
 @NgModule({
@@ -21,6 +24,9 @@ import {GMapModule} from "primeng/gmap";
     ReactiveFormsModule,
     ToastModule,
     TableModule,
+    SkeletonModule,
+    SkeletonCustomModule,
+    AutoCompleteModule
   ],
   providers: [
     FormBuilder,

@@ -6,6 +6,8 @@ import {IRoleManagerView} from "../../../../models/views/role-manager.view";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {IEditRoleRequest, IRoleManagerRequest} from "../../../../models/requests/role-manager.request";
 import {MessageService} from "primeng/api";
+import {Constant} from "../../../../util/constant";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'app-role-manager-list',
@@ -17,6 +19,8 @@ export class RoleManagerListComponent implements OnInit {
   roleManager: IRoleManagerView[] = [];
   roleManagerInfoForm!: FormGroup;
   roleManagerSelected!: IRoleManagerView;
+  size: number = Constant.SIZE_INIT;
+  loading: boolean = true;
 
 
   constructor(private roleManagerApiService: RoleManagerApiService,
@@ -33,7 +37,9 @@ export class RoleManagerListComponent implements OnInit {
   }
 
   getAllRoleManager() {
-    this.roleManagerApiService._getAllRoleManager().subscribe(
+    this.roleManagerApiService._getAllRoleManager()
+      .pipe(finalize(() => this.loading = false))
+      .subscribe(
       (res: IResponseModel<IRoleManagerResponse[]>) => {
         this.roleManager = [];
         res.data.forEach(roleManagerRes => {

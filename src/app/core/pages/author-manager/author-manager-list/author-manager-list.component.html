@@ -14,13 +14,14 @@
           <div class="search">
             <ul>
               <li>
-                <input class="form-control" type="text" placeholder="Tên tác giả" [(ngModel)]="authorNameSearch">
+                <p-autoComplete [(ngModel)]="authorNameSearch" [showEmptyMessage]="false" [suggestions]="authorName"  (completeMethod)="onSearchBookName($event)" [minLength]="1" (onLazyLoad)="pageChange($event)" placeholder="Tên tác giả"></p-autoComplete>
               </li>
               <li>
-                <input class="form-control" type="text" placeholder="Địa chỉ" [(ngModel)]="address">
+                <p-autoComplete [(ngModel)]="address" [showEmptyMessage]="false" [suggestions]="addresss"  (completeMethod)="onSearchAddress($event)" [minLength]="1" (onLazyLoad)="pageChange($event)" placeholder="Địa chỉ"></p-autoComplete>
+
               </li>
               <li>
-                <input class="form-control" type="text" placeholder="Chức danh" [(ngModel)]="title">
+                <p-autoComplete [(ngModel)]="title" [showEmptyMessage]="false" [suggestions]="titles"  (completeMethod)="onSearchTitle($event)" [minLength]="1" (onLazyLoad)="pageChange($event)" placeholder="Chức danh"></p-autoComplete>
               </li>
               <li>
                 <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="onSearchAuthor()">Tìm kiếm</a>
@@ -77,7 +78,10 @@
                (onLazyLoad)="pageChange($event)"
                [rows]="size"
                [(first)]="first"
-               [totalRecords]="totalElement" >
+               [totalRecords]="totalElement"
+               [loadingIcon]="''"
+               [showLoader]="false"
+               [loading]="loading">
         <ng-template pTemplate="header" class="dark">
           <tr>
             <th class="flex-60px">STT</th>
@@ -88,10 +92,12 @@
             <th>THAO TÁC</th>
           </tr>
         </ng-template>
-
+        <ng-template pTemplate="loadingbody" >
+          <app-author-manager-skeleton></app-author-manager-skeleton>
+        </ng-template>
 
         <ng-template pTemplate="body" let-i let-rowIndex="rowIndex">
-          <tr >
+          <tr *ngIf="!loading">
             <td class="flex-60px">{{rowIndex + 1}}</td>
             <td class="text-bold-500 flex-160px">{{i.name_author}}</td>
             <td>{{i.address}}</td>

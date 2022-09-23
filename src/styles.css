@@ -128,3 +128,8 @@ a:hover {
 .p-inputtext{
   padding:0.4rem 0.75rem !important
 }
+
+.text-justify {
+  display: flex;
+  justify-content: center
+}

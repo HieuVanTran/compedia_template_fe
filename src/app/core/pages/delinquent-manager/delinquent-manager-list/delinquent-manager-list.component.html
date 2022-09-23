@@ -83,9 +83,12 @@
                (onLazyLoad)="pageChange($event)"
                [rows]="size"
                [(first)]="first"
-               [totalRecords]="totalElement">
+               [totalRecords]="totalElement"
+               [loadingIcon]="''"
+               [showLoader]="false"
+               [loading]="loading">
         <ng-template pTemplate="header" class="dark">
-          <tr>
+          <tr class="text-justify">
             <th class="flex-60px">STT</th>
             <th pSortableColumn="username">TÊN ĐĂNG NHẬP<p-sortIcon field="username"></p-sortIcon></th>
             <th pSortableColumn="fullName">TÊN NGƯỜI VI PHẠM<p-sortIcon field="fullName"></p-sortIcon></th>
@@ -95,15 +98,17 @@
             <th>THAO TÁC</th>
           </tr>
         </ng-template>
-
+        <ng-template pTemplate="loadingbody">
+          <app-delinquent-skeleton></app-delinquent-skeleton>
+        </ng-template>
 
         <ng-template pTemplate="body" let-i let-rowIndex="rowIndex">
-          <tr >
+          <tr *ngIf="!loading">
             <td class="flex-60px">{{rowIndex +1}}</td>
             <td>{{i.username}}</td>
             <td class="text-bold-500">{{i.fullName}}</td>
-            <td>{{i.finedAmount.toLocaleString()}}</td>
-            <td>{{i.proceeds.toLocaleString()}}</td>
+            <td class="flex-end">{{i.finedAmount.toLocaleString()}}</td>
+            <td class="flex-end">{{i.proceeds.toLocaleString()}}</td>
             <td>{{i.staff_name}}</td>
             <td>
               <a type="button" data-toggle="modal" data-target="#exampleModal-collect-money" (click)="editCollectMoney(i)"><i class="fa-solid fa-pen-to-square"></i></a>

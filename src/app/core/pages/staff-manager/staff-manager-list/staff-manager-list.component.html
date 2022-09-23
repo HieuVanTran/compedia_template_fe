@@ -73,7 +73,10 @@
                (onLazyLoad)="pageChange($event)"
                [rows]="size"
                [(first)]="first"
-               [totalRecords]="totalElement">
+               [totalRecords]="totalElement"
+               [loadingIcon]="''"
+               [showLoader]="false"
+               [loading]="loading">
         <ng-template pTemplate="header" class="dark">
           <tr>
             <th class="flex-60px">STT</th>
@@ -84,10 +87,12 @@
             <th>THAO TÁC</th>
           </tr>
         </ng-template>
-
+        <ng-template pTemplate="loadingbody" >
+          <app-staff-skeleton></app-staff-skeleton>
+        </ng-template>
 
         <ng-template pTemplate="body" let-i let-rowIndex="rowIndex">
-          <tr >
+          <tr *ngIf="!loading" >
             <td class="flex-60px">{{ rowIndex +1}}</td>
             <td>{{i.name}}</td>
             <td>{{i.phoneNum}}</td>

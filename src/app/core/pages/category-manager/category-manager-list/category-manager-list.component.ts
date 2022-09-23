@@ -7,6 +7,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {IBookCategoryRequest, IEditBookCategoryRequest} from "../../../../models/requests/book-category.request";
 import {MessageService} from "primeng/api";
 import {Constant} from "../../../../util/constant";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'app-category-manager-list',
@@ -22,6 +23,7 @@ export class CategoryManagerListComponent implements OnInit {
   size: number = Constant.SIZE_INIT
   totalElement: number = 300;
   first: number = 0
+  loading: boolean = true;
   constructor(private categoryApiService: CategoryApiService,
               private messageService: MessageService,
               private fb: FormBuilder) {
@@ -56,7 +58,9 @@ export class CategoryManagerListComponent implements OnInit {
       size: this.size,
     }
     console.log(searchRequest)
-    this.categoryApiService._searchBookCategory(searchRequest).subscribe(
+    this.categoryApiService._searchBookCategory(searchRequest)
+      .pipe(finalize(() => this.loading = false))
+      .subscribe(
       (res: IResponseModel<IPageResponseModel<IBookCategoryResponse>>) => {
         this.totalElement = res.data.total_elements
         this.categoryManager = [];

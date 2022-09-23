@@ -17,6 +17,7 @@ import {BookApiService} from "../../../../services/api/book-api.service";
 import {AuthorApiService} from "../../../../services/api/author-api.service";
 import {Constant} from "../../../../util/constant";
 import {environment} from "../../../../../environments/environment";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'app-book-manager-list',
@@ -46,6 +47,8 @@ export class BookManagerListComponent implements OnInit {
 
   fileUrl = environment.file_url
   first: number = 0
+  loading: boolean = true
+
   text!: string;
   results!: any[];
   constructor(private BookApiService: BookApiService,
@@ -305,7 +308,9 @@ export class BookManagerListComponent implements OnInit {
       authorId: this.authorId,
       publishId: this.publishId
     }
-    this.BookApiService._searchBook(searchRequest).subscribe(
+    this.BookApiService._searchBook(searchRequest)
+      .pipe(finalize(() => this.loading = false))
+      .subscribe(
       (res: IResponseModel<IPageResponseModel<IBookManagerResponse>>) => {
         this.listPage = []
         this.totalPage = Math.floor(res.data.total_elements / this.size) + 1

@@ -7,6 +7,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {IEditPublishCompanyRequest, IPublishCompanyRequest} from "../../../../models/requests/publish-company.request";
 import {MessageService} from "primeng/api";
 import {Constant} from "../../../../util/constant";
+import {finalize} from "rxjs";
 
 class ResetForm {
   company_name!: string
@@ -32,7 +33,7 @@ export class PublishingCompanyListComponent implements OnInit {
   resetForm: ResetForm = new ResetForm()
   totalElement: number = 300;
   first: number = 0
-
+  loading: boolean = true;
 
   constructor(private publishCompanyApiService: PublishCompanyApiService,
               private fb:FormBuilder,
@@ -156,7 +157,9 @@ export class PublishingCompanyListComponent implements OnInit {
       page: this.page,
       size: this.size
     }
-    this.publishCompanyApiService._searchPublishCompany(searchRequest).subscribe(
+    this.publishCompanyApiService._searchPublishCompany(searchRequest)
+      .pipe(finalize(() => this.loading = false))
+      .subscribe(
       (res: IResponseModel<IPageResponseModel<IPublishCompanyResponse>>) => {
         this.totalElement = res.data.total_elements
         this.publishingCompany = [];

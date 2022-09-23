@@ -19,7 +19,10 @@
       <!--              <code class="highlighter-rouge">.table-dark</code>.-->
       <!--            </p>-->
       <!--          </div>-->
-      <p-table [value]="roleManager"  [paginator]="true" [rows]="10" >
+      <p-table [value]="roleManager"  [paginator]="true" [rows]="size"
+               [lazy]="true"
+               [showLoader]="true"
+               [loading]="loading">
         <ng-template pTemplate="header" class="dark">
           <tr>
             <th>STT</th>
@@ -28,10 +31,13 @@
             <th>THAO TÁC</th>
           </tr>
         </ng-template>
+        <ng-template pTemplate="loadingbody">
+<!--          <app-role-skeleton></app-role-skeleton>-->
+        </ng-template>
 
 
         <ng-template pTemplate="body" let-i let-rowIndex="rowIndex">
-          <tr >
+          <tr *ngIf="!loading">
             <td>{{rowIndex +1}}</td>
             <td>{{i.code}}</td>
             <td>{{i.name}}</td>

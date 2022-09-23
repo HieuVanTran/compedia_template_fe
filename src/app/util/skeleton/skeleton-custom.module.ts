@@ -26,7 +26,14 @@ import {NgForOf} from "@angular/common";
   imports: [SkeletonModule, NgForOf],
     exports: [
         BookManagerSkeletonComponent,
-        AccManagerSkeletonComponent
+        AccManagerSkeletonComponent,
+        AuthorManagerSkeletonComponent,
+        StaffSkeletonComponent,
+        CategoryManagerSkeletonComponent,
+        PublishingSkeletonComponent,
+        LoanPaySkeletonComponent,
+        DelinquentSkeletonComponent,
+        RoleSkeletonComponent
     ]
 })
 

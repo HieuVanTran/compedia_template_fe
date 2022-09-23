@@ -6,6 +6,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
 import {TableModule} from "primeng/table";
+import {SkeletonModule} from "primeng/skeleton";
+import {SkeletonCustomModule} from "../../../util/skeleton/skeleton-custom.module";
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {TableModule} from "primeng/table";
     FormsModule,
     ReactiveFormsModule,
     ToastModule,
-    TableModule
+    TableModule,
+    SkeletonModule,
+    SkeletonCustomModule
   ],
   providers:[
     MessageService
