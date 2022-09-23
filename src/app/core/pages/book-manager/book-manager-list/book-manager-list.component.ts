@@ -49,6 +49,8 @@ export class BookManagerListComponent implements OnInit {
   first: number = 0
   loading: boolean = true
 
+  text!: string;
+  results!: any[];
   constructor(private BookApiService: BookApiService,
               private fb: FormBuilder,
               private categoryApiService: CategoryApiService,
@@ -191,6 +193,23 @@ export class BookManagerListComponent implements OnInit {
       }
     )
   }
+  searchBookName(keyword: string): string[] {
+      let names: string[] = [];
+      for (let i = 0; i < this.bookManager.length; i++){
+        if (this.bookManager[i].book_name.includes(keyword)){
+          names.push(this.bookManager[i].book_name);
+        }
+      }
+      // this.onSearch()
+      return names
+  }
+
+  search(event : any) {
+    console.log(event.query)
+    this.results = this.searchBookName(event.query)
+    this.onSearch()
+  }
+
   getAllPublishCompany() {
     this.publishCompanyApiService._getAllPublishCompany().subscribe(
       (res: IResponseModel<IPublishCompanyResponse[]>) => {
@@ -289,7 +308,6 @@ export class BookManagerListComponent implements OnInit {
       authorId: this.authorId,
       publishId: this.publishId
     }
-    this.loading = true
     this.BookApiService._searchBook(searchRequest)
       .pipe(finalize(() => this.loading = false))
       .subscribe(

@@ -14,13 +14,14 @@
           <div class="search">
             <ul>
               <li>
-                <input class="form-control" type="text" placeholder="Tên tác giả" [(ngModel)]="authorNameSearch">
+                <p-autoComplete [(ngModel)]="authorNameSearch" [showEmptyMessage]="false" [suggestions]="authorName"  (completeMethod)="onSearchBookName($event)" [minLength]="1" (onLazyLoad)="pageChange($event)" placeholder="Tên tác giả"></p-autoComplete>
               </li>
               <li>
-                <input class="form-control" type="text" placeholder="Địa chỉ" [(ngModel)]="address">
+                <p-autoComplete [(ngModel)]="address" [showEmptyMessage]="false" [suggestions]="addresss"  (completeMethod)="onSearchAddress($event)" [minLength]="1" (onLazyLoad)="pageChange($event)" placeholder="Địa chỉ"></p-autoComplete>
+
               </li>
               <li>
-                <input class="form-control" type="text" placeholder="Chức danh" [(ngModel)]="title">
+                <p-autoComplete [(ngModel)]="title" [showEmptyMessage]="false" [suggestions]="titles"  (completeMethod)="onSearchTitle($event)" [minLength]="1" (onLazyLoad)="pageChange($event)" placeholder="Chức danh"></p-autoComplete>
               </li>
               <li>
                 <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="onSearchAuthor()">Tìm kiếm</a>

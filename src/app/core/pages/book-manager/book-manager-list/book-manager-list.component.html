@@ -15,7 +15,7 @@
           <div class="search">
             <ul>
               <li>
-                <input class="form-control" type="text" [(ngModel)]="bookNameSearch" placeholder="Nhập tên sách">
+                <p-autoComplete [(ngModel)]="bookNameSearch" [showEmptyMessage]="false" [suggestions]="results"  (completeMethod)="search($event)" [minLength]="1" (onLazyLoad)="pageChange($event)" placeholder="Nhập tên sách"></p-autoComplete>
               </li>
               <li>
                 <select class="form-control" (change)="selectCategory()" [(ngModel)]="categoryId">
@@ -68,7 +68,7 @@
             <th class="flex-60px">STT</th>
             <th pSortableColumn="book_name" class="flex-100px">TÊN SÁCH<p-sortIcon field="book_name"></p-sortIcon></th>
             <th pSortableColumn="image">Ảnh<p-sortIcon field="image"></p-sortIcon></th>
-            <th pSortableColumn="price">GIÁ TIỀN<p-sortIcon field="price"></p-sortIcon></th>
+            <th pSortableColumn="price">Giá tiền<p-sortIcon field="price"></p-sortIcon></th>
             <th pSortableColumn="category_name">LOẠI SÁCH<p-sortIcon field="category_name"></p-sortIcon></th>
             <th pSortableColumn="name_author">TÁC GIẢ<p-sortIcon field="name_author"></p-sortIcon></th>
             <th pSortableColumn="page_number">SỐ TRANG<p-sortIcon field="page_number"></p-sortIcon></th>
@@ -99,12 +99,12 @@
             <td class="flex-60px">{{i.amount}}</td>
             <ng-container *ngIf="i.status ==0 ">
               <td>
-                Chưa mượn
+                Không hoạt động
               </td>
             </ng-container>
             <ng-container *ngIf="i.status ==1 ">
               <td>
-                Đã mượn
+                Hoạt động
               </td>
             </ng-container>
             <td>

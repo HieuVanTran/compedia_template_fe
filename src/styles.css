@@ -125,9 +125,8 @@ a:hover {
 .flex-160px{
   flex: 0 0 160px !important;
 }
-
-.flex-end {
-  justify-content: flex-end!important;
+.p-inputtext{
+  padding:0.4rem 0.75rem !important
 }
 
 .text-justify {
