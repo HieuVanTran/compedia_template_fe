@@ -61,7 +61,9 @@
 *, :after, :before {
   box-sizing: border-box;
 }
-
+/**{*/
+/*  margin:0 !important;*/
+/*}*/
 @media (prefers-reduced-motion: no-preference) {
   :root {
     scroll-behavior: smooth
