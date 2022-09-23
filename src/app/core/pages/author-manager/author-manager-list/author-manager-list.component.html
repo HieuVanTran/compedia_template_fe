@@ -18,7 +18,6 @@
               </li>
               <li>
                 <p-autoComplete [(ngModel)]="address" [showEmptyMessage]="false" [suggestions]="addresss"  (completeMethod)="onSearchAddress($event)" [minLength]="1" (onLazyLoad)="pageChange($event)" placeholder="Địa chỉ"></p-autoComplete>
-
               </li>
               <li>
                 <p-autoComplete [(ngModel)]="title" [showEmptyMessage]="false" [suggestions]="titles"  (completeMethod)="onSearchTitle($event)" [minLength]="1" (onLazyLoad)="pageChange($event)" placeholder="Chức danh"></p-autoComplete>
