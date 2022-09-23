@@ -35,6 +35,11 @@ export class AccManagerListComponent implements OnInit {
   first: number = 0
   loading: boolean = true;
 
+  //Auto complete
+  usernameComplete!: string[];
+  fullNameComplete!: string[];
+  emailComplete!: string[];
+
   constructor(private accountApiService: AccountApiService,
               private fb: FormBuilder,
               private messageService: MessageService,
@@ -238,6 +243,49 @@ export class AccManagerListComponent implements OnInit {
     this.size = $event.rows
     // @ts-ignore
     console.log($event)
+    this.onSearch()
+  }
+
+  onSearchUsername(keyword: string): string[] {
+    let names: string[] = [];
+    for (let i = 0; i< this.accManager.length; i++){
+      if (this.accManager[i].username.includes(keyword)){
+        names.push(this.accManager[i].username)
+      }
+    }
+    return names
+  }
+  searchUsername(event: any) {
+    this.usernameComplete = this.onSearchUsername(event.query)
+    this.onSearch()
+  }
+
+  onSearchFullName(keyword: string): string[] {
+    let fullName: string[] = [];
+    for (let i = 0; i < this.accManager.length; i++) {
+      if( this.accManager[i].full_name.includes(keyword)) {
+        fullName.push(this.accManager[i].full_name)
+      }
+    }
+    return fullName
+  }
+  searchFullName(event: any) {
+    this.fullNameComplete = this.onSearchFullName(event.query)
+    this.onSearch()
+  }
+
+  onSearchEmail(keyword: string): string[] {
+    let email: string[] = [];
+    for (let i = 0; i < this.accManager.length; i++) {
+      if( this.accManager[i].email.includes(keyword)) {
+        email.push(this.accManager[i].email)
+      }
+    }
+    return email
+  }
+
+  searchEmail(event: any) {
+    this.emailComplete = this.onSearchEmail(event.query)
     this.onSearch()
   }
 }

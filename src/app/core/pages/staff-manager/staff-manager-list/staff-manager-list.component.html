@@ -12,7 +12,7 @@
           <div class="search">
             <ul>
               <li>
-                <input class="form-control" type="text" [(ngModel)]="fullNameSearch" placeholder="Họ và tên">
+                <p-autoComplete [(ngModel)]="fullNameSearch" [showEmptyMessage]="false" [suggestions]="fullNameComplete"  (completeMethod)="onSearchFullName($event)" [minLength]="1" (onLazyLoad)="pageChange($event)" placeholder="Họ và tên"></p-autoComplete>
               </li>
               <li>
                 <input class="form-control" type="text" [(ngModel)]="phoneSearch" placeholder="Số điện thoại">

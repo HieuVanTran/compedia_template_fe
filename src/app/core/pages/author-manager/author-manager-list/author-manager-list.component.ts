@@ -29,7 +29,6 @@ export class AuthorManagerListComponent implements OnInit {
   loading: boolean = true;
   authorName!: string[];
   addresss!: string[];
-  titles!: string[];
 
 
   constructor(private AuthorApiService: AuthorApiService,
@@ -217,21 +216,7 @@ export class AuthorManagerListComponent implements OnInit {
     this.addresss = this.searchAddress(event.query)
     this.onSearchAuthor()
   }
-  searchTitleName(keyword: string): string[] {
-    let title: string[] = [];
-    for (let i = 0; i < this.authorManager.length; i++){
-      if (this.authorManager[i].title.includes(keyword)){
-        title.push(this.authorManager[i].title);
-      }
-    }
-    // this.onSearch()
-    return title
-  }
-  onSearchTitle(event : any) {
-    console.log(event.query)
-    this.titles = this.searchTitleName(event.query)
-    this.onSearchAuthor()
-  }
+
 }
 
 

@@ -27,6 +27,10 @@ export class StaffManagerListComponent implements OnInit {
   totalElement: number = 300;
   first: number = 0
   loading: boolean = true;
+
+  //Auto Complete Search
+  fullNameComplete!: string[];
+
   constructor(private staffManagerApiService: StaffManagerApiService,
               private fb: FormBuilder,
               private messageService: MessageService) {
@@ -183,6 +187,21 @@ export class StaffManagerListComponent implements OnInit {
     // this.selectedSortField = $event.sortField
     // this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
     console.log($event)
+    this.onSearch()
+  }
+
+  searchFullNameComplete(keyword: string): string[] {
+    let fullName: string[] = [];
+    for (let i = 0; i < this.staffManager.length; i++) {
+      if (this.staffManager[i].name.includes(keyword)) {
+        fullName.push(this.staffManager[i].name)
+      }
+    }
+    return fullName
+  }
+
+  onSearchFullName(event: any) {
+    this.fullNameComplete = this.searchFullNameComplete(event.query)
     this.onSearch()
   }
 }
