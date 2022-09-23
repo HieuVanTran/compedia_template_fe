@@ -11,6 +11,7 @@ import {MessageService} from "primeng/api";
 import {RoleManagerApiService} from "../../../../services/api/role-manager-api.service";
 import {IRoleManagerResponse} from "../../../../models/responses/role-manager.response";
 import {Constant} from "../../../../util/constant";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'app-acc-manager-list',
@@ -32,6 +33,7 @@ export class AccManagerListComponent implements OnInit {
   size: number = Constant.SIZE_INIT
   totalElement: number = 300;
   first: number = 0
+  loading: boolean = true;
 
   constructor(private accountApiService: AccountApiService,
               private fb: FormBuilder,
@@ -189,7 +191,9 @@ export class AccManagerListComponent implements OnInit {
       size: this.size
     }
     console.log(searchRequest)
-    this.accountApiService._searchAccount(searchRequest).subscribe(
+    this.accountApiService._searchAccount(searchRequest)
+      .pipe(finalize(() => this.loading = false))
+      .subscribe(
       (res: IResponseModel<IPageResponseModel<IAccountManagerResponse>>) => {
         console.log(res)
         this.totalElement = res.data.total_elements

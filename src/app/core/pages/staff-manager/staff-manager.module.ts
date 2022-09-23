@@ -7,6 +7,8 @@ import {MessageService} from "primeng/api";
 import {StaffManagerListComponent} from "./staff-manager-list/staff-manager-list.component";
 import {StaffManagerRoutingModule} from "./staff-manager-routing.module";
 import {TableModule} from "primeng/table";
+import {SkeletonCustomModule} from "../../../util/skeleton/skeleton-custom.module";
+import {SkeletonModule} from "primeng/skeleton";
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import {TableModule} from "primeng/table";
         ReactiveFormsModule,
         ToastModule,
         TableModule,
-        FormsModule
+        FormsModule,
+        SkeletonModule,
+        SkeletonCustomModule
     ],
 
   providers: [

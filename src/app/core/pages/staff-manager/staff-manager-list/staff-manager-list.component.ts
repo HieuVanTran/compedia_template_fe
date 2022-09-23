@@ -7,6 +7,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {MessageService} from "primeng/api";
 import {IEditStaffRequest, IStaffManagerRequest} from "../../../../models/requests/staff-manager.request";
 import {Constant} from "../../../../util/constant";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'app-staff-manager-list',
@@ -25,6 +26,7 @@ export class StaffManagerListComponent implements OnInit {
   size: number = Constant.SIZE_INIT
   totalElement: number = 300;
   first: number = 0
+  loading: boolean = true;
   constructor(private staffManagerApiService: StaffManagerApiService,
               private fb: FormBuilder,
               private messageService: MessageService) {
@@ -142,7 +144,9 @@ export class StaffManagerListComponent implements OnInit {
       size: this.size
     }
     console.log(searchRequest)
-    this.staffManagerApiService._searchStaff(searchRequest).subscribe(
+    this.staffManagerApiService._searchStaff(searchRequest)
+      .pipe(finalize(() => this.loading = false))
+      .subscribe(
       (res: IResponseModel<IPageResponseModel<IStaffManagerResponse>>) => {
         this.totalElement = res.data.total_elements
         this.staffManager = [];

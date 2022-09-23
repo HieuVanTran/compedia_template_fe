@@ -7,6 +7,7 @@ import {AuthorApiService} from "../../../../services/api/author-api.service";
 import {IBookAuthorRequest, IEditBookAuthorRequest} from "../../../../models/requests/book-author.request";
 import {MessageService} from "primeng/api";
 import {Constant} from "../../../../util/constant";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'app-author-manager-list',
@@ -25,6 +26,7 @@ export class AuthorManagerListComponent implements OnInit {
   title!: string
   totalElement: number = 300;
   first: number = 0
+  loading: boolean = true;
 
 
   constructor(private AuthorApiService: AuthorApiService,
@@ -69,7 +71,9 @@ export class AuthorManagerListComponent implements OnInit {
       title: this.title,
     }
     console.log(searchRequest)
-    this.AuthorApiService._searchAuthor(searchRequest).subscribe(
+    this.AuthorApiService._searchAuthor(searchRequest)
+      .pipe(finalize(() => this.loading = false))
+      .subscribe(
       (res: IResponseModel<IPageResponseModel<IBookAuthorResponse>>) => {
         console.log(res)
         this.totalElement = res.data.total_elements
