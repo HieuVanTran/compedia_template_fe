@@ -10,6 +10,7 @@ import {AccountService} from "../../../services/intercept/account.service";
 import {MessageService} from "primeng/api";
 declare function returnForm(): any
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,7 +19,7 @@ declare function returnForm(): any
 export class LoginComponent implements OnInit {
   showEye : boolean =false
   loginForm: FormGroup
-
+  submitted: boolean = false
   constructor(private fb: FormBuilder,
               private authApiService: AuthApiService,
               private router: Router,
@@ -35,8 +36,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.submitted = true
     if(this.loginForm.invalid) {
       console.log('form invalid')
+      returnForm()
       return
     }
     const loginRequest: ILoginRequest = {
