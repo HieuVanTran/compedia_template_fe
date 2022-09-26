@@ -153,3 +153,6 @@ a:hover {
 .modal.fade .modal-dialog{
   margin: 30px auto !important;
 }
+.p-dropdown{
+  width:100%;
+}

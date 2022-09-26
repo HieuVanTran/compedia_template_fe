@@ -10,6 +10,7 @@ import {SkeletonModule} from "primeng/skeleton";
 import {SkeletonCustomModule} from "../../../util/skeleton/skeleton-custom.module";
 import {PaginatorModule} from "primeng/paginator";
 import {AutoCompleteModule} from "primeng/autocomplete";
+import {DropdownModule} from "primeng/dropdown";
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {AutoCompleteModule} from "primeng/autocomplete";
         SkeletonModule,
         SkeletonCustomModule,
         PaginatorModule,
-        AutoCompleteModule
+        AutoCompleteModule,
+      DropdownModule
     ],
   providers: [
     FormBuilder,
