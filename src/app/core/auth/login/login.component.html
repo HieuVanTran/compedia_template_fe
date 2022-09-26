@@ -6,12 +6,12 @@
         <div class="form-group">
           <label for="exampleInputEmail1">Email</label>
           <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          <div  *ngIf="loginForm.get('email')?.invalid &&( loginForm.get('email')?.dirty || loginForm.get('email')?.touched) || submitted">
+          <div class="err" *ngIf="loginForm.get('email')?.invalid &&( loginForm.get('email')?.dirty || loginForm.get('email')?.touched) || submitted">
             <div *ngIf="loginForm.get('email')?.hasError('required')">
               Vui lòng nhập email
             </div>
             <div *ngIf="loginForm.get('email')?.hasError('email')">
-              Vui lòng nhập email 123
+              Vui lòng nhập đúng định dạng @gmail.com
             </div>
           </div>
         </div>
@@ -22,9 +22,12 @@
             <i class="fa-solid fa-eye" *ngIf="showEye"></i>
             <i class=" fa-solid fa-eye-slash" *ngIf="!showEye"></i>
           </div>
-          <div  *ngIf="loginForm.get('password')?.invalid &&( loginForm.get('password')?.dirty || loginForm.get('password')?.touched) || submitted">
+          <div class="err"  *ngIf="loginForm.get('password')?.invalid &&( loginForm.get('password')?.dirty || loginForm.get('password')?.touched) || submitted">
             <div *ngIf="loginForm.get('password')?.hasError('required')">
               Vui lòng nhập password
+            </div>
+            <div *ngIf="loginForm.get('password')?.hasError('pattern')">
+              Vui lòng nhập password có 8 đến 20 kí tự, bao gồm số, chữ cái viết hoa, chữ viết thường và kí tự đặc biệt
             </div>
           </div>
         </div>
