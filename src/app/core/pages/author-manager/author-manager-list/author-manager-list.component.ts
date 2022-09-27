@@ -29,7 +29,8 @@ export class AuthorManagerListComponent implements OnInit {
   loading: boolean = true;
   authorName!: string[];
   addresss!: string[];
-
+  selectedSortField!: string
+  selectedSortOrder!: string
 
   constructor(private AuthorApiService: AuthorApiService,
               private messageService: MessageService,
@@ -71,6 +72,8 @@ export class AuthorManagerListComponent implements OnInit {
       size: this.size,
       address: this.address,
       title: this.title,
+      sortField: this.selectedSortField,
+      sortOrder: this.selectedSortField ? this.selectedSortOrder : undefined
     }
     console.log(searchRequest)
     this.AuthorApiService._searchAuthor(searchRequest)
@@ -173,6 +176,8 @@ export class AuthorManagerListComponent implements OnInit {
     this.address = Constant.NULL_VALUE
     this.title = Constant.NULL_VALUE
     this.first = 0
+    this.selectedSortField = Constant.NULL_VALUE
+    this.selectedSortOrder = Constant.NULL_VALUE
     this.onSearchAuthor()
   }
 
@@ -181,9 +186,9 @@ export class AuthorManagerListComponent implements OnInit {
     this.page = $event.first/$event.rows
     // @ts-ignore
     this.size = $event.rows
+    this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
     // @ts-ignore
-    // this.selectedSortField = $event.sortField
-    // this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
+    this.selectedSortField = $event.sortField
     console.log($event)
     this.onSearchAuthor()
   }
