@@ -14,24 +14,21 @@
             <ul>
 
               <li>
-<!--                <input class="form-control" type="text" [(ngModel)]="usernameSearch" placeholder="Tên đăng nhập" name="usernameSearch">-->
-                <p-autoComplete [(ngModel)]="usernameSearch" [showEmptyMessage]="false" [suggestions]="userName"  (completeMethod)="onSearchUsername($event)" [minLength]="1" (onLazyLoad)="pageChange($event)" placeholder="Tên đăng nhập"></p-autoComplete>
-
+                <input class="form-control" type="text" [(ngModel)]="usernameSearch" placeholder="Tên đăng nhập" name="usernameSearch">
               </li>
               <li>
-<!--                <input class="form-control" type="text" [(ngModel)]="fullNameSearch" placeholder="Tên người vi phạm">-->
-                <p-autoComplete [(ngModel)]="fullNameSearch" [showEmptyMessage]="false" [suggestions]="searchFullName"  (completeMethod)="onSearchFullNameAutoComplete($event)" [minLength]="1" (onLazyLoad)="pageChange($event)" placeholder="Tên người vi phạm"></p-autoComplete>
-
+                <input class="form-control" type="text" [(ngModel)]="fullNameSearch" placeholder="Tên người vi phạm">
               </li>
 
               <li>
-              <select class="form-control" (change)="selectCategory()" [(ngModel)]="staffId">
-                <option [value]="null" [disabled]="true" selected>Tên nhân viên</option>
-                <option *ngFor="let staff of listStaffManager" value="{{staff.id}}">
-                  <span>{{staff.name}}</span>
-                </option>
-              </select>
-              </li>
+<!--              <select class="form-control" (change)="selectCategory()" [(ngModel)]="staffId">-->
+<!--                <option [value]="null" [disabled]="true" selected>Tên nhân viên</option>-->
+<!--                <option *ngFor="let staff of listStaffManager" value="{{staff.id}}">-->
+<!--                  <span>{{staff.name}}</span>-->
+<!--                </option>-->
+<!--              </select>-->
+                <p-dropdown [options]="listStaffManager" [(ngModel)]="staffId" optionLabel="name" optionValue="id" placeholder="Tên nhân viên" [filter]="true"></p-dropdown>
+            </li>
               <li>
                 <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="onSearch()">Tìm kiếm</a>
               </li>

@@ -8,7 +8,9 @@ import {TokenService} from "../../../services/token.service";
 import {Router} from "@angular/router";
 import {AccountService} from "../../../services/intercept/account.service";
 import {MessageService} from "primeng/api";
+import {Constant} from "../../../util/constant";
 declare function returnForm(): any
+
 
 @Component({
   selector: 'app-login',
@@ -18,7 +20,8 @@ declare function returnForm(): any
 export class LoginComponent implements OnInit {
   showEye : boolean =false
   loginForm: FormGroup
-
+  submitted: boolean = false
+  passwordRegex = Constant.REGEX_PASSWORD_FOR_VALIDATOR
   constructor(private fb: FormBuilder,
               private authApiService: AuthApiService,
               private router: Router,
@@ -27,7 +30,7 @@ export class LoginComponent implements OnInit {
               private messageService: MessageService) {
     this.loginForm = fb.group({
       email: [null, [Validators.required, Validators.email]],
-      password: [null, Validators.required]
+      password: [null, [Validators.required, Validators.pattern(this.passwordRegex)]]
     })
   }
 
@@ -35,8 +38,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.submitted = true
     if(this.loginForm.invalid) {
       console.log('form invalid')
+      returnForm()
       return
     }
     const loginRequest: ILoginRequest = {

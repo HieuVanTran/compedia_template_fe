@@ -9,6 +9,7 @@ import { MessageService } from "primeng/api";
 import {TableModule} from "primeng/table";
 import {SkeletonModule} from "primeng/skeleton";
 import {SkeletonCustomModule} from "../../../util/skeleton/skeleton-custom.module";
+import {DropdownModule} from "primeng/dropdown";
 import {AutoCompleteModule} from "primeng/autocomplete";
 
 
@@ -26,7 +27,8 @@ import {AutoCompleteModule} from "primeng/autocomplete";
     TableModule,
     SkeletonModule,
     SkeletonCustomModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    DropdownModule
   ],
   providers:   [
     // FormBuilder,

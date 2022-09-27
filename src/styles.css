@@ -2,6 +2,8 @@
 *{
   font-size:14px;
   font-family: 'Roboto', sans-serif;
+  margin-right:0  !important;
+  margin-left:0 !important
 }
 ::-webkit-scrollbar {
   width: 5px;
@@ -51,13 +53,13 @@
 
 #eye {
   position: absolute;
-  top: 38px;
+  top: 35px;
   right: 10px;
   cursor: pointer;
 }
 #eye1{
   position: absolute;
-  top: 38px;
+  top: 35px;
   right: 10px;
   cursor: pointer;
 }
@@ -101,9 +103,10 @@ a:hover {
 }
 .side-bar-toggle.toggle .side-bar .align-middle {
   display: block;
+  margin-left: 10px !important;
   transition-duration: .5s;
 }
-@media (max-width: 1470px) {
+@media (max-width: 1800px) {
   .side-bar-toggle .side-bar {
     max-width: 75px !important;
     transition-duration: 0.5s;
@@ -132,4 +135,24 @@ a:hover {
 .text-justify {
   display: flex;
   justify-content: center
+}
+.navbar-collapse.collapse{
+  justify-content: flex-end;
+}
+.p-paginator-left-content{
+  margin-right: auto !important;
+}
+.search{
+  margin-bottom: 15px !important
+}
+.modal.show .modal-dialog{
+  margin: 30px auto !important;
+  /*padding-top: 100px;*/
+  /*transform: translate(0, 0) !important;*/
+}
+.modal.fade .modal-dialog{
+  margin: 30px auto !important;
+}
+.p-dropdown{
+  width:100%;
 }

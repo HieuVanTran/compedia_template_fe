@@ -23,13 +23,15 @@
             <input class="form-control" type="text"  [(ngModel)]="staffSearch"  placeholder="Tên nhân viên">
           </li>
           <li>
-            <select class="form-control" [(ngModel)]="isActionSearch" >
-              <option value="null" disabled selected  >Hành động</option>
-              <option value="0">empty</option>
-              <option value="1">Đang trong thời gian mượn</option>
-              <option value="2">Đã trả</option>
-              <option value="3">Vi phạm</option>
-            </select>
+<!--            <select class="form-control" [(ngModel)]="isActionSearch" >-->
+<!--              <option value="null" [disabled]="true" selected  >Hành động</option>-->
+<!--              <option value="0">empty</option>-->
+<!--              <option value="1">Đang trong thời gian mượn</option>-->
+<!--              <option value="2">Đã trả</option>-->
+<!--              <option value="3">Vi phạm</option>-->
+<!--            </select>-->
+            <p-dropdown [options]="listAction" [(ngModel)]="isActionSearch" optionLabel="action" optionValue="id" placeholder="Hành động"></p-dropdown>
+
           </li>
 <!--          <h5>Multiple</h5>-->
 <!--          <p-treeSelect [(ngModel)]="isActionSearch" [options]="" [metaKeySelection]="false" selectionMode="multiple" placeholder="Select Item"></p-treeSelect>-->
@@ -138,22 +140,24 @@
               <div class="form-group row">
                 <label  class="col-sm-2 col-form-label">Tên Tài Khoản <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <select class="form-control" formControlName="account_id" id="account_id">
-                    <option *ngFor="let username of listAccount" value="{{username.id}}">
-                      <span>{{username.username}}</span>
-                    </option>
-                  </select>
+<!--                  <select class="form-control" formControlName="account_id" id="account_id">-->
+<!--                    <option *ngFor="let username of listAccount" value="{{username.id}}">-->
+<!--                      <span>{{username.username}}</span>-->
+<!--                    </option>-->
+<!--                  </select>-->
+                  <p-dropdown  [options]="listAccount" formControlName="account_id" optionLabel="username" optionValue="id" placeholder="Tên tài khoản" [filter]="true"></p-dropdown>
                 </div>
               </div>
 
               <div class="form-group row">
                 <label  class="col-sm-2 col-form-label">Tên Sách <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <select class="form-control" formControlName="book_id" id="book_id">
-                    <option *ngFor="let bookName of listBook" value="{{bookName.book_id}}">
-                      <span>{{bookName.book_name}}</span>
-                    </option>
-                  </select>
+<!--                  <select class="form-control" formControlName="book_id" id="book_id">-->
+<!--                    <option *ngFor="let bookName of listBook" value="{{bookName.book_id}}">-->
+<!--                      <span>{{bookName.book_name}}</span>-->
+<!--                    </option>-->
+<!--                  </select>-->
+                  <p-dropdown  [options]="listBook" formControlName="book_id" optionLabel="book_name" optionValue="book_id" placeholder="Tên sách" [filter]="true"></p-dropdown>
                 </div>
               </div>
 
@@ -181,11 +185,12 @@
               <div class="form-group row">
                 <label  class="col-sm-2 col-form-label">Tên Nhân Viên <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <select class="form-control" formControlName="staff_id" id="staff_id">
-                    <option *ngFor="let name_staff of listStaff" value="{{name_staff.id}}">
-                      <span>{{name_staff.name}}</span>
-                    </option>
-                  </select>
+<!--                  <select class="form-control" formControlName="staff_id" id="staff_id">-->
+<!--                    <option *ngFor="let name_staff of listStaff" value="{{name_staff.id}}">-->
+<!--                      <span>{{name_staff.name}}</span>-->
+<!--                    </option>-->
+<!--                  </select>-->
+                  <p-dropdown  [options]="listStaff" formControlName="staff_id" optionLabel="name" optionValue="id" placeholder="Tên nhân viên" [filter]="true"></p-dropdown>
                 </div>
               </div>
 
@@ -212,22 +217,24 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Tên Tài Khoản <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <select class="form-control" formControlName="account_id" id="account_id">
-                    <option *ngFor="let username of listAccount" value="{{username.id}}">
-                      <span>{{username.username}}</span>
-                    </option>
-                  </select>
+                  <p-dropdown  [options]="listAccount" formControlName="account_id" optionLabel="username" optionValue="id" placeholder="Tên tài khoản" [filter]="true"></p-dropdown>
+<!--                  <select class="form-control" formControlName="account_id" id="account_id">-->
+<!--                    <option *ngFor="let username of listAccount" value="{{username.id}}">-->
+<!--                      <span>{{username.username}}</span>-->
+<!--                    </option>-->
+<!--                  </select>-->
                 </div>
               </div>
 
               <div class="form-group row">
                 <label  class="col-sm-2 col-form-label">Tên Sách <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <select class="form-control" formControlName="book_id" id="book_id">
-                    <option *ngFor="let bookName of listBook" value="{{bookName.book_id}}">
-                      <span>{{bookName.book_name}}</span>
-                    </option>
-                  </select>
+                  <p-dropdown  [options]="listBook" formControlName="book_id" optionLabel="book_name" optionValue="book_id" placeholder="Tên sách" [filter]="true"></p-dropdown>
+<!--                  <select class="form-control" formControlName="book_id" id="book_id">-->
+<!--                    <option *ngFor="let bookName of listBook" value="{{bookName.book_id}}">-->
+<!--                      <span>{{bookName.book_name}}</span>-->
+<!--                    </option>-->
+<!--                  </select>-->
                 </div>
               </div>
 
@@ -284,11 +291,12 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Tên Nhân Viên <span style="color: red">*</span></label>
                 <div class="col-sm-10">
-                  <select class="form-control" formControlName="staff_id" id="staff_id">
-                    <option *ngFor="let name_staff of listStaff" value="{{name_staff.id}}">
-                      <span>{{name_staff.name}}</span>
-                    </option>
-                  </select>
+<!--                  <select class="form-control" formControlName="staff_id" id="staff_id">-->
+<!--                    <option *ngFor="let name_staff of listStaff" value="{{name_staff.id}}">-->
+<!--                      <span>{{name_staff.name}}</span>-->
+<!--                    </option>-->
+<!--                  </select>-->
+                  <p-dropdown  [options]="listStaff" formControlName="staff_id" optionLabel="name" optionValue="id" placeholder="Tên nhân viên" [filter]="true"></p-dropdown>
                 </div>
               </div>
 

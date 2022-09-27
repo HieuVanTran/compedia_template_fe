@@ -8,24 +8,24 @@ import {MessageService} from "primeng/api";
 import {TableModule} from "primeng/table";
 import {SkeletonModule} from "primeng/skeleton";
 import {SkeletonCustomModule} from "../../../util/skeleton/skeleton-custom.module";
-import {AutoCompleteModule} from "primeng/autocomplete";
+import {DropdownModule} from "primeng/dropdown";
 
 @NgModule({
   declarations: [
     DelinquentManagerListComponent
   ],
 
-  imports: [
-    CommonModule,
-    DelinquentManagerRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ToastModule,
-    TableModule,
-    SkeletonModule,
-    SkeletonCustomModule,
-    AutoCompleteModule
-  ],
+    imports: [
+        CommonModule,
+        DelinquentManagerRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ToastModule,
+        TableModule,
+        SkeletonModule,
+        SkeletonCustomModule,
+        DropdownModule
+    ],
   providers:[
     MessageService
   ]

@@ -17,6 +17,7 @@ import { IStaffManagerView } from 'src/app/models/views/staff-manager.view';
 import { IStaffManagerResponse } from 'src/app/models/responses/staff-manager.response';
 import {Constant} from "../../../../util/constant";
 import {finalize} from "rxjs";
+import {IActionResponse} from "../../../../models/responses/action.response";
 
 @Component({
   selector: 'app-loan-pay-manager-list',
@@ -31,6 +32,24 @@ export class LoanPayManagerListComponent implements OnInit {
   listBook: IBookManagerView []=[]
   listAccount: IAccountManagerView []=[]
   listStaff: IStaffManagerView []=[]
+listAction: IActionResponse []=[
+  {
+    id:0,
+    action:"empty",
+  },
+  {
+    id:1,
+    action:"Đang trong thời gian mượn",
+  },
+  {
+    id:2,
+    action:"Đang trả",
+  },
+  {
+    id:3,
+    action: "Vi phạm"
+  }
+]
   usernameSearch!: string
   staffSearch!: string;
   isActionSearch!: string
