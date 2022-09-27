@@ -257,7 +257,7 @@ export class AccManagerListComponent implements OnInit {
   }
   searchUsername(event: any) {
     this.usernameComplete = this.onSearchUsername(event.query)
-    this.onSearch()
+
   }
 
   onSearchFullName(keyword: string): string[] {
@@ -271,7 +271,7 @@ export class AccManagerListComponent implements OnInit {
   }
   searchFullName(event: any) {
     this.fullNameComplete = this.onSearchFullName(event.query)
-    this.onSearch()
+
   }
 
   onSearchEmail(keyword: string): string[] {
@@ -286,6 +286,6 @@ export class AccManagerListComponent implements OnInit {
 
   searchEmail(event: any) {
     this.emailComplete = this.onSearchEmail(event.query)
-    this.onSearch()
+
   }
 }

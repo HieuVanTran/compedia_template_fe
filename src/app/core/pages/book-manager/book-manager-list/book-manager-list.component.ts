@@ -207,7 +207,6 @@ export class BookManagerListComponent implements OnInit {
   search(event : any) {
     console.log(event.query)
     this.results = this.searchBookName(event.query)
-    this.onSearch()
   }
 
   getAllPublishCompany() {

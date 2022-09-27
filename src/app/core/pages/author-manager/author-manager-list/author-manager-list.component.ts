@@ -209,12 +209,12 @@ export class AuthorManagerListComponent implements OnInit {
   onSearchBookName(event : any) {
     console.log(event.query)
     this.authorName = this.searchBookName(event.query)
-    this.onSearchAuthor()
+
   }
   onSearchAddress(event : any) {
     console.log(event.query)
     this.addresss = this.searchAddress(event.query)
-    this.onSearchAuthor()
+
   }
 
 }
