@@ -51,18 +51,13 @@
   position: relative;
 }
 
-#eye {
+#eye, #eye1 {
   position: absolute;
   top: 35px;
   right: 10px;
   cursor: pointer;
 }
-#eye1{
-  position: absolute;
-  top: 35px;
-  right: 10px;
-  cursor: pointer;
-}
+
 #password1{
   position: relative;
 }

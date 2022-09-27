@@ -327,7 +327,7 @@ export class BookManagerListComponent implements OnInit {
             name_author:bookManagerRes.name_author,
             publishing_year:bookManagerRes.publishing_year,
             page_number:bookManagerRes.page_number,
-            image:bookManagerRes.image,
+            image: this.fileUrl + bookManagerRes.image,
             price:bookManagerRes.price,
             category_name:bookManagerRes.category_name,
             publish_name:bookManagerRes.publish_name,
