@@ -34,6 +34,8 @@ export class PublishingCompanyListComponent implements OnInit {
   totalElement: number = 300;
   first: number = 0
   loading: boolean = true;
+  selectedSortOrder!: string;
+  selectedSortField!: string;
 
   constructor(private publishCompanyApiService: PublishCompanyApiService,
               private fb:FormBuilder,
@@ -155,7 +157,9 @@ export class PublishingCompanyListComponent implements OnInit {
       email: this.emailSearch,
       agentPeople: this.agentPeopleSearch,
       page: this.page,
-      size: this.size
+      size: this.size,
+      sortField: this.selectedSortField,
+      sortOrder: this.selectedSortField ? this.selectedSortOrder : undefined
     }
     this.publishCompanyApiService._searchPublishCompany(searchRequest)
       .pipe(finalize(() => this.loading = false))
@@ -193,6 +197,8 @@ export class PublishingCompanyListComponent implements OnInit {
     this.emailSearch = Constant.NULL_VALUE
     this.agentPeopleSearch = Constant.NULL_VALUE
     this.first = 0
+    this.selectedSortOrder = Constant.NULL_VALUE
+    this.selectedSortField = Constant.NULL_VALUE
     this.onSearch()
 
 
@@ -204,8 +210,8 @@ export class PublishingCompanyListComponent implements OnInit {
     // @ts-ignore
     this.size = $event.rows
     // @ts-ignore
-    // this.selectedSortField = $event.sortField
-    // this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
+    this.selectedSortField = $event.sortField
+    this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
     console.log($event)
     this.onSearch()
 

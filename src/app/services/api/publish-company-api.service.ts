@@ -23,6 +23,8 @@ export class PublishCompanyApiService {
 
   _searchPublishCompany(request: any): Observable<IResponseModel<IPageResponseModel<IPublishCompanyResponse>>> {
     const url = `${this.api}/publish-company/search?page=${request.page}&size=${request.size}
+    ${request.sortOrder? '&sortOrder='+request.sortOrder : ''}
+    ${request.sortField? '&sortField='+request.sortField : ''}
     ${request.publishName? '&publishName='+request.publishName : ''}
     ${request.agentPeople? '&agentPeople='+request.agentPeople : ''}
     ${request.email? '&email='+request.email : ''}

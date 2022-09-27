@@ -13,8 +13,6 @@ import {IAccountManagerView} from "../../../../models/views/account-manager.view
 import {IAccountManagerResponse} from "../../../../models/responses/account-manager.response";
 import {AccountApiService} from "../../../../services/api/account-api.service";
 import {Constant} from "../../../../util/constant";
-import {ILoanpayResponse} from "../../../../models/responses/loanpay.response";
-import {ILoanpayView} from "../../../../models/views/loanpay.view";
 import {finalize} from "rxjs";
 
 @Component({
@@ -38,6 +36,9 @@ export class DelinquentManagerListComponent implements OnInit {
   totalElement: number = 300;
   first: number = 0
   loading: boolean = true;
+  selectedSortOrder!: string;
+  selectedSortField!: string
+
   constructor(private collectMoneyApiService: CollectMoneyApiService,
               private fb:FormBuilder,
               private messageService: MessageService,
@@ -201,7 +202,9 @@ export class DelinquentManagerListComponent implements OnInit {
       page: this.page,
       size: this.size,
       staffId: this.staffId,
-      fullName: this.fullNameSearch
+      fullName: this.fullNameSearch,
+      sortField: this.selectedSortField,
+      sortOrder: this.selectedSortField ? this.selectedSortOrder : undefined
       // categoryId: this.categoryId,
       // authorId: this.authorId
     }
@@ -241,6 +244,8 @@ export class DelinquentManagerListComponent implements OnInit {
     this.staffId = Constant.NULL_VALUE
     this.fullNameSearch = Constant.NULL_VALUE
     this.first = 0
+    this.selectedSortOrder = Constant.NULL_VALUE
+    this.selectedSortField = Constant.NULL_VALUE
     this.onSearch()
   }
 
@@ -250,8 +255,8 @@ export class DelinquentManagerListComponent implements OnInit {
     // @ts-ignore
     this.size = $event.rows
     // @ts-ignore
-    // this.selectedSortField = $event.sortField
-    // this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
+    this.selectedSortField = $event.sortField
+    this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
     console.log($event)
     this.onSearch()
   }

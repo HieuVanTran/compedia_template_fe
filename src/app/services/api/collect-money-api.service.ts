@@ -25,6 +25,8 @@ export class CollectMoneyApiService{
 
   _searchColect(request: any): Observable<IResponseModel<IPageResponseModel<ICollectMoneyResponses>>> {
     const url = `${this.api}/collect-money/search?page=${request.page}&size=${request.size}
+    ${request.sortOrder? '&sortOrder='+request.sortOrder : ''}
+    ${request.sortField? '&sortField='+request.sortField : ''}
     ${request.fullName? '&fullName='+request.fullName : ''}
     ${request.username? '&username='+request.username : ''}
     ${request.staffId? '&staffId='+request.staffId : ''}`

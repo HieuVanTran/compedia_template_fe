@@ -44,7 +44,7 @@ export class AuthorManagerListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.getAllBookAuthor()
+    this.getAllBookAuthor()
     this.onSearchAuthor()
   }
   getAllBookAuthor() {

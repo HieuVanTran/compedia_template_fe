@@ -24,6 +24,8 @@ export class CategoryApiService{
   }
   _searchBookCategory(request: any): Observable<IResponseModel<IPageResponseModel<IBookCategoryResponse>>> {
     const url = `${this.api}/book-category/search?page=${request.page}&size=${request.size}
+    ${request.sortOrder? '&sortOrder='+request.sortOrder : ''}
+    ${request.sortField? '&sortField='+request.sortField : ''}
     ${request.categoryName? '&categoryName='+request.categoryName : ''}`
     return this.http.get<IResponseModel<IPageResponseModel<IBookCategoryResponse>>>(url)
   }
