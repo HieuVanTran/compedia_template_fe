@@ -24,6 +24,8 @@ export class StaffManagerApiService {
 
   _searchStaff(request: any): Observable<IResponseModel<IPageResponseModel<IStaffManagerResponse>>> {
     const url = `${this.api}/staff/search?page=${request.page}&size=${request.size}
+    ${request.sortField? '&sortField=' + request.sortField: ''}
+    ${request.sortOrder? '&sortOrder=' + request.sortOrder: ''}
     ${request.nameStaff? '&nameStaff='+request.nameStaff : ''}
     ${request.phoneNumber? '&phoneNumber='+request.phoneNumber : ''}
     ${request.address? '&address='+request.address : ''}`;
