@@ -53,3 +53,6 @@ td i {
 .add_new{
   margin-right: 16px;
 }
+.p-autocomplete .p-autocomplete-loader::before{
+  display: none;
+}

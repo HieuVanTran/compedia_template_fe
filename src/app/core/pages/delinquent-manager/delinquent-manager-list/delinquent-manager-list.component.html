@@ -14,10 +14,14 @@
             <ul>
 
               <li>
-                <input class="form-control" type="text" [(ngModel)]="usernameSearch" placeholder="Tên đăng nhập" name="usernameSearch">
+<!--                <input class="form-control" type="text" [(ngModel)]="usernameSearch" placeholder="Tên đăng nhập" name="usernameSearch">-->
+                <p-autoComplete [(ngModel)]="usernameSearch" [showEmptyMessage]="false" [suggestions]="userName"  (completeMethod)="onSearchUsername($event)" [minLength]="1" (onLazyLoad)="pageChange($event)" placeholder="Tên đăng nhập"></p-autoComplete>
+
               </li>
               <li>
-                <input class="form-control" type="text" [(ngModel)]="fullNameSearch" placeholder="Tên người vi phạm">
+<!--                <input class="form-control" type="text" [(ngModel)]="fullNameSearch" placeholder="Tên người vi phạm">-->
+                <p-autoComplete [(ngModel)]="fullNameSearch" [showEmptyMessage]="false" [suggestions]="searchFullName"  (completeMethod)="onSearchFullNameAutoComplete($event)" [minLength]="1" (onLazyLoad)="pageChange($event)" placeholder="Tên người vi phạm"></p-autoComplete>
+
               </li>
 
               <li>
@@ -27,7 +31,7 @@
                   <span>{{staff.name}}</span>
                 </option>
               </select>
-            </li>
+              </li>
               <li>
                 <a class="btn btn-info text-light" type="button" data-toggle="modal" (click)="onSearch()">Tìm kiếm</a>
               </li>

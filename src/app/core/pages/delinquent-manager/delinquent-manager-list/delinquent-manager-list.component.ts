@@ -38,6 +38,9 @@ export class DelinquentManagerListComponent implements OnInit {
   totalElement: number = 300;
   first: number = 0
   loading: boolean = true;
+
+  userName!: string[];
+  searchFullName!: string[];
   constructor(private collectMoneyApiService: CollectMoneyApiService,
               private fb:FormBuilder,
               private messageService: MessageService,
@@ -253,6 +256,40 @@ export class DelinquentManagerListComponent implements OnInit {
     // this.selectedSortField = $event.sortField
     // this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
     console.log($event)
+    this.onSearch()
+  }
+
+  // search autocomplete userName
+  searchUser(keyword: string): string[] {
+    let names: string[] = [];
+    for (let i = 0; i < this.delinquentManager.length; i++){
+      if (this.delinquentManager[i].username.includes(keyword)){
+        names.push(this.delinquentManager[i].username);
+      }
+    }
+    // this.onSearch()
+    return names
+  }
+  onSearchUsername(event : any) {
+    console.log(event.query)
+    this.userName = this.searchUser(event.query)
+    this.onSearch()
+  }
+
+  // search autocomplete fullName
+  searchFullNameAutoComplete(keyword: string): string[] {
+    let names: string[] = [];
+    for (let i = 0; i < this.delinquentManager.length; i++){
+      if (this.delinquentManager[i].fullName.includes(keyword)){
+        names.push(this.delinquentManager[i].fullName);
+      }
+    }
+    // this.onSearch()
+    return names
+  }
+  onSearchFullNameAutoComplete(event : any) {
+    console.log(event.query)
+    this.userName = this.searchFullNameAutoComplete(event.query)
     this.onSearch()
   }
 }

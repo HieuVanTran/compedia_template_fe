@@ -15,7 +15,9 @@
       <div class="search">
         <ul>
           <li>
-            <input class="form-control" type="text" [(ngModel)]="usernameSearch" placeholder="Tên tài khoản">
+<!--            <input class="form-control" type="text" [(ngModel)]="usernameSearch" placeholder="Tên tài khoản">-->
+            <p-autoComplete [(ngModel)]="usernameSearch" [showEmptyMessage]="false" [suggestions]="searchUsername"  (completeMethod)="onSearchUsernameLoanPay($event)" [minLength]="1" (onLazyLoad)="pageChange($event)" placeholder="Tên đăng nhập">
+            </p-autoComplete>
           </li>
           <li>
             <input class="form-control" type="text"  [(ngModel)]="staffSearch"  placeholder="Tên nhân viên">

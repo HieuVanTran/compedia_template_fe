@@ -9,6 +9,7 @@ import { MessageService } from "primeng/api";
 import {TableModule} from "primeng/table";
 import {SkeletonModule} from "primeng/skeleton";
 import {SkeletonCustomModule} from "../../../util/skeleton/skeleton-custom.module";
+import {AutoCompleteModule} from "primeng/autocomplete";
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {SkeletonCustomModule} from "../../../util/skeleton/skeleton-custom.modul
     ToastModule,
     TableModule,
     SkeletonModule,
-    SkeletonCustomModule
+    SkeletonCustomModule,
+    AutoCompleteModule
   ],
   providers:   [
     // FormBuilder,

@@ -41,6 +41,7 @@ export class LoanPayManagerListComponent implements OnInit {
   // authorId!: number
   first: number = 0
   loading: boolean = true;
+  searchUsername! : string[];
 
 
   constructor(private loanpayApiService: LoanpayApiService,
@@ -328,6 +329,23 @@ export class LoanPayManagerListComponent implements OnInit {
     // this.selectedSortField = $event.sortField
     // this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
     console.log($event)
+    this.onSearch()
+  }
+
+//  search autotemplete username
+  searchUserLoanPay(keyword: string): string[] {
+    let names: string[] = [];
+    for (let i = 0; i < this.loanPayManager.length; i++){
+      if (this.loanPayManager[i].username.includes(keyword)){
+        names.push(this.loanPayManager[i].username);
+      }
+    }
+    return names
+  }
+
+  onSearchUsernameLoanPay(event : any) {
+    console.log(event.query)
+    this.searchUsername = this.searchUserLoanPay(event.query)
     this.onSearch()
   }
 
