@@ -34,7 +34,8 @@ export class AccManagerListComponent implements OnInit {
   totalElement: number = 300;
   first: number = 0
   loading: boolean = true;
-
+  selectedSortField!: string
+  selectedSortOrder!: string
   //Auto complete
   usernameComplete!: string[];
   fullNameComplete!: string[];
@@ -193,7 +194,9 @@ export class AccManagerListComponent implements OnInit {
       email: this.emailSearch,
       roleId: this.roleIdSearch,
       page: this.page,
-      size: this.size
+      size: this.size,
+      sortField: this.selectedSortField,
+      sortOrder: this.selectedSortField ? this.selectedSortOrder : undefined
     }
     console.log(searchRequest)
     this.accountApiService._searchAccount(searchRequest)
@@ -232,6 +235,8 @@ export class AccManagerListComponent implements OnInit {
     this.fullNameSearch = Constant.NULL_VALUE
     this.emailSearch = Constant.NULL_VALUE
     this.roleIdSearch = Constant.NULL_VALUE
+    this.selectedSortField = Constant.NULL_VALUE
+    this.selectedSortOrder= Constant.NULL_VALUE
     this.onSearch()
     this.first = 0
   }
@@ -242,6 +247,9 @@ export class AccManagerListComponent implements OnInit {
     // @ts-ignore
     this.size = $event.rows
     // @ts-ignore
+    this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
+    // @ts-ignore
+    this.selectedSortField = $event.sortField
     console.log($event)
     this.onSearch()
   }
@@ -257,7 +265,7 @@ export class AccManagerListComponent implements OnInit {
   }
   searchUsername(event: any) {
     this.usernameComplete = this.onSearchUsername(event.query)
-    this.onSearch()
+
   }
 
   onSearchFullName(keyword: string): string[] {
@@ -271,7 +279,7 @@ export class AccManagerListComponent implements OnInit {
   }
   searchFullName(event: any) {
     this.fullNameComplete = this.onSearchFullName(event.query)
-    this.onSearch()
+
   }
 
   onSearchEmail(keyword: string): string[] {
@@ -286,6 +294,6 @@ export class AccManagerListComponent implements OnInit {
 
   searchEmail(event: any) {
     this.emailComplete = this.onSearchEmail(event.query)
-    this.onSearch()
+
   }
 }

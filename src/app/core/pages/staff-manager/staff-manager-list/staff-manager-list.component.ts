@@ -27,7 +27,8 @@ export class StaffManagerListComponent implements OnInit {
   totalElement: number = 300;
   first: number = 0
   loading: boolean = true;
-
+  selectedSortField!: string
+  selectedSortOrder!: string
   //Auto Complete Search
   fullNameComplete!: string[];
 
@@ -107,7 +108,7 @@ export class StaffManagerListComponent implements OnInit {
       address: this.staffManagerInfoForm.value.address,
       date_of_birth: this.staffManagerInfoForm.value.dateOfBirth,
       name_staff: this.staffManagerInfoForm.value.name,
-      phone_number: this.staffManagerInfoForm.value.phoneNum
+      phone_number: this.staffManagerInfoForm.value.phoneNum,
     };
     this.staffManagerApiService._editStaff(editStaffRequest).subscribe(
       (res: IResponseModel<any>) => {
@@ -145,7 +146,9 @@ export class StaffManagerListComponent implements OnInit {
       phoneNumber: this.phoneSearch,
       address: this.addressSearch,
       page: this.page,
-      size: this.size
+      size: this.size,
+      sortField: this.selectedSortField,
+      sortOrder: this.selectedSortField ? this.selectedSortOrder : undefined
     }
     console.log(searchRequest)
     this.staffManagerApiService._searchStaff(searchRequest)
@@ -174,6 +177,8 @@ export class StaffManagerListComponent implements OnInit {
     this.size = Constant.SIZE_INIT
     this.phoneSearch = Constant.NULL_VALUE
     this.addressSearch = Constant.NULL_VALUE
+    this.selectedSortField= Constant.NULL_VALUE
+    this.selectedSortOrder=Constant.NULL_VALUE
     this.first = 0
     this.onSearch()
   }
@@ -184,8 +189,8 @@ export class StaffManagerListComponent implements OnInit {
     // @ts-ignore
     this.size = $event.rows
     // @ts-ignore
-    // this.selectedSortField = $event.sortField
-    // this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
+    this.selectedSortField = $event.sortField
+    this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
     console.log($event)
     this.onSearch()
   }

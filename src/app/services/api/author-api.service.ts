@@ -25,11 +25,11 @@ export class AuthorApiService{
   }
   _searchAuthor(request: any): Observable<IResponseModel<IPageResponseModel<IBookAuthorResponse>>> {
     const url = `${this.api}/author/search?page=${request.page}&size=${request.size}
-    ${request.sortOrder? '&sortOrder='+request.sortOrder : ''}
-    ${request.sortField? '&sortField='+request.sortField : ''}
+    ${request.sortField? '&sortField=' + request.sortField: ''}
+    ${request.sortOrder? '&sortOrder=' + request.sortOrder: ''}
     ${request.authorName? '&authorName='+request.authorName : ''}
     ${request.address? '&address='+request.address : ''}
-    ${request.title? '&title='+request.title : ''}`
+     ${request.title? '&title='+request.title : ''}`
     return this.http.get<IResponseModel<IPageResponseModel<IBookAuthorResponse>>>(url)
   }
   _createNewAuthor(requestBody: IBookAuthorRequest): Observable<IResponseModel<any>> {

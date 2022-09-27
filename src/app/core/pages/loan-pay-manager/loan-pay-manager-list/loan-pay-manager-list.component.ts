@@ -32,27 +32,28 @@ export class LoanPayManagerListComponent implements OnInit {
   listBook: IBookManagerView []=[]
   listAccount: IAccountManagerView []=[]
   listStaff: IStaffManagerView []=[]
-listAction: IActionResponse []=[
-  {
-    id:0,
-    action:"empty",
-  },
-  {
-    id:1,
-    action:"Đang trong thời gian mượn",
-  },
-  {
-    id:2,
-    action:"Đang trả",
-  },
-  {
-    id:3,
-    action: "Vi phạm"
-  }
-]
+  listStatus: ILoanpayView[] = [];
+//   listAction: IActionResponse []=[
+//   {
+//     id:0,
+//     action:"empty",
+//   },
+//   {
+//     id:1,
+//     action:"Đang trong thời gian mượn",
+//   },
+//   {
+//     id:2,
+//     action:"Đang trả",
+//   },
+//   {
+//     id:3,
+//     action: "Vi phạm"
+//   }
+// ]
   usernameSearch!: string
   staffSearch!: string;
-  isActionSearch!: string
+  isStatusSearch!: string
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
   totalElement: number = 300;
@@ -294,7 +295,7 @@ listAction: IActionResponse []=[
       page: this.page,
       size: this.size,
       nameStaff: this.staffSearch,
-      isAction: this.isActionSearch
+      status: this.isStatusSearch
       // categoryId: this.categoryId,
       // authorId: this.authorId
     }
