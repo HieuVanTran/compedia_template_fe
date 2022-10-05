@@ -84,7 +84,7 @@
             <th pSortableColumn="name_staff">TÊN NHÂN VIÊN
               <p-sortIcon field="name_staff"></p-sortIcon>
             </th>
-            <th>THAO TÁC</th>
+            <th class="flex-100px">THAO TÁC</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="loadingbody">
@@ -126,7 +126,7 @@
 
 <!--            <ng-container *ngIf="i.is_action == 3"><td>Vi phạm</td></ng-container>-->
             <td>{{i.name_staff}}</td>
-            <td>
+            <td class="flex-100px">
               <a type="button" data-toggle="modal" data-target="#exampleModal-bookmanager" (click)="editLoanpay(i)"><i class="fa-solid fa-pen-to-square"></i></a>
               <a type="button" data-toggle="modal" data-target="#delete-book-manager" (click)="selectLoanpay(i)"><i class="fa-solid fa-trash-can"></i></a>
             </td>

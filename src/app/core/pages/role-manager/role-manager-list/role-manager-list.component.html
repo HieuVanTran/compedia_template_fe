@@ -19,15 +19,21 @@
         <!--              <code class="highlighter-rouge">.table-dark</code>.-->
         <!--            </p>-->
         <!--          </div>-->
-        <p-table [value]="roleManager"  [paginator]="true" [rows]="size"
+        <p-table [value]="roleManager"
+                 [paginator]="true"
+                 [rows]="size"
                  [lazy]="true"
                  [showLoader]="true"
                  [loading]="loading">
           <ng-template pTemplate="header" class="dark">
             <tr>
               <th>STT</th>
-              <th pSortableColumn="code">MÃ<p-sortIcon field="code"></p-sortIcon></th>
-              <th pSortableColumn="name">TÊN NHÓM QUYỀN<p-sortIcon field="name"></p-sortIcon></th>
+              <th pSortableColumn="code">MÃ
+                <p-sortIcon field="code"></p-sortIcon>
+              </th>
+              <th pSortableColumn="name">TÊN NHÓM QUYỀN
+                <p-sortIcon field="name"></p-sortIcon>
+              </th>
               <th class="flex-100px">THAO TÁC</th>
             </tr>
           </ng-template>

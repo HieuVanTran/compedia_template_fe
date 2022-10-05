@@ -98,7 +98,7 @@
             <th pSortableColumn="email">EMAIL<p-sortIcon field="email"></p-sortIcon></th>
             <th pSortableColumn="phone">ĐIỆN THOẠI<p-sortIcon field="phone"></p-sortIcon></th>
             <th pSortableColumn="role_id">NHÓM QUYỀN<p-sortIcon field="role_id"></p-sortIcon></th>
-            <th>THAO TÁC</th>
+            <th class="flex-100px">THAO TÁC</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="loadingbody">
@@ -114,7 +114,7 @@
             <td>{{i.email}}</td>
             <td>{{i.phone}}</td>
             <td>{{i.roleCode}}</td>
-            <td>
+            <td class="flex-100px">
               <a type="button" data-toggle="modal" data-target="#exampleModal-accmanager" (click)="editAccount(i)"><i class="fa-solid fa-pen-to-square" style="color: #00cc00"></i></a>
               <a type="button" data-toggle="modal" data-target="#delete-acc-manager" (click)="selectAccount(i)"><i class="fa-solid fa-trash-can" style="color: red"></i></a>
             </td>
