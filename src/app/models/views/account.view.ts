@@ -10,5 +10,4 @@ export interface IAccountViewModal {
   update_date: string,
   date_of_birth: string,
   code_role: string
-
 }

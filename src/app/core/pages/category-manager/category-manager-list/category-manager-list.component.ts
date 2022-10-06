@@ -24,6 +24,9 @@ export class CategoryManagerListComponent implements OnInit {
   totalElement: number = 300;
   first: number = 0
   loading: boolean = true;
+  selectedSortField!: string;
+  selectedSortOrder!: string
+
   constructor(private categoryApiService: CategoryApiService,
               private messageService: MessageService,
               private fb: FormBuilder) {
@@ -56,6 +59,8 @@ export class CategoryManagerListComponent implements OnInit {
       categoryName: this.categoryNameSearch,
       page: this.page,
       size: this.size,
+      sortField: this.selectedSortField,
+      sortOrder: this.selectedSortField ? this.selectedSortOrder : undefined
     }
     console.log(searchRequest)
     this.categoryApiService._searchBookCategory(searchRequest)
@@ -143,6 +148,8 @@ export class CategoryManagerListComponent implements OnInit {
     this.page = Constant.PAGE_INIT
     this.size = Constant.SIZE_INIT
     this.first = 0
+    this.selectedSortField = Constant.NULL_VALUE
+    this.selectedSortOrder = Constant.NULL_VALUE
     this.onSearchBookCategory()
   }
 
@@ -151,9 +158,9 @@ export class CategoryManagerListComponent implements OnInit {
     this.page = $event.first/$event.rows
     // @ts-ignore
     this.size = $event.rows
+    this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
     // @ts-ignore
-    // this.selectedSortField = $event.sortField
-    // this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
+    this.selectedSortField = $event.sortField
     console.log($event)
     this.onSearchBookCategory()
   }

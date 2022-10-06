@@ -25,6 +25,8 @@ export class BookApiService{
 
   _searchBook(request: any): Observable<IResponseModel<IPageResponseModel<IBookManagerResponse>>> {
     const url = `${this.api}/book/search?page=${request.page}&size=${request.size}
+     ${request.sortField? '&sortField=' + request.sortField: ''}
+    ${request.sortOrder? '&sortOrder=' + request.sortOrder: ''}
     ${request.bookName? '&bookName='+request.bookName : ''}
     ${request.categoryId? '&categoryId='+request.categoryId : ''}
      ${request.authorId? '&authorId='+request.authorId : ''}

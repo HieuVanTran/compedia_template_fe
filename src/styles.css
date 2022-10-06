@@ -51,18 +51,13 @@
   position: relative;
 }
 
-#eye {
+#eye, #eye1 {
   position: absolute;
   top: 35px;
   right: 10px;
   cursor: pointer;
 }
-#eye1{
-  position: absolute;
-  top: 35px;
-  right: 10px;
-  cursor: pointer;
-}
+
 #password1{
   position: relative;
 }
@@ -117,7 +112,9 @@ a:hover {
     transition-duration: 0.5s;
   }
 }
-
+.flex-30px {
+  flex: 0 0 30px !important;
+}
 .flex-60px {
   flex: 0 0 60px !important;
 }
@@ -127,6 +124,12 @@ a:hover {
 }
 .flex-160px{
   flex: 0 0 160px !important;
+}
+.flex-200px{
+  flex: 0 0 200px !important;
+}
+.flex-300px{
+  flex: 0 0 300px !important;
 }
 .p-inputtext{
   padding:0.4rem 0.75rem !important

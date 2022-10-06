@@ -22,6 +22,8 @@ export class AccountApiService{
 
   _searchAccount(request: any): Observable<IResponseModel<IPageResponseModel<IAccountManagerResponse>>> {
     const url = `${this.api}/account/search?page=${request.page}&size=${request.size}
+     ${request.sortField? '&sortField=' + request.sortField: ''}
+    ${request.sortOrder? '&sortOrder=' + request.sortOrder: ''}
       ${request.username? '&username='+request.username : ''}
       ${request.fullName? '&fullName='+request.fullName : ''}
       ${request.email? '&email='+request.email : ''}

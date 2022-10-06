@@ -35,7 +35,11 @@
 <!--              <option value="2">Đã trả</option>-->
 <!--              <option value="3">Vi phạm</option>-->
 <!--            </select>-->
+<<<<<<< HEAD
             <p-dropdown [options]="listAction" [(ngModel)]="isActionSearch" optionLabel="action" optionValue="id" placeholder="Hành động"></p-dropdown>
+=======
+<!--            <p-dropdown [options]="loanPayManager" [(ngModel)]="isStatusSearch" optionLabel="status" optionValue="id" placeholder="Trạng thái"></p-dropdown>-->
+>>>>>>> origin/dev
           </li>
 
           <li>
@@ -64,16 +68,31 @@
         <ng-template pTemplate="header" class="dark">
           <tr>
             <th class="flex-60px">STT</th>
-            <th pSortableColumn="username">TÊN TÀI KHOẢN<p-sortIcon field="username"></p-sortIcon></th>
-            <th pSortableColumn="book_name">TÊN SÁCH<p-sortIcon field="book_name"></p-sortIcon></th>
-            <th pSortableColumn="amount">SỐ LƯỢNG<p-sortIcon field="amount"></p-sortIcon></th>
-            <th pSortableColumn="start_date">NGÀY MƯỢN<p-sortIcon field="start_date"></p-sortIcon></th>
-            <th pSortableColumn="end_date">NGÀY TRẢ<p-sortIcon field="end_date"></p-sortIcon></th>
-            <th pSortableColumn="note">GHI CHÚ<p-sortIcon field="note"></p-sortIcon></th>
-            <th pSortableColumn="status">TRẠNG THÁI<p-sortIcon field="status"></p-sortIcon></th>
-            <th pSortableColumn="is_action">HÀNH ĐỘNG<p-sortIcon field="is_action"></p-sortIcon></th>
-            <th pSortableColumn="name_staff">TÊN NHÂN VIÊN<p-sortIcon field="name_staff"></p-sortIcon></th>
-            <th>THAO TÁC</th>
+            <th pSortableColumn="username">TÊN TÀI KHOẢN
+              <p-sortIcon field="username"></p-sortIcon>
+            </th>
+            <th pSortableColumn="book_name">TÊN SÁCH
+              <p-sortIcon field="book_name"></p-sortIcon>
+            </th>
+            <th pSortableColumn="amount">SỐ LƯỢNG
+              <p-sortIcon field="amount"></p-sortIcon>
+            </th>
+            <th pSortableColumn="start_date">NGÀY MƯỢN
+              <p-sortIcon field="start_date"></p-sortIcon>
+            </th>
+            <th pSortableColumn="end_date">NGÀY TRẢ
+              <p-sortIcon field="end_date"></p-sortIcon>
+            </th>
+            <th pSortableColumn="note">GHI CHÚ
+              <p-sortIcon field="note"></p-sortIcon>
+            </th>
+            <th pSortableColumn="status">TRẠNG THÁI
+              <p-sortIcon field="status"></p-sortIcon>
+            </th>
+            <th pSortableColumn="name_staff">TÊN NHÂN VIÊN
+              <p-sortIcon field="name_staff"></p-sortIcon>
+            </th>
+            <th class="flex-100px">THAO TÁC</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="loadingbody">
@@ -108,6 +127,7 @@
 
 
 <!--            <td>{{i.is_action}}</td>-->
+<<<<<<< HEAD
 
             <ng-container *ngIf="i.is_action ==0 ">
               <td>
@@ -130,6 +150,23 @@
             <td>{{i.name_staff}}</td>
             <td>
               <a type="button" data-toggle="modal" data-target="#is_acction" (click)="editIsAction(i)"><i class="fa-solid fa-hands-asl-interpreting"></i></a>
+=======
+<!--            <ng-container *ngIf="i.is_action ==0 ">-->
+<!--              <td>-->
+<!--                empty-->
+<!--              </td>-->
+<!--            </ng-container>-->
+<!--            <ng-container *ngIf="i.is_action ==1 ">-->
+<!--              <td>-->
+<!--                Đang trong thời gian mượn-->
+<!--              </td>-->
+<!--            </ng-container>-->
+<!--            <ng-container *ngIf="i.is_action == 2"><td>Đã trả</td></ng-container>-->
+
+<!--            <ng-container *ngIf="i.is_action == 3"><td>Vi phạm</td></ng-container>-->
+            <td>{{i.name_staff}}</td>
+            <td class="flex-100px">
+>>>>>>> origin/dev
               <a type="button" data-toggle="modal" data-target="#exampleModal-bookmanager" (click)="editLoanpay(i)"><i class="fa-solid fa-pen-to-square"></i></a>
               <a type="button" data-toggle="modal" data-target="#delete-book-manager" (click)="selectLoanpay(i)"><i class="fa-solid fa-trash-can"></i></a>
             </td>

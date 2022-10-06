@@ -84,11 +84,11 @@
         <ng-template pTemplate="header" class="dark">
           <tr>
             <th class="flex-60px">STT</th>
-            <th pSortableColumn="name_author" class="flex-160px">TÊN TÁC GIẢ<p-sortIcon field="name_author"></p-sortIcon></th>
-            <th pSortableColumn="address">ĐỊA CHỈ<p-sortIcon field="address"></p-sortIcon></th>
-            <th pSortableColumn="title">CHỨC DANH<p-sortIcon field="title"></p-sortIcon></th>
+            <th pSortableColumn="name_author" class="flex-300px">TÊN TÁC GIẢ<p-sortIcon field="name_author"></p-sortIcon></th>
+            <th pSortableColumn="address" class="flex-200px">ĐỊA CHỈ<p-sortIcon field="address"></p-sortIcon></th>
+            <th pSortableColumn="title" class="flex-200px">CHỨC DANH<p-sortIcon field="title"></p-sortIcon></th>
             <th pSortableColumn="note">GHI CHÚ<p-sortIcon field="note"></p-sortIcon></th>
-            <th>THAO TÁC</th>
+            <th class="flex-60px">THAO TÁC</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="loadingbody" >
@@ -98,11 +98,11 @@
         <ng-template pTemplate="body" let-i let-rowIndex="rowIndex">
           <tr *ngIf="!loading">
             <td class="flex-60px">{{rowIndex + 1}}</td>
-            <td class="text-bold-500 flex-160px">{{i.name_author}}</td>
-            <td>{{i.address}}</td>
-            <td>{{i.title}}</td>
+            <td class="text-bold-500 flex-300px">{{i.name_author}}</td>
+            <td class="text-bold-500 flex-200px">{{i.address}}</td>
+            <td class="text-bold-500 flex-200px">{{i.title}}</td>
             <td class="short-cut">{{i.note}}</td>
-            <td>
+            <td class="flex-60px">
               <a type="button" data-toggle="modal" data-target="#exampleModal-author-new" style="color: #00cc00" (click)="editBookAuthor(i)"><i
                 class="fa-solid fa-pen-to-square"></i></a>
               <a type="button" data-toggle="modal" data-target="#delete-author-manager" style="color: red" (click)="selectBookAuthor(i)"><i

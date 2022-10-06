@@ -71,7 +71,7 @@
           <tr>
             <th>STT</th>
             <th pSortableColumn="category_name">Thể loại sách<p-sortIcon field="category_name"></p-sortIcon></th>
-            <th>THAO TÁC</th>
+            <th class="flex-100px">THAO TÁC</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="loadingbody">
@@ -82,7 +82,7 @@
           <tr *ngIf="!loading">
             <td>{{ rowIndex +1}}</td>
             <td>{{i.category_name}}</td>
-            <td>
+            <td class="flex-100px">
               <a type="button" data-toggle="modal" data-target="#exampleModal-catergory-create" (click)="editBookCategory(i)" style="color: #00cc00"><i class="fa-solid fa-pen-to-square"></i></a>
               <a type="button" data-toggle="modal" data-target="#delete-category" (click)="selectBookCategory(i)" style="color: red"><i class="fa-solid fa-trash-can"></i></a>
             </td>

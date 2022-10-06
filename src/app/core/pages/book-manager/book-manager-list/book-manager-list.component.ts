@@ -44,13 +44,13 @@ export class BookManagerListComponent implements OnInit {
   listPage!: number[]
   totalPage!: number
   totalElement: number = 300
-
   fileUrl = environment.file_url
   first: number = 0
   loading: boolean = true
-
   text!: string;
   results!: any[];
+  selectedSortField!: string
+  selectedSortOrder!: string
   constructor(private BookApiService: BookApiService,
               private fb: FormBuilder,
               private categoryApiService: CategoryApiService,
@@ -207,7 +207,6 @@ export class BookManagerListComponent implements OnInit {
   search(event : any) {
     console.log(event.query)
     this.results = this.searchBookName(event.query)
-    this.onSearch()
   }
 
   getAllPublishCompany() {
@@ -306,7 +305,9 @@ export class BookManagerListComponent implements OnInit {
       size: this.size,
       categoryId: this.categoryId,
       authorId: this.authorId,
-      publishId: this.publishId
+      publishId: this.publishId,
+      sortField: this.selectedSortField,
+      sortOrder: this.selectedSortField ? this.selectedSortOrder : undefined
     }
     this.BookApiService._searchBook(searchRequest)
       .pipe(finalize(() => this.loading = false))
@@ -327,7 +328,7 @@ export class BookManagerListComponent implements OnInit {
             name_author:bookManagerRes.name_author,
             publishing_year:bookManagerRes.publishing_year,
             page_number:bookManagerRes.page_number,
-            image:bookManagerRes.image,
+            image: this.fileUrl + bookManagerRes.image,
             price:bookManagerRes.price,
             category_name:bookManagerRes.category_name,
             publish_name:bookManagerRes.publish_name,
@@ -361,6 +362,8 @@ export class BookManagerListComponent implements OnInit {
     this.categoryId = Constant.NULL_VALUE
     this.authorId = Constant.NULL_VALUE
     this.publishId = Constant.NULL_VALUE
+    this.selectedSortField = Constant.NULL_VALUE
+    this.selectedSortOrder = Constant.NULL_VALUE
     this.first = 0
     this.onSearch()
   }
@@ -377,8 +380,8 @@ export class BookManagerListComponent implements OnInit {
     // @ts-ignore
     this.size = $event.rows
     // @ts-ignore
-    // this.selectedSortField = $event.sortField
-    // this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
+    this.selectedSortField = $event.sortField
+    this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
     console.log($event)
     this.onSearch()
   }

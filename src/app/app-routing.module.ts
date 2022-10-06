@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {PagesComponent} from "./core/pages/pages.component";
 import {NotFoundComponent} from "./core/not-found/not-found.component";
+import {AuthGuard} from "./guards/auth-guard.service";
 
 
 const routes: Routes = [
@@ -12,11 +13,12 @@ const routes: Routes = [
   {
     path: 'pages',
     component: PagesComponent,
-    loadChildren: () => import('./core/pages/pages.module').then(module => module.PagesModule)
+    loadChildren: () => import('./core/pages/pages.module').then(module => module.PagesModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '',
-    redirectTo: 'auth',
+    redirectTo: 'pages',
     pathMatch: 'full'
   },
   {

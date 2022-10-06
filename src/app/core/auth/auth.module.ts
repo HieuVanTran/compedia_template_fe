@@ -27,7 +27,6 @@ import {ProgressSpinnerModule} from "primeng/progressspinner";
 
   ],
   providers: [
-    MessageService,
     FormBuilder
   ]
 })

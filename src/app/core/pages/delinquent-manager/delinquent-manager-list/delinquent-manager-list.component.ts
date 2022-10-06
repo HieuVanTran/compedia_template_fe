@@ -13,8 +13,6 @@ import {IAccountManagerView} from "../../../../models/views/account-manager.view
 import {IAccountManagerResponse} from "../../../../models/responses/account-manager.response";
 import {AccountApiService} from "../../../../services/api/account-api.service";
 import {Constant} from "../../../../util/constant";
-import {ILoanpayResponse} from "../../../../models/responses/loanpay.response";
-import {ILoanpayView} from "../../../../models/views/loanpay.view";
 import {finalize} from "rxjs";
 
 @Component({
@@ -38,9 +36,9 @@ export class DelinquentManagerListComponent implements OnInit {
   totalElement: number = 300;
   first: number = 0
   loading: boolean = true;
+  selectedSortOrder!: string;
+  selectedSortField!: string
 
-  userName!: string[];
-  searchFullName!: string[];
   constructor(private collectMoneyApiService: CollectMoneyApiService,
               private fb:FormBuilder,
               private messageService: MessageService,
@@ -204,7 +202,9 @@ export class DelinquentManagerListComponent implements OnInit {
       page: this.page,
       size: this.size,
       staffId: this.staffId,
-      fullName: this.fullNameSearch
+      fullName: this.fullNameSearch,
+      sortField: this.selectedSortField,
+      sortOrder: this.selectedSortField ? this.selectedSortOrder : undefined
       // categoryId: this.categoryId,
       // authorId: this.authorId
     }
@@ -244,6 +244,8 @@ export class DelinquentManagerListComponent implements OnInit {
     this.staffId = Constant.NULL_VALUE
     this.fullNameSearch = Constant.NULL_VALUE
     this.first = 0
+    this.selectedSortOrder = Constant.NULL_VALUE
+    this.selectedSortField = Constant.NULL_VALUE
     this.onSearch()
   }
 
@@ -253,43 +255,9 @@ export class DelinquentManagerListComponent implements OnInit {
     // @ts-ignore
     this.size = $event.rows
     // @ts-ignore
-    // this.selectedSortField = $event.sortField
-    // this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
+    this.selectedSortField = $event.sortField
+    this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
     console.log($event)
-    this.onSearch()
-  }
-
-  // search autocomplete userName
-  searchUser(keyword: string): string[] {
-    let names: string[] = [];
-    for (let i = 0; i < this.delinquentManager.length; i++){
-      if (this.delinquentManager[i].username.includes(keyword)){
-        names.push(this.delinquentManager[i].username);
-      }
-    }
-    // this.onSearch()
-    return names
-  }
-  onSearchUsername(event : any) {
-    console.log(event.query)
-    this.userName = this.searchUser(event.query)
-    this.onSearch()
-  }
-
-  // search autocomplete fullName
-  searchFullNameAutoComplete(keyword: string): string[] {
-    let names: string[] = [];
-    for (let i = 0; i < this.delinquentManager.length; i++){
-      if (this.delinquentManager[i].fullName.includes(keyword)){
-        names.push(this.delinquentManager[i].fullName);
-      }
-    }
-    // this.onSearch()
-    return names
-  }
-  onSearchFullNameAutoComplete(event : any) {
-    console.log(event.query)
-    this.userName = this.searchFullNameAutoComplete(event.query)
     this.onSearch()
   }
 }
