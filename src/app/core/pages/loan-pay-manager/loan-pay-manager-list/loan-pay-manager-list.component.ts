@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import {IPageResponseModel, IResponseModel} from 'src/app/models/commons/response.model';
-import {IEditLoanpayRequest, ILoanpayRequest } from 'src/app/models/requests/loanpay.request';
+import {IEditActionRequest, IEditLoanpayRequest, ILoanpayRequest} from 'src/app/models/requests/loanpay.request';
 import { IBookManagerResponse } from 'src/app/models/responses/book-manager.response';
 import { ILoanpayResponse } from 'src/app/models/responses/loanpay.response';
 import { IAccountManagerView } from 'src/app/models/views/account-manager.view';
@@ -17,7 +17,9 @@ import { IStaffManagerView } from 'src/app/models/views/staff-manager.view';
 import { IStaffManagerResponse } from 'src/app/models/responses/staff-manager.response';
 import {Constant} from "../../../../util/constant";
 import {finalize} from "rxjs";
-import {IActionResponse} from "../../../../models/responses/action.response";
+import {IActionResponseNew} from "../../../../models/responses/action.response";
+import {IStatusResponse} from "../../../../models/responses/status.response";
+import {IActionView} from "../../../../models/views/action.view";
 
 @Component({
   selector: 'app-loan-pay-manager-list',
@@ -29,30 +31,39 @@ export class LoanPayManagerListComponent implements OnInit {
   loanPayManager : ILoanpayView[] = []
   loanpayInfoForm!: FormGroup
   loanpaySelected!: ILoanpayView
+  actionSelected!: IActionView
   listBook: IBookManagerView []=[]
   listAccount: IAccountManagerView []=[]
   listStaff: IStaffManagerView []=[]
-listAction: IActionResponse []=[
-  {
-    id:0,
-    action:"empty",
-  },
+  listAction: IActionResponseNew []=[
   {
     id:1,
     action:"Đang trong thời gian mượn",
   },
   {
     id:2,
-    action:"Đang trả",
+    action:"Đã trả",
   },
-  {
-    id:3,
-    action: "Vi phạm"
-  }
+
 ]
+  listStatus: IStatusResponse [] = [
+    {
+      id_status: 0,
+      valueStatus: 'Chưa duyệt'
+    },
+    {
+      id_status: 1,
+      valueStatus: 'Đã duyệt'
+    },
+    {
+      id_status: 2,
+      valueStatus: 'Không cho mượn'
+    }
+  ]
   usernameSearch!: string
   staffSearch!: string;
   isActionSearch!: string
+  statusSearch!: string
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
   totalElement: number = 300;
@@ -181,7 +192,7 @@ listAction: IActionResponse []=[
         amount: i.amount,
         book_id: i.book_id,
         book_name: i.book_name,
-        is_action: i.is_action
+
       }
     )
   }
@@ -196,7 +207,6 @@ listAction: IActionResponse []=[
       note: this.loanpayInfoForm.value.note,
       staff_id: this.loanpayInfoForm.value.staff_id,
       status: this.loanpayInfoForm.value.status,
-      is_action: this.loanpayInfoForm.value.is_action
     }
 
     this.loanpayApiService._editLoanpay(editLoanpayRequest).subscribe(
@@ -211,6 +221,37 @@ listAction: IActionResponse []=[
       }
     )
   }
+
+
+  // edit action
+  editIsAction(i: ILoanpayView) {
+    this.loanpaySelected = i,
+      this.loanpayInfoForm.patchValue(
+        {
+          call_card_id: i.call_card_id,
+          is_action: i.is_action
+        }
+      )
+  }
+  onEditAction() {
+    const editLoanpayRequest: IEditActionRequest = {
+      call_card_id: this.loanpayInfoForm.value.call_card_id,
+      type: this.loanpayInfoForm.value.is_action
+    }
+
+    this.loanpayApiService._editAction(editLoanpayRequest).subscribe(
+      (res: IResponseModel<any>) => {
+        this.messageService.add({severity:'success', summary:'Thông báo', detail:'Chỉnh sửa danh mục thành công'});
+        console.log('Sua danh muc thanh cong')
+        this.onSearch()
+      },
+      err => {
+        this.messageService.add({severity:'error', summary:'Thông báo', detail:'Chỉnh sửa danh mục thất bại'});
+        console.log('Sua danh muc that bai')
+      }
+    )
+  }
+
   selectLoanpay(i: ILoanpayView) {
     this.loanpaySelected = i
   }
@@ -295,7 +336,8 @@ listAction: IActionResponse []=[
       page: this.page,
       size: this.size,
       nameStaff: this.staffSearch,
-      isAction: this.isActionSearch
+      isAction: this.isActionSearch,
+      status: this.statusSearch
       // categoryId: this.categoryId,
       // authorId: this.authorId
     }
@@ -321,8 +363,7 @@ listAction: IActionResponse []=[
             end_date: loanpayRes.end_date,
             account_id: loanpayRes.account_id,
             book_id: loanpayRes.book_id,
-            is_action: loanpayRes.is_action
-
+            is_action: loanpayRes.is_action,
           }
           this.loanPayManager.push(loanpayView)
         })
@@ -333,7 +374,9 @@ listAction: IActionResponse []=[
     this.usernameSearch = Constant.NULL_VALUE
     this.page = Constant.PAGE_INIT
     this.size = Constant.SIZE_INIT
-    this.staffSearch = Constant.NULL_VALUE
+    this.staffSearch = Constant.NULL_VALUE,
+      this.statusSearch = Constant.NULL_VALUE,
+      this.isActionSearch = Constant.NULL_VALUE
     this.first = 0
     this.onSearch()
   }

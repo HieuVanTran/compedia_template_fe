@@ -1,4 +1,6 @@
-export interface IActionResponse{
-  id: number
-  action: string
+
+
+export interface IActionResponseNew {
+  id:number,
+  action:string
 }

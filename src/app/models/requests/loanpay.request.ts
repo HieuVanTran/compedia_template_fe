@@ -16,6 +16,10 @@ export interface IEditLoanpayRequest{
   note: string,
   staff_id: number,
   status: number,
-  is_action: number
+}
+export  interface IEditActionRequest {
+  call_card_id: number,
+  type: number
+
 }
 

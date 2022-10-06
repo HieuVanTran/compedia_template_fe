@@ -11,6 +11,6 @@ export  interface ILoanpayView{
   account_id: number,
   book_name: string
   book_id: number,
-  is_action: number
+  is_action: number,
 }
 
