@@ -35,11 +35,11 @@
 <!--              <option value="2">Đã trả</option>-->
 <!--              <option value="3">Vi phạm</option>-->
 <!--            </select>-->
-<<<<<<< HEAD
+
             <p-dropdown [options]="listAction" [(ngModel)]="isActionSearch" optionLabel="action" optionValue="id" placeholder="Hành động"></p-dropdown>
-=======
+
 <!--            <p-dropdown [options]="loanPayManager" [(ngModel)]="isStatusSearch" optionLabel="status" optionValue="id" placeholder="Trạng thái"></p-dropdown>-->
->>>>>>> origin/dev
+
           </li>
 
           <li>
@@ -89,6 +89,9 @@
             <th pSortableColumn="status">TRẠNG THÁI
               <p-sortIcon field="status"></p-sortIcon>
             </th>
+            <th pSortableColumn="is_action">HÀNH ĐỘNG
+              <p-sortIcon field="is_action"></p-sortIcon>
+            </th>
             <th pSortableColumn="name_staff">TÊN NHÂN VIÊN
               <p-sortIcon field="name_staff"></p-sortIcon>
             </th>
@@ -110,33 +113,33 @@
 <!--            <td>{{i.status}}</td>-->
             <ng-container *ngIf="i.status ==0 ">
               <td>
-                '0'
+                  Chưa duyệt
               </td>
             </ng-container>
             <ng-container *ngIf="i.status ==1 ">
               <td>
-                Chưa duyệt
+                Đã duyệt
               </td>
             </ng-container>
             <ng-container *ngIf="i.status ==2 ">
               <td>
-                Đã duyệt
+                Không cho mượn
               </td>
             </ng-container>
-            <ng-container *ngIf="i.status == 3"><td>Không cho mượn</td></ng-container>
+<!--            <ng-container *ngIf="i.status == 3"><td>Không cho mượn</td></ng-container>-->
 
 
 <!--            <td>{{i.is_action}}</td>-->
-<<<<<<< HEAD
+
 
             <ng-container *ngIf="i.is_action ==0 ">
               <td>
-                '0'
+                Empty
               </td>
             </ng-container>
             <ng-container *ngIf="i.is_action ==1 ">
               <td>
-                'empty'
+                Đang trong thời gian mượn
               </td>
             </ng-container>
             <ng-container *ngIf="i.is_action ==2 ">
@@ -147,10 +150,10 @@
             <ng-container *ngIf="i.is_action == 3"><td>Vi phạm</td></ng-container>
 
 
-            <td>{{i.name_staff}}</td>
-            <td>
-              <a type="button" data-toggle="modal" data-target="#is_acction" (click)="editIsAction(i)"><i class="fa-solid fa-hands-asl-interpreting"></i></a>
-=======
+<!--            <td>{{i.name_staff}}</td>-->
+<!--            <td>-->
+<!--              <a type="button" data-toggle="modal" data-target="#is_acction" (click)="editIsAction(i)"><i class="fa-solid fa-hands-asl-interpreting"></i></a>-->
+
 <!--            <ng-container *ngIf="i.is_action ==0 ">-->
 <!--              <td>-->
 <!--                empty-->
@@ -166,7 +169,7 @@
 <!--            <ng-container *ngIf="i.is_action == 3"><td>Vi phạm</td></ng-container>-->
             <td>{{i.name_staff}}</td>
             <td class="flex-100px">
->>>>>>> origin/dev
+              <a type="button" data-toggle="modal" data-target="#is_acction" (click)="editIsAction(i)"><i class="fa-solid fa-hands-asl-interpreting"></i></a>
               <a type="button" data-toggle="modal" data-target="#exampleModal-bookmanager" (click)="editLoanpay(i)"><i class="fa-solid fa-pen-to-square"></i></a>
               <a type="button" data-toggle="modal" data-target="#delete-book-manager" (click)="selectLoanpay(i)"><i class="fa-solid fa-trash-can"></i></a>
             </td>
@@ -315,9 +318,9 @@
                 <label class="col-sm-2 col-form-label">Trạng thái <span style="color: red">*</span></label>
                 <div class="col-sm-10">
                   <select class="form-control" formControlName="status" id="status">
-                    <option value="1">Chưa duyệt</option>
-                    <option value="2">Đã duyệt</option>
-                    <option value="3">Không cho mượn</option>
+                    <option value="0">Chưa duyệt</option>
+                    <option value="1">Đã duyệt</option>
+                    <option value="2">Không cho mượn</option>
                   </select>
                 </div>
               </div>

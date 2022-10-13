@@ -35,7 +35,6 @@ export class LoanPayManagerListComponent implements OnInit {
   listBook: IBookManagerView []=[]
   listAccount: IAccountManagerView []=[]
   listStaff: IStaffManagerView []=[]
-<<<<<<< HEAD
   listAction: IActionResponseNew []=[
   {
     id:1,
@@ -45,6 +44,11 @@ export class LoanPayManagerListComponent implements OnInit {
     id:2,
     action:"Đã trả",
   },
+    {
+      id:3,
+      action:"Vi phạm",
+    }
+
 
 ]
   listStatus: IStatusResponse [] = [
@@ -65,30 +69,6 @@ export class LoanPayManagerListComponent implements OnInit {
   staffSearch!: string;
   isActionSearch!: string
   statusSearch!: string
-=======
-  listStatus: ILoanpayView[] = [];
-//   listAction: IActionResponse []=[
-//   {
-//     id:0,
-//     action:"empty",
-//   },
-//   {
-//     id:1,
-//     action:"Đang trong thời gian mượn",
-//   },
-//   {
-//     id:2,
-//     action:"Đang trả",
-//   },
-//   {
-//     id:3,
-//     action: "Vi phạm"
-//   }
-// ]
-  usernameSearch!: string
-  staffSearch!: string;
-  isStatusSearch!: string
->>>>>>> origin/dev
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
   totalElement: number = 300;
@@ -361,12 +341,8 @@ export class LoanPayManagerListComponent implements OnInit {
       page: this.page,
       size: this.size,
       nameStaff: this.staffSearch,
-<<<<<<< HEAD
       isAction: this.isActionSearch,
       status: this.statusSearch
-=======
-      status: this.isStatusSearch
->>>>>>> origin/dev
       // categoryId: this.categoryId,
       // authorId: this.authorId
     }
@@ -442,9 +418,7 @@ export class LoanPayManagerListComponent implements OnInit {
 
 }
 
-function editLoanpayRequest(editLoanpayRequest: any) {
-    throw new Error('Function not implemented.');
-}
-
-
-
+// function editLoanpayRequest(editLoanpayRequest: any) {
+//     throw new Error('Function not implemented.');
+// }
+//
