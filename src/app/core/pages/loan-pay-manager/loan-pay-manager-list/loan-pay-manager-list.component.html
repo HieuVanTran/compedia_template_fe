@@ -8,7 +8,7 @@
             <h4 class="card-title title_heading">QUẢN LÝ MƯỢN TRẢ</h4>
           </div>
           <div class="col-md-3 d-flex justify-content-end">
-            <a class="btn btn-info text-light add_new" type="button" data-toggle="modal" data-target="#exampleModal-bookmanager-new" (click)="loanpayInfoForm.reset()">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
+            <a class="btn btn-info text-light add_new" type="button" data-toggle="modal" data-target="#exampleModal-bookmanager-new" (click)="loanPayInfoForm.reset()">Thêm mới <span><i class="fa-solid fa-plus"></i></span></a>
           </div>
         </div>
       </div>
@@ -182,7 +182,7 @@
 
       <!-- Modal -->
       <div class="modal fade" id="exampleModal-bookmanager-new" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" [formGroup]="loanpayInfoForm">
+        <div class="modal-dialog modal-lg " [formGroup]="loanPayInfoForm">
           <div class="modal-content border-0">
             <div class="modal-header" style="background: #2C3333">
               <h5 class="modal-title" id="exampleModalLabel" style="color: white">Thêm mới</h5>
@@ -259,7 +259,7 @@
 
                                           <!-- update -->
       <div class="modal fade" id="exampleModal-bookmanager" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" [formGroup]="loanpayInfoForm">
+        <div class="modal-dialog modal-lg" [formGroup]="loanPayInfoForm">
           <div class="modal-content border-0">
             <div class="modal-header" style="background: #2C3333">
               <h5 class="modal-title" id="exampleModalLabel" style="color: white">Chỉnh sửa</h5>
@@ -366,7 +366,7 @@
 
 <!--  model is_action-->
   <div class="modal fade" id="is_acction" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" [formGroup]="loanpayInfoForm">
+    <div class="modal-dialog modal-lg" [formGroup]="loanPayInfoForm">
       <div class="modal-content border-0">
         <div class="modal-header" style="background: #2C3333">
           <h5 class="modal-title" id="exampleModalLabel" style="color: white">Chỉnh sửa hành động</h5>

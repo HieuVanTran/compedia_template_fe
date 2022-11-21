@@ -29,8 +29,8 @@ import {IActionView} from "../../../../models/views/action.view";
 export class LoanPayManagerListComponent implements OnInit {
   nameSelect = 'Hành động'
   loanPayManager : ILoanpayView[] = []
-  loanpayInfoForm!: FormGroup
-  loanpaySelected!: ILoanpayView
+  loanPayInfoForm!: FormGroup
+  loanPaySelected!: ILoanpayView
   actionSelected!: IActionView
   listBook: IBookManagerView []=[]
   listAccount: IAccountManagerView []=[]
@@ -86,7 +86,7 @@ export class LoanPayManagerListComponent implements OnInit {
               private StaffManagerApiService: StaffManagerApiService,
               private fb: FormBuilder
               ) {
-    this.loanpayInfoForm = fb.group({
+    this.loanPayInfoForm = fb.group({
       amount: [null],
       note: [null],
       status: [null],
@@ -142,13 +142,13 @@ export class LoanPayManagerListComponent implements OnInit {
  // add
   onAddNewLoanpay() {
     const createNewLoanpayRequest: ILoanpayRequest = {
-      account_id: this.loanpayInfoForm.value.account_id,
-      amount: this.loanpayInfoForm.value.amount,
-      book_id: this.loanpayInfoForm.value.book_id,
-      call_card_id: this.loanpayInfoForm.value.call_card_id,
-      end_date: this.loanpayInfoForm.value.end_date,
-      note: this.loanpayInfoForm.value.note,
-      staff_id: this.loanpayInfoForm.value.staff_id
+      account_id: this.loanPayInfoForm.value.account_id,
+      amount: this.loanPayInfoForm.value.amount,
+      book_id: this.loanPayInfoForm.value.book_id,
+      call_card_id: this.loanPayInfoForm.value.call_card_id,
+      end_date: this.loanPayInfoForm.value.end_date,
+      note: this.loanPayInfoForm.value.note,
+      staff_id: this.loanPayInfoForm.value.staff_id
     }
 
     this.loanpayApiService._createNewLoanpay(createNewLoanpayRequest).subscribe(
@@ -166,8 +166,8 @@ export class LoanPayManagerListComponent implements OnInit {
   }
 
   onDeleteLoanpay() {
-    if(this.loanpaySelected) {
-      this.loanpayApiService._deleteLoanpay(this.loanpaySelected.call_card_id).subscribe(
+    if(this.loanPaySelected) {
+      this.loanpayApiService._deleteLoanpay(this.loanPaySelected.call_card_id).subscribe(
         (res: IResponseModel<any>) => {
           console.log('Xoa danh muc thanh cong')
           this.messageService.add({severity:'success', summary:'Thông báo', detail:'Xóa danh mục thành công'});
@@ -183,8 +183,8 @@ export class LoanPayManagerListComponent implements OnInit {
 
   //edit
   editLoanpay(i: ILoanpayView) {
-    this.loanpaySelected = i,
-    this.loanpayInfoForm.patchValue(
+    this.loanPaySelected = i,
+    this.loanPayInfoForm.patchValue(
       {
         call_card_id: i.call_card_id,
         username: i.username,
@@ -205,14 +205,14 @@ export class LoanPayManagerListComponent implements OnInit {
 
   onEditLoanpay() {
     const editLoanpayRequest: IEditLoanpayRequest = {
-      account_id: this.loanpayInfoForm.value.account_id,
-      amount: this.loanpayInfoForm.value.amount,
-      book_id: this.loanpayInfoForm.value.book_id,
-      call_card_id: this.loanpayInfoForm.value.call_card_id,
-      end_date: this.loanpayInfoForm.value.end_date,
-      note: this.loanpayInfoForm.value.note,
-      staff_id: this.loanpayInfoForm.value.staff_id,
-      status: this.loanpayInfoForm.value.status,
+      account_id: this.loanPayInfoForm.value.account_id,
+      amount: this.loanPayInfoForm.value.amount,
+      book_id: this.loanPayInfoForm.value.book_id,
+      call_card_id: this.loanPayInfoForm.value.call_card_id,
+      end_date: this.loanPayInfoForm.value.end_date,
+      note: this.loanPayInfoForm.value.note,
+      staff_id: this.loanPayInfoForm.value.staff_id,
+      status: this.loanPayInfoForm.value.status,
     }
 
     this.loanpayApiService._editLoanpay(editLoanpayRequest).subscribe(
@@ -231,8 +231,8 @@ export class LoanPayManagerListComponent implements OnInit {
 
   // edit action
   editIsAction(i: ILoanpayView) {
-    this.loanpaySelected = i,
-      this.loanpayInfoForm.patchValue(
+    this.loanPaySelected = i,
+      this.loanPayInfoForm.patchValue(
         {
           call_card_id: i.call_card_id,
           is_action: i.is_action
@@ -241,8 +241,8 @@ export class LoanPayManagerListComponent implements OnInit {
   }
   onEditAction() {
     const editLoanpayRequest: IEditActionRequest = {
-      call_card_id: this.loanpayInfoForm.value.call_card_id,
-      type: this.loanpayInfoForm.value.is_action
+      call_card_id: this.loanPayInfoForm.value.call_card_id,
+      type: this.loanPayInfoForm.value.is_action
     }
 
     this.loanpayApiService._editAction(editLoanpayRequest).subscribe(
@@ -259,7 +259,7 @@ export class LoanPayManagerListComponent implements OnInit {
   }
 
   selectLoanpay(i: ILoanpayView) {
-    this.loanpaySelected = i
+    this.loanPaySelected = i
   }
 
   //get detailes : book_name,amount

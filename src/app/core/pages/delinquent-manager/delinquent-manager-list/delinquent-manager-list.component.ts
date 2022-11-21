@@ -33,7 +33,7 @@ export class DelinquentManagerListComponent implements OnInit {
   page: number = Constant.PAGE_INIT
   size: number = Constant.SIZE_INIT
   staffId: number | null = null
-  totalElement: number = 300;
+  totalElement: number = 0;
   first: number = 0
   loading: boolean = true;
   selectedSortOrder!: string;
