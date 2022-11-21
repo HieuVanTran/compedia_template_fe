@@ -30,7 +30,8 @@ export class LoginComponent implements OnInit {
               private messageService: MessageService) {
     this.loginForm = fb.group({
       email: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required, Validators.pattern(this.passwordRegex)]]
+      // password: [null, [Validators.required, Validators.pattern(this.passwordRegex)]]
+      password: [null, [Validators.required]]
     })
   }
 

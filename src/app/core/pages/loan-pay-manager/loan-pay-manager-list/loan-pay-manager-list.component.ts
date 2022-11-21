@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup } from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import {IPageResponseModel, IResponseModel} from 'src/app/models/commons/response.model';
 import {IEditActionRequest, IEditLoanpayRequest, ILoanpayRequest} from 'src/app/models/requests/loanpay.request';
@@ -95,7 +95,7 @@ export class LoanPayManagerListComponent implements OnInit {
       card_number: [null],
       staff_id: [null],
       start_date: [null],
-      end_date: [null],
+      end_date: [null, Validators.required],
       call_card_id: [null],
       account_id: [null],
       is_action: [null]
@@ -130,7 +130,8 @@ export class LoanPayManagerListComponent implements OnInit {
             end_date: loanpayRes.end_date,
             account_id: loanpayRes.account_id,
             book_id: loanpayRes.book_id,
-            is_action: loanpayRes.is_action
+            is_action: loanpayRes.is_action,
+            is_allow_approval: loanpayRes.is_allow_approval
           }
           this.loanPayManager.push(loanpayView)
         })
@@ -369,6 +370,7 @@ export class LoanPayManagerListComponent implements OnInit {
             account_id: loanpayRes.account_id,
             book_id: loanpayRes.book_id,
             is_action: loanpayRes.is_action,
+            is_allow_approval: loanpayRes.is_allow_approval
           }
           this.loanPayManager.push(loanpayView)
         })

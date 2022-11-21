@@ -21,6 +21,9 @@ export class RoleManagerListComponent implements OnInit {
   roleManagerSelected!: IRoleManagerView;
   size: number = Constant.SIZE_INIT;
   loading: boolean = true;
+  totalElement: number = 0
+  page: number = 0
+  selectedSortOrder!: string;
 
 
   constructor(private roleManagerApiService: RoleManagerApiService,
@@ -121,4 +124,14 @@ export class RoleManagerListComponent implements OnInit {
     this.roleManagerSelected = i
   }
 
+  pageChange($event: any) {
+    this.page = $event.first/$event.rows
+    // @ts-ignore
+    this.size = $event.rows
+    // @ts-ignore
+    this.selectedSortField = $event.sortField
+    this.selectedSortOrder = $event.sortOrder == 1? 'ACS' : 'DESC'
+    console.log($event)
+
+  }
 }

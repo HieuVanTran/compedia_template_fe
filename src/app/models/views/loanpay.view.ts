@@ -12,5 +12,6 @@ export  interface ILoanpayView{
   book_name: string
   book_id: number,
   is_action: number,
+  is_allow_approval: number
 }
 

@@ -24,17 +24,20 @@
                  [rows]="size"
                  [lazy]="true"
                  [showLoader]="true"
-                 [loading]="loading">
+                 [loading]="loading"
+                 [showPageLinks]="true"
+                 [totalRecords]="totalElement"
+                 (onLazyLoad)="pageChange($event)">
           <ng-template pTemplate="header" class="dark">
             <tr>
-              <th>STT</th>
+              <th class="flex-60px">STT</th>
               <th pSortableColumn="code">MÃ
                 <p-sortIcon field="code"></p-sortIcon>
               </th>
               <th pSortableColumn="name">TÊN NHÓM QUYỀN
                 <p-sortIcon field="name"></p-sortIcon>
               </th>
-              <th class="flex-100px">THAO TÁC</th>
+              <th class="flex-60px">THAO TÁC</th>
             </tr>
           </ng-template>
 
@@ -46,7 +49,7 @@
 
           <ng-template pTemplate="body" let-i let-rowIndex="rowIndex">
             <tr *ngIf="!loading">
-              <td>{{rowIndex +1}}</td>
+              <td class="flex-60px">{{rowIndex +1}}</td>
               <td>{{i.code}}</td>
               <td>{{i.name}}</td>
               <td class="flex-100px">
@@ -54,6 +57,9 @@
                 <a type="button" data-toggle="modal" data-target="#delete-role-manager" (click)="selectRole(i)"><i class="fa-solid fa-trash-can" style="color: red"></i></a>
               </td>
             </tr>
+          </ng-template>
+          <ng-template pTemplate="paginatorleft" let-state>
+            <td colspan="5">Tổng số bản ghi: {{state.totalRecords}}</td>
           </ng-template>
         </p-table>
 
